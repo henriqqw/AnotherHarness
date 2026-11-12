@@ -11,7 +11,7 @@ declare module '@anotherharness/ah-client-ui-slots' {
 export const zh = {
   'shortcut.noSession': '请先选择会话',
   recoveryFailed: '恢复终端失败：{message}', retryRecovery: '重试恢复终端',
-  shell: '选择终端配置', shellLoading: '正在读取终端配置…', shellEmpty: '没有可用的终端配置', profileDefault: '{name}（默认）', setDefault: '将 {name} 设为默认', description: '在会话工作区运行命令',
+  shell: '选择终端配置', shellLoading: '正在读取终端配置…', shellEmpty: '没有可用的终端配置', profileDefault: '{name}（默认）', agentTitle: 'Agent 终端', agentDescription: '查看 Agent 正在使用的 Shell', agentChoose: '选择 Agent 终端', agentLoading: '正在读取 Agent 终端…', agentEmpty: '暂无 Agent 终端', agentYouControlItem: '{name}（由你控制）', agentTyping: 'Agent 正在使用此终端', agentTakeOver: '接管', agentYouControl: '你正在控制此终端', agentGiveBack: '交还', setDefault: '将 {name} 设为默认', description: '在会话工作区运行命令',
   title: '终端', new: '新建终端', loading: '正在读取终端环境…', creating: '正在启动…',
   connecting: '正在连接…', disconnected: '连接已断开。', reconnect: '重新连接',
   readonly: '此页面当前只读。', control: '接管输入',
@@ -29,7 +29,7 @@ export const zh = {
 export const en = {
   'shortcut.noSession': 'Select a session first',
   recoveryFailed: 'Terminal recovery failed: {message}', retryRecovery: 'Retry terminal recovery',
-  shell: 'Choose profile', shellLoading: 'Loading profiles…', shellEmpty: 'No profiles available', profileDefault: '{name} (default)', setDefault: 'Make {name} the default', description: 'Run commands in the Session workspace',
+  shell: 'Choose profile', shellLoading: 'Loading profiles…', shellEmpty: 'No profiles available', profileDefault: '{name} (default)', agentTitle: 'Agent terminals', agentDescription: 'Watch the shells agents are using', agentChoose: 'Choose agent terminal', agentLoading: 'Loading agent terminals…', agentEmpty: 'No agent terminals yet', agentYouControlItem: '{name} (you control)', agentTyping: 'The agent is using this terminal', agentTakeOver: 'Take over', agentYouControl: 'You control this terminal', agentGiveBack: 'Give back', setDefault: 'Make {name} the default', description: 'Run commands in the Session workspace',
   title: 'Terminal', new: 'New terminal', loading: 'Reading terminal environment…', creating: 'Starting…',
   connecting: 'Connecting…', disconnected: 'Disconnected.', reconnect: 'Reconnect',
   readonly: 'This view is read-only.', control: 'Take control',

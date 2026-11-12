@@ -4,15 +4,17 @@ import { remoteErrorOf } from '@anotherharness/ah-typert-protocol'
 import type { SessionId } from '@anotherharness/ah-session/types'
 import type {} from '@anotherharness/ah-api-gateway/client'
 import { TerminalView, type TerminalLaunch, type TerminalRemote } from './model.ts'
+import { AgentTerminalView } from './agent-view.ts'
 import { createSnapshotStore, type SnapshotStore } from '@anotherharness/ah-client-store'
 import { randomUUID } from '@anotherharness/ah-util-crypto'
-import type { TerminalProfileView, WebTerminalId, WebTerminalInfo } from '../types.ts'
+import type { AgentTerminalInfo, TerminalProfileView, WebTerminalId, WebTerminalInfo } from '../types.ts'
 import { chooseProfile, rememberProfile } from './shell-preference.ts'
 import { TerminalCloseRequests, type TerminalCloseRequest } from './close-requests.ts'
 import { TerminalWindowHold } from './retention.ts'
 import { TerminalBindings } from './bindings.ts'
 
-export type { TerminalView, TerminalViewState, TerminalViewIssue, TerminalRenderFrame, TerminalRemote, TerminalLaunch } from './model.ts'
+export type { TerminalView, TerminalViewState, TerminalViewIssue, TerminalRenderFrame, TerminalRemote, TerminalLaunch, TerminalScreenModel } from './model.ts'
+export { AgentTerminalView } from './agent-view.ts'
 
 declare module '@anotherharness/cordis' {
   interface Context {
@@ -46,6 +48,7 @@ export class ClientTerminals extends Service {
   private readonly closed = new Set<WebTerminalId>(this.requests.pending().map(request => request.id))
   private disposed = false
   private readonly views = new Map<SessionId, Map<string, TerminalView>>()
+  private readonly agentViews = new Map<string, AgentTerminalView>()
   private readonly bindings = new TerminalBindings()
   private readonly holds = new Map<SessionId, Map<WebTerminalId, TerminalWindowHold>>()
   private readonly releasing = new Set<Promise<void>>()
@@ -61,10 +64,12 @@ export class ClientTerminals extends Service {
       this.disposed = true
       const detaching = [...this.views.values()].flatMap(views => [...views.values()].map(view => view.dispose()))
       this.views.clear()
+      const agents = [...this.agentViews.values()].map(view => view.dispose())
+      this.agentViews.clear()
       this.bindings.clear()
       const holds = [...this.holds.values()].flatMap(holds => [...holds.values()].map(hold => hold.dispose()))
       this.holds.clear()
-      await Promise.all([...detaching, ...holds, ...this.releasing, ...this.closing.values()])
+      await Promise.all([...detaching, ...agents, ...holds, ...this.releasing, ...this.closing.values()])
     }, 'terminal-controller.client.views')
     for (const request of this.requests.pending()) this.cleanup(request)
   }
@@ -93,6 +98,47 @@ export class ClientTerminals extends Service {
       void view.refresh()
     }
     return view
+  }
+
+  /**
+   * Return the live view of one agent terminal occurrence; a different terminal replaces the old view.
+   * @param sessionId - owning Session.
+   * @param key - sidebar occurrence key.
+   * @param terminalId - the agent PTY session shown in that occurrence.
+   * @returns the agent terminal view.
+   */
+  agentView(sessionId: SessionId, key: string, terminalId: string): AgentTerminalView {
+    const slot = JSON.stringify([sessionId, key])
+    const existing = this.agentViews.get(slot)
+    if (existing?.terminalId === terminalId) return existing
+    void existing?.dispose()
+    const view = new AgentTerminalView(sessionId, this.remote, this.ctx.remote, terminalId)
+    this.agentViews.set(slot, view)
+    return view
+  }
+
+  /**
+   * Stop following an agent terminal when its tab closes; the agent terminal keeps running.
+   * @param sessionId - owning Session.
+   * @param key - sidebar occurrence key.
+   */
+  releaseAgentView(sessionId: SessionId, key: string): void {
+    const slot = JSON.stringify([sessionId, key])
+    void this.agentViews.get(slot)?.dispose()
+    this.agentViews.delete(slot)
+  }
+
+  /**
+   * List the agent's terminals in one Session.
+   * @param sessionId - target Session.
+   * @param signal - the menu request lifetime.
+   * @returns the agent terminals.
+   */
+  async agentTerminals(sessionId: SessionId, signal: AbortSignal): Promise<readonly AgentTerminalInfo[]> {
+    const result = await this.remote.agentList(sessionId)
+    signal.throwIfAborted()
+    if (!result.ok) throw new Error(result.error.message)
+    return result.value
   }
 
   /**

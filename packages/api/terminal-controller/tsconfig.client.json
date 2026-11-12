@@ -9,6 +9,7 @@
     "src/client/index.ts",
     "src/client/bindings.ts",
     "src/client/model.ts",
+    "src/client/agent-view.ts",
     "src/client/retention.ts",
     "src/client/shell-preference.ts",
     "src/types.ts",

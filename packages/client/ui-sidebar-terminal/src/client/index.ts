@@ -14,6 +14,7 @@ import type {} from '@anotherharness/ah-client-ui-session/client'
 import type {} from '@anotherharness/ah-client-ui-theme/client'
 import { PluginArtworkTerminal } from '@anotherharness/ah-client-ui-primitives'
 import { TerminalGuide, type TerminalGuideInjected } from './TerminalGuide.tsx'
+import { AgentTerminalGuide, type AgentTerminalGuideInjected } from './AgentTerminalGuide.tsx'
 import { LazyTerminalBody } from './LazyTerminalBody.tsx'
 import { TerminalTitle } from './TerminalTitle.tsx'
 // import { TerminalRecovery, type TerminalRecoveryInjected } from './TerminalRecovery.tsx'
@@ -42,7 +43,8 @@ export function apply(ctx: Context): void {
     return () => { unsubscribe(); ctx.webTerminals.retainTabs([]) }
   }, 'ui-sidebar-terminal.window-holds')
   const target = (sessionId: SessionId, key: string): SidebarRightTabParamsMap['terminal'] | undefined =>
-    ctx.sidebarRight.tabDomain.occurrence(sessionId, { id: key as TabId }).navigation.getSnapshot().params
+    ctx.sidebarRight.tabDomain.occurrence(sessionId, { id: key as TabId }).navigation.getSnapshot().params as
+      SidebarRightTabParamsMap['terminal'] | undefined
   const terminalId = (sessionId: SessionId, key: string): WebTerminalId | undefined => {
     const params = target(sessionId, key)
     return params !== undefined && 'terminalId' in params ? params.terminalId : undefined
@@ -111,6 +113,36 @@ export function apply(ctx: Context): void {
   ctx.effect(() => ctx.slots.inject('sidebar.right.pane.tab.title', () => ctx.slots.register(
     { name: 'sidebar.right.pane.tab.title', key: id, locale: namespace, inject }, TerminalTitle,
   )), 'ui-sidebar-terminal.title')
+  // Agent terminals: a second tab kind that follows the agent's own shells and never closes them.
+  const agentId = `${id}/agent`
+  const agentTerminalId = (sessionId: SessionId, key: string): string | undefined => {
+    const params = ctx.sidebarRight.tabDomain.occurrence(sessionId, { id: key as TabId }).navigation.getSnapshot().params as
+      SidebarRightTabParamsMap['agent-terminal'] | undefined
+    return params?.terminalId
+  }
+  const agentView = (sessionId: SessionId, key: string) => ctx.webTerminals.agentView(sessionId, key, agentTerminalId(sessionId, key) ?? '')
+  ctx.effect(() => ctx.sidebarRightTabs.register({
+    id: agentId, kind: 'agent-terminal', multiple: true, priority: 'builtin', title: () => t('agentTitle'),
+    guide: [{ id: 'agents', order: 21, title: () => t('agentTitle'), description: () => t('agentDescription'), icon: PluginArtworkTerminal }],
+  }), 'ui-sidebar-terminal.agent-type')
+  ctx.effect(() => ctx.sidebarRight.registerCloseHandler('agent-terminal', (sessionId, tab) => {
+    ctx.webTerminals.releaseAgentView(sessionId, tab.id)
+  }), 'ui-sidebar-terminal.agent-close')
+  ctx.effect(() => ctx.slots.inject('sidebar.right.tab.guide.entry', () => ctx.slots.register({
+    name: 'sidebar.right.tab.guide.entry', key: agentId, locale: namespace,
+    inject: (sessionId): AgentTerminalGuideInjected => ({
+      loadAgentTerminals: signal => ctx.webTerminals.agentTerminals(sessionId, signal),
+    }),
+  }, AgentTerminalGuide)), 'ui-sidebar-terminal.agent-guide')
+  ctx.effect(() => ctx.slots.inject('sidebar.right.pane.tab', () => ctx.slots.register(
+    { name: 'sidebar.right.pane.tab', key: agentId, locale: namespace,
+      inject: (sessionId): TerminalBodyInjected => ({
+        view: key => agentView(sessionId, key),
+        keyedHooks: { terminal: key => agentView(sessionId, key).state },
+        hooks: { theme },
+      }),
+    }, LazyTerminalBody,
+  )), 'ui-sidebar-terminal.agent-body')
   // ctx.effect(() => ctx.slots.inject('conversation.session.header.actions', () => ctx.slots.register({
   //   name: 'conversation.session.header.actions', id, locale: namespace,
   //   inject: (sessionId): TerminalRecoveryInjected => ({

@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | approved |
+| Status | implemented |
 | Area | terminal (terminal-controller, terminal, terminal-bash, subprocess-local, tool-bash, job-controller, client ui-sidebar-terminal, ui-tool) |
 | Owner | henriqqw |
 | Created | 2026-11-12 |
@@ -32,7 +32,7 @@ The user terminal panel launches one shell chosen from executable names (`zsh, b
 ## User-visible behavior
 
 - **Live tool cards** — while an agent's `bash` or `pwsh` command runs, its card shows the output as it arrives (the last lines, with a scroll area), and a stop button. When the command settles the card shows the same final result as today.
-- **Agent tabs** — when an agent opens a persistent shell, the Terminal sidebar gains a tab named after it with an "Agent" badge. The tab streams the agent's screen live and is read-only. **Take over** gives the user the keyboard; while the user holds control the agent's writes to that shell are refused with a message telling it the user is in control. **Give back** returns control. Closing the conversation or the agent closing the shell removes the tab.
+- **Agent tabs** — the Terminal sidebar has an **Agent terminals** entry listing the agent's open shells; choosing one opens a tab named after it. The tab streams the agent's screen live and is read-only. **Take over** gives the user the keyboard; while the user holds control the agent's writes to that shell are refused with a message telling it the user is in control. **Give back** returns control. Closing the conversation or the agent closing the shell removes the tab.
 - **Profiles** — the new-terminal button opens a menu of profiles, for example "Ubuntu (WSL)", "Debian (WSL)", "PowerShell", "Command Prompt", "Git Bash", "bash", "zsh", each with an icon. The default profile is marked and is used by the plain new-terminal action. The menu offers **Make <profile> the default**, which stores the Host default through the Settings service. The last profile used in a browser is still remembered locally for that browser.
 
 ## Acceptance criteria
@@ -103,8 +103,8 @@ Ships in the `web-app` composition with no flag. Existing `shell`/`shellCandidat
 | Criterion | Test | Verified |
 | --- | --- | --- |
 | AC-1 | `packages/client/ui-tool/tests/terminal-card.client.spec.tsx` (live output), `packages/shell/tool-bash/tests/background.spec.ts`, `packages/shell/tool-pwsh/tests/background.spec.ts` (call id on the job) | ☑ |
-| AC-2 | — | ☐ |
-| AC-3 | — | ☐ |
+| AC-2 | `packages/terminal/terminal/tests/service.spec.ts`, `packages/api/terminal-controller/tests/agent-terminals.spec.ts`, `packages/api/terminal-controller/tests/agent-view.client.spec.ts`, `packages/client/ui-sidebar-terminal/tests/agent-terminal-guide.client.spec.tsx`, `packages/client/ui-sidebar-terminal/tests/apply.client.spec.ts` | ☑ |
+| AC-3 | `packages/terminal/terminal/tests/service.spec.ts`, `packages/terminal/terminal-bash/tests/session.spec.ts`, `packages/shell/tool-bash-persistent/tests/tools.spec.ts`, `packages/api/terminal-controller/tests/agent-terminals.spec.ts`, `packages/client/ui-sidebar-terminal/tests/terminal-body.client.spec.tsx` | ☑ |
 | AC-4 | `packages/api/terminal-controller/tests/profiles.spec.ts` (Windows detection) | ☑ |
 | AC-5 | `packages/api/terminal-controller/tests/profiles.spec.ts` (WSL interop detection) | ☑ |
 | AC-6 | `packages/api/terminal-controller/tests/profiles.spec.ts` (arguments and environment) | ☑ |

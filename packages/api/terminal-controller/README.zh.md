@@ -48,6 +48,8 @@ Shell 探测结果首先列出执行环境声明的默认 shell。仅当 provide
 
 终端配置扩展了 shell 探测，参照 VS Code 的终端配置。`terminal.profiles` 列出探测到的和已配置的终端配置（不含环境变量），并在默认配置可用时给出它。在 Windows 上，探测提供命令提示符、PowerShell、Windows PowerShell、Git Bash，以及每个 WSL 发行版一个配置（`wsl.exe -d <名称>`，不含 Docker Desktop 的工具发行版）。在 Linux 和 macOS 上，它提供 `/etc/shells` 中的 bash、zsh、fish 和 PowerShell；在启用了互操作的 WSL 中，还提供 Windows PowerShell 和命令提示符，WSL 会在转换为 Windows 路径的终端目录中启动它们。每次探测都经由执行 provider 运行，限时三秒，探测失败只会让列表变短。`terminal.create` 接受 `profileId`，再次校验可执行文件，并以配置的参数和环境变量启动；未知或缺失的配置会在启动任何进程前以 `terminal/profile-unavailable` 失败。未提供 `profileId` 或 `shellPath` 时，创建会打开可用的 `defaultProfile`，否则使用执行环境默认值，因此旧的 `shell` 和 `shellCandidates` 设置继续有效。
 
+Agent 终端是可选 `ctx.terminals` 服务中 Agent 自己的 PTY 会话。`terminal.agentList` 列出它们，`terminal.followAgent` 以与用户终端相同的快照、输出和状态帧推送，元数据带有 `agentControl`。`terminal.takeOverAgent` 把键盘交给用户，此时 Agent 的发送会以 `USER_CONTROL` 失败；随后 `terminal.writeAgent` 在 `maxInputBytes` 限制内向会话输入，`terminal.giveBackAgent` 交还控制权。查看不会停止 Agent 的会话。
+
 任何已连接窗口中的打开标签页都会持有其终端，包括隐藏标签和非当前 Session。最后一个持有关系消失后，只有明确确认空闲的时间才计入回收期限。运行中、停止、等待输入和后台执行的任务都会受到保护；活动状态未知时清除空闲截止时间。任务完成后重新给予完整宽限期。Host 使用单调时钟，在清理前重新检查持有关系和当前活动；观察间隔超过轮询周期的两倍时丢弃旧证据。时间字段使用毫秒和安全整数，轮询及重试间隔必须为正数。
 
 <a id="understand-the-implementation"></a>

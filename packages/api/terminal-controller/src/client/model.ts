@@ -52,8 +52,25 @@ export interface TerminalViewState {
   readonly issue?: TerminalViewIssue | undefined
 }
 
+/** What the terminal screen needs from a view: user terminals and agent terminals alike. */
+export interface TerminalScreenModel {
+  readonly state: SnapshotStore<TerminalViewState>
+  mount(): () => void
+  connect(): void
+  refresh(): Promise<void>
+  write(data: string): void
+  resize(cols: number, rows: number): void
+  acknowledge(revision: number): void
+  /** User terminals only: rename the Host terminal. */
+  rename?(title: string): Promise<void>
+  /** Agent terminals only: take the keyboard. */
+  takeOver?(): Promise<void>
+  /** Agent terminals only: return the keyboard to the agent. */
+  giveBack?(): Promise<void>
+}
+
 /** A view survives DOM unmount; its process only ends on explicit close. */
-export class TerminalView {
+export class TerminalView implements TerminalScreenModel {
   /** Observable controls, process metadata and the next screen update awaiting acknowledgement. */
   readonly state: SnapshotStore<TerminalViewState> = createSnapshotStore<TerminalViewState>({ phase: 'idle', writable: false })
   private readonly lifetime = new AbortController()

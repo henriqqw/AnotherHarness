@@ -26,6 +26,7 @@ Agent（智能体）可以读取和编辑工作区文件、运行命令、委派
 
 - [配置模型](./providers.zh.md)
 - [管理对话](./conversations.zh.md)
+- [使用终端](./terminal.zh.md)
 - [使用 Python SDK](./python-sdk.zh.md)
 - [在反向代理之后发布 Web UI](./public-deployments.zh.md)
 - [使用其他 CLI 模式](../../../apps/cli/README.zh.md)

@@ -44,7 +44,7 @@ export function TerminalTitle({ useTabInfo, useTerminal, view, t }: PropsRuntime
       onBlur={(event) => {
         setEditing(false)
         const next = event.currentTarget.value.trim()
-        if (!cancelled.current && next !== '' && next !== title) void view(tab.id).rename(next)
+        if (!cancelled.current && next !== '' && next !== title) void view(tab.id).rename?.(next)
       }}
       onKeyDown={(event) => {
         event.stopPropagation()

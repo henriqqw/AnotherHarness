@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for terminal.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/terminal.md
+/terminals:
+  en: 89b5f4d97f88075e
+  zh: 8f34ef6b4f7ad081
+/terminals/choose-a-terminal-profile:
+  en: a25e613456ae4e78
+  zh: 5f26e873cf59f84c
+/terminals/watch-agent-commands:
+  en: 4b94f0ddeeb15c3d
+  zh: f3fd7880df1b210a
+/terminals/watch-and-take-over-agent-terminals:
+  en: 89987ac03bc9c856
+  zh: 578f98e263498bce

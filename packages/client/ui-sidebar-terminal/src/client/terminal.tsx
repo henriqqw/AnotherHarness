@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
 import { Terminal } from '@xterm/xterm'
 import { FitAddon } from '@xterm/addon-fit'
 import { Button, IconPlusOutlineRegular } from '@anotherharness/ah-client-ui-primitives'
-import type { TerminalViewState, TerminalView } from '@anotherharness/ah-api-terminal-controller/client'
+import type { TerminalViewState, TerminalScreenModel } from '@anotherharness/ah-api-terminal-controller/client'
 import type { InjectFace, PropsLocale, PropsRuntime } from '@anotherharness/ah-client-ui-slots'
 import type { ThemeSnapshot } from '@anotherharness/ah-client-ui-theme/client'
 import type { TerminalBodyInjected } from './face.ts'
@@ -52,16 +52,22 @@ export function TerminalBody({ useTabInfo, useTerminal, useTheme, view, t }: Ter
   else if (state.phase === 'closed') status = t('closed')
   const ended = state.info?.state === 'exited' || state.phase === 'closed'
   const retry = !ended && (state.phase === 'failed' || state.phase === 'disconnected')
-  const readOnly = state.phase === 'connected' && state.info?.state === 'running' && !state.writable
+  const agentControl = state.info?.agentControl
+  const live = state.phase === 'connected' && state.info?.state === 'running'
+  const readOnly = live && agentControl === undefined && !state.writable
+  const agentToggle = live && agentControl !== undefined
   return (
     <section className={css.root} data-sidebar-terminal>
-      {(status !== undefined || retry || readOnly) && <div className={css.status} role="status">
+      {(status !== undefined || retry || readOnly || agentToggle) && <div className={css.status} role="status">
         {status}
         {readOnly && <>{t('readonly')} <Button variant="outline" size="sm" onClick={() => { model.connect() }}>{t('control')}</Button></>}
+        {agentToggle && (agentControl === 'user'
+          ? <>{t('agentYouControl')} <Button variant="outline" size="sm" onClick={() => { void model.giveBack?.() }}>{t('agentGiveBack')}</Button></>
+          : <>{t('agentTyping')} <Button variant="outline" size="sm" onClick={() => { void model.takeOver?.() }}>{t('agentTakeOver')}</Button></>)}
         {retry && (state.info === undefined
           ? <Button variant="outline" size="sm" onClick={() => { void model.refresh() }}>{t(state.phase === 'disconnected' ? 'reconnect' : 'retry')}</Button>
           : <Button variant="outline" size="sm" onClick={() => { model.connect() }}>{t('reconnect')}</Button>)}
-        {ended && newTerminal}
+        {ended && agentControl === undefined && newTerminal}
       </div>}
       {state.info !== undefined && <TerminalScreen state={state} model={model} visible={tab.visible} label={t('title')} theme={theme} />}
       {error !== undefined && <p className={css.error} role="alert">{t('failed', { message: error })}</p>}
@@ -72,7 +78,7 @@ export function TerminalBody({ useTabInfo, useTerminal, useTheme, view, t }: Ter
 /* oxlint-disable typescript/no-non-null-assertion -- React sets the DOM ref, then these effects initialize and use the emulator. */
 function TerminalScreen({ state, model, visible, label, theme }: {
   state: TerminalViewState
-  model: TerminalView
+  model: TerminalScreenModel
   visible: boolean
   label: string
   theme: ThemeSnapshot
@@ -172,7 +178,7 @@ function terminalFontFamily(list: string): string {
   return list === '' ? TERMINAL_FONT_STACK : `${list}, ${TERMINAL_FONT_STACK}`
 }
 
-function fitScreen(xterm: Terminal, fit: FitAddon, state: TerminalViewState, model: TerminalView): void {
+function fitScreen(xterm: Terminal, fit: FitAddon, state: TerminalViewState, model: TerminalScreenModel): void {
   const dimensions = fit.proposeDimensions()
   const environment = state.environment
   if (dimensions === undefined || environment === undefined) return

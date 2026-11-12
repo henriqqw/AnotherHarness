@@ -14,6 +14,7 @@ import type { SidebarRightCloseHandler } from '@anotherharness/ah-client-ui-side
 import type { SidebarRightOpenTab } from '@anotherharness/ah-client-ui-sidebar-right/client'
 import { apply, inject, TERMINAL_CONTROLLER_ENTRY } from '../src/client/index.ts'
 import { apply as hostApply } from '../src/index.ts'
+import { AgentTerminalGuide, type AgentTerminalGuideInjected } from '../src/client/AgentTerminalGuide.tsx'
 import { TerminalGuide, type TerminalGuideInjected } from '../src/client/TerminalGuide.tsx'
 import { LazyTerminalBody } from '../src/client/LazyTerminalBody.tsx'
 import { TerminalTitle } from '../src/client/TerminalTitle.tsx'
@@ -44,12 +45,14 @@ async function mountPlugin(options: { forms?: FakeForms } = {}) {
     inject: (id: SessionId) => unknown
   }[] = []
   const dictionaries = new Map<string, unknown>()
-  let closeHandler: SidebarRightCloseHandler | undefined
+  const closeHandlers = new Map<string, SidebarRightCloseHandler>()
   const model = { state: {} }
   const terminals = {
     retainTabs: vi.fn(), view: vi.fn(() => model), close: vi.fn(), closeFailures: {}, retryClose: vi.fn(),
     launchShells: vi.fn(async () => ({ shells: [], selectedShell: undefined })), selectShell: vi.fn(),
     recover: vi.fn(async (_sessionId: SessionId): Promise<WebTerminalInfo[]> => []),
+    agentView: vi.fn(() => model), releaseAgentView: vi.fn(),
+    agentTerminals: vi.fn(async () => [{ id: 'pty-1', title: 'build', state: 'running', controlledBy: 'agent' }]),
   }
   let params: { terminalId: WebTerminalId } | { profileId: string } | { shellPath: string } | undefined
   const occurrence = vi.fn(() => ({ navigation: { getSnapshot: () => ({ params, address: 'sidebar://terminal/content' }) } }))
@@ -61,7 +64,10 @@ async function mountPlugin(options: { forms?: FakeForms } = {}) {
   ctx.provide('webTerminals', terminals as never)
   ctx.provide('sidebarRight', {
     tabDomain: { occurrence }, openTabIn, tabsIn, openTabs, commandTarget, openTabFromTarget,
-    registerCloseHandler: (kind: string, handler: SidebarRightCloseHandler) => { expect(kind).toBe('terminal'); closeHandler = handler; return () => { closeHandler = undefined } },
+    registerCloseHandler: (kind: string, handler: SidebarRightCloseHandler) => {
+      closeHandlers.set(kind, handler)
+      return () => { closeHandlers.delete(kind) }
+    },
   } as never)
   ctx.provide('slots', {
     inject: (_name: string, register: () => () => void) => register(),
@@ -82,11 +88,40 @@ async function mountPlugin(options: { forms?: FakeForms } = {}) {
     tabs, entries, dictionaries, terminals, model, occurrence, openTabIn, tabsIn, openTabs, theme,
     commandTarget, openTabFromTarget, commands,
     emitTheme() { ctx.emit('theme/change', theme) },
-    get closeHandler() { return closeHandler },
+    get closeHandler() { return closeHandlers.get('terminal') },
+    get agentCloseHandler() { return closeHandlers.get('agent-terminal') },
     setParams(next: typeof params) { params = next },
     async dispose() { await fiber.dispose(); await ctx.fiber.dispose() },
   }
 }
+
+it('registers agent terminal tabs that follow without closing the agent shell (spec terminal/0001 AC-2)', async () => {
+  const h = await mountPlugin()
+  try {
+    const definition = h.tabs.get('agent-terminal')!
+    expect(definition.title('sidebar://agent-terminal')).toBe('agentTitle')
+    expect(definition.multiple).toBe(true)
+    expect(definition.guide?.map(entry => [entry.order, entry.title(), entry.description?.()])).toEqual([[21, 'agentTitle', 'agentDescription']])
+    const sessionId = 'session' as SessionId
+    const guide = h.entries[3]!.inject(sessionId) as AgentTerminalGuideInjected
+    const signal = new AbortController().signal
+    expect(await guide.loadAgentTerminals(signal)).toEqual([{ id: 'pty-1', title: 'build', state: 'running', controlledBy: 'agent' }])
+    expect(h.terminals.agentTerminals).toHaveBeenCalledWith(sessionId, signal)
+    const body = h.entries[4]!.inject(sessionId) as TerminalBodyInjected
+    h.setParams({ terminalId: 'pty-1' } as never)
+    expect(body.view('tab')).toBe(h.model)
+    expect(h.terminals.agentView).toHaveBeenLastCalledWith(sessionId, 'tab', 'pty-1')
+    h.setParams(undefined)
+    expect(body.keyedHooks.terminal('tab')).toBe(h.model.state)
+    expect(h.terminals.agentView).toHaveBeenLastCalledWith(sessionId, 'tab', '')
+    expect(body.hooks.theme.getSnapshot()).toBe(h.theme)
+    h.agentCloseHandler?.(sessionId, { id: 'tab', contentId: 'sidebar://agent-terminal' } as Parameters<SidebarRightCloseHandler>[1])
+    expect(h.terminals.releaseAgentView).toHaveBeenCalledWith(sessionId, 'tab')
+    expect(h.terminals.close).not.toHaveBeenCalled()
+  } finally {
+    await h.dispose()
+  }
+})
 
 it('stores the default profile through the terminal controller settings form when one is mounted', async () => {
   const set = vi.fn(async () => true)
@@ -119,6 +154,8 @@ it('registers terminal views without recovery or cleanup slots, then releases co
       ['sidebar.right.tab.guide.entry', TerminalGuide, 'sidebarTerminal'],
       ['sidebar.right.pane.tab', LazyTerminalBody, 'sidebarTerminal'],
       ['sidebar.right.pane.tab.title', TerminalTitle, 'sidebarTerminal'],
+      ['sidebar.right.tab.guide.entry', AgentTerminalGuide, 'sidebarTerminal'],
+      ['sidebar.right.pane.tab', LazyTerminalBody, 'sidebarTerminal'],
     ])
     const sessionId = 'session' as SessionId
     const launcher = h.entries[0]!.inject(sessionId) as TerminalGuideInjected
@@ -164,6 +201,7 @@ it('registers terminal views without recovery or cleanup slots, then releases co
     await h.dispose()
   }
   expect(h.closeHandler).toBeUndefined()
+  expect(h.agentCloseHandler).toBeUndefined()
   expect(h.tabs.get('terminal')).toBeUndefined()
   expect(h.entries).toEqual([])
   expect(h.dictionaries.size).toBe(0)

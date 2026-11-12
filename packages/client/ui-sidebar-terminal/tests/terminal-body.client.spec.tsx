@@ -80,6 +80,7 @@ function mount(initial: TerminalViewState | undefined = idle, dictionary = en) {
   const model = {
     mount: vi.fn(() => detach), refresh: vi.fn(async () => {}),
     rename: vi.fn(async () => {}), connect: vi.fn(), write: vi.fn(), resize: vi.fn(), acknowledge: vi.fn(),
+    takeOver: vi.fn(async () => {}), giveBack: vi.fn(async () => {}),
   }
   const openTab = vi.fn()
   const tab = () => ({ tab: { id: 'tab', title: 'Terminal', visible, actions: { openTab } } })
@@ -449,4 +450,19 @@ it('offers a new terminal after process exit while preserving its final output f
   expect(h.view.queryByRole('button', { name: en.reconnect })).toBeNull()
   fireEvent.click(h.view.getByRole('button', { name: en.new }))
   expect(h.openTab).toHaveBeenCalledExactlyOnceWith('terminal', { replaceTab: true })
+})
+
+it('offers take-over on an agent terminal, then give-back, and no new terminal after it ends (spec terminal/0001 AC-3)', () => {
+  const agentInfo = { ...info, agentControl: 'agent' as const }
+  const h = mount({ ...idle, phase: 'connected', writable: false, info: agentInfo })
+  expect(h.view.getByRole('status').textContent).toContain(en.agentTyping)
+  expect(h.view.queryByRole('button', { name: en.control })).toBeNull()
+  fireEvent.click(h.view.getByRole('button', { name: en.agentTakeOver }))
+  expect(h.model.takeOver).toHaveBeenCalledOnce()
+  h.update({ ...idle, phase: 'connected', writable: true, info: { ...agentInfo, agentControl: 'user' } })
+  expect(h.view.getByRole('status').textContent).toContain(en.agentYouControl)
+  fireEvent.click(h.view.getByRole('button', { name: en.agentGiveBack }))
+  expect(h.model.giveBack).toHaveBeenCalledOnce()
+  h.update({ ...idle, phase: 'failed', info: { ...agentInfo, state: 'exited', exitCode: 0 } })
+  expect(h.view.queryByRole('button', { name: en.new })).toBeNull()
 })
