@@ -362,3 +362,61 @@
   font-size: 12px;
   line-height: 15px;
 }
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(100%, 640px);
+  padding: 8px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  background: var(--color-bg-surface);
+}
+
+.editorField {
+  width: 100%;
+  min-height: 48px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.5;
+}
+
+.editorHint {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+}
+
+.editorActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.editorButton,
+.editorPrimary {
+  padding: 4px 12px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.editorPrimary {
+  border-color: transparent;
+  background: var(--color-text-primary);
+  color: var(--color-bg-surface);
+}
+
+.editorPrimary:disabled {
+  opacity: 0.4;
+  cursor: default;
+}

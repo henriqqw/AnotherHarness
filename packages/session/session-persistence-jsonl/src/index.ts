@@ -27,7 +27,7 @@ import {
   type SessionAccess, type SessionHandle,
   type SessionHandleReadResult,
   type SessionLocation, type SessionPersistenceCreateOptions,
-  type SessionPersistenceListOptions, type SessionPersistenceOpenOptions,
+  type SessionPersistenceDeleteOptions, type SessionPersistenceListOptions, type SessionPersistenceOpenOptions,
   type SessionPersistenceSnapshot, type SessionPersistenceStatOptions,
   type SessionPersistenceRevision as PersistenceRevision,
 } from '@anotherharness/ah-session-persistence'
@@ -469,6 +469,37 @@ class JsonlSessionPersistence extends SessionPersistence {
       options?.signal?.throwIfAborted()
       if (isENOENT(error)) return undefined
       throw error
+    }
+  }
+
+  /**
+   * Permanently remove one stored session directory, including every format
+   * generation and its lock file, then the project directory when it is empty.
+   * Ownership is checked in this process (an open write handle or pending
+   * create) and across processes (the kernel write lock) before removal.
+   * @param id - the stored session to remove.
+   * @param options - optional cancellation before removal starts.
+   * @returns true when a stored session was removed, false when none existed.
+   * @throws {SessionAlreadyOwnedError} when write ownership is held.
+   */
+  override async delete(id: SessionId, options?: SessionPersistenceDeleteOptions): Promise<boolean> {
+    options?.signal?.throwIfAborted()
+    await this.ensureRootEncoding()
+    this.tracker.claimWrite(id)
+    try {
+      const resolved = await this.findLog(id, options?.signal)
+      if (resolved === undefined) return false
+      const dir = dirname(resolved.currentPath)
+      // Proves no other process owns the session; released before removal because
+      // Windows cannot remove a locked file, and new opens resolve no artifact afterwards.
+      await (await this.acquireLease(id, undefined, dir)).release()
+      options?.signal?.throwIfAborted()
+      await rm(dir, { recursive: true, force: true })
+      const project = dirname(dir)
+      if ((await readdir(project)).length === 0) await rm(project, { recursive: true, force: true })
+      return true
+    } finally {
+      this.tracker.releaseClaim(id)
     }
   }
 

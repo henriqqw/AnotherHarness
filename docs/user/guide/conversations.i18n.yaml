@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for conversations.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/conversations.md
+/manage-conversations:
+  en: 1a0d7c08d43c4a60
+  zh: 7c252a2df84b2728
+/manage-conversations/copy-a-message:
+  en: 17f72712b02250a6
+  zh: c008cab233db58ad
+/manage-conversations/fork-from-a-turn:
+  en: a93d1081fedad8d0
+  zh: dda6734d694d19c3
+/manage-conversations/rewind-to-a-turn:
+  en: 58599baffc71ce27
+  zh: 042c31fdfe107e8e
+/manage-conversations/edit-a-sent-message:
+  en: c48f8ace03fef25c
+  zh: bc1c0d5721b79935
+/manage-conversations/delete-a-conversation:
+  en: 791b570d308408a6
+  zh: 5d99a863c5bd5b2c

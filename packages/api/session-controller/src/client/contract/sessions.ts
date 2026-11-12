@@ -119,6 +119,12 @@ export interface ISessions {
     signal: AbortSignal,
   ): Promise<RemoteResult<{ items: SessionSearchResultItem[]; hasMore: boolean }>>
   /**
+   * Permanently delete one idle session and remove it from the catalog.
+   * @param sessionId - the session to delete.
+   * @throws {SessionDeleteError} when the Host refuses or fails the deletion.
+   */
+  delete(sessionId: SessionId): Promise<void>
+  /**
    * Fork a session from an exact inclusive prefix of the source; on
    * resolution the child is catalogued and can be explicitly retained.
    * @param opts - source session id, the optional exact inclusive boundary

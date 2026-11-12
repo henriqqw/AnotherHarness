@@ -561,6 +561,18 @@ insertBefore(id: WorkspaceId, beforeId?: WorkspaceId): Promise<readonly Workspac
 archiveSession(sessionId: SessionId, options: ArchiveSessionOptions = {}): Promise<void>
 
 /**
+ * Forget one permanently deleted session: drop it from every workspace
+ * account and from the registry-global archive and pin sets. The session
+ * must be inactive: the `workspace/session-activity` waterfall is asked once,
+ * and any reported activity rejects with {@link WorkspaceActiveSessionError}
+ * before anything is written. An id the registry does not reference resolves
+ * without writing.
+ * @param sessionId - The deleted session.
+ * @returns resolution after durability.
+ */
+forgetSession(sessionId: SessionId): Promise<void>
+
+/**
  * Unarchive one session durably by dropping it from the registry-global
  * archive set; the accounting slot was never touched, so the session
  * returns to its recorded position. Unarchiving runs no session-existence

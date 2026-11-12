@@ -3,7 +3,8 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import {
-  IconBranchOutlineRegular, IconCheckOutlineRegular, IconCopyOutlineRegular, Tooltip, writeClipboard,
+  IconBranchOutlineRegular, IconCheckOutlineRegular, IconCopyOutlineRegular, IconEditOutlineRegular,
+  IconRefreshOutlineRegular, Tooltip, writeClipboard,
 } from '@anotherharness/ah-client-ui-primitives'
 import type { ChatViewSlotProps } from '../contract/slots.ts'
 import { formatMessageClock } from './message-chrome.ts'
@@ -21,6 +22,12 @@ export interface MessageIconActionsProps {
   onBranch?: (() => void) | undefined
   /** The message is not a completed transcript tail, so branch stays visible but unavailable. */
   branchUnavailable?: boolean | undefined
+  /** Rewind the conversation to this turn; omission hides the action. Shares branch availability. */
+  onRewind?: (() => void) | undefined
+  /** Edit this sent message; omission hides the action. */
+  onEdit?: (() => void) | undefined
+  /** The message cannot be edited, so edit stays visible but unavailable. */
+  editUnavailable?: boolean | undefined
   /** Parent layout class composed onto the actions row. */
   className?: string | undefined
   /**
@@ -38,16 +45,17 @@ export interface MessageIconActionsProps {
 }
 
 /**
- * Copy / branch (/ clock) IconActions row shared by user and assistant chrome.
+ * Copy / edit / branch / rewind (/ clock) IconActions row shared by user and assistant chrome.
  * @param props - Copy text, event time, clock side, branch callback, className.
  * @returns The actions row element.
  */
 export function MessageIconActions({
-  text, time, clock, onBranch, branchUnavailable = false, className,
+  text, time, clock, onBranch, branchUnavailable = false, onRewind, onEdit, editUnavailable = false, className,
   extraActions, usageAction, t,
 }: MessageIconActionsProps) {
   const day = useCalendarDay()
   const reasonId = useId()
+  const editReasonId = useId()
   // Same success chrome as CodeBlock: a short check swap after the write,
   // gated so re-clicks during the window neither re-copy nor stack timers.
   const [copied, setCopied] = useState(false)
@@ -87,6 +95,24 @@ export function MessageIconActions({
           {copied ? <IconCheckOutlineRegular /> : <IconCopyOutlineRegular />}
         </button>
       </Tooltip>
+      {onEdit !== undefined && (
+        <Tooltip label={editUnavailable ? t('message.editUnavailable') : t('message.edit')} side="bottom">
+          <button
+            type="button"
+            className={css.action}
+            aria-label={t('message.edit')}
+            aria-disabled={editUnavailable || undefined}
+            aria-describedby={editUnavailable ? editReasonId : undefined}
+            data-unavailable={editUnavailable || undefined}
+            onClick={editUnavailable ? undefined : onEdit}
+          >
+            <IconEditOutlineRegular />
+          </button>
+        </Tooltip>
+      )}
+      {onEdit !== undefined && editUnavailable && (
+        <span id={editReasonId} className={css.visuallyHidden}>{t('message.editUnavailable')}</span>
+      )}
       {extraActions}
       {onBranch !== undefined && (
         <Tooltip label={branchUnavailable ? t('message.branchUnavailable') : t('message.branch')} side="bottom">
@@ -104,7 +130,22 @@ export function MessageIconActions({
           </button>
         </Tooltip>
       )}
-      {onBranch !== undefined && branchUnavailable && (
+      {onRewind !== undefined && (
+        <Tooltip label={branchUnavailable ? t('message.branchUnavailable') : t('message.rewind')} side="bottom">
+          <button
+            type="button"
+            className={css.action}
+            aria-label={t('message.rewind')}
+            aria-disabled={branchUnavailable || undefined}
+            aria-describedby={branchUnavailable ? reasonId : undefined}
+            data-unavailable={branchUnavailable || undefined}
+            onClick={branchUnavailable ? undefined : onRewind}
+          >
+            <IconRefreshOutlineRegular />
+          </button>
+        </Tooltip>
+      )}
+      {(onBranch !== undefined || onRewind !== undefined) && branchUnavailable && (
         <span id={reasonId} className={css.visuallyHidden}>{t('message.branchUnavailable')}</span>
       )}
       {clock === 'end'

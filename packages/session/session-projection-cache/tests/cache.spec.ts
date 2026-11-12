@@ -293,6 +293,16 @@ describe('SessionProjectionCache write policy', () => {
     expect(write).toHaveBeenCalledExactlyOnceWith(session)
   })
 
+  it('forgets a deleted Session row and reports whether one existed', async () => {
+    const { ctx, root } = await harness()
+    const session = ctx.sessions.create(SessionId('forget-me'))
+    await ctx.sessionProjectionCache.write(session)
+    expect(await storedRows(root, session.id)).toBeDefined()
+    expect(await ctx.sessionProjectionCache.forget(session.id)).toBe(true)
+    expect(await storedRows(root, session.id)).toBeUndefined()
+    expect(await ctx.sessionProjectionCache.forget(session.id)).toBe(false)
+  })
+
   it('write() on a never-dirty session checkpoints directly and rejects a non-JSON unit state', async () => {
     const { ctx, root } = await harness()
     // Never dirtied: no events — write() still lands the init-derived cut.

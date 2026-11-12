@@ -1,4 +1,4 @@
-import { Fragment, memo, useEffect, useMemo, useState } from 'react'
+import { Fragment, memo, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { PendingSubmission } from '@anotherharness/ah-api-session-controller/client'
 import type { MessageImageSource } from '@anotherharness/ah-client-ui-conversation/client'
@@ -316,11 +316,73 @@ export function PendingSubmissionBubble({ submission, renderMessageImages, t }: 
   )
 }
 
+/**
+ * Inline editor for one sent user message: submitting continues from the
+ * edited text in a new Session, cancelling restores the bubble.
+ * @param props - original text, submit and cancel callbacks, translator.
+ * @returns the editor row.
+ */
+export function UserMessageEditor({ initial, onSubmit, onCancel, t }: {
+  initial: string
+  onSubmit: (text: string) => void
+  onCancel: () => void
+  t: ChatViewSlotProps['t']
+}): ReactNode {
+  const [text, setText] = useState(initial)
+  const field = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    const element = field.current
+    if (element === null) return
+    element.focus()
+    element.setSelectionRange(element.value.length, element.value.length)
+  }, [])
+  const submittable = text.trim() !== ''
+  const submit = (): void => { if (submittable) onSubmit(text) }
+  return (
+    <div className={css.userRow} data-message-editor>
+      <div className={css.editor}>
+        <textarea
+          ref={field}
+          className={css.editorField}
+          aria-label={t('message.edit')}
+          value={text}
+          rows={Math.min(12, Math.max(2, text.split('\n').length))}
+          onChange={(event) => { setText(event.target.value) }}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') { event.preventDefault(); onCancel() }
+            else if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); submit() }
+          }}
+        />
+        <p className={css.editorHint}>{t('message.editHint')}</p>
+        <div className={css.editorActions}>
+          <button type="button" className={css.editorButton} onClick={onCancel}>{t('message.editCancel')}</button>
+          <button type="button" className={css.editorPrimary} disabled={!submittable} onClick={submit}>{t('message.editSubmit')}</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /** User and admitted-steering keyed Chat renderer. */
 export const UserMessageNodeView = memo(function UserMessageNodeView({
-  node, renderMessageImages, openFile, openSkill, t,
+  node, renderMessageImages, openFile, openSkill, editMessage, t,
 }: ChatNodeViewProps<'user' | 'steering'>) {
   const data = node.data
+  const [editing, setEditing] = useState(false)
+  const turn = node.kind === 'user' && (node.location.kind === 'turn' || node.location.kind === 'step')
+    ? node.location.turn.turn
+    : undefined
+  const parts = useMemo(() => contentParts(data.content), [data.content])
+  if (editing && turn !== undefined) {
+    return (
+      <UserMessageEditor
+        initial={parts.text}
+        onCancel={() => { setEditing(false) }}
+        onSubmit={(text) => { setEditing(false); editMessage(turn, text) }}
+        t={t}
+      />
+    )
+  }
   return (
     <UserStyleBubble
       content={data.content}
@@ -335,6 +397,10 @@ export const UserMessageNodeView = memo(function UserMessageNodeView({
           time={data.time}
           clock="start"
           className={css.actions}
+          onEdit={turn === undefined ? undefined : () => { setEditing(true) }}
+          // Edit resends text only; a message carrying attachments or
+          // structured blocks would lose them, so it stays unavailable.
+          editUnavailable={parts.attachments.length > 0 || parts.rest.length > 0 || parts.text.trim() === ''}
           t={t}
         />
       )}

@@ -9,6 +9,7 @@ import type {
   SessionControlFrame,
   SessionProjectionHints,
   SessionRenameValue,
+  SessionDeleteValue,
   SessionSummary,
 } from '../../types.ts'
 import { mergeOrderedBaseline } from '../ordered-baseline.ts'
@@ -568,6 +569,17 @@ export class SessionManager {
         ...(source?.cwd !== undefined ? { cwd: source.cwd } : {}),
       } })
     }
+    return result
+  }
+
+  /**
+   * Permanently delete a Session and drop it from the list once the Host confirms.
+   * @param sessionId - Session to delete.
+   * @returns the Host confirmation, or the Remote failure.
+   */
+  async delete(sessionId: SessionId): Promise<RemoteResult<SessionDeleteValue>> {
+    const result = await this.remote.session.delete({ sessionId })
+    if (result.ok) this.handleSessionRemoved(sessionId)
     return result
   }
 

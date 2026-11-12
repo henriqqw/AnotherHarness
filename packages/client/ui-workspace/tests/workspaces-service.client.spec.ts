@@ -139,6 +139,7 @@ class FakeSessions implements ISessions {
   readonly list: MutableSource<SessionListState>
   readonly create: ReturnType<typeof vi.fn<ISessions['create']>>
   readonly fork = vi.fn<ISessions['fork']>(async () => sid('forked'))
+  readonly delete = vi.fn<ISessions['delete']>(async () => {})
   readonly retained: RetainedSession[] = []
   readonly refreshProjections = vi.fn<ISessions['refreshProjections']>(() => Promise.resolve())
   readonly retain = vi.fn<ISessions['retain']>((target) => {
@@ -1296,6 +1297,21 @@ describe('UiWorkspaceService', () => {
 
     expect(b.sessions.retained[0]!.release).toHaveBeenCalledOnce()
     expect(b.selectPanel).toHaveBeenCalledTimes(2)
+  })
+
+  it('deletes through the Session Controller and clears the selection only for the deleted Session', async () => {
+    const b = bench()
+    b.uiWorkspace.openSession(sid('current'))
+    await b.uiWorkspace.deleteSession(sid('other'))
+    expect(b.sessions.delete).toHaveBeenCalledWith('other')
+    expect(b.sessions.retained[0]!.release).not.toHaveBeenCalled()
+
+    b.sessions.delete.mockRejectedValueOnce(new Error('session/active'))
+    await expect(b.uiWorkspace.deleteSession(sid('current'))).rejects.toThrow('session/active')
+    expect(b.sessions.retained[0]!.release).not.toHaveBeenCalled()
+
+    await b.uiWorkspace.deleteSession(sid('current'))
+    expect(b.sessions.retained[0]!.release).toHaveBeenCalledOnce()
   })
 
   it('forwards archive commands and preserves failures', async () => {

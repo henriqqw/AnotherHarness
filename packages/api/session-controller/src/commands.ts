@@ -7,6 +7,8 @@ import type { Context } from '@anotherharness/cordis'
 import { brandString } from '@anotherharness/ah-brand'
 import type { Agent, ModelSelection as AgentModelSelection } from '@anotherharness/ah-agent'
 import { AttachmentError } from '@anotherharness/ah-attachment'
+import { SessionAlreadyOwnedError } from '@anotherharness/ah-session-persistence'
+import { WorkspaceActiveSessionError } from '@anotherharness/ah-workspace'
 import type { VisionBridge } from '@anotherharness/ah-llm-vision-bridge'
 import type {
   AttachmentAdmissionPart, FileAttachmentRef, ImageAttachmentRef,
@@ -49,6 +51,8 @@ import type {
   SessionPromptValue,
   SessionRenameRequest,
   SessionRenameValue,
+  SessionDeleteRequest,
+  SessionDeleteValue,
   SessionSelectModelRequest,
   SessionSelectModelValue,
   SessionUpdateQueueRequest,
@@ -214,6 +218,47 @@ export class SessionCommandController {
   }
 
   /**
+   * Permanently delete one ordinary Session: release its idle Web Agent, forget it in the
+   * Workspace registry, remove its stored log, and drop its cached projections.
+   * @param request - the Session to delete.
+   * @returns confirmation once every store forgot the Session.
+   */
+  async delete(request: SessionDeleteRequest): Promise<SessionDeleteValue> {
+    const { sessionId } = request
+    const released = await this.agents.release(sessionId)
+    if (released === 'running') {
+      throw new RemoteError('session/active', `Session "${sessionId}" is running; stop it before deleting it.`, { sessionId })
+    }
+    if (released === 'foreign') {
+      throw new RemoteError('session/active', `Session "${sessionId}" is in use by another component and cannot be deleted now.`, { sessionId })
+    }
+    const persistence = this.ctx.get('sessionPersistence')
+    if (persistence === undefined) {
+      throw new RemoteError('gateway/internal', 'deleting is unavailable: this deployment mounts no session persistence', {})
+    }
+    try {
+      await this.ctx.workspaceRegistry.forgetSession(sessionId)
+    } catch (error) {
+      if (error instanceof WorkspaceActiveSessionError) {
+        throw new RemoteError('session/active', `Session "${sessionId}" still has background work; stop it before deleting it.`, { sessionId })
+      }
+      throw new RemoteError('gateway/internal', `failed to forget session "${sessionId}": ${String(error)}`, {})
+    }
+    let removed: boolean
+    try {
+      removed = await persistence.delete(sessionId)
+    } catch (error) {
+      if (error instanceof SessionAlreadyOwnedError) {
+        throw new RemoteError('session/writer-held', error.message, { sessionId })
+      }
+      throw new RemoteError('gateway/internal', `failed to delete session "${sessionId}": ${String(error)}`, {})
+    }
+    if (!removed) throw new RemoteError('session/not-found', `session "${sessionId}" not found`, { sessionId })
+    await this.ctx.get('sessionProjectionCache')?.forget(sessionId)
+    return { deleted: true }
+  }
+
+  /**
    * Create a new ordinary Session from an exact event prefix. An explicit
    * `atSeq` is the inclusive cut; an omitted value selects the latest
    * completed-turn prefix. An open cut receives synthetic fork closers.
@@ -269,7 +314,7 @@ export class SessionCommandController {
     const composition = await this.agents.composeAgent(this.agents.presetForObservation(source))
     try {
       const { provider, model } = this.ctx.agentDefaultModel.currentSelection()
-      await this.ctx.agents.create({
+      this.agents.adopt(await this.ctx.agents.create({
         sessionId: childId,
         seed,
         inheritedEventCount: SessionLogOffset(boundary + 1),
@@ -283,7 +328,7 @@ export class SessionCommandController {
         },
         agentOptions: { provider, model },
         setup: composition.setup,
-      })
+      }))
     } catch (error) {
       throw new RemoteError(
         'gateway/internal',

@@ -80,12 +80,14 @@ async function bench(initialSettings?: ChatSettings, withBrowserRegistry = true,
   )
   runtime.remote.provideNamespaces({ session: { openWorkspacePath } })
   const openSession = vi.fn<(id: SessionId) => void>()
+  const archiveSession = vi.fn<(id: SessionId) => Promise<void>>(() => Promise.resolve())
   runtime.ctx.provide('uiWorkspace', {
     openWorkspace: vi.fn(async (_workspaceId: WorkspaceId, beforeOpen: (id: SessionId) => void) => {
       beforeOpen(ROOT)
       openSession(ROOT)
     }),
     openSession,
+    archiveSession,
   } as never)
   const session = sessionFakeFor()
   await runtime.sessions.add({
@@ -132,7 +134,8 @@ async function bench(initialSettings?: ChatSettings, withBrowserRegistry = true,
       return preference as LinkOpeningRowInjected
     },
     runtime, chat, chatSettings, browserAvailable,
-    layout, openWorkspacePath, sidebarRight, sidebarRightTabs, session, chatViewApi, chatFlowApi, rootReference, openSession,
+    layout, openWorkspacePath, sidebarRight, sidebarRightTabs, session, chatViewApi, chatFlowApi, rootReference,
+    openSession, archiveSession,
   }
 }
 
@@ -234,6 +237,23 @@ describe('Chat inject API', () => {
         sessionId: ROOT, atSeq: 18, increaseTitle: true, onCreated: expect.any(Function) as (childId: SessionId) => void,
       })
     })
+    await b.runtime.dispose()
+  })
+
+  it('rewinds by archiving the source after the fork opens, and swallows edit failures', async () => {
+    const b = await bench()
+    const { injected } = b.chatViewApi(b.rootReference)
+    const fork = vi.spyOn(b.runtime.sessions, 'fork').mockResolvedValue(ROOT)
+    injected.forkAt(17, { archiveSource: true })
+    await vi.waitFor(() => { expect(b.archiveSession).toHaveBeenCalledWith(ROOT) })
+    expect(b.openSession).toHaveBeenCalledWith(ROOT)
+    fork.mockRestore()
+
+    const create = vi.spyOn(b.runtime.sessions, 'create').mockRejectedValue(new Error('create failed'))
+    injected.editMessage(1, 'edited')
+    await vi.waitFor(() => { expect(create).toHaveBeenCalledWith({ cwd: '/proj' }) })
+    expect(b.archiveSession).toHaveBeenCalledTimes(1)
+    create.mockRestore()
     await b.runtime.dispose()
   })
 

@@ -385,6 +385,34 @@ export class WorkspaceRegistry extends Service {
   }
 
   /**
+   * Forget one permanently deleted session: drop it from every workspace
+   * account and from the registry-global archive and pin sets. The session
+   * must be inactive: the `workspace/session-activity` waterfall is asked once,
+   * and any reported activity rejects with {@link WorkspaceActiveSessionError}
+   * before anything is written. An id the registry does not reference resolves
+   * without writing.
+   * @param sessionId - The deleted session.
+   * @returns resolution after durability.
+   */
+  forgetSession(sessionId: SessionId): Promise<void> {
+    return this.enqueueOperation(async () => {
+      const activity = await this.ctx.waterfall(
+        'workspace/session-activity', { sessionId }, () => Promise.resolve([]),
+      )
+      if (activity.length > 0) throw new WorkspaceActiveSessionError(sessionId, activity)
+      const state = this.requireState()
+      if (state.archivedSessionIds.includes(sessionId) || state.pinnedSessionIds.includes(sessionId)) {
+        await this.setState({
+          ...state,
+          archivedSessionIds: state.archivedSessionIds.filter(id => id !== sessionId),
+          pinnedSessionIds: state.pinnedSessionIds.filter(id => id !== sessionId),
+        })
+      }
+      for (const workspace of this.entities.values()) await workspace.detachSession(sessionId)
+    })
+  }
+
+  /**
    * Unarchive one session durably by dropping it from the registry-global
    * archive set; the accounting slot was never touched, so the session
    * returns to its recorded position. Unarchiving runs no session-existence

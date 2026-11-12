@@ -38,6 +38,7 @@ import { en, NS, zh } from './locale.ts'
 import { TranscriptViewRow, type TranscriptViewRowInjected } from './settings/TranscriptViewRow.tsx'
 import { createChatStore } from './stores.ts'
 import { TranscriptViewPolicy } from './transcript-view.ts'
+import { continueFromEdit } from './message-edit.ts'
 import { derivePresentationPolicy } from './presentation-policy.ts'
 import { CHAT_SETTINGS_NAMESPACE, DEFAULT_LINK_OPENING, DEFAULT_TRANSCRIPT_VIEW_MODE, type ChatSettings } from '../chat-settings.ts'
 import { LinkOpeningRow, type LinkOpeningRowInjected } from './settings/LinkOpeningRow.tsx'
@@ -283,16 +284,24 @@ export function apply(ctx: Context): void {
             },
             read: () => chatScrollPositions.get(sessionId) ?? null,
           },
-          forkAt: (seq) => {
+          forkAt: (seq, options) => {
             const turn = [...chat.getSnapshot().timeline.turns.values()].find(turn => turn.end?.seq === seq)
             const messageId = turn?.data.get('turn-tail')?.closing?.finalNode.messageId
             ctx.sessions.fork({ sessionId, atSeq: seq, increaseTitle: true, onCreated: (childId) => {
               ctx.get('productAnalytics')?.track('branch_session_click', { session_id: childId, parent_session_id: sessionId, ...messageId === undefined ? {} : { parent_message_id: messageId }, click_position: 'footer' })
             } })
-              .then((childId) => { ctx.uiWorkspace.openSession(childId) })
-              .catch(() => {
-                // Fork or child-title failure leaves the source view unchanged.
+              .then(async (childId) => {
+                ctx.uiWorkspace.openSession(childId)
+                if (options?.archiveSource === true) await ctx.uiWorkspace.archiveSession(sessionId)
               })
+              .catch(() => {
+                // Fork, child-title, or archive failure leaves the source in place.
+              })
+          },
+          editMessage: (turn, text) => {
+            continueFromEdit(ctx, sessionId, chat.getSnapshot(), turn, text).catch(() => {
+              // A failed fork, create, or prompt leaves the source visible and unarchived.
+            })
           },
         }
       },

@@ -21,11 +21,12 @@ import { en as commonEn } from '@anotherharness/ah-client-locale/src/locales/en.
 import { zh as commonZh } from '@anotherharness/ah-client-locale/src/locales/zh.ts'
 import type {
   MenuOpenState, RowToast, RowToastState, SessionArchiveConfirmInjected, SessionArchiveConfirmRequest,
-  SessionRenameDialogInjected, SessionRenameTarget,
+  SessionRenameDialogInjected, SessionRenameTarget, SessionDeleteConfirmInjected, SessionDeleteConfirmRequest,
 } from '../src/client/contract/slots.ts'
 import {
   ArchiveSessionMenuItem, ArchiveSessionRowButton, SessionArchiveConfirmDialog,
 } from '../src/client/session-actions/ArchiveSession.tsx'
+import { DeleteSessionMenuItem, SessionDeleteConfirmDialog } from '../src/client/session-actions/DeleteSession.tsx'
 import { ForkSessionMenuItem } from '../src/client/session-actions/ForkSession.tsx'
 import { PinSessionMenuItem, PinSessionRowButton } from '../src/client/session-actions/PinSession.tsx'
 import { RenameSessionMenuItem, SessionRenameDialog } from '../src/client/session-actions/RenameSession.tsx'
@@ -369,6 +370,83 @@ describe('SessionRenameDialog', () => {
     fireEvent.change(screen.getByLabelText('会话名称'), { target: { value: 'Edited' } })
     ask('two', 'Second')
     expect(screen.getByLabelText<HTMLInputElement>('会话名称').value).toBe('Second')
+  })
+})
+
+describe('delete action', () => {
+  it('menu row closes the menu, then asks for the confirmation', () => {
+    const { state, setMenuOpen } = openMenu()
+    const requestSessionDelete = vi.fn()
+    render(<DeleteSessionMenuItem {...menuRow(state)} requestSessionDelete={requestSessionDelete} />)
+    const row = screen.getByRole('menuitem', { name: '删除会话' })
+    // Deletion cannot be undone: the row carries danger styling.
+    expect(row.className).toMatch(/danger/)
+    fireEvent.click(row)
+    expect(requestSessionDelete).toHaveBeenCalledWith(sid('one'))
+    expect(callOrder(setMenuOpen)).toBeLessThan(callOrder(requestSessionDelete))
+  })
+})
+
+describe('SessionDeleteConfirmDialog', () => {
+  function deleteDialog(deleteSession: SessionDeleteConfirmInjected['deleteSession']) {
+    const request = createSnapshotStore<SessionDeleteConfirmRequest | null>(null)
+    const settleSessionDelete = vi.fn(() => { request.set(null) })
+    render(
+      <SessionDeleteConfirmDialog
+        {...overlay}
+        t={t}
+        useDeleteRequest={bindSnapshotSelector(request)}
+        settleSessionDelete={settleSessionDelete}
+        deleteSession={deleteSession}
+      />,
+    )
+    const ask = (): void => { act(() => { request.set({ sessionId: sid('one'), displayTitle: 'Old session' }) }) }
+    return { settleSessionDelete, ask }
+  }
+
+  it('renders nothing until a deletion is requested', () => {
+    deleteDialog(vi.fn(async () => {}))
+    expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  it('names the session, states it cannot be undone, and deletes on confirm (spec session/0001 AC-7)', async () => {
+    const pending = Promise.withResolvers<undefined>()
+    const deleteSession = vi.fn(() => pending.promise)
+    const { settleSessionDelete, ask } = deleteDialog(deleteSession)
+    ask()
+    expect(screen.getByRole('dialog').textContent).toContain('“Old session”的全部消息记录将从本机删除，且无法恢复。')
+    fireEvent.click(screen.getByRole('button', { name: '永久删除' }))
+    expect(deleteSession).toHaveBeenCalledWith(sid('one'))
+    expect(screen.getByRole('status').textContent).toBe('正在删除…')
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(settleSessionDelete).not.toHaveBeenCalled()
+    await act(async () => { pending.resolve(undefined) })
+    await waitFor(() => { expect(settleSessionDelete).toHaveBeenCalledOnce() })
+  })
+
+  it('shows the actionable line for a running Session and the Host message otherwise (spec session/0001 AC-8)', async () => {
+    const running = Object.assign(new Error('session delete failed: session/active: running'), {
+      name: 'SessionDeleteError', rpcError: { code: 'session/active' },
+    })
+    const deleteSession = vi.fn<SessionDeleteConfirmInjected['deleteSession']>()
+      .mockRejectedValueOnce(running)
+      .mockRejectedValueOnce(Object.assign(new Error('disk full'), { name: 'SessionDeleteError', rpcError: { code: 'gateway/internal' } }))
+      .mockRejectedValueOnce(new Error('wire down'))
+      .mockRejectedValueOnce('plain failure')
+    const { settleSessionDelete, ask } = deleteDialog(deleteSession)
+    ask()
+    const confirm = () => { fireEvent.click(screen.getByRole('button', { name: '永久删除' })) }
+    confirm()
+    await waitFor(() => { expect(screen.getByRole('alert').textContent).toBe('此会话仍在运行或有后台工作。请先停止，再删除。') })
+    confirm()
+    await waitFor(() => { expect(screen.getByRole('alert').textContent).toBe('disk full') })
+    confirm()
+    await waitFor(() => { expect(screen.getByRole('alert').textContent).toBe('wire down') })
+    confirm()
+    await waitFor(() => { expect(screen.getByRole('alert').textContent).toBe('plain failure') })
+    expect(settleSessionDelete).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: '取消' }))
+    expect(settleSessionDelete).toHaveBeenCalledOnce()
   })
 })
 

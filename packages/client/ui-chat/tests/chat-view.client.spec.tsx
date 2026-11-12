@@ -405,6 +405,7 @@ function makeHarness(
     read: () => savedScroll,
   }
   const forkAt = vi.fn()
+  const editMessage = vi.fn()
   // Rows and the harness must observe the same chat-store instance.
   const chat = createChatStore().create()
   const transcriptView = createSnapshotStore<TranscriptViewMode>('compact')
@@ -494,6 +495,7 @@ function makeHarness(
     loadImage: vi.fn(() => Promise.reject(new Error('not used'))),
     chatScroll,
     forkAt,
+    editMessage,
     // Absent-service default; mention tests override with a real resolver.
     fileMentions: () => undefined,
     t,
@@ -520,7 +522,7 @@ function makeHarness(
     set, setSession: session.set, setChat: chatSource.set, ChatView, props,
     openFile, openSkill, loadOlder, loadThrough, openView,
     setOutline: (value: unknown) => { outlineValue = value },
-    chatScroll, forkAt, toolOwners,
+    chatScroll, forkAt, editMessage, toolOwners,
     setPerformanceUsage: (mode: 'compact' | 'detailed') => { performanceUsage.set(mode) },
     setGrouped: (value: ConversationGroupedView<ProcessGroupData> | undefined) => {
       grouped = value
@@ -3275,7 +3277,7 @@ describe('ChatView', () => {
     expect(h.forkAt.mock.calls).toEqual([[3]])
   })
 
-  it('disables fork when the indexed Turn has a later steering Node', () => {
+  it('forks a completed Turn even when a later steering Node is indexed in it', () => {
     const base = chatSnapshotFixture({
       nodes: [user(1, 'question'), assistant(2, 'answer')],
       turnEnds: new Map([[1, 4]]),
@@ -3293,9 +3295,77 @@ describe('ChatView', () => {
     expect(view.getByText('change direction')).toBeTruthy()
     expect(chat.locations.getTurn(1)).toContain(later.key)
     const branch = view.getByRole('button', { name: '在新对话中分支' })
-    expect(branch.getAttribute('aria-disabled')).toBe('true')
+    expect(branch.getAttribute('aria-disabled')).toBeNull()
     fireEvent.click(branch)
-    expect(h.forkAt).not.toHaveBeenCalled()
+    expect(h.forkAt).toHaveBeenCalledWith(4)
+  })
+
+  it('rewinds to a completed Turn by forking it and archiving the source (spec session/0001 AC-4)', () => {
+    const h = makeHarness({}, {}, chatSnapshotFixture({
+      nodes: [userInTurn(1, 'question', 1), assistant(2, 'answer')],
+      turnEnds: new Map([[1, 4]]),
+    }))
+    const view = render(<h.ChatView {...h.props} />)
+    fireEvent.click(view.getByRole('button', { name: '回退到此处' }))
+    expect(h.forkAt).toHaveBeenCalledWith(4, { archiveSource: true })
+  })
+
+  it('edits a sent user message inline and continues from the edited text (spec session/0001 AC-5)', () => {
+    const h = makeHarness({}, {}, chatSnapshotFixture({
+      nodes: [userInTurn(1, 'question', 1), assistant(2, 'answer')],
+      turnEnds: new Map([[1, 4]]),
+    }))
+    const view = render(<h.ChatView {...h.props} />)
+
+    fireEvent.click(view.getByRole('button', { name: '编辑消息' }))
+    const field = view.getByRole('textbox', { name: '编辑消息' }) as HTMLTextAreaElement
+    expect(field.value).toBe('question')
+    fireEvent.keyDown(field, { key: 'Escape' })
+    expect(view.queryByRole('textbox', { name: '编辑消息' })).toBeNull()
+    expect(view.getByText('question')).toBeTruthy()
+
+    fireEvent.click(view.getByRole('button', { name: '编辑消息' }))
+    const blank = view.getByRole('textbox', { name: '编辑消息' })
+    fireEvent.change(blank, { target: { value: '   ' } })
+    expect((view.getByRole('button', { name: '发送' }) as HTMLButtonElement).disabled).toBe(true)
+    fireEvent.keyDown(blank, { key: 'Enter' })
+    fireEvent.keyDown(blank, { key: 'a' })
+    expect(h.editMessage).not.toHaveBeenCalled()
+    fireEvent.click(view.getByRole('button', { name: '取消' }))
+
+    fireEvent.click(view.getByRole('button', { name: '编辑消息' }))
+    const typed = view.getByRole('textbox', { name: '编辑消息' })
+    fireEvent.change(typed, { target: { value: 'better question\nwith detail' } })
+    fireEvent.keyDown(typed, { key: 'Enter', shiftKey: true })
+    expect(h.editMessage).not.toHaveBeenCalled()
+    fireEvent.keyDown(typed, { key: 'Enter' })
+    expect(h.editMessage).toHaveBeenCalledWith(1, 'better question\nwith detail')
+    expect(view.queryByRole('textbox', { name: '编辑消息' })).toBeNull()
+
+    fireEvent.click(view.getByRole('button', { name: '编辑消息' }))
+    fireEvent.change(view.getByRole('textbox', { name: '编辑消息' }), { target: { value: 'third try' } })
+    fireEvent.click(view.getByRole('button', { name: '发送' }))
+    expect(h.editMessage).toHaveBeenLastCalledWith(1, 'third try')
+  })
+
+  it('keeps edit unavailable for a sent message with attachments', () => {
+    const withFile = {
+      ...userInTurn(1, 'see file', 1),
+      content: [
+        { type: 'text', text: 'see file' },
+        { type: 'file', attachment: { attachmentId: 'sha256:file', name: 'notes.txt', bytes: 3 } },
+      ],
+    } as unknown as ConversationNode
+    const h = makeHarness({}, {}, chatSnapshotFixture({
+      nodes: [withFile, assistant(2, 'answer')],
+      turnEnds: new Map([[1, 4]]),
+    }))
+    const view = render(<h.ChatView {...h.props} />)
+    const editButton = view.getByRole('button', { name: '编辑消息' })
+    expect(editButton.getAttribute('aria-disabled')).toBe('true')
+    expect(view.getByText('暂不支持编辑带附件的消息')).toBeTruthy()
+    fireEvent.click(editButton)
+    expect(view.queryByRole('textbox', { name: '编辑消息' })).toBeNull()
   })
 
   it('keeps final content actions but disables branch when Tool and interrupted Think follow it', () => {

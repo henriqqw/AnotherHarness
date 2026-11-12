@@ -195,6 +195,12 @@ export interface ChatNodeHookContext {
   readonly useGroupAction: UseGroupAction
 }
 
+/** How a fork at a completed-turn boundary treats its source Session. */
+export interface ForkAtOptions {
+  /** Archive the source after the child opens, so the fork replaces it (rewind). */
+  readonly archiveSource?: boolean
+}
+
 /** Slot-level Hook factories for keyed Chat renderers. */
 export interface ChatNodeInjected {
   hooks: {
@@ -213,7 +219,9 @@ export interface ChatNodeOwnerProps {
   openSkill: (name: string) => void
   openFile: (path: string, options?: OpenFileOptions) => void
   inspectCall: ((callId: ToolCallId) => void) | undefined
-  forkAt: (seq: number) => void
+  forkAt: (seq: number, options?: ForkAtOptions) => void
+  /** Continue from an edited copy of one sent user message in a new Session. */
+  editMessage: (turn: number, text: string) => void
   /**
    * Session-authorized image loader, down-threaded from the Chat view so a
    * chat-node renderer can render the attachment presentation slot directly
@@ -305,7 +313,9 @@ export interface ChatViewInjected {
     save: (position: ChatScrollPosition | null) => void
     read: () => ChatScrollPosition | null
   }
-  forkAt: (seq: number) => void
+  forkAt: (seq: number, options?: ForkAtOptions) => void
+  /** Continue from an edited copy of one sent user message in a new Session. */
+  editMessage: (turn: number, text: string) => void
   fileMentions: (owner: TurnTailOwnerProps) => MarkdownFileMentions | undefined
 }
 
@@ -314,7 +324,7 @@ export type ChatFlowDataInjected = Pick<ChatViewInjected, 'hooks' | 'keyedHooks'
 
 /** Ordered rows and reconciled local echoes rendered inside one Chat viewport. */
 export interface ChatFlowOwnerProps extends Pick<ChatNodeOwnerProps,
-  'cwd' | 'openSkill' | 'openFile' | 'inspectCall' | 'forkAt' | 'loadImage' | 'fileMentions'> {
+  'cwd' | 'openSkill' | 'openFile' | 'inspectCall' | 'forkAt' | 'editMessage' | 'loadImage' | 'fileMentions'> {
   readonly entries: readonly RenderEntry[]
   readonly pendingInputs: readonly (PendingSubmission | InboxState['next-step'][number])[]
   readonly lastInputTurn: number | undefined

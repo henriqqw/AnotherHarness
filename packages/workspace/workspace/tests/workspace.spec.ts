@@ -908,6 +908,44 @@ describe('workspace mutation and status', () => {
   })
 })
 
+describe('forgetting a deleted session', () => {
+  it('drops the session from workspace accounts, the archive set, and the pin set', async () => {
+    const dir = await makeDir('forget-home')
+    const result = await harness({ sessions: [header('kept', dir, 100), header('gone', dir, 200), header('pinned', dir, 300)] })
+    const workspace = result.registry.list()[0]!
+    await result.registry.archiveSession(SessionId('gone'))
+    await result.registry.pinSession(SessionId('pinned'))
+
+    await result.registry.forgetSession(SessionId('gone'))
+    await result.registry.forgetSession(SessionId('pinned'))
+
+    expect(result.registry.archivedSessionIds).toEqual([])
+    expect(result.registry.pinnedSessionIds).toEqual([])
+    expect(result.registry.get(workspace.id)?.sessionIds).toEqual(['kept'])
+    expect(storedState(result.pool)).toMatchObject({ archivedSessionIds: [], pinnedSessionIds: [] })
+  })
+
+  it('resolves without writing for an id the registry does not reference', async () => {
+    const dir = await makeDir('forget-unknown')
+    const result = await harness({ sessions: [header('kept', dir, 100)] })
+    const changes = result.changes.length
+    await result.registry.forgetSession(SessionId('ghost'))
+    expect(result.changes.length).toBe(changes)
+  })
+
+  it('refuses an active session and writes nothing', async () => {
+    const dir = await makeDir('forget-active')
+    const result = await harness({ sessions: [header('busy', dir, 100)] })
+    const workspace = result.registry.list()[0]!
+    result.ctx.on('workspace/session-activity', async ({ sessionId }, next) => {
+      const rest = await next()
+      return sessionId === 'busy' ? [{ kind: 'probe' }, ...rest] : rest
+    })
+    await expect(result.registry.forgetSession(SessionId('busy'))).rejects.toMatchObject({ name: 'WorkspaceActiveSessionError' })
+    expect(result.registry.get(workspace.id)?.sessionIds).toContain('busy')
+  })
+})
+
 describe('registry-global session archive', () => {
   it('archives durably in order, idempotently skips repeats, and leaves accounting untouched', async () => {
     const dir = await makeDir('archive-home')
