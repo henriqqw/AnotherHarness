@@ -217,7 +217,7 @@ describe('foreground commands as jobs', () => {
       })
       await until(() => execution?.observed.stdout.readFrom(0).text.includes('early-output') ? true : undefined, task.timeout)
       // The job exists from the start: the command is listed while the call still waits.
-      expect(ctx.jobs.list()[0]).toMatchObject({ id: 'bash-1', kind: 'bash', status: 'running', label: 'printf "early-output\\n"; sleep 30' })
+      expect(ctx.jobs.list()[0]).toMatchObject({ id: 'bash-1', kind: 'bash', status: 'running', label: 'printf "early-output\\n"; sleep 30', callId: expect.any(String) as string })
       await vi.advanceTimersByTimeAsync(250)
       const result = await pending
       vi.useRealTimers()

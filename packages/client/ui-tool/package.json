@@ -77,7 +77,9 @@
     "clsx": "^2.0.0",
     "@anotherharness/ah-ptc-runtime": "workspace:*",
     "@anotherharness/ah-token-meter": "workspace:*",
-    "@anotherharness/ah-user-questions": "workspace:*"
+    "@anotherharness/ah-user-questions": "workspace:*",
+    "@anotherharness/ah-api-job-controller": "workspace:*",
+    "@anotherharness/ah-client-store": "workspace:*"
   },
   "files": [
     "lib/index.js",

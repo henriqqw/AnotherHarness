@@ -102,7 +102,7 @@ Ships in the `web-app` composition with no flag. Existing `shell`/`shellCandidat
 
 | Criterion | Test | Verified |
 | --- | --- | --- |
-| AC-1 | — | ☐ |
+| AC-1 | `packages/client/ui-tool/tests/terminal-card.client.spec.tsx` (live output), `packages/shell/tool-bash/tests/background.spec.ts`, `packages/shell/tool-pwsh/tests/background.spec.ts` (call id on the job) | ☑ |
 | AC-2 | — | ☐ |
 | AC-3 | — | ☐ |
 | AC-4 | `packages/api/terminal-controller/tests/profiles.spec.ts` (Windows detection) | ☑ |

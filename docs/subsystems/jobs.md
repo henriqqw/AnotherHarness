@@ -36,6 +36,8 @@ interface JobSpec {
   kind: JobKind
   /** One-line model-facing label (the command; the delegation description). */
   label: string
+  /** Tool call that started the job, so a client can show its live output in that call's card. */
+  callId?: string
   /**
    * Owning session. Access is fenced by it, and the owner's live Agent must be
    * the one currently registered under that id: its disposal cancels and
@@ -229,6 +231,8 @@ interface JobView {
   readonly kind: string
   /** The producer-supplied one-line label. */
   readonly label: string
+  /** Tool call that started the job, when a tool registered it. */
+  readonly callId?: string
   /** Owning session; absent for an unowned job, which every caller can see. */
   readonly owner?: SessionId
   /** Producer-owned cap for complete model-facing notices and reads, in UTF-8 bytes. */

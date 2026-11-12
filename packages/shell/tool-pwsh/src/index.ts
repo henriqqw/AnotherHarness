@@ -286,6 +286,7 @@ export function apply(ctx: Context, config: Config = {}): void {
       const id = registry.start({
         kind: 'pwsh',
         label: args.command,
+        callId: exec.callId,
         ...exec.agent ? { owner: exec.agent.id } : {},
         output: processSources(() => proc),
         run: () => {

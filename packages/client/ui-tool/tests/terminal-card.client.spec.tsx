@@ -15,7 +15,10 @@ import {
   localizeTerminalCardModel, terminalCardModel, terminalFailed,
 } from '../src/client/tool/models/terminal-card-model.ts'
 import { GenericToolCard, type GenericToolCardProps } from '../src/client/tool/toolviews/GenericToolCard.tsx'
-import { BashRow } from '../src/client/tool/toolviews/bash-sample.tsx'
+import { BashRow, liveJobs } from '../src/client/tool/toolviews/bash-sample.tsx'
+import { LIVE_OUTPUT_LINES, outputTail } from '../src/client/tool/toolviews/live-shell-output.tsx'
+import type { JobsSnapshot } from '@anotherharness/ah-api-job-controller/client'
+import type { Context } from '@anotherharness/cordis'
 import { en, zh } from '@anotherharness/ah-client-ui-conversation/src/client/locales.ts'
 import { PartialArguments } from '@anotherharness/ah-util-values'
 
@@ -443,6 +446,69 @@ describe('BashRow terminal card', () => {
     sessionId: SID, useSessions: bindSnapshotSelector(list()),
     t,
   } as BashRowProps)
+
+  describe('live output (spec terminal/0001 AC-1)', () => {
+    const lines = Array.from({ length: 14 }, (_, index) => `line ${index + 1}`).join('\n') + '\n'
+    const jobsStore = (text: string | undefined, over: Record<string, unknown> = {}) => createSnapshotStore<JobsSnapshot>({
+      rows: { [SID]: [{ id: 'bash-1', kind: 'bash', label: 'ls -la', callId: 'c1', status: 'running', startedAt: 1, output: { total: 0, earliest: 0 }, ...over }] } as never,
+      observed: text === undefined ? {} : { 'bash-1': { jobId: 'bash-1', text, gapBefore: false, streaming: true } } as never,
+    })
+    const liveProps = (block: StartedToolCall | ToolResultNode, store: ReturnType<typeof jobsStore>) => {
+      const stopRows = vi.fn()
+      const stopObserve = vi.fn()
+      const watchRows = vi.fn(() => stopRows)
+      const observe = vi.fn(() => stopObserve)
+      const props = { ...rowProps(block), useJobs: bindSnapshotSelector(store), watchRows, observe } as BashRowProps
+      return { props, watchRows, observe, stopRows, stopObserve }
+    }
+
+    it('follows the running job of this call and shows its latest lines', () => {
+      const h = liveProps(running(), jobsStore(lines))
+      const view = render(<BashRow {...h.props} />)
+      const live = view.container.querySelector('[data-live-output]')
+      expect(live?.textContent).toBe(outputTail(lines, LIVE_OUTPUT_LINES))
+      expect(live?.textContent?.startsWith('line 3')).toBe(true)
+      expect(live?.getAttribute('aria-label')).toBe('实时输出')
+      expect(h.watchRows).toHaveBeenCalledWith(SID)
+      expect(h.observe).toHaveBeenCalledWith(SID, 'bash-1')
+      view.unmount()
+      expect(h.stopRows).toHaveBeenCalledOnce()
+      expect(h.stopObserve).toHaveBeenCalledOnce()
+    })
+
+    it('shows nothing before output, for another call, after settlement, or without the jobs service', () => {
+      const empty = liveProps(running(), jobsStore(undefined))
+      expect(render(<BashRow {...empty.props} />).container.querySelector('[data-live-output]')).toBeNull()
+      cleanup()
+      const other = liveProps(running(), jobsStore(lines, { callId: 'c2' }))
+      expect(render(<BashRow {...other.props} />).container.querySelector('[data-live-output]')).toBeNull()
+      expect(other.observe).not.toHaveBeenCalled()
+      cleanup()
+      const done = liveProps(settled(), jobsStore(lines))
+      expect(render(<BashRow {...done.props} />).container.querySelector('[data-live-output]')).toBeNull()
+      expect(done.watchRows).not.toHaveBeenCalled()
+      cleanup()
+      expect(render(<BashRow {...rowProps(running())} />).container.querySelector('[data-live-output]')).toBeNull()
+    })
+
+    it('binds the jobs service when mounted and nothing otherwise', () => {
+      expect(liveJobs({ get: () => undefined } as unknown as Context)).toEqual({})
+      const jobs = {
+        state: createSnapshotStore({ rows: {}, observed: {} }), watchRows: vi.fn(() => () => {}), observe: vi.fn(() => () => {}),
+      }
+      const face = liveJobs({ get: () => jobs } as unknown as Context)
+      expect(face.hooks?.jobs).toBe(jobs.state)
+      face.watchRows?.(SID)
+      face.observe?.(SID, 'bash-1' as never)
+      expect(jobs.watchRows).toHaveBeenCalledWith(SID)
+      expect(jobs.observe).toHaveBeenCalledWith(SID, 'bash-1')
+    })
+
+    it('trims the tail to its last lines', () => {
+      expect(outputTail('a\nb\nc\n', 2)).toBe('b\nc')
+      expect(outputTail('only', 5)).toBe('only')
+    })
+  })
 
   it('collapses to the summary row; the whole row toggles the command output', () => {
     const view = render(<BashRow {...rowProps(settled())} />)

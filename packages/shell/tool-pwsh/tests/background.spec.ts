@@ -293,7 +293,7 @@ describe('foreground commands as jobs (pwsh)', () => {
 
     const jobs = ctx.jobs
     const job = jobs.list()[0]
-    expect(job).toMatchObject({ id: 'pwsh-1', kind: 'pwsh', status: 'running' })
+    expect(job).toMatchObject({ id: 'pwsh-1', kind: 'pwsh', status: 'running', callId: expect.any(String) as string })
     // The hand-over was one consuming read: the next read repeats nothing.
     expect(jobs.read(job!.id).chunks).toEqual([])
     scripted.finish()

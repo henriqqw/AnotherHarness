@@ -6,6 +6,9 @@ import {
   CommandText, TerminalBlock, TextShimmer,
 } from '@anotherharness/ah-client-ui-primitives'
 import type { PropsLocale } from '@anotherharness/ah-client-ui-slots'
+// Type-only: the optional ctx.jobs Context merge.
+import type {} from '@anotherharness/ah-api-job-controller/client'
+import { LiveShellOutput, type LiveJobsInjected, type LiveJobsProps } from './live-shell-output.tsx'
 import type { ToolCallViewProps } from '../../contract/slots.ts'
 import {
   isBackgroundShellCall,
@@ -20,7 +23,7 @@ import { formatToolBody, toolRowModel, type ToolRowState } from '../models/tool-
 import { CONVERSATION_NS as NS } from '../../locale.ts'
 import css from './bash-sample.module.css'
 
-type BashRowProps = ToolCallViewProps & PropsLocale<'conversation'>
+type BashRowProps = ToolCallViewProps & PropsLocale<'conversation'> & LiveJobsProps
 
 const BASH_ICON = <IconApiOutlineRegular size={14} />
 
@@ -41,7 +44,9 @@ function stateStatus(state: ToolRowState, t: BashRowProps['t']): string | null {
  * @param props - tool call, Session sources, locale, and inspection callback.
  * @returns the Bash output row.
  */
-export const BashRow = memo(function BashRow({ toolName, block, sessionId, useSessions, inspect, useDisclosure, t }: BashRowProps) {
+export const BashRow = memo(function BashRow({
+  toolName, block, sessionId, useSessions, inspect, useDisclosure, t, callId, useJobs, watchRows, observe,
+}: BashRowProps) {
   const model = useMemo(() => toolRowModel(toolName, block), [toolName, block])
   // An omitted shell workdir is the session workspace; relative values resolve
   // against it before reaching the terminal primitive.
@@ -119,6 +124,16 @@ export const BashRow = memo(function BashRow({ toolName, block, sessionId, useSe
           </span>
         </TextShimmer>
       </div>
+      {state === 'running' && useJobs !== undefined && watchRows !== undefined && observe !== undefined && (
+        <LiveShellOutput
+          sessionId={sessionId}
+          callId={callId}
+          useJobs={useJobs}
+          watchRows={watchRows}
+          observe={observe}
+          label={t('bash.liveOutput')}
+        />
+      )}
       {open && (
         <div className={css.bodyWrap}>
           {terminal !== null
@@ -165,12 +180,27 @@ export const BashRow = memo(function BashRow({ toolName, block, sessionId, useSe
   )
 })
 
+/**
+ * The jobs face for live output; empty when no jobs service is mounted, so the card shows output on settlement only.
+ * @param ctx - the plugin context.
+ * @returns bound jobs hooks and actions, or nothing.
+ */
+export function liveJobs(ctx: Context): Partial<LiveJobsInjected> {
+  const jobs = ctx.get('jobs')
+  if (jobs === undefined) return {}
+  return {
+    hooks: { jobs: jobs.state },
+    watchRows: sessionId => jobs.watchRows(sessionId),
+    observe: (sessionId, id) => jobs.observe(sessionId, id),
+  }
+}
+
 /** Registers the standalone Bash conversation-row sample. */
 export const bashToolviewSample = {
   name: 'bash-toolview-sample',
   inject: ['slots'],
   apply(ctx: Context): void {
     ctx.slots.inject('tool.call.toolview', () =>
-      ctx.slots.register({ name: 'tool.call.toolview', key: 'bash', locale: NS }, BashRow))
+      ctx.slots.register({ name: 'tool.call.toolview', key: 'bash', locale: NS, inject: () => liveJobs(ctx) }, BashRow))
   },
 }

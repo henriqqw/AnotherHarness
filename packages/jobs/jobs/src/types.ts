@@ -128,6 +128,8 @@ export interface JobSpec {
   kind: JobKind
   /** One-line model-facing label (the command; the delegation description). */
   label: string
+  /** Tool call that started the job, so a client can show its live output in that call's card. */
+  callId?: string
   /**
    * Owning session. Access is fenced by it, and the owner's live Agent must be
    * the one currently registered under that id: its disposal cancels and

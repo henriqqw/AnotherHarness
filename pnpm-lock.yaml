@@ -6025,6 +6025,9 @@ importers:
       '@anotherharness/ah-agent':
         specifier: workspace:*
         version: link:../../core/agent
+      '@anotherharness/ah-api-job-controller':
+        specifier: workspace:*
+        version: link:../../api/job-controller
       '@anotherharness/ah-api-remotes':
         specifier: workspace:*
         version: link:../../api/remotes
@@ -6040,6 +6043,9 @@ importers:
       '@anotherharness/ah-client-locale':
         specifier: workspace:*
         version: link:../locale
+      '@anotherharness/ah-client-store':
+        specifier: workspace:*
+        version: link:../store
       '@anotherharness/ah-client-test-runtime':
         specifier: workspace:*
         version: link:../../test-support/client-runtime
