@@ -16,8 +16,14 @@
   background: var(--dsw-alias-interactive-bg-hover);
 }
 
+/* Current session: a marker-coloured rule on the leading edge, no fill change beyond hover ink. */
 .sessionRow.selected {
   background: var(--dsw-alias-interactive-bg-hover);
+  border-inline-start: 2px solid var(--dsw-alias-brand-marker);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  padding-inline-start: calc(6px + var(--ah-workspace-indent, 0px));
+  font-weight: 600;
 }
 
 .searchResultRow {
@@ -98,6 +104,7 @@
 /* Compact one-line Workspace row after removing the session-count subtitle. */
 .projectRow {
   height: 34px;
+  font-weight: 600;
   align-items: center;
   box-sizing: border-box;
 }
@@ -110,6 +117,11 @@
 .sessionRow {
   height: 32px;
   gap: 0;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.sessionRow.selected {
+  color: var(--dsw-alias-label-primary);
 }
 
 .sessionRow .title {
@@ -135,8 +147,17 @@
   white-space: nowrap;
 }
 
-.folderActive {
-  color: var(--dsw-alias-state-business-primary);
+/* Workspace marker: an outline square, filled with the brand marker for the active workspace. */
+.marker {
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--dsw-alias-label-tertiary);
+}
+
+.folderActive .marker {
+  border-color: var(--dsw-alias-brand-marker);
+  background: var(--dsw-alias-brand-marker);
 }
 
 
@@ -221,6 +242,7 @@
 
 .time {
   flex: none;
+  font-family: var(--ds-font-family-code);
   font-size: 10px;
   line-height: 16px;
   color: var(--dsw-alias-label-tertiary);

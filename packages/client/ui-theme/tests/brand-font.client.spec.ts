@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
 const WOFF2_SIGNATURE = 0x774f4632
-const BRAND_WEIGHTS = [300, 400, 500, 700] as const
+const BRAND_WEIGHTS = [300, 400, 500, 600, 700, 800] as const
 
 describe('offline brand font', () => {
   it('AC-7 ships local Plus Jakarta Sans WOFF2 faces with their redistribution license', () => {
@@ -31,5 +31,16 @@ describe('offline brand font', () => {
   it('AC-7 selects Plus Jakarta Sans as the brand font family', () => {
     const base = readFileSync(new URL('../src/styles/base.css', import.meta.url), 'utf8')
     expect(base).toMatch(/--dsw-font-family-brand: 'Plus Jakarta Sans',/)
+  })
+})
+
+describe('UI text font', () => {
+  it('AC-4 leads the default text stack with Plus Jakarta Sans and keeps CJK and user fonts', () => {
+    const base = readFileSync(new URL('../src/styles/base.css', import.meta.url), 'utf8')
+    const stack = /--ah-font-family-text-default: ([^;]+);/.exec(base)![1]!.replace(/\s+/g, ' ')
+    expect(stack.startsWith("'Plus Jakarta Sans',")).toBe(true)
+    expect(stack).toContain("'PingFang SC'")
+    expect(stack).toContain("'Microsoft YaHei'")
+    expect(base).toContain('--dsw-font-family: var(--ah-font-family-text, var(--ah-font-family-text-default))')
   })
 })

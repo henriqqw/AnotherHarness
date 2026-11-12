@@ -10,10 +10,13 @@
 }
 
 .title {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  color: var(--dsw-alias-label-primary);
+  font-family: var(--ds-font-family-code);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dsw-alias-label-tertiary);
 }
 
 .cubeRow {
@@ -34,9 +37,10 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  position: relative;
   padding: 20px 32px;
-  border: 0.5px solid var(--dsw-alias-border-l4);
-  border-radius: var(--dsw-radius-xl);
+  border: 0.5px solid var(--dsw-alias-border-hair-strong);
+  border-radius: var(--dsw-radius-md);
   background: transparent;
   font: inherit;
   font-size: 14px;
@@ -49,9 +53,19 @@
   background: var(--dsw-alias-interactive-bg-hover);
 }
 
-/* Selected cube: #F5F6F7 fill + #ADB2B8 border (static token — the bluish-400
- * step has no alias-layer name). */
+/* Selected cube: a 2px border in the text colour (padding absorbs the extra
+ * pixel) and the square brand marker in the top-right corner. */
 .selected {
-  background: var(--dsw-alias-bg-module-platform);
-  border-color: var(--dsw-static-neutral-bluish-400);
+  padding: 19px 31px;
+  border: 2px solid var(--dsw-alias-label-primary);
+}
+
+.selected::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 7px;
+  height: 7px;
+  background: var(--dsw-alias-brand-marker);
 }

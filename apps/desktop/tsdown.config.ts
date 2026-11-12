@@ -56,7 +56,7 @@ export default defineConfig([
         plugins: [{
           name: 'desktop-brand-font',
           async generateBundle() {
-            for (const name of ['brand-font.css', 'plus-jakarta-sans-300.woff2', 'plus-jakarta-sans-400.woff2', 'plus-jakarta-sans-500.woff2', 'plus-jakarta-sans-700.woff2', 'PlusJakartaSans-OFL.txt']) {
+            for (const name of ['brand-font.css', 'plus-jakarta-sans-300.woff2', 'plus-jakarta-sans-400.woff2', 'plus-jakarta-sans-500.woff2', 'plus-jakarta-sans-600.woff2', 'plus-jakarta-sans-700.woff2', 'plus-jakarta-sans-800.woff2', 'PlusJakartaSans-OFL.txt']) {
               this.emitFile({
                 type: 'asset',
                 fileName: name,

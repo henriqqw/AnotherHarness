@@ -1,6 +1,6 @@
 - banner:
   - button "Open right sidebar"
-- text: Modular Intelligence for AI Agents Preview
+- text: Session draft Preview Modular intelligence for AI agents. agents — plugins — workflows — and more
 - button "Choose workspace": workspace
 - button "Standard mode"
 - textbox "Describe what you want to build, / commands, @ files or sessions"

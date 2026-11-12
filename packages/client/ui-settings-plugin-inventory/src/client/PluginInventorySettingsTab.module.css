@@ -103,13 +103,13 @@
   flex-direction: column;
   min-width: 0;
   overflow: hidden;
-  border: 0.5px solid var(--dsw-alias-settings-card-stroke);
-  border-radius: var(--dsw-radius-xl);
+  border: 0.5px solid var(--dsw-alias-border-hair);
+  border-radius: var(--dsw-radius-md);
   background: var(--dsw-alias-settings-card-fill);
 }
 
 .card[data-open='true'] {
-  border-color: var(--dsw-alias-border-l3);
+  border-color: var(--dsw-alias-border-hair-strong);
 }
 
 /* The other card in an expanded card's row keeps its own height instead of
@@ -285,7 +285,7 @@
 .groupTitle {
   font-size: 14px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--dsw-alias-label-primary);
 }
 

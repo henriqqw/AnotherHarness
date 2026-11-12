@@ -121,9 +121,10 @@
 /* Title row (figma 501:29959): 16/500 lh24, 12px side padding. */
 .navTitle {
   padding: 0 12px;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--dsw-alias-label-primary);
 }
 
@@ -145,14 +146,14 @@
   padding: 9px 16px 9px 12px;
   box-sizing: border-box;
   border: none;
-  border-radius: var(--dsw-radius-md);
+  border-radius: var(--dsw-radius-sm);
   background: transparent;
   cursor: pointer;
   font-family: inherit;
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
-  color: var(--dsw-alias-label-primary);
+  color: var(--dsw-alias-label-secondary);
   text-align: left;
 }
 
@@ -160,8 +161,19 @@
   background: var(--dsw-specific-sidebar-nav-item-hover);
 }
 
+/* Active section: raised ink and the square brand marker at the trailing edge. */
 .navCell.active {
-  background: var(--dsw-specific-sidebar-nav-item-active);
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-primary);
+  font-weight: 600;
+}
+
+.navCell.active::after {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--dsw-alias-brand-marker);
 }
 
 .navIcon {

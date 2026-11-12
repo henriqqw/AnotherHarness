@@ -76,6 +76,10 @@
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
+  font-family: var(--ds-font-family-code);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   line-height: 20px;
   opacity: 1;
   visibility: visible;

@@ -71,7 +71,7 @@ export interface HeroShellProps {
 }
 
 /** Height, in px, of the hero brand mark leading the headline. */
-const HERO_MARK_SIZE = 40
+const HERO_MARK_SIZE = 92
 
 /**
  * Render the hero chrome (headline only; no composer, no workspace row).
@@ -83,16 +83,20 @@ export function HeroShell({ t, renderSlot, children }: HeroShellProps) {
     <div className={css.root}>
       <div className={css.stack}>
         <div className={css.headline}>
-          {/* The mark leads the headline with a 10px gap; hovering bobs it in place. */}
+          {/* Editorial block: the mascot beside an eyebrow, a two-line headline and the capability line. */}
           <span className={css.fishHitbox}>
             {renderSlot('conversation.hero.brand.mark', { size: HERO_MARK_SIZE, className: css.fish }, {
               fallback: <BrandMark size={HERO_MARK_SIZE} className={css.fish} />,
             })}
           </span>
           <span className={css.titleGroup}>
-            {/* Own element: keeps the headline text addressable apart from the badge. */}
-            <span>{t('hero.headline')}</span>
-            <span className={css.previewBadge}>{t('hero.preview')}</span>
+            <span className={css.eyebrow}>
+              <span>{t('hero.eyebrow')}</span>
+              <span className={css.previewBadge}>{t('hero.preview')}</span>
+            </span>
+            <span className={css.title}>{t('hero.headline')}</span>
+            <span className={css.titleAccent}>{t('hero.headlineAccent')}</span>
+            <span className={css.capabilities}>{t('hero.capabilities')}</span>
           </span>
         </div>
         <div className={css.body}>

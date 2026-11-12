@@ -64,18 +64,18 @@ function contrast(theme: Map<string, string>, foreground: string, background: st
 }
 
 describe('brand palette', () => {
-  it('AC-5 fills dark-mode primary actions with Primary Lime on an Obsidian page that the boot paint matches', () => {
+  it('AC-5 fills dark-mode primary actions with Primary Lime on the dark page that the boot paint matches', () => {
     expect(hex(resolve(dark, '--dsw-alias-button-primary-fill'))).toBe('#B8F34A')
-    expect(hex(resolve(dark, '--dsw-alias-bg-base'))).toBe('#111214')
-    expect(hex(resolve(dark, '--dsw-alias-bg-layer-1'))).toBe('#202124')
+    expect(hex(resolve(dark, '--dsw-alias-bg-base'))).toBe('#121311')
+    expect(hex(resolve(dark, '--dsw-alias-bg-layer-1'))).toBe('#1A1B19')
     const boot = readFileSync(new URL('../src/boot-theme.ts', import.meta.url), 'utf8')
     expect(boot.toUpperCase()).toContain(`DARK_BACKGROUND = '${hex(resolve(dark, '--dsw-alias-bg-base'))}'`)
   })
 
-  it('AC-6 uses Deep Forest primary actions and a dark leaf-green link on the white light-mode page', () => {
+  it('AC-6 uses Deep Forest primary actions and a dark leaf-green link on the ivory light-mode page', () => {
     expect(hex(resolve(light, '--dsw-alias-button-primary-fill'))).toBe('#183D2B')
     expect(hex(resolve(light, '--dsw-alias-link'))).toBe('#237A2A')
-    expect(hex(resolve(light, '--dsw-alias-bg-base'))).toBe('#FFFFFF')
+    expect(hex(resolve(light, '--dsw-alias-bg-base'))).toBe('#F1F0E8')
   })
 
   it.each([
@@ -96,5 +96,46 @@ describe('brand palette', () => {
     for (const name of ['--dsw-alias-link', '--dsw-alias-brand-text', '--dsw-alias-brand-accent-text', '--dsw-alias-label-primary']) {
       expect(resolve(light, name)).not.toEqual(lime)
     }
+  })
+})
+
+describe('Field Notes materials', () => {
+  it('AC-1 warms every intermediate neutral step', () => {
+    const steps = [...light.keys()].filter(name => /^--dsw-static-neutral-bluish-\d+$/.test(name))
+      .filter(name => !name.endsWith('-00') && !name.endsWith('-1000'))
+    expect(steps.length).toBeGreaterThan(15)
+    for (const theme of [light, dark]) {
+      for (const name of steps) {
+        const [r, g, b] = resolve(theme, name)
+        expect(r, name).toBeGreaterThanOrEqual(b)
+        expect(g, name).toBeGreaterThanOrEqual(b)
+      }
+    }
+  })
+
+  it('AC-2 paints the dark olive-black and light ivory materials that the boot paint matches', () => {
+    expect(hex(resolve(dark, '--dsw-alias-bg-base'))).toBe('#121311')
+    expect(hex(resolve(dark, '--dsw-specific-sidebar-fill'))).toBe('#0E0F0D')
+    expect(hex(resolve(dark, '--dsw-alias-bg-rail'))).toBe('#0E0F0D')
+    expect(hex(resolve(dark, '--dsw-alias-bg-layer-1'))).toBe('#1A1B19')
+    expect(hex(resolve(light, '--dsw-alias-bg-base'))).toBe('#F1F0E8')
+    expect(hex(resolve(light, '--dsw-alias-bg-layer-1'))).toBe('#FAF9F3')
+    expect(hex(resolve(light, '--dsw-alias-bg-rail'))).toBe('#E8E7DD')
+    expect(hex(resolve(dark, '--dsw-alias-brand-marker'))).toBe('#B8F34A')
+    expect(hex(resolve(light, '--dsw-alias-brand-marker'))).toBe('#3DBE3A')
+    const boot = readFileSync(new URL('../src/boot-theme.ts', import.meta.url), 'utf8')
+    expect(boot).toContain("LIGHT_BACKGROUND = '#F1F0E8'")
+    expect(boot).toContain("DARK_BACKGROUND = '#121311'")
+  })
+
+  it.each([
+    ['light', light, '--dsw-alias-label-primary', 4.5],
+    ['light', light, '--dsw-alias-label-secondary', 4.5],
+    ['light', light, '--dsw-alias-label-tertiary', 3],
+    ['dark', dark, '--dsw-alias-label-primary', 4.5],
+    ['dark', dark, '--dsw-alias-label-secondary', 4.5],
+    ['dark', dark, '--dsw-alias-label-tertiary', 3],
+  ] as const)('AC-3 keeps %s %s readable on the page', (_mode, theme, label, minimum) => {
+    expect(contrast(theme, label, '--dsw-alias-bg-base')).toBeGreaterThanOrEqual(minimum)
   })
 })

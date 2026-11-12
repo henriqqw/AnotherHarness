@@ -52,10 +52,10 @@ describe('ModelsSection theme styles', () => {
     expect((bare.match(/\}/g) ?? []).length).toBe((bare.match(/\{/g) ?? []).length)
   })
 
-  it('uses the shared settings card material around the nested editor', () => {
+  it('frames provider rows as one hairline table around the nested editor', () => {
     expect(block('.editor')).toContain('background: var(--dsw-alias-bg-module-platform)')
-    expect(block('.rowCard')).toContain('border: 0.5px solid var(--dsw-alias-settings-card-stroke)')
-    expect(block('.rowCard')).toContain('background: var(--dsw-alias-settings-card-fill)')
+    expect(block('.rows')).toContain('border: 0.5px solid var(--dsw-alias-border-hair)')
+    expect(block('.rowCard')).toContain('background: transparent')
   })
 
   it('gives every dropdown the shared chevron instead of the OS arrow', () => {
