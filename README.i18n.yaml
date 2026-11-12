@@ -3,8 +3,8 @@
 # After editing either side, bring the other along and re-record with:
 #   pnpm run verify-translation-pairing --write README.md
 /anotherharness:
-  en: 7ec87d911455091e
-  zh: 69a9192315daf348
+  en: faa373adf468dfed
+  zh: 28a6e60b5e1ecfde
 /anotherharness/developer-preview:
   en: 6d18aff842cebba2
   zh: 775f10087a941a23

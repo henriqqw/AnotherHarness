@@ -2,6 +2,8 @@
 
 [English](README.md) | 中文
 
+![AnotherHarness：面向 AI 智能体的模块化智能](docs/assets/banner.webp)
+
 AnotherHarness（`ah`）是一个开源 agent harness（智能体框架），采用**一切皆插件**的架构，由 [Cordis](https://github.com/cordiverse/cordis) 驱动，其设计见论文 [_A Programming Paradigm for Spatiotemporal Composability_](https://arxiv.org/abs/2608.25512)。
 
 AnotherHarness 基于 DeepSeek AI 的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，依据 MIT 许可证使用。本项目是独立项目，与 DeepSeek 无隶属关系，也未获其背书。

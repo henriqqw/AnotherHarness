@@ -2,6 +2,8 @@
 
 English | [中文](README.zh.md)
 
+![AnotherHarness: Modular Intelligence for AI Agents](docs/assets/banner.webp)
+
 AnotherHarness (`ah`) is an open-source agent harness built on an **everything-is-a-plugin** architecture and powered by [Cordis](https://github.com/cordiverse/cordis), whose design is described in [_A Programming Paradigm for Spatiotemporal Composability_](https://arxiv.org/abs/2608.25512).
 
 AnotherHarness is based on [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) by DeepSeek AI, used under the MIT License. It is an independent project and is not affiliated with or endorsed by DeepSeek.
