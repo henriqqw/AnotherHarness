@@ -1,4 +1,6 @@
 /** Register interactive terminal tabs and explicit process cleanup with the sidebar. */
+// Type-only: the optional ctx.configForms Context merge used to store the default profile.
+import type {} from '@anotherharness/ah-client-ui-settings/client'
 import type { ShortcutCommandId } from '@anotherharness/ah-client-shortcuts/client'
 import type { Context } from '@anotherharness/cordis'
 import type { WebTerminalId } from '@anotherharness/ah-api-terminal-controller/types'
@@ -21,6 +23,9 @@ import { en, zh } from './locales.ts'
 
 /** Services needed by the terminal's two sidebar seats. */
 export const inject = ['slots', 'locale', 'sidebarRight', 'sidebarRightTabs', 'webTerminals', 'theme', 'shortcuts']
+
+/** Profile entry id of the terminal controller, whose `defaultProfile` field the menu writes. */
+export const TERMINAL_CONTROLLER_ENTRY = 'terminal-controller'
 
 /**
  * Register the terminal type, observable views and background process cleanup.
@@ -45,8 +50,10 @@ export function apply(ctx: Context): void {
   const view = (sessionId: SessionId, key: string) => {
     const params = target(sessionId, key)
     const contentId = ctx.sidebarRight.tabDomain.occurrence(sessionId, { id: key as TabId }).navigation.getSnapshot().address
-    return ctx.webTerminals.view(sessionId, key, contentId, terminalId(sessionId, key),
-      params !== undefined && 'shellPath' in params ? params.shellPath : undefined)
+    const launch = params === undefined ? undefined
+      : 'profileId' in params ? { profileId: params.profileId }
+        : 'shellPath' in params ? { shellPath: params.shellPath } : undefined
+    return ctx.webTerminals.view(sessionId, key, contentId, terminalId(sessionId, key), launch)
   }
   const namespace = 'sidebarTerminal'
   const id = '@anotherharness/ah-client-ui-sidebar-terminal'
@@ -83,12 +90,17 @@ export function apply(ctx: Context): void {
     getSnapshot: () => ctx.theme.getTheme(),
     subscribe: listener => ctx.on('theme/change', listener),
   }
+  // Optional: without the settings service the profile menu offers no default action.
+  const forms = ctx.get('configForms')
   ctx.effect(() => ctx.slots.inject('sidebar.right.tab.guide.entry', () => ctx.slots.register({
     name: 'sidebar.right.tab.guide.entry', key: id, locale: namespace,
     inject: (sessionId): TerminalGuideInjected => ({
       hooks: { shortcuts: ctx.shortcuts.catalog },
       loadShells: signal => ctx.webTerminals.launchShells(sessionId, signal),
-      selectShell: (path) => { ctx.webTerminals.selectShell(path) },
+      selectShell: (profileId) => { ctx.webTerminals.selectShell(profileId) },
+      ...forms === undefined ? {} : {
+        setDefaultProfile: (profileId: string) => forms.get(TERMINAL_CONTROLLER_ENTRY).set('defaultProfile', profileId),
+      },
     }),
   }, TerminalGuide)), 'ui-sidebar-terminal.guide')
   ctx.effect(() => ctx.slots.inject('sidebar.right.pane.tab', () => ctx.slots.register(

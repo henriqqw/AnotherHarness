@@ -33,6 +33,9 @@ Shell 探测结果首先列出执行环境声明的默认 shell。仅当 provide
 |---|---|---|
 | `shell` | 省略 | 使用执行环境默认 shell，或指定一个 profile |
 | `shellCandidates` | `zsh`、`bash`、`fish`、`pwsh`、`powershell`、`cmd` | 已安装时供用户选择的额外可执行名称或路径 |
+| `profiles` | `[]` | 用户定义的终端配置（`id`、`name`、`path`、`args`、`env`、`icon`）；与探测结果 `id` 相同的条目会替换探测结果 |
+| `detectProfiles` | `true` | 探测执行环境中的 shell、WSL 发行版和 WSL 互操作 shell |
+| `defaultProfile` | 省略 | 普通新建终端操作打开的配置 `id`；可在配置菜单中修改 |
 | `maxTerminals` | `8` | 每个 Session 保留的终端和创建请求上限 |
 | `maxCols`、`maxRows` | `500`、`200` | PTY 最大尺寸 |
 | `scrollback` | `1000` | 屏幕历史行数 |
@@ -42,6 +45,8 @@ Shell 探测结果首先列出执行环境声明的默认 shell。仅当 provide
 | `unattendedTimeoutMs` | `7200000` | 无窗口持有且持续确认空闲后开始清理的时长；`0` 禁用自动回收 |
 | `activityPollIntervalMs` | `30000` | 无窗口持有时的活动观察间隔 |
 | `cleanupRetryMs` | `60000` | 清理失败后的重试间隔 |
+
+终端配置扩展了 shell 探测，参照 VS Code 的终端配置。`terminal.profiles` 列出探测到的和已配置的终端配置（不含环境变量），并在默认配置可用时给出它。在 Windows 上，探测提供命令提示符、PowerShell、Windows PowerShell、Git Bash，以及每个 WSL 发行版一个配置（`wsl.exe -d <名称>`，不含 Docker Desktop 的工具发行版）。在 Linux 和 macOS 上，它提供 `/etc/shells` 中的 bash、zsh、fish 和 PowerShell；在启用了互操作的 WSL 中，还提供 Windows PowerShell 和命令提示符，WSL 会在转换为 Windows 路径的终端目录中启动它们。每次探测都经由执行 provider 运行，限时三秒，探测失败只会让列表变短。`terminal.create` 接受 `profileId`，再次校验可执行文件，并以配置的参数和环境变量启动；未知或缺失的配置会在启动任何进程前以 `terminal/profile-unavailable` 失败。未提供 `profileId` 或 `shellPath` 时，创建会打开可用的 `defaultProfile`，否则使用执行环境默认值，因此旧的 `shell` 和 `shellCandidates` 设置继续有效。
 
 任何已连接窗口中的打开标签页都会持有其终端，包括隐藏标签和非当前 Session。最后一个持有关系消失后，只有明确确认空闲的时间才计入回收期限。运行中、停止、等待输入和后台执行的任务都会受到保护；活动状态未知时清除空闲截止时间。任务完成后重新给予完整宽限期。Host 使用单调时钟，在清理前重新检查持有关系和当前活动；观察间隔超过轮询周期的两倍时丢弃旧证据。时间字段使用毫秒和安全整数，轮询及重试间隔必须为正数。
 

@@ -38,6 +38,7 @@ function fixture() {
       })
     })),
     shells: vi.fn<TerminalRemote['shells']>(async () => success([info.shell])),
+    profiles: vi.fn<TerminalRemote['profiles']>(async () => success({ profiles: [{ ...info.shell, id: 'zsh', icon: 'zsh' as const, source: 'detected' as const }] })),
     environment: vi.fn<TerminalRemote['environment']>(async () => success(environment)), list: vi.fn<TerminalRemote['list']>(async () => success([])),
     create: vi.fn<TerminalRemote['create']>(async (_session, request) => success({ ...info, id: request.id })),
     close: vi.fn<TerminalRemote['close']>(async () => success(undefined)), rename: vi.fn<TerminalRemote['rename']>(async () => success(undefined)),
@@ -78,7 +79,7 @@ it('starts automatically and deduplicates overlapping mounts and refreshes', asy
   expect(model.refresh()).toBe(loading)
   await expect.poll(() => h.remote.create).toHaveBeenCalledOnce()
   const remounting = model.refresh()
-  expect(vi.mocked(h.remote.create).mock.calls[0]?.[1]).toEqual({ id: info.id, shellPath: info.shell.path, cols: 80, rows: 24 })
+  expect(vi.mocked(h.remote.create).mock.calls[0]?.[1]).toEqual({ id: info.id, profileId: 'zsh', cols: 80, rows: 24 })
   creation.resolve(success(info))
   await loading
   await remounting
@@ -335,7 +336,7 @@ it('persists occurrence identities before allocation and removes them on close w
   expect(JSON.parse(data.get(key)!)).toBe(model.id)
   await model.refresh()
   expect(model.id).toMatch(/^[0-9a-f-]{36}$/)
-  expect([...data.keys()]).toEqual([key, 'ah.terminal.shell'])
+  expect([...data.keys()]).toEqual([key, 'ah.terminal.profile'])
   const pending = Promise.withResolvers<RemoteResult<void>>()
   vi.mocked(h.remote.close).mockReturnValueOnce(pending.promise)
   service.close(sessionId, 'new-tab', 'new-tab')
@@ -343,7 +344,7 @@ it('persists occurrence identities before allocation and removes them on close w
   expect(data.has(key)).toBe(false)
   expect(data.get(`ah.terminal.close.v1.${model.id}`)).toBe(JSON.stringify(request))
   pending.resolve(success(undefined))
-  await expect.poll(() => [...data.keys()]).toEqual(['ah.terminal.shell'])
+  await expect.poll(() => [...data.keys()]).toEqual(['ah.terminal.profile'])
 })
 
 it('restores the same terminal in the same occurrence after reload without opening a recovery duplicate', async () => {
@@ -475,7 +476,7 @@ it.each(['saved', 'view'] as const)('clears a %s close request after the Host co
   await expect.poll(() => vi.mocked(h.remote.close).mock.calls.length).toBe(1)
   await dispose()
   expect([...data.entries()]).toEqual(source === 'view'
-    ? [['ah.terminal.shell', info.shell.path]] : [])
+    ? [['ah.terminal.profile', 'zsh']] : [])
   expect(service.closeFailures.getSnapshot()).toEqual([])
   expect(new TerminalCloseRequests().pending()).toEqual([])
   await h.service()
@@ -525,39 +526,40 @@ it('waits for both active and detached stream finalizers during plugin disposal 
   expect(h.remote.close).not.toHaveBeenCalled()
 })
 
-it('discovers menu choices without creating a process and remembers a choice before opening its tab', async () => {
+it('discovers profiles without creating a process and remembers a choice before opening its tab', async () => {
   const data = storage()
   const h = fixture()
-  const alternate = { name: 'bash', path: '/bin/bash', args: ['-i'] }
-  vi.mocked(h.remote.shells).mockResolvedValue(success([info.shell, alternate]))
+  const zsh = { ...info.shell, id: 'zsh', icon: 'zsh' as const, source: 'detected' as const }
+  const ubuntu = { id: 'wsl-ubuntu', name: 'Ubuntu (WSL)', path: 'wsl.exe', args: ['-d', 'Ubuntu'], icon: 'wsl' as const, source: 'detected' as const }
+  vi.mocked(h.remote.profiles).mockResolvedValue(success({ profiles: [zsh, ubuntu], defaultProfileId: 'wsl-ubuntu' }))
   const { service } = await h.service()
   expect(await service.launchShells(sessionId, new AbortController().signal)).toEqual({
-    shells: [info.shell, alternate], selectedShell: info.shell.path,
+    shells: [zsh, ubuntu], selectedShell: 'wsl-ubuntu', defaultProfileId: 'wsl-ubuntu',
   })
-  service.selectShell(alternate.path)
-  expect(data.get('ah.terminal.shell')).toBe(alternate.path)
+  service.selectShell('zsh')
+  expect(data.get('ah.terminal.profile')).toBe('zsh')
   expect(h.remote.create).not.toHaveBeenCalled()
-  expect((await service.launchShells(sessionId, new AbortController().signal)).selectedShell).toBe(alternate.path)
-  const model = service.view(sessionId, 'chosen', 'chosen', undefined, alternate.path)
+  expect((await service.launchShells(sessionId, new AbortController().signal)).selectedShell).toBe('zsh')
+  const model = service.view(sessionId, 'chosen', 'chosen', undefined, { profileId: 'wsl-ubuntu' })
   await model.refresh()
   expect(h.remote.create).toHaveBeenLastCalledWith(
-    sessionId, expect.objectContaining({ shellPath: alternate.path }), expect.any(AbortSignal),
+    sessionId, expect.objectContaining({ profileId: 'wsl-ubuntu' }), expect.any(AbortSignal),
   )
-  expect(h.remote.shells).toHaveBeenCalledTimes(2)
+  expect(h.remote.profiles).toHaveBeenCalledTimes(2)
   await h.view().refresh()
   expect(h.remote.create).toHaveBeenLastCalledWith(
-    sessionId, expect.objectContaining({ shellPath: alternate.path }), expect.any(AbortSignal),
+    sessionId, expect.objectContaining({ profileId: 'wsl-ubuntu' }), expect.any(AbortSignal),
   )
-  vi.mocked(h.remote.shells).mockResolvedValue(success([info.shell]))
-  await h.view().refresh()
-  expect(h.remote.create).toHaveBeenLastCalledWith(
-    sessionId, expect.objectContaining({ shellPath: info.shell.path }), expect.any(AbortSignal),
-  )
-  vi.mocked(h.remote.shells).mockResolvedValueOnce(failure('host offline'))
+  const legacy = service.view(sessionId, 'legacy', 'legacy', undefined, { shellPath: '/bin/zsh' })
+  await legacy.refresh()
+  expect(vi.mocked(h.remote.create).mock.calls.at(-1)?.[1]).toMatchObject({ shellPath: '/bin/zsh' })
+  expect(vi.mocked(h.remote.create).mock.calls.at(-1)?.[1]).not.toHaveProperty('profileId')
+  vi.mocked(h.remote.profiles).mockResolvedValueOnce(failure('host offline'))
   await expect(service.launchShells(sessionId, new AbortController().signal)).rejects.toThrow('host offline')
-  vi.mocked(h.remote.shells).mockResolvedValue(success([]))
+  vi.mocked(h.remote.profiles).mockResolvedValue(success({ profiles: [] }))
   expect((await service.launchShells(sessionId, new AbortController().signal)).selectedShell).toBeUndefined()
   await h.view().refresh()
+  expect(vi.mocked(h.remote.create).mock.calls.at(-1)?.[1]).not.toHaveProperty('profileId')
   expect(vi.mocked(h.remote.create).mock.calls.at(-1)?.[1]).not.toHaveProperty('shellPath')
 })
 
@@ -567,7 +569,7 @@ it('retains the last selection across a failed automatic launch', async () => {
   vi.mocked(h.remote.create).mockResolvedValueOnce(failure('shell disappeared'))
   const model = h.view()
   await model.refresh()
-  expect(data.get('ah.terminal.shell')).toBe(info.shell.path)
+  expect(data.get('ah.terminal.profile')).toBe('zsh')
   expect(model.state.getSnapshot().error).toBe('shell disappeared')
   await model.refresh()
   expect(h.remote.create).toHaveBeenCalledTimes(2)
@@ -584,12 +586,12 @@ it('keeps launch usable when browser storage is denied and stops late shell disc
   await model.refresh()
   expect(model.state.getSnapshot().info).toBeDefined()
   const delayed = h.view()
-  const shells = Promise.withResolvers<Awaited<ReturnType<TerminalRemote['shells']>>>()
-  vi.mocked(h.remote.shells).mockReturnValueOnce(shells.promise)
+  const profiles = Promise.withResolvers<Awaited<ReturnType<TerminalRemote['profiles']>>>()
+  vi.mocked(h.remote.profiles).mockReturnValueOnce(profiles.promise)
   const loading = delayed.refresh()
-  await expect.poll(() => h.remote.shells).toHaveBeenCalledTimes(2)
+  await expect.poll(() => h.remote.profiles).toHaveBeenCalledTimes(2)
   await delayed.close()
-  shells.resolve(success([info.shell]))
+  profiles.resolve(success({ profiles: [{ ...info.shell, id: 'zsh', icon: 'zsh' as const, source: 'detected' as const }] }))
   await loading
   expect(delayed.state.getSnapshot().phase).toBe('closed')
   expect(h.remote.create).toHaveBeenCalledOnce()

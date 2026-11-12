@@ -23,8 +23,13 @@ const standard: GlobalStandardProps & SessionStandardProps = {
     addAttachments: unused, removeAttachment: unused, pruneAttachments: unused, submit: unused },
 }
 const choices: TerminalLaunchShells = {
-  shells: [{ name: 'bash', path: '/bin/bash', args: ['-i'] }, { name: 'zsh', path: '/bin/zsh', args: ['-i'] }],
-  selectedShell: '/bin/zsh',
+  shells: [
+    { id: 'bash', name: 'bash', path: '/bin/bash', args: ['-i'], icon: 'bash', source: 'detected' },
+    { id: 'wsl-ubuntu', name: 'Ubuntu (WSL)', path: 'wsl.exe', args: ['-d', 'Ubuntu'], icon: 'wsl', source: 'detected' },
+    { id: 'zsh', name: 'zsh', path: '/bin/zsh', args: ['-i'], icon: 'zsh', source: 'detected' },
+  ],
+  selectedShell: 'zsh',
+  defaultProfileId: 'wsl-ubuntu',
 }
 
 type GuideShortcut = Pick<ShortcutCatalogEntry, 'keys' | 'aria'>
@@ -33,7 +38,7 @@ const catalogEntry = (shortcut: GuideShortcut): ShortcutCatalogEntry => ({
   modified: false, conflicts: [], issue: null, ...shortcut,
 })
 
-function mount(description: string | undefined = en.description, shortcut?: GuideShortcut) {
+function mount(description: string | undefined = en.description, shortcut?: GuideShortcut, setDefaultProfile?: TerminalGuideProps['setDefaultProfile']) {
   const loadShells = vi.fn<TerminalGuideProps['loadShells']>(async () => choices)
   const selectShell = vi.fn()
   const openTab = vi.fn()
@@ -47,7 +52,7 @@ function mount(description: string | undefined = en.description, shortcut?: Guid
         visible: true, signal: new AbortController().signal,
         navigation: { address: 'sidebar://guide', params: undefined, revision: 0 },
         actions: { openTab, bindCommands: vi.fn(() => vi.fn()), openResource: vi.fn(), close: vi.fn() } } }),
-    loadShells, selectShell,
+    loadShells, selectShell, setDefaultProfile,
   }
   const view = render(<TerminalGuide {...props} />)
   const open = () => fireEvent.click(view.getByRole('button', { name: en.shell }))
@@ -92,18 +97,38 @@ it('loads on demand, remembers a selected shell before opening, and cancels on m
   const h = mount()
   h.open()
   await h.view.findByRole('menuitem', { name: 'zsh' })
+  expect(h.view.getByRole('menuitem', { name: 'Ubuntu (WSL) (default)' })).toBeTruthy()
   expect(h.openTab).not.toHaveBeenCalled()
   const signal = h.loadShells.mock.calls[0]![0]
   h.selectShell.mockImplementation(() => { expect(h.openTab).not.toHaveBeenCalled() })
   fireEvent.click(h.view.getByRole('menuitem', { name: 'bash' }))
-  expect(h.selectShell).toHaveBeenCalledExactlyOnceWith('/bin/bash')
-  expect(h.openTab).toHaveBeenCalledExactlyOnceWith('terminal', { replaceTab: true, params: { shellPath: '/bin/bash' } })
+  expect(h.selectShell).toHaveBeenCalledExactlyOnceWith('bash')
+  expect(h.openTab).toHaveBeenCalledExactlyOnceWith('terminal', { replaceTab: true, params: { profileId: 'bash' } })
   expect(signal.aborted).toBe(true)
   h.open()
   await h.view.findByRole('menuitem', { name: 'bash' })
   fireEvent.keyDown(h.view.getByRole('menu'), { key: 'Escape' })
   expect(h.view.queryByRole('menu')).toBeNull()
   expect(h.loadShells.mock.calls[1]![0].aborted).toBe(true)
+})
+
+it('stores the preselected profile as the Host default, and offers nothing when it already is', async () => {
+  const setDefaultProfile = vi.fn(async () => true)
+  const h = mount(en.description, undefined, setDefaultProfile)
+  h.open()
+  fireEvent.click(await h.view.findByRole('menuitem', { name: 'Make zsh the default' }))
+  expect(setDefaultProfile).toHaveBeenCalledExactlyOnceWith('zsh')
+  expect(h.selectShell).not.toHaveBeenCalled()
+  expect(h.openTab).not.toHaveBeenCalled()
+  h.loadShells.mockResolvedValue({ ...choices, defaultProfileId: 'zsh' })
+  h.open()
+  await h.view.findByRole('menuitem', { name: 'zsh (default)' })
+  expect(h.view.queryByRole('menuitem', { name: 'Make zsh the default' })).toBeNull()
+  h.view.unmount()
+  const plain = mount()
+  plain.open()
+  await plain.view.findAllByRole('menuitem', { name: 'bash' })
+  expect(plain.view.queryByRole('menuitem', { name: /the default/u })).toBeNull()
 })
 
 it.each([new Error('offline'), 'offline'])('offers an in-place retry after discovery fails: %s', async (error) => {

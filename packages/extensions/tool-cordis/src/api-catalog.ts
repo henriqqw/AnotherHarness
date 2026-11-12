@@ -3138,6 +3138,12 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         returns: 'verified profiles, with the configured or system default first.',
       },
       {
+        signature: '@Remote async profiles(agent: Agent, signal: AbortSignal): Promise<TerminalProfiles>',
+        description: 'List the terminal profiles of the Session\'s execution environment and the default entry.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }, { name: 'signal', description: 'request cancellation.' }],
+        returns: 'detected and configured profiles, without their environments.',
+      },
+      {
         signature: '@Remote list(sessionId: SessionId): WebTerminalInfo[]',
         description: 'List retained terminals without resolving or activating an Agent.',
         parameters: [{ name: 'sessionId', description: 'displayed Session identity, including offline history.' }],
@@ -7837,7 +7843,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   },
   {
     name: 'TerminalCreateRequest',
-    declaration: 'export interface TerminalCreateRequest {\n    readonly shellPath?: string;\n    readonly id: WebTerminalId;\n    readonly cols: number;\n    readonly rows: number;\n}',
+    declaration: 'export interface TerminalCreateRequest {\n    readonly profileId?: string;\n    readonly shellPath?: string;\n    readonly id: WebTerminalId;\n    readonly cols: number;\n    readonly rows: number;\n}',
   },
   {
     name: 'TerminalEnvironment',
@@ -7846,6 +7852,22 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'TerminalFrame',
     declaration: 'export type TerminalFrame = {\n    readonly type: \'snapshot\';\n    readonly sequence: number;\n    readonly screen: string;\n    readonly info: WebTerminalInfo;\n} | {\n    readonly type: \'output\';\n    readonly sequence: number;\n    readonly data: string;\n} | {\n    readonly type: \'state\';\n    readonly info: WebTerminalInfo;\n};',
+  },
+  {
+    name: 'TerminalProfile',
+    declaration: 'export interface TerminalProfile extends TerminalShell {\n    readonly id: string;\n    readonly icon: TerminalProfileIcon;\n    readonly source: \'detected\' | \'configured\';\n    readonly env?: Readonly<Record<string, string>>;\n}',
+  },
+  {
+    name: 'TerminalProfileIcon',
+    declaration: 'export type TerminalProfileIcon = \'bash\' | \'zsh\' | \'fish\' | \'pwsh\' | \'cmd\' | \'wsl\' | \'git\' | \'terminal\';',
+  },
+  {
+    name: 'TerminalProfiles',
+    declaration: 'export interface TerminalProfiles {\n    readonly profiles: readonly TerminalProfileView[];\n    readonly defaultProfileId?: string;\n}',
+  },
+  {
+    name: 'TerminalProfileView',
+    declaration: 'export type TerminalProfileView = Omit<TerminalProfile, \'env\'>;',
   },
   {
     name: 'TerminalReadRequest',
@@ -7897,7 +7919,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   },
   {
     name: 'TerminalShell',
-    declaration: 'export interface TerminalShell {\n    readonly path: string;\n    readonly args: readonly string[];\n    readonly name: string;\n}',
+    declaration: 'export interface TerminalShell {\n    readonly path: string;\n    readonly args: readonly string[];\n    readonly name: string;\n    readonly id?: string;\n    readonly icon?: TerminalProfileIcon;\n}',
   },
   {
     name: 'TerminalSignal',

@@ -70,7 +70,8 @@
     "@anotherharness/ah-client-ui-layout": "workspace:*",
     "@anotherharness/ah-client-ui-conversation": "workspace:*",
     "@anotherharness/ah-client-ui-theme": "workspace:*",
-    "@anotherharness/ah-client-shortcuts": "workspace:*"
+    "@anotherharness/ah-client-shortcuts": "workspace:*",
+    "@anotherharness/ah-client-ui-settings": "workspace:*"
   },
   "files": [
     "lib/index.js",

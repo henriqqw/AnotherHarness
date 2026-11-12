@@ -20,6 +20,6 @@ export interface TerminalBodyInjected extends TerminalInjected {
 declare module '@anotherharness/ah-client-ui-sidebar-right/client' {
   interface SidebarRightTabParamsMap {
     /** An existing Host terminal selected from the Session terminal list. */
-    terminal: { terminalId: WebTerminalId } | { shellPath: string }
+    terminal: { terminalId: WebTerminalId } | { profileId: string } | { shellPath: string }
   }
 }

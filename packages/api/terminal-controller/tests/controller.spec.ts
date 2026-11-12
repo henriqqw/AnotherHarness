@@ -10,13 +10,13 @@ import type { SandboxExecutionPolicy, SandboxMode } from '@anotherharness/ah-san
 import { SubprocessExecutableNotFoundError, type SubprocessRuntime, type SubprocessTerminalEnvironment, type SubprocessTerminalHandle } from '@anotherharness/ah-subprocess'
 import LocalSubprocessRuntime from '@anotherharness/ah-subprocess-local'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { TerminalController, type Config } from '../src/index.ts'
+import { TerminalController, type Config, type ConfigInput } from '../src/index.ts'
 import { resolveShell } from '../src/shells.ts'
 import type { TerminalAttachmentId, WebTerminalId } from '../src/types.ts'
 
 const roots: Context[] = []
 afterEach(async () => { await Promise.all(roots.splice(0).map(ctx => ctx.fiber.dispose())) })
-const config: Config = { shellCandidates: ['zsh', 'bash', 'sh'], shell: { path: '/bin/bash', name: 'bash', args: ['--noprofile', '--norc', '-i'] }, maxTerminals: 2, maxCols: 200, maxRows: 100, scrollback: 100, maxBufferedBytes: 100_000, maxInputBytes: 1000, disposeGraceMs: 100, unattendedTimeoutMs: 7_200_000, activityPollIntervalMs: 30_000, cleanupRetryMs: 60_000 }
+const config: Config = { shellCandidates: ['zsh', 'bash', 'sh'], profiles: [], detectProfiles: false, shell: { path: '/bin/bash', name: 'bash', args: ['--noprofile', '--norc', '-i'] }, maxTerminals: 2, maxCols: 200, maxRows: 100, scrollback: 100, maxBufferedBytes: 100_000, maxInputBytes: 1000, disposeGraceMs: 100, unattendedTimeoutMs: 7_200_000, activityPollIntervalMs: 30_000, cleanupRetryMs: 60_000 }
 const id = 'test-terminal' as WebTerminalId
 const request = { id, cols: 80, rows: 24 }
 const signal = (): AbortSignal => new AbortController().signal
@@ -480,7 +480,7 @@ describe('TerminalController', () => {
 describe('shell resolution', () => {
   it('accepts an omitted shell profile and defaults configured arguments to an empty list', () => {
     // Loader input is unvalidated; the schema's declared type describes its normalized output.
-    const parse = (input: unknown): Config => TerminalController.Config(input as Config)
+    const parse = (input: unknown): Config => TerminalController.Config(input as ConfigInput)
     expect(parse({}).shell).toBeUndefined()
     expect(parse({})).toMatchObject({ unattendedTimeoutMs: 7_200_000, activityPollIntervalMs: 30_000, cleanupRetryMs: 60_000 })
     expect(parse({ unattendedTimeoutMs: 0 }).unattendedTimeoutMs).toBe(0)

@@ -3,16 +3,16 @@ import { Service, type Context } from '@anotherharness/cordis'
 import { remoteErrorOf } from '@anotherharness/ah-typert-protocol'
 import type { SessionId } from '@anotherharness/ah-session/types'
 import type {} from '@anotherharness/ah-api-gateway/client'
-import { TerminalView, type TerminalRemote } from './model.ts'
+import { TerminalView, type TerminalLaunch, type TerminalRemote } from './model.ts'
 import { createSnapshotStore, type SnapshotStore } from '@anotherharness/ah-client-store'
 import { randomUUID } from '@anotherharness/ah-util-crypto'
-import type { TerminalShell, WebTerminalId, WebTerminalInfo } from '../types.ts'
-import { preferredShell, rememberShell } from './shell-preference.ts'
+import type { TerminalProfileView, WebTerminalId, WebTerminalInfo } from '../types.ts'
+import { chooseProfile, rememberProfile } from './shell-preference.ts'
 import { TerminalCloseRequests, type TerminalCloseRequest } from './close-requests.ts'
 import { TerminalWindowHold } from './retention.ts'
 import { TerminalBindings } from './bindings.ts'
 
-export type { TerminalView, TerminalViewState, TerminalViewIssue, TerminalRenderFrame, TerminalRemote } from './model.ts'
+export type { TerminalView, TerminalViewState, TerminalViewIssue, TerminalRenderFrame, TerminalRemote, TerminalLaunch } from './model.ts'
 
 declare module '@anotherharness/cordis' {
   interface Context {
@@ -21,10 +21,13 @@ declare module '@anotherharness/cordis' {
   }
 }
 
-/** Host-discovered shell menu with the browser's remembered available choice. */
+/** Host terminal profiles with the browser's remembered available choice. */
 export interface TerminalLaunchShells {
-  readonly shells: readonly TerminalShell[]
+  readonly shells: readonly TerminalProfileView[]
+  /** Profile identity the menu preselects. */
   readonly selectedShell: string | undefined
+  /** The Host default profile, when one is configured and available. */
+  readonly defaultProfileId?: string | undefined
 }
 
 /** A failed background close that can be retried without restoring its tab. */
@@ -72,10 +75,10 @@ export class ClientTerminals extends Service {
    * @param key - sidebar occurrence key.
    * @param contentId - globally unique content identity; layout-local tab ids are not persistence keys.
    * @param terminalId - existing Host identity when restoring a listed terminal; otherwise reuse the saved content identity.
-   * @param shellPath - explicit shell for a new terminal; restored terminals retain their own shell.
+   * @param launch - explicit profile or legacy shell path for a new terminal; restored terminals retain their own shell.
    * @returns its observable state and terminal commands.
    */
-  view(sessionId: SessionId, key: string, contentId: string, terminalId?: WebTerminalId, shellPath?: string): TerminalView {
+  view(sessionId: SessionId, key: string, contentId: string, terminalId?: WebTerminalId, launch?: TerminalLaunch): TerminalView {
     let views = this.views.get(sessionId)
     if (views === undefined) { views = new Map(); this.views.set(sessionId, views) }
     let view = views.get(key)
@@ -83,7 +86,7 @@ export class ClientTerminals extends Service {
       const saved = terminalId ?? this.bindings.get(sessionId, contentId)
       const id = saved ?? randomUUID() as WebTerminalId
       this.bindings.set(sessionId, contentId, id)
-      view = new TerminalView(sessionId, this.remote, this.ctx.remote, id, saved === undefined, shellPath,
+      view = new TerminalView(sessionId, this.remote, this.ctx.remote, id, saved === undefined, launch,
         signal => this.hold(sessionId, id).ready(signal))
       views.set(key, view)
       this.reconcileHolds()
@@ -96,20 +99,22 @@ export class ClientTerminals extends Service {
    * Discover available launch choices on demand without allocating a PTY.
    * @param sessionId - target Session.
    * @param signal - the menu request lifetime.
-   * @returns installed shells and the currently usable browser preference.
+   * @returns the Host profiles and the currently usable browser preference.
    */
   async launchShells(sessionId: SessionId, signal: AbortSignal): Promise<TerminalLaunchShells> {
-    const result = await this.remote.shells(sessionId, signal)
+    const result = await this.remote.profiles(sessionId, signal)
     if (!result.ok) throw new Error(result.error.message)
-    const previous = preferredShell()
-    return { shells: result.value, selectedShell: result.value.find(shell => shell.path === previous)?.path ?? result.value[0]?.path }
+    return {
+      shells: result.value.profiles, selectedShell: chooseProfile(result.value),
+      ...result.value.defaultProfileId === undefined ? {} : { defaultProfileId: result.value.defaultProfileId },
+    }
   }
 
   /**
    * Remember the guide selection before allocating its terminal tab.
-   * @param path - shell selected from Host discovery.
+   * @param profileId - profile selected from the Host profile list.
    */
-  selectShell(path: string): void { rememberShell(path) }
+  selectShell(profileId: string): void { rememberProfile(profileId) }
 
   /**
    * Save a close intent and release the tab immediately; cleanup outlives DOM unmount and reload.

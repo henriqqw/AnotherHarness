@@ -1,5 +1,5 @@
 /** Session-owned user terminals with the execution environment's system-user permissions. */
-import type { Context } from '@anotherharness/cordis'
+import type { Context, Volatile } from '@anotherharness/cordis'
 import z from '@anotherharness/schemastery'
 import type { Agent } from '@anotherharness/ah-agent'
 import type { SessionId } from '@anotherharness/ah-session'
@@ -7,14 +7,18 @@ import type {} from '@anotherharness/ah-sandbox-policy'
 import type {} from '@anotherharness/ah-working-directory'
 import { Remote, RemoteError, TypertRemoteService } from '@anotherharness/ah-typert-protocol'
 import { discoverShells, resolveShell } from './shells.ts'
+import { detectProfiles, mergeProfiles, verifyConfiguredProfile } from './profiles.ts'
+import type { TerminalProfileConfig } from './profiles.ts'
 import { BrowserTerminal } from './terminal.ts'
 import { TerminalRetention } from './retention.ts'
 import type {
-  TerminalShell, TerminalAttachmentId, TerminalCreateRequest, TerminalEnvironment, TerminalFrame, TerminalRetentionFrame,
+  TerminalShell, TerminalAttachmentId, TerminalCreateRequest, TerminalEnvironment, TerminalFrame, TerminalProfile,
+  TerminalProfiles, TerminalRetentionFrame,
   WebTerminalId, WebTerminalInfo,
 } from './types.ts'
 
 export type * from './types.ts'
+export type { TerminalProfileConfig } from './profiles.ts'
 
 declare module '@anotherharness/cordis' {
   interface Context {
@@ -36,6 +40,12 @@ export interface Config {
   } | undefined
   /** Executable names or paths checked for the new-terminal shell selector. */
   readonly shellCandidates: string[]
+  /** User-defined terminal profiles; an entry replaces a detected profile with the same id. */
+  readonly profiles: TerminalProfileConfig[]
+  /** Detect the execution environment's shells, WSL distributions, and interop shells. */
+  readonly detectProfiles: boolean
+  /** Profile identity opened by the plain new-terminal action; editable from Settings. */
+  readonly defaultProfile?: Volatile<string | undefined> | undefined
   /** Maximum retained terminals and pending allocations per Session. */
   readonly maxTerminals: number
   /** Maximum terminal width in columns. */
@@ -58,6 +68,9 @@ export interface Config {
   readonly cleanupRetryMs: number
 }
 
+/** Config as written in a profile: the default profile is a plain identity there. */
+export type ConfigInput = Omit<Config, 'defaultProfile'> & { readonly defaultProfile?: string | undefined }
+
 interface TerminalAllocation {
   info: WebTerminalInfo
   readonly cleanup: TerminalRetention
@@ -75,11 +88,21 @@ interface OwnedSession {
 /** Typed Remote control of transient Session-owned terminal processes. */
 export class TerminalController extends TypertRemoteService {
   static inject = ['subprocess', 'sandboxPolicy', 'workingDirectory', 'typert']
-  static Config: z<Config> = z.object({
+  static Config: z<ConfigInput, Config> = z.object({
     shell: z.union([z.object({
       path: z.string().required(), name: z.string().required(), args: z.array(z.string()).default([]),
     }), z.const(undefined)]),
     shellCandidates: z.array(z.string().min(1)).default(['zsh', 'bash', 'fish', 'pwsh', 'powershell', 'cmd']),
+    profiles: z.array(z.object({
+      id: z.string().pattern(/^[\w-]{1,64}$/u).required(),
+      name: z.string().min(1).required(),
+      path: z.string().min(1).required(),
+      args: z.array(z.string()),
+      env: z.dict(z.string()),
+      icon: z.union(['bash', 'zsh', 'fish', 'pwsh', 'cmd', 'wsl', 'git', 'terminal'] as const),
+    })).default([]),
+    detectProfiles: z.boolean().default(true),
+    defaultProfile: z.string().volatile(),
     maxTerminals: z.number().step(1).min(1).default(8),
     maxCols: z.number().step(1).min(2).default(500),
     maxRows: z.number().step(1).min(1).default(200),
@@ -90,7 +113,7 @@ export class TerminalController extends TypertRemoteService {
     unattendedTimeoutMs: z.number().step(1).min(0).max(Number.MAX_SAFE_INTEGER).default(7_200_000),
     activityPollIntervalMs: z.number().step(1).min(1).max(Number.MAX_SAFE_INTEGER).default(30_000),
     cleanupRetryMs: z.number().step(1).min(1).max(Number.MAX_SAFE_INTEGER).default(60_000),
-  })
+  }) as z<ConfigInput, Config>
 
   private readonly owners = new Map<SessionId, OwnedSession>()
   private readonly lifetime = new AbortController()
@@ -134,6 +157,24 @@ export class TerminalController extends TypertRemoteService {
   shells(agent: Agent, signal: AbortSignal): Promise<TerminalShell[]> {
     signal.throwIfAborted()
     return discoverShells(this.execution(agent).subprocess, this.config.shell, this.config.shellCandidates, signal)
+  }
+
+  /**
+   * List the terminal profiles of the Session's execution environment and the default entry.
+   * @param agent - Session owner supplied by the Gateway.
+   * @param signal - request cancellation.
+   * @returns detected and configured profiles, without their environments.
+   */
+  @Remote
+  async profiles(agent: Agent, signal: AbortSignal): Promise<TerminalProfiles> {
+    signal.throwIfAborted()
+    const profiles = await this.resolveProfiles(agent, signal)
+    const fallback = this.config.defaultProfile?.get()
+    const defaultProfileId = fallback !== undefined && profiles.some(profile => profile.id === fallback) ? fallback : undefined
+    return {
+      profiles: profiles.map(({ env: _env, ...view }) => view),
+      ...defaultProfileId === undefined ? {} : { defaultProfileId },
+    }
   }
 
   /**
@@ -339,16 +380,50 @@ export class TerminalController extends TypertRemoteService {
     return { subprocess, sandboxPolicy, workingDirectory }
   }
 
+  private async resolveProfiles(agent: Agent, signal: AbortSignal): Promise<TerminalProfile[]> {
+    const { subprocess, workingDirectory } = this.execution(agent)
+    const cwd = workingDirectory.get(agent.session)
+    const [detected, candidates, configured] = await Promise.all([
+      this.config.detectProfiles ? detectProfiles(subprocess, cwd, signal) : Promise.resolve([]),
+      discoverShells(subprocess, this.config.shell, this.config.shellCandidates, signal),
+      Promise.all(this.config.profiles.map(profile => verifyConfiguredProfile(subprocess, profile, signal))),
+    ])
+    return mergeProfiles({
+      configuredShell: this.config.shell === undefined ? undefined : candidates[0],
+      detected,
+      candidates,
+      configured: configured.filter(profile => profile !== undefined),
+    })
+  }
+
+  private async selectShell(
+    agent: Agent, request: TerminalCreateRequest, signal: AbortSignal,
+  ): Promise<TerminalShell & { env?: Readonly<Record<string, string>> }> {
+    const { subprocess } = this.execution(agent)
+    const profileId = request.profileId ?? (request.shellPath === undefined ? this.config.defaultProfile?.get() : undefined)
+    if (profileId !== undefined) {
+      const profile = (await this.resolveProfiles(agent, signal)).find(candidate => candidate.id === profileId)
+      if (profile !== undefined) {
+        const { source: _source, ...shell } = profile
+        return shell
+      }
+      if (request.profileId !== undefined) {
+        throw new RemoteError('terminal/profile-unavailable', `Terminal profile "${profileId}" is not available in this execution environment`, { profileId })
+      }
+    }
+    if (request.shellPath === undefined) return resolveShell(subprocess, this.config.shell, signal)
+    const shell = (await this.shells(agent, signal)).find(candidate => candidate.path === request.shellPath)
+    if (shell === undefined) throw new Error('Selected shell is not available in this execution environment')
+    return shell
+  }
+
   private async spawn(agent: Agent, owner: OwnedSession, request: TerminalCreateRequest, signal: AbortSignal): Promise<BrowserTerminal> {
     const { subprocess, workingDirectory } = this.execution(agent)
     const cwd = await workingDirectory.ensure(agent, signal)
-    const shell = request.shellPath === undefined
-      ? await resolveShell(subprocess, this.config.shell, signal)
-      : (await this.shells(agent, signal)).find(candidate => candidate.path === request.shellPath)
-    if (shell === undefined) throw new Error('Selected shell is not available in this execution environment')
+    const { env: profileEnv, ...shell } = await this.selectShell(agent, request, signal)
     const handle = await subprocess.spawnTerminal({
       argv: [shell.path, ...shell.args], cwd, cols: request.cols, rows: request.rows,
-      terminalType: 'xterm-256color', env: { AH_SESSION_ID: agent.id },
+      terminalType: 'xterm-256color', env: { ...profileEnv, AH_SESSION_ID: agent.id },
       shellActivity: true,
       graceMs: this.config.disposeGraceMs, signal,
     })

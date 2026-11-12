@@ -40,6 +40,7 @@ function fixture(prepareStream?: <Item>(stream: RemoteStream<Item>) => void) {
       })
     })),
     shells: vi.fn<TerminalRemote['shells']>(async () => success([info.shell])),
+    profiles: vi.fn<TerminalRemote['profiles']>(async () => success({ profiles: [{ ...info.shell, id: 'zsh', icon: 'zsh' as const, source: 'detected' as const }] })),
     environment: vi.fn<TerminalRemote['environment']>(async () => success(environment)), list: vi.fn<TerminalRemote['list']>(async () => success([])),
     create: vi.fn<TerminalRemote['create']>(async (_sessionId, request) => success({ ...info, id: request.id })),
     close: vi.fn<TerminalRemote['close']>(async () => success(undefined)), rename: vi.fn<TerminalRemote['rename']>(async () => success(undefined)),

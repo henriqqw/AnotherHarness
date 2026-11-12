@@ -10,6 +10,8 @@ declare module '@anotherharness/ah-typert-protocol' {
     'terminal/control-unavailable': { readonly reason: 'read-only' | 'not-running' }
     /** Retained screens and pending allocations consume the Session's terminal quota. */
     'terminal/limit-reached': { readonly limit: number }
+    /** The selected terminal profile is unknown or its executable no longer resolves. */
+    'terminal/profile-unavailable': { readonly profileId: string }
   }
 }
 
@@ -28,6 +30,33 @@ export interface TerminalShell {
   readonly path: string
   readonly args: readonly string[]
   readonly name: string
+  /** Profile identity when the shell was opened from a terminal profile. */
+  readonly id?: string
+  /** Profile menu icon when the shell was opened from a terminal profile. */
+  readonly icon?: TerminalProfileIcon
+}
+
+/** Menu icons a terminal profile can name. */
+export type TerminalProfileIcon = 'bash' | 'zsh' | 'fish' | 'pwsh' | 'cmd' | 'wsl' | 'git' | 'terminal'
+
+/** One entry of the profile menu: a verified shell with its identity, icon, and origin. */
+export interface TerminalProfile extends TerminalShell {
+  readonly id: string
+  readonly icon: TerminalProfileIcon
+  /** `detected` by OS detection or legacy candidates, or `configured` by the deployment. */
+  readonly source: 'detected' | 'configured'
+  /** Environment variables layered onto the terminal; never sent to clients. */
+  readonly env?: Readonly<Record<string, string>>
+}
+
+/** A terminal profile as clients receive it, without its environment. */
+export type TerminalProfileView = Omit<TerminalProfile, 'env'>
+
+/** The profile menu and the default entry. */
+export interface TerminalProfiles {
+  readonly profiles: readonly TerminalProfileView[]
+  /** Identity of the default profile, when the configured default resolves. */
+  readonly defaultProfileId?: string
 }
 
 /** Current Session directory and terminal limits; retained terminals keep their own process directories. */
@@ -57,7 +86,9 @@ export interface WebTerminalInfo {
 
 /** Create is idempotent for an open identity; closed identities cannot be recreated. */
 export interface TerminalCreateRequest {
-  /** A path returned by shell discovery; absent selects the execution default. */
+  /** A profile identity from `terminal.profiles`; preferred over `shellPath`. */
+  readonly profileId?: string
+  /** A path returned by shell discovery; absent selects the default profile or the execution default. */
   readonly shellPath?: string
   readonly id: WebTerminalId
   readonly cols: number

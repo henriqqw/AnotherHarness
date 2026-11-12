@@ -1,4 +1,4 @@
-/** Shell launch menu owned by the terminal provider's guide entry. */
+/** Terminal profile menu owned by the terminal provider's guide entry. */
 import { useEffect, useState, type ReactNode } from 'react'
 import type { ShortcutCatalogEntry } from '@anotherharness/ah-client-shortcuts/client'
 import type { HostObservable } from '@anotherharness/ah-client-ui-slots'
@@ -14,9 +14,18 @@ export interface TerminalGuideInjected {
   readonly hooks: { readonly shortcuts: HostObservable<readonly ShortcutCatalogEntry[]> }
   /** @param signal - open menu lifetime. @returns current Host choices and browser preference. */
   readonly loadShells: (signal: AbortSignal) => Promise<TerminalLaunchShells>
-  /** @param path - Host-discovered shell selected for the next terminal. */
-  readonly selectShell: (path: string) => void
+  /** @param profileId - Host profile selected for the next terminal. */
+  readonly selectShell: (profileId: string) => void
+  /**
+   * Store a profile as the Host default; absent when no settings service is mounted.
+   * @param profileId - Host profile to open by default in every browser.
+   * @returns true once the Host accepted the change.
+   */
+  readonly setDefaultProfile?: ((profileId: string) => Promise<boolean>) | undefined
 }
+
+/** Menu item that stores the preselected profile as the Host default. */
+const SET_DEFAULT = '@set-default'
 
 /** Session guide owner props, framework hooks and terminal actions. */
 export type TerminalGuideProps = PropsRuntime<'sidebar.right.tab.guide.entry'> & PropsLocale<'sidebarTerminal'> & InjectFace<TerminalGuideInjected>
@@ -30,7 +39,7 @@ type MenuState = { phase: 'loading' } | { phase: 'ready'; choices: TerminalLaunc
  * @returns separate launch and menu buttons within one guide card.
  */
 export function TerminalGuide({
-  title, description, kind, useTabInfo, loadShells, selectShell, t, useShortcuts,
+  title, description, kind, useTabInfo, loadShells, selectShell, setDefaultProfile, t, useShortcuts,
 }: TerminalGuideProps): ReactNode {
   const shortcut = useShortcuts(entries => entries.find(entry => entry.id === 'terminal.new'))
   const { tab } = useTabInfo()
@@ -47,8 +56,23 @@ export function TerminalGuide({
     })
     return () => { lifetime.abort() }
   }, [open, attempt, loadShells])
+  const selected = state.phase === 'ready'
+    ? state.choices.shells.find(shell => shell.id === state.choices.selectedShell)
+    : undefined
+  // Menu actions other than opening a profile, keyed by their item id.
+  const actions = new Map<string, () => void>()
+  if (setDefaultProfile !== undefined && selected !== undefined && state.phase === 'ready'
+    && selected.id !== state.choices.defaultProfileId) {
+    actions.set(SET_DEFAULT, () => { void setDefaultProfile(selected.id) })
+  }
   const items = state.phase === 'ready'
-    ? state.choices.shells.map(shell => ({ id: shell.path, label: shell.name }))
+    ? [
+      ...state.choices.shells.map(shell => ({
+        id: shell.id,
+        label: shell.id === state.choices.defaultProfileId ? t('profileDefault', { name: shell.name }) : shell.name,
+      })),
+      ...actions.has(SET_DEFAULT) ? [{ id: SET_DEFAULT, label: t('setDefault', { name: selected?.name }) }] : [],
+    ]
     : state.phase === 'loading'
       ? [{ id: 'loading', label: t('shellLoading'), disabled: true }]
       : [{ id: 'error', label: t('failed', { message: state.message }), disabled: true }, { id: 'retry', label: t('retry') }]
@@ -64,11 +88,17 @@ export function TerminalGuide({
           items={items.length === 0 ? [{ id: 'empty', label: t('shellEmpty'), disabled: true }] : items}
           selectedId={state.phase === 'ready' ? state.choices.selectedShell : undefined}
           onClose={() => { setOpen(false) }}
-          onSelect={(path) => {
+          onSelect={(profileId) => {
             if (state.phase === 'failed') { setState({ phase: 'loading' }); setAttempt(value => value + 1); return }
-            selectShell(path)
+            const action = actions.get(profileId)
+            if (action !== undefined) {
+              setOpen(false)
+              action()
+              return
+            }
+            selectShell(profileId)
             setOpen(false)
-            tab.actions.openTab('terminal', { replaceTab: true, params: { shellPath: path } })
+            tab.actions.openTab('terminal', { replaceTab: true, params: { profileId } })
           }}
           anchor={<Button variant="ghost" className={css.trigger} aria-label={t('shell')} aria-haspopup="menu" aria-expanded={open}
             onClick={() => { setState({ phase: 'loading' }); setOpen(value => !value) }}>

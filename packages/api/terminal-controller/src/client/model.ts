@@ -1,5 +1,5 @@
 /** React-free browser terminal state and reconnecting Remote-stream ownership. */
-import { preferredShell, rememberShell } from './shell-preference.ts'
+import { chooseProfile, rememberProfile } from './shell-preference.ts'
 import { randomUUID } from '@anotherharness/ah-util-crypto'
 import { createSnapshotStore, type SnapshotStore } from '@anotherharness/ah-client-store'
 import { RemoteStreamCarrierError, type ClientRemote, type RemoteStream } from '@anotherharness/ah-api-gateway/client'
@@ -12,6 +12,12 @@ import type {
 } from '../types.ts'
 
 /** The generated terminal namespace's browser-facing operations. */
+/** How a new terminal chooses its shell: a profile identity, or a legacy shell path from saved layouts. */
+export interface TerminalLaunch {
+  readonly profileId?: string
+  readonly shellPath?: string
+}
+
 export type TerminalRemote = ClientRemote['terminal']
 
 /** Product error identifiers translated by the terminal UI. */
@@ -69,7 +75,7 @@ export class TerminalView {
    * @param gateway - reconnecting stream factory.
    * @param id - Host terminal identity, reused when recovering an item from its Session list.
    * @param createWhenMissing - allow allocation only for a new tab, never a listed terminal.
-   * @param shellPath - explicit shell chosen at the guide; omission uses the remembered available shell.
+   * @param launch - explicit profile or legacy shell path chosen at the guide; omission uses the remembered or default profile.
    * @param retain - window hold acknowledgement required before output attachment.
    */
   constructor(
@@ -78,7 +84,7 @@ export class TerminalView {
     private readonly gateway: Pick<ClientRemote, '$stream'>,
     readonly id: WebTerminalId,
     private readonly createWhenMissing = true,
-    private readonly shellPath?: string,
+    private readonly launch?: TerminalLaunch,
     private readonly retain?: (signal: AbortSignal) => Promise<void>,
   ) {}
 
@@ -115,15 +121,14 @@ export class TerminalView {
       const info = valueOf(available).find(item => item.id === this.id)
       if (info !== undefined) this.adopt(info)
       else if (this.createWhenMissing) {
-        let path = this.shellPath
-        if (path === undefined) {
-          const shells = valueOf(await this.remote.shells(this.sessionId, this.lifetime.signal))
-          const previous = preferredShell()
-          path = shells.find(shell => shell.path === previous)?.path ?? shells[0]?.path
+        const shellPath = this.launch?.shellPath
+        let profileId = this.launch?.profileId
+        if (profileId === undefined && shellPath === undefined) {
+          profileId = chooseProfile(valueOf(await this.remote.profiles(this.sessionId, this.lifetime.signal)))
         }
         if (this.stopped()) return
-        if (path !== undefined) rememberShell(path)
-        await this.create(valueOf(environment), path)
+        if (profileId !== undefined) rememberProfile(profileId)
+        await this.create(valueOf(environment), profileId === undefined ? shellPath === undefined ? {} : { shellPath } : { profileId })
       }
       else throw new TerminalViewError('missingTerminal')
     })().catch((error: unknown) => { this.fail(error) }).finally(() => { this.loading = undefined })
@@ -132,11 +137,11 @@ export class TerminalView {
 
   private stopped(): boolean { return this.lifetime.signal.aborted || this.closing !== undefined }
 
-  private async create(environment: TerminalEnvironment, shellPath?: string): Promise<void> {
+  private async create(environment: TerminalEnvironment, launch: TerminalLaunch): Promise<void> {
     this.patch({ phase: 'creating', error: undefined, issue: undefined })
     this.creation = (async () => {
       const info = valueOf(await this.remote.create(this.sessionId, {
-        id: this.id, ...shellPath === undefined ? {} : { shellPath },
+        id: this.id, ...launch,
         cols: Math.min(80, environment.maxCols), rows: Math.min(24, environment.maxRows),
       }, this.lifetime.signal))
       if (!this.lifetime.signal.aborted) {

@@ -12,7 +12,7 @@ import type { WebTerminalId, WebTerminalInfo } from '@anotherharness/ah-api-term
 import { SidebarRightTabRegistry } from '@anotherharness/ah-client-ui-sidebar-right/src/client/tab-registry.ts'
 import type { SidebarRightCloseHandler } from '@anotherharness/ah-client-ui-sidebar-right/client'
 import type { SidebarRightOpenTab } from '@anotherharness/ah-client-ui-sidebar-right/client'
-import { apply, inject } from '../src/client/index.ts'
+import { apply, inject, TERMINAL_CONTROLLER_ENTRY } from '../src/client/index.ts'
 import { apply as hostApply } from '../src/index.ts'
 import { TerminalGuide, type TerminalGuideInjected } from '../src/client/TerminalGuide.tsx'
 import { LazyTerminalBody } from '../src/client/LazyTerminalBody.tsx'
@@ -28,8 +28,11 @@ vi.mock('../src/client/terminal.tsx', () => ({ TerminalBody: renderedTerminal })
 
 afterEach(() => { cleanup(); renderedTerminal.mockClear() })
 
-async function mountPlugin() {
+interface FakeForms { get: (entryId: string) => { set: (field: string, value: unknown) => Promise<boolean> } }
+
+async function mountPlugin(options: { forms?: FakeForms } = {}) {
   const ctx = new Context()
+  if (options.forms !== undefined) ctx.provide('configForms', options.forms as never)
   const tabs = new SidebarRightTabRegistry(ctx)
   ctx.provide('sidebarRightTabs', tabs)
   const entries: {
@@ -48,7 +51,7 @@ async function mountPlugin() {
     launchShells: vi.fn(async () => ({ shells: [], selectedShell: undefined })), selectShell: vi.fn(),
     recover: vi.fn(async (_sessionId: SessionId): Promise<WebTerminalInfo[]> => []),
   }
-  let params: { terminalId: WebTerminalId } | { shellPath: string } | undefined
+  let params: { terminalId: WebTerminalId } | { profileId: string } | { shellPath: string } | undefined
   const occurrence = vi.fn(() => ({ navigation: { getSnapshot: () => ({ params, address: 'sidebar://terminal/content' }) } }))
   const openTabIn = vi.fn()
   const tabsIn = vi.fn(() => [] as { id: string; kind: string }[])
@@ -85,6 +88,20 @@ async function mountPlugin() {
   }
 }
 
+it('stores the default profile through the terminal controller settings form when one is mounted', async () => {
+  const set = vi.fn(async () => true)
+  const get = vi.fn(() => ({ set }))
+  const h = await mountPlugin({ forms: { get } })
+  try {
+    const launcher = h.entries[0]!.inject('session' as SessionId) as TerminalGuideInjected
+    expect(await launcher.setDefaultProfile?.('wsl-ubuntu')).toBe(true)
+    expect(get).toHaveBeenCalledWith(TERMINAL_CONTROLLER_ENTRY)
+    expect(set).toHaveBeenCalledWith('defaultProfile', 'wsl-ubuntu')
+  } finally {
+    await h.dispose()
+  }
+})
+
 it('registers terminal views without recovery or cleanup slots, then releases contributions on unload', async () => {
   expect(hostApply).not.toThrow()
   const h = await mountPlugin()
@@ -110,6 +127,7 @@ it('registers terminal views without recovery or cleanup slots, then releases co
     expect(h.terminals.launchShells).toHaveBeenCalledWith(sessionId, signal)
     launcher.selectShell('/bin/bash')
     expect(h.terminals.selectShell).toHaveBeenCalledWith('/bin/bash')
+    expect(launcher.setDefaultProfile).toBeUndefined()
     const face = h.entries[1]!.inject(sessionId) as TerminalBodyInjected
     expect(face.hooks.theme.getSnapshot()).toBe(h.theme)
     const changed = vi.fn()
@@ -125,7 +143,10 @@ it('registers terminal views without recovery or cleanup slots, then releases co
     h.setParams({ terminalId })
     h.setParams({ shellPath: '/bin/bash' })
     face.view('tab')
-    expect(h.terminals.view).toHaveBeenLastCalledWith(sessionId, 'tab', 'sidebar://terminal/content', undefined, '/bin/bash')
+    expect(h.terminals.view).toHaveBeenLastCalledWith(sessionId, 'tab', 'sidebar://terminal/content', undefined, { shellPath: '/bin/bash' })
+    h.setParams({ profileId: 'wsl-ubuntu' })
+    face.view('tab')
+    expect(h.terminals.view).toHaveBeenLastCalledWith(sessionId, 'tab', 'sidebar://terminal/content', undefined, { profileId: 'wsl-ubuntu' })
     h.setParams({ terminalId })
     expect(face.keyedHooks.terminal('tab')).toBe(h.model.state)
     expect(h.terminals.view).toHaveBeenLastCalledWith(sessionId, 'tab', 'sidebar://terminal/content', terminalId, undefined)

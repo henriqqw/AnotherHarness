@@ -5784,6 +5784,9 @@ importers:
       '@anotherharness/ah-client-ui-session':
         specifier: workspace:*
         version: link:../ui-session
+      '@anotherharness/ah-client-ui-settings':
+        specifier: workspace:*
+        version: link:../ui-settings
       '@anotherharness/ah-client-ui-sidebar-right':
         specifier: workspace:*
         version: link:../ui-sidebar-right

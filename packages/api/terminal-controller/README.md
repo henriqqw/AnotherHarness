@@ -33,6 +33,9 @@ Shell discovery lists the execution environment's declared default shell first. 
 |---|---|---|
 | `shell` | omitted | Use the execution environment's default shell, or one explicit profile |
 | `shellCandidates` | `zsh`, `bash`, `fish`, `pwsh`, `powershell`, `cmd` | Additional executable names or paths offered when installed |
+| `profiles` | `[]` | User-defined terminal profiles (`id`, `name`, `path`, `args`, `env`, `icon`); an entry replaces a detected profile with the same `id` |
+| `detectProfiles` | `true` | Detect the execution environment's shells, WSL distributions, and WSL interop shells |
+| `defaultProfile` | omitted | Profile `id` the plain new-terminal action opens; editable from the profile menu |
 | `maxTerminals` | `8` | Retained terminals and pending allocations per Session |
 | `maxCols`, `maxRows` | `500`, `200` | Maximum PTY dimensions |
 | `scrollback` | `1000` | Retained screen history rows |
@@ -42,6 +45,8 @@ Shell discovery lists the execution environment's declared default shell first. 
 | `unattendedTimeoutMs` | `7200000` | Continuous confirmed idle time without window holds before cleanup; `0` disables automatic reclamation |
 | `activityPollIntervalMs` | `30000` | Interval between unattended activity observations |
 | `cleanupRetryMs` | `60000` | Delay before retrying failed cleanup |
+
+Terminal profiles extend shell discovery, modeled on VS Code terminal profiles. `terminal.profiles` lists detected and configured profiles without their environment variables, plus the default profile when it resolves. On Windows, detection offers Command Prompt, PowerShell, Windows PowerShell, Git Bash, and one profile per WSL distribution (`wsl.exe -d <name>`, Docker Desktop's utility distributions excluded). On Linux and macOS it offers the bash, zsh, fish, and PowerShell entries of `/etc/shells`; inside WSL with interop enabled it also offers Windows PowerShell and Command Prompt, which WSL starts in the terminal's directory translated to a Windows path. Each probe runs through the execution provider with a three-second bound, and a failing probe only shortens the list. `terminal.create` accepts a `profileId`, verifies the executable again, and starts it with the profile's arguments and environment; an unknown or missing profile fails with `terminal/profile-unavailable` before any process starts. Without a `profileId` or `shellPath`, creation opens `defaultProfile` when it resolves and otherwise the execution default, so the legacy `shell` and `shellCandidates` settings keep working.
 
 An open tab in any connected window retains its terminal, including hidden tabs and inactive Sessions. After the last hold disappears, only positively confirmed idle time counts toward reclamation. Running, stopped, input-waiting and background work remains protected; unknown activity clears the idle deadline. Completion starts a fresh full grace period. The Host uses a monotonic clock, rechecks current ownership and activity before cleanup, and resets evidence after an observation gap exceeding twice the polling interval. The timing fields use milliseconds and safe integers; polling and retry intervals must be positive.
 

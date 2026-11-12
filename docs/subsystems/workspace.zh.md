@@ -248,6 +248,14 @@ Typed Remote control of transient Session-owned terminal processes.
 @Remote shells(agent: Agent, signal: AbortSignal): Promise<TerminalShell[]>
 
 /**
+ * List the terminal profiles of the Session's execution environment and the default entry.
+ * @param agent - Session owner supplied by the Gateway.
+ * @param signal - request cancellation.
+ * @returns detected and configured profiles, without their environments.
+ */
+@Remote async profiles(agent: Agent, signal: AbortSignal): Promise<TerminalProfiles>
+
+/**
  * List retained terminals without resolving or activating an Agent.
  * @param sessionId - displayed Session identity, including offline history.
  * @returns terminals retained for this Host lifetime.
