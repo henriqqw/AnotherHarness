@@ -19,6 +19,11 @@
  * Every other protocol reports that it cannot be interrogated so the surface
  * falls back to hand-entry rather than guessing its response fields.
  *
+ * Each listed model's accepted input modalities come from {@link
+ * listedInputModalities}: a listing that discloses them is believed, and a bare
+ * listing falls to a curated vision-family match, so an image-capable gateway
+ * model reaches the Models page with image input already offered.
+ *
  * @module ah-llm-pi-ai/discovery
  */
 
@@ -26,6 +31,8 @@ import { INVALID_CREDENTIAL_CODE, LlmError, normalizeApiKey } from '@anotherharn
 import type { LlmDiscoveredModel, LlmModelDiscoveryOperation } from '@anotherharness/ah-llm'
 import { attributionHeaders } from '@anotherharness/ah-llm'
 import { catalogModels } from './catalog.ts'
+import { listedInputModalities } from './vision.ts'
+import type { ModalityListingEntry } from './vision.ts'
 
 /**
  * Protocols whose model listing this module can read. OpenAI protocols use
@@ -69,7 +76,7 @@ interface ListingTopProvider {
 }
 
 /** One entry of a supported `GET /models` reply. */
-interface ListingEntry {
+interface ListingEntry extends ModalityListingEntry {
   id?: unknown
   /** Common gateway extensions; absent from the official listings. */
   name?: unknown
@@ -219,11 +226,13 @@ function readListing(body: unknown): LlmDiscoveredModel[] {
       entry?.limit?.output,
       entry?.top_provider?.max_completion_tokens,
     )
+    const inputModalities = listedInputModalities(entry, id, name)
     models.push({
       id,
       name,
       ...contextWindow === undefined ? {} : { contextWindow },
       ...maxTokens === undefined ? {} : { maxTokens },
+      ...inputModalities === undefined ? {} : { inputModalities },
     })
   }
   return models

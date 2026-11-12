@@ -167,10 +167,37 @@ describe('draft-provider model discovery', () => {
         name: 'DeepSeek V4 Flash',
         contextWindow: 1_048_576,
         maxTokens: 384_000,
+        inputModalities: ['text', 'image'],
       },
       { id: 'bare-route', name: 'bare-route' },
       { id: 'nested-id', name: 'Nested fallback' },
     ])
+  })
+
+  it('declares image input a listing discloses or a vision id implies', async () => {
+    const server = await listingServer({
+      body: JSON.stringify({
+        data: [
+          { id: 'router-omni', architecture: { input_modalities: ['text', 'image'] } },
+          { id: 'router-text', architecture: { modality: 'text->text' } },
+          { id: 'glm-4v-plus', name: 'GLM 4V Plus' },
+          { id: 'qwen2-vl-72b' },
+          { id: 'plain-chat', name: 'Plain Chat' },
+        ],
+      }),
+    })
+    const ctx = await harness()
+
+    const byId = new Map(
+      (await ctx.llm.discoverModels('llm-pi-ai', { baseURL: server.url })).map(model => [model.id, model.inputModalities]),
+    )
+
+    expect(byId.get('router-omni')).toEqual(['text', 'image'])
+    expect(byId.get('router-text')).toEqual(['text'])
+    expect(byId.get('glm-4v-plus')).toEqual(['text', 'image'])
+    expect(byId.get('qwen2-vl-72b')).toEqual(['text', 'image'])
+    // A bare listing with no vision marker stays unset, so the route default stands.
+    expect(byId.get('plain-chat')).toBeUndefined()
   })
 
   it('uses Anthropic model-listing paths, headers, and capacity fields', async () => {
@@ -503,31 +530,36 @@ const RECORDED_LISTINGS = [
     name: 'OpenRouter GET /api/v1/models',
     file: 'openrouter-2026-09-02.json',
     api: 'openai-completions',
+    // OpenRouter discloses each entry's input modalities, which are believed as-is:
+    // the flash route is listed text-only here and stays so despite its vision-ish name.
     models: [
-      { id: 'anthropic/claude-fable-5.1', name: 'Anthropic: Claude Fable 5.1', contextWindow: 1_000_000, maxTokens: 128_000 },
+      { id: 'anthropic/claude-fable-5.1', name: 'Anthropic: Claude Fable 5.1', contextWindow: 1_000_000, maxTokens: 128_000, inputModalities: ['text', 'image'] },
       // The router's own aggregate route reports no completion cap.
-      { id: 'openrouter/auto-beta', name: 'Auto Router (Beta)', contextWindow: 2_000_000 },
-      { id: 'deepseek/deepseek-v4-flash', name: 'DeepSeek: DeepSeek V4 Flash 0423', contextWindow: 1_048_576, maxTokens: 384_000 },
+      { id: 'openrouter/auto-beta', name: 'Auto Router (Beta)', contextWindow: 2_000_000, inputModalities: ['text', 'image'] },
+      { id: 'deepseek/deepseek-v4-flash', name: 'DeepSeek: DeepSeek V4 Flash 0423', contextWindow: 1_048_576, maxTokens: 384_000, inputModalities: ['text'] },
     ],
   },
   {
     name: 'the models.dev anthropic provider object',
     file: 'models-dev-anthropic-2026-09-02.json',
     api: 'openai-completions',
+    // No disclosed modalities here, so the Claude 3-and-newer family match applies.
     models: [
-      { id: 'claude-opus-4-7', name: 'Claude Opus 4.7', contextWindow: 1_000_000, maxTokens: 128_000 },
-      { id: 'claude-fable-5-1', name: 'Claude Fable 5.1', contextWindow: 1_000_000, maxTokens: 128_000 },
-      { id: 'claude-haiku-4-5', name: 'Claude Haiku 4.5 (latest)', contextWindow: 200_000, maxTokens: 64_000 },
+      { id: 'claude-opus-4-7', name: 'Claude Opus 4.7', contextWindow: 1_000_000, maxTokens: 128_000, inputModalities: ['text', 'image'] },
+      { id: 'claude-fable-5-1', name: 'Claude Fable 5.1', contextWindow: 1_000_000, maxTokens: 128_000, inputModalities: ['text', 'image'] },
+      { id: 'claude-haiku-4-5', name: 'Claude Haiku 4.5 (latest)', contextWindow: 200_000, maxTokens: 64_000, inputModalities: ['text', 'image'] },
     ],
   },
   {
     name: 'DeepSeek GET /models',
     file: 'deepseek-2026-09-02.json',
     api: 'openai-completions',
+    // DeepSeek's bare listing discloses no modalities; the flash family is inferred
+    // image-capable (spec 0001) while V4-Pro stays text-only.
     models: [
-      { id: 'deepseek-v4-flash', name: 'deepseek-v4-flash' },
+      { id: 'deepseek-v4-flash', name: 'deepseek-v4-flash', inputModalities: ['text', 'image'] },
       { id: 'deepseek-v4-pro', name: 'deepseek-v4-pro' },
-      { id: 'deepseek-v4-flash-vision-exp', name: 'deepseek-v4-flash-vision-exp' },
+      { id: 'deepseek-v4-flash-vision-exp', name: 'deepseek-v4-flash-vision-exp', inputModalities: ['text', 'image'] },
     ],
   },
   {
@@ -535,8 +567,9 @@ const RECORDED_LISTINGS = [
     file: 'anthropic-reference-example.json',
     api: 'anthropic-messages',
     // The reference example fills both capacities with 0, which is not a
-    // usable capacity, so the row carries the name alone.
-    models: [{ id: 'claude-opus-5', name: 'Claude Opus 5' }],
+    // usable capacity, so the row carries no context or output cap; the Claude 5
+    // family is inferred image-capable.
+    models: [{ id: 'claude-opus-5', name: 'Claude Opus 5', inputModalities: ['text', 'image'] }],
   },
 ]
 

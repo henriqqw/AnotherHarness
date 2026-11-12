@@ -45,6 +45,7 @@ Agents must be able to receive images from the user and interpret them, operate 
 - **AC-6** — Given desktop use is enabled on a supported platform, when the agent lists windows, then the result names the open application windows.
 - **AC-7** — Given a user reads the desktop-use guide, when they plan to control Windows applications, then the guide states that WSL reaches only the WSLg desktop and that AnotherHarness must run natively on Windows.
 - **AC-8** — Given neither capability is enabled, when a Session starts, then no browser or desktop tools are offered and startup cost is unchanged.
+- **AC-9** — Given a pi-ai gateway route is interrogated, when its listing discloses a model's input modalities or its id names a known vision family, then model discovery returns that model with `inputModalities` including `image`, so the Models page offers image input already selected.
 
 ## Contracts
 
@@ -57,6 +58,7 @@ Agents must be able to receive images from the user and interpret them, operate 
 - **Vision bridge** as its own package that defines `ctx.visionBridge`. Prompt admission consumes it optionally: when the selected model lacks `image` and the service is mounted, admission stores the images, asks the bridge for one description per image, and admits text parts in their place; without the service it rejects as before with an actionable message (AC-3). Images already in history from an earlier image-capable turn keep today's behavior.
 - **Opt-in overlays** follow the existing `apps/cli/config/examples/` convention and the profile patch layering; they never edit shipped bundles. A dedicated `ah setup` launcher mode is deferred, because launcher modes are governed by `verify-application-entrypoints`.
 - **Screenshots** already reach image-capable routes through the attachment store; AC-5 only adds coverage.
+- **Modality discovery.** pi-ai model discovery records each listed model's `inputModalities`: a listing that discloses them (an OpenRouter-style `architecture.input_modalities`, a top-level array, or a modality-pipeline string) is authoritative, and a bare listing falls to a curated id/name match of known vision families. Discovery only seeds the Models-page draft the user reviews, and an over-claim an endpoint refuses fails at request time exactly as a hand-declared `input` does, so detection stays best-effort rather than a request-time check.
 
 ## Risks and mitigations
 
@@ -77,6 +79,7 @@ Approved by the owner on 2026-11-11 with these answers:
 2. Browser use defaults to the Playwright MCP provider (headless `launch`; `attach` for an existing Chrome).
 3. Windows applications require running AnotherHarness natively on Windows; under WSL, desktop use reaches only the WSLg Linux desktop and setup says so.
 4. Browser and desktop use stay opt-in through setup commands; the shipped `web` profile does not change.
+5. pi-ai model discovery pre-detects image capability (disclosed modalities first, then a curated vision-family match) so image-capable gateway models arrive with image input offered; the user still confirms before saving.
 
 ## Implementation plan
 
@@ -98,3 +101,4 @@ Approved by the owner on 2026-11-11 with these answers:
 | AC-6 | — | ☐ |
 | AC-7 | `docs/user/guide/browser-and-desktop.md` (Desktop use) | ☑ |
 | AC-8 | shipped `web` profile composition has no browser or desktop rows (`ah --profile web --dump-config`) | ☑ |
+| AC-9 | `packages/llm/llm-pi-ai/tests/vision.spec.ts`, `packages/llm/llm-pi-ai/tests/discovery.spec.ts` (disclosed listings, recorded fixtures, and id inference) | ☑ |
