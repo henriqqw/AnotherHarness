@@ -1111,6 +1111,27 @@ Types: [FileAttachmentRef](attachment.zh.md)
 
 Source: [`packages/llm/llm/src/index.ts`](../../packages/llm/llm/src/index.ts)
 
+<a id="ctxvisionbridge--visionbridge"></a>
+
+### `ctx.visionBridge` — `VisionBridge`
+
+Describes images with the configured image-capable model route.
+
+```ts cordis-catalog
+/**
+ * Describe one stored image.
+ * @param image - durable attachment reference readable by the route's adapter.
+ * @param signal - caller cancellation for the model request.
+ * @returns the trimmed description text.
+ * @throws LlmError when the request fails, is aborted, or returns no text.
+ */
+async describe(image: ImageAttachmentRef, signal?: AbortSignal): Promise<string>
+```
+
+Types: [ImageAttachmentRef](attachment.zh.md)
+
+Source: [`packages/llm/llm-vision-bridge/src/index.ts`](../../packages/llm/llm-vision-bridge/src/index.ts)
+
 <a id="llm-events"></a>
 
 ### `llm/*` events

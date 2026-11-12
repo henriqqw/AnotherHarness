@@ -409,6 +409,7 @@
       "@anotherharness/ah-llm-pi-ai": ["./packages/llm/llm-pi-ai/src"],
       "@anotherharness/ah-llm-replay": ["./packages/test-support/llm-replay/src"],
       "@anotherharness/ah-llm-retry": ["./packages/llm/llm-retry/src"],
+      "@anotherharness/ah-llm-vision-bridge": ["./packages/llm/llm-vision-bridge/src"],
       "@anotherharness/ah-loader-smoke": ["./packages/test-support/loader-smoke/src"],
       "@anotherharness/ah-lsp": ["./packages/lsp/lsp/src"],
       "@anotherharness/ah-lsp-stdio": ["./packages/lsp/lsp-stdio/src"],

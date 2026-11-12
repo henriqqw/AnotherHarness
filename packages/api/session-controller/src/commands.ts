@@ -1,11 +1,13 @@
 /** Session commands whose activation policy is explicit at each Remote method. */
 
 import { modelAvailable } from './catalog.ts'
+import { describeImages } from './vision.ts'
 import { randomUUID } from 'node:crypto'
 import type { Context } from '@anotherharness/cordis'
 import { brandString } from '@anotherharness/ah-brand'
 import type { Agent, ModelSelection as AgentModelSelection } from '@anotherharness/ah-agent'
 import { AttachmentError } from '@anotherharness/ah-attachment'
+import type { VisionBridge } from '@anotherharness/ah-llm-vision-bridge'
 import type {
   AttachmentAdmissionPart, FileAttachmentRef, ImageAttachmentRef,
 } from '@anotherharness/ah-attachment'
@@ -336,22 +338,13 @@ export class SessionCommandController {
     const hasImage = request.content.some(part => part.type === 'image')
     const admit = async (): Promise<SessionPromptValue> => {
       try {
-        if (hasImage) {
-          const current = this.agents.selectionFor(agent).current
-          const model = await this.ctx.llm.resolveModelInfo(current.provider, current.model)
-          if (model.inputModalities !== undefined && !model.inputModalities.includes('image')) {
-            throw new RemoteError(
-              'session/attachment-invalid',
-              `Model "${current.model}" does not support image input.`,
-              { reason: 'MODEL_DOES_NOT_SUPPORT_IMAGES' },
-            )
-          }
-        }
+        const visionBridge = hasImage ? await this.textOnlyImageBridge(agent) : undefined
         const admission = resolvePromptFileReceipts(
           request.content,
           receiptId => this.ctx.fileUploads.resolve(agent, receiptId),
         )
-        const content = await this.ctx.attachments.admitPromptContent(admission.content)
+        const stored = await this.ctx.attachments.admitPromptContent(admission.content)
+        const content = visionBridge === undefined ? stored : await describeImages(visionBridge, stored)
         const message: UserMessage = createUserMessage({ content, source })
         if (this.ctx.agents.get(agent.id) !== agent) {
           throw new RemoteError(
@@ -374,6 +367,25 @@ export class SessionCommandController {
       return { accepted: true }
     }
     return hasImage ? this.agents.serializeImageAdmission(agent, admit) : admit()
+  }
+
+  /**
+   * Decide how images reach the Agent's selected model.
+   * @param agent - the Agent whose current model selection receives the prompt.
+   * @returns the vision bridge when the model accepts only text, or undefined when it accepts images.
+   * @throws RemoteError `session/attachment-invalid` when the model accepts only text and no vision bridge is mounted.
+   */
+  private async textOnlyImageBridge(agent: Agent): Promise<VisionBridge | undefined> {
+    const current = this.agents.selectionFor(agent).current
+    const model = await this.ctx.llm.resolveModelInfo(current.provider, current.model)
+    if (model.inputModalities === undefined || model.inputModalities.includes('image')) return undefined
+    const bridge = this.ctx.get('visionBridge')
+    if (bridge !== undefined) return bridge
+    throw new RemoteError(
+      'session/attachment-invalid',
+      `Model "${current.model}" does not support image input. Select an image-capable model or mount @anotherharness/ah-llm-vision-bridge.`,
+      { reason: 'MODEL_DOES_NOT_SUPPORT_IMAGES' },
+    )
   }
 
   private async requireModel(selection: Pick<AgentModelSelection, 'provider' | 'model'>): Promise<void> {

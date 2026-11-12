@@ -1,0 +1,9 @@
+# Opt-in desktop use through the native Cua Driver runtime (macOS, Linux, and
+# Windows binaries ship as npm optional dependencies). AH controls the desktop
+# of the machine and session it runs in: under WSL that is the WSLg Linux
+# desktop, not Windows applications.
+- insert:
+    - id: computer-use
+      name: '@anotherharness/ah-computer-use'
+    - id: computer-use-cua-driver
+      name: '@anotherharness/ah-experimental-computer-use-cua-driver-native'

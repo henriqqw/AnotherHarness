@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for browser-and-desktop.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/browser-and-desktop.md
+/images-browser-use-and-desktop-use:
+  en: 4cb507a0979e45a2
+  zh: 831c404a03a65e65
+/images-browser-use-and-desktop-use/images:
+  en: a41f8f64e5532dc7
+  zh: c9a468e4aeed3542
+/images-browser-use-and-desktop-use/browser-use:
+  en: 263393464efe8a4e
+  zh: 2aca7d3b5034fba5
+/images-browser-use-and-desktop-use/desktop-use:
+  en: 486ba1070a5e5e01
+  zh: 540fa450448dacd5
+/images-browser-use-and-desktop-use/keep-a-choice-across-runs:
+  en: 3e8e4b8c06133892
+  zh: e46321a393d734f5
+/images-browser-use-and-desktop-use/safety:
+  en: 060565bed698c857
+  zh: a2dd73a143378a9e

@@ -2106,6 +2106,33 @@ export type Config = Readonly<Record<string, never>>
 ```
 <!-- END GENERATED config-catalog:@anotherharness/ah-llm-retry -->
 
+<!-- BEGIN GENERATED config-catalog:@anotherharness/ah-llm-vision-bridge -->
+<a id="anotherharnessah-llm-vision-bridge"></a>
+
+## `@anotherharness/ah-llm-vision-bridge`
+
+- `inject`: `llm`
+- `source`: [`packages/llm/llm-vision-bridge/src/index.ts:36`](../packages/llm/llm-vision-bridge/src/index.ts)
+
+```ts config-catalog
+/** Plugin configuration after defaults are applied. */
+export interface ResolvedConfig extends VisionBridgeRoute {
+  /** Instruction sent with each image. */
+  readonly instruction: string
+  /** Output token cap for one description. */
+  readonly maxTokens: number
+}
+
+/** Model route that produces descriptions. */
+export interface VisionBridgeRoute {
+  /** Registered provider route of any mounted LLM adapter. */
+  readonly provider: string
+  /** Image-capable model id on that route. */
+  readonly model: string
+}
+```
+<!-- END GENERATED config-catalog:@anotherharness/ah-llm-vision-bridge -->
+
 <!-- BEGIN GENERATED config-catalog:@anotherharness/ah-lsp-stdio -->
 <a id="anotherharnessah-lsp-stdio"></a>
 

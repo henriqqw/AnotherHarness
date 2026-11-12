@@ -94,6 +94,13 @@
     - id: llm-retry
       name: '@anotherharness/ah-llm-retry'
 
+    # Text-only models receive descriptions of attached images from this image-capable route.
+    - id: llm-vision-bridge
+      name: '@anotherharness/ah-llm-vision-bridge'
+      config:
+        provider: deepseek-official
+        model: deepseek-flash
+
     # Live Config forms persist through the active profile patch.
 
     # Live configuration forms persist through the launcher's profile.

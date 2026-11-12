@@ -1,0 +1,11 @@
+# Opt-in browser use attached to a Chrome you already run with remote
+# debugging (for example `chrome --remote-debugging-port=9222`). The new
+# Session reuses that browser's tabs and sign-ins; AH never closes it.
+- insert:
+    - id: browser-use
+      name: '@anotherharness/ah-browser-use'
+    - id: browser-use-playwright
+      name: '@anotherharness/ah-experimental-browser-use-playwright-mcp'
+      config:
+        mode: attach
+        endpoint: http://127.0.0.1:9222

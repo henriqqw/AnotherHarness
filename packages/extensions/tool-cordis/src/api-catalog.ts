@@ -3517,6 +3517,20 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
     ],
   },
   {
+    key: 'visionBridge',
+    summary: 'Describes images with the configured image-capable model route.',
+    description: 'Describes images with the configured image-capable model route.',
+    methods: [
+      {
+        signature: 'async describe(image: ImageAttachmentRef, signal?: AbortSignal): Promise<string>',
+        description: 'Describe one stored image.',
+        parameters: [{ name: 'image', description: 'durable attachment reference readable by the route\'s adapter.' }, { name: 'signal', description: 'caller cancellation for the model request.' }],
+        returns: 'the trimmed description text.',
+        throws: ['LlmError when the request fails, is aborted, or returns no text.'],
+      },
+    ],
+  },
+  {
     key: 'web',
     summary: 'The web access service.',
     description: 'The web access service. Registered as `ctx.web` (one instance per context).\n\nSelection semantics (resolved at execution time, never order-dependent):\n\n- A configured id that is registered and `available()` → that provider.\n- A configured id not registered → `WEB_PROVIDER_CONFIGURED_MISSING`.\n- A configured id registered but unavailable → `WEB_PROVIDER_CONFIGURED_UNAVAILABLE`.\n- No id configured, exactly one registered usable provider → that provider.\n- No id configured, multiple usable providers → `WEB_PROVIDER_AMBIGUOUS`.\n- No id configured, no usable provider → `WEB_PROVIDER_UNAVAILABLE`.',

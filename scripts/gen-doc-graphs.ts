@@ -239,6 +239,14 @@ const SERVICE_ROLES: ServiceRole[] = [
     note: 'Adapters register provider implementations; the loop and compaction call the provider-neutral stream service.',
   },
   {
+    key: 'visionBridge',
+    pkg: 'llm-vision-bridge',
+    title: 'Image descriptions for text-only models',
+    mode: 'core',
+    consumers: ['api-session-controller'],
+    note: 'Describes stored images with a configured image-capable route; prompt admission records each description beside the offloaded image.',
+  },
+  {
     key: 'deepseekLlmApiExtensions',
     pkg: 'deepseek-llm-api-extensions',
     title: 'Official DeepSeek request extensions',

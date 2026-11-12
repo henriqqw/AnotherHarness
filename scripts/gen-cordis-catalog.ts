@@ -96,6 +96,7 @@ export const SERVICE_PAGE: Record<string, string> = {
   inspector: 'extensions.md',
   webServer: 'web-server.md',
   llm: 'llm-streaming.md',
+  visionBridge: 'llm-streaming.md',
   lsp: 'lsp.md',
   messageFeedback: 'feedback.md',
   sessionFeedback: 'feedback.md',

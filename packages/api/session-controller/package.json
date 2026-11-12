@@ -76,7 +76,6 @@
     "zod": "^4.4.3"
   },
   "peerDependencies": {
-    "@anotherharness/cordis": "workspace:~",
     "@anotherharness/ah-agent": "workspace:*",
     "@anotherharness/ah-agent-default-model": "workspace:*",
     "@anotherharness/ah-agent-preset-registry": "workspace:*",
@@ -89,6 +88,7 @@
     "@anotherharness/ah-file-reference": "workspace:*",
     "@anotherharness/ah-fs": "workspace:*",
     "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-llm-vision-bridge": "workspace:*",
     "@anotherharness/ah-native-command": "workspace:*",
     "@anotherharness/ah-scope": "workspace:*",
     "@anotherharness/ah-session": "workspace:*",
@@ -105,8 +105,9 @@
     "@anotherharness/ah-util-time": "workspace:*",
     "@anotherharness/ah-util-values": "workspace:*",
     "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-working-directory": "workspace:*",
     "@anotherharness/ah-workspace": "workspace:*",
-    "@anotherharness/ah-working-directory": "workspace:*"
+    "@anotherharness/cordis": "workspace:~"
   },
   "peerDependenciesMeta": {
     "@anotherharness/ah-session-persistence": {
@@ -120,7 +121,6 @@
     }
   },
   "devDependencies": {
-    "@anotherharness/cordis": "workspace:~",
     "@anotherharness/ah-agent": "workspace:*",
     "@anotherharness/ah-agent-default-model": "workspace:*",
     "@anotherharness/ah-agent-loop": "workspace:*",
@@ -138,6 +138,7 @@
     "@anotherharness/ah-fs": "workspace:*",
     "@anotherharness/ah-fs-local": "workspace:*",
     "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-llm-vision-bridge": "workspace:*",
     "@anotherharness/ah-native-command": "workspace:*",
     "@anotherharness/ah-permission-presets": "workspace:*",
     "@anotherharness/ah-remote-mock": "workspace:*",
@@ -161,8 +162,9 @@
     "@anotherharness/ah-util-time": "workspace:*",
     "@anotherharness/ah-util-values": "workspace:*",
     "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-working-directory": "workspace:*",
     "@anotherharness/ah-workspace": "workspace:*",
-    "@types/mime-types": "^3.0.1",
-    "@anotherharness/ah-working-directory": "workspace:*"
+    "@anotherharness/cordis": "workspace:~",
+    "@types/mime-types": "^3.0.1"
   }
 }

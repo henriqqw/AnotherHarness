@@ -13,6 +13,7 @@
     "src/assistant-stream.ts",
     "src/catalog.ts",
     "src/commands.ts",
+    "src/vision.ts",
     "src/control.ts",
     "src/file-references.ts",
     "src/history.ts",
@@ -112,6 +113,9 @@
     },
     {
       "path": "../../session/working-directory"
+    },
+    {
+      "path": "../../llm/llm-vision-bridge"
     }
   ]
 }

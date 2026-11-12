@@ -785,6 +785,43 @@ describe('Web session model selection', () => {
     await ctx.fiber.dispose()
   })
 
+  it('AC-2: describes images for a text-only selection when the vision bridge is mounted', async () => {
+    const { ctx, agent, sessionId } = await harness()
+    registerTextOnly(ctx)
+    const savedRef = {
+      attachmentId: 'saved-image', mediaType: 'image/png' as const, bytes: 1, width: 1, height: 1,
+    }
+    ctx.provide('attachments', Object.setPrototypeOf({
+      saveImages: () => Promise.resolve([savedRef]),
+    }, AttachmentStore.prototype) as never)
+    const describeImage = vi.fn()
+      .mockResolvedValueOnce('A red button.')
+      .mockRejectedValueOnce(new Error('route offline'))
+    ctx.provide('visionBridge', { route: { provider: 'vision-route', model: 'vision-model' }, describe: describeImage } as never)
+    const followup = vi.fn()
+    Object.assign(agent, { followup })
+    const remote = createSessionTestRemote(ctx, {
+      defaultModelSelection: () => ({ provider: 'deepseek-official', model: 'deepseek-chat' }),
+      cwd: '/tmp',
+    })
+    const image = { type: 'image' as const, mediaType: 'image/png' as const, data: 'AQ==' }
+
+    expectValue(await remote.selectModel(request({ sessionId, provider: 'text-only', model: 'plain' })))
+    expectValue(await remote.prompt(promptRequest({ sessionId, mode: 'queue', content: [image] })))
+    expect(followup).toHaveBeenCalledOnce()
+    expect((followup.mock.calls[0]?.[0] as UserMessage).content).toMatchObject([
+      { type: 'image', attachment: savedRef, offloaded: true },
+      { type: 'text', text: '[Image description by vision-route/vision-model; you cannot see the image itself]\nA red button.' },
+    ])
+
+    expect(await remote.prompt(promptRequest({ sessionId, mode: 'queue', content: [image] }))).toMatchObject({
+      ok: false,
+      error: { code: 'session/attachment-invalid', details: { reason: 'IMAGE_DESCRIPTION_FAILED' } },
+    })
+    expect(followup).toHaveBeenCalledOnce()
+    await ctx.fiber.dispose()
+  })
+
   it('maps image admission failures and accepts image-capable selections', async () => {
     const { ctx, agent, sessionId } = await harness()
     registerTextOnly(ctx)

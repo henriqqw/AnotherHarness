@@ -1,0 +1,11 @@
+# Opt-in browser use through Playwright MCP. Install Chromium for Playwright
+# first (see docs/user/guide/browser-and-desktop.md); new Sessions get the
+# browser tools, and each Session owns its own headless browser.
+- insert:
+    - id: browser-use
+      name: '@anotherharness/ah-browser-use'
+    - id: browser-use-playwright
+      name: '@anotherharness/ah-experimental-browser-use-playwright-mcp'
+      config:
+        mode: launch
+        headless: true

@@ -46,6 +46,8 @@ flowchart LR
   cfg --> plugin_ah_base_jobs
   plugin_ah_base_llm_retry["llm-retry<br/>@anotherharness/ah-llm-retry"]
   cfg --> plugin_ah_base_llm_retry
+  plugin_ah_base_llm_vision_bridge["llm-vision-bridge<br/>@anotherharness/ah-llm-vision-bridge"]
+  cfg --> plugin_ah_base_llm_vision_bridge
   plugin_ah_base_config_editor["config-editor<br/>@anotherharness/ah-config-editor"]
   cfg --> plugin_ah_base_config_editor
   plugin_ah_base_settings["settings<br/>@anotherharness/ah-settings"]
@@ -219,6 +221,7 @@ flowchart LR
 | `agent-default-model` | `@anotherharness/ah-agent-default-model` |
 | `jobs` | `@anotherharness/ah-jobs-local` |
 | `llm-retry` | `@anotherharness/ah-llm-retry` |
+| `llm-vision-bridge` | `@anotherharness/ah-llm-vision-bridge` |
 | `config-editor` | `@anotherharness/ah-config-editor` |
 | `settings` | `@anotherharness/ah-settings` |
 | `authorization` | `@anotherharness/ah-authorization` |

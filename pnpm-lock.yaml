@@ -1461,6 +1461,9 @@ importers:
       '@anotherharness/ah-llm':
         specifier: workspace:*
         version: link:../../llm/llm
+      '@anotherharness/ah-llm-vision-bridge':
+        specifier: workspace:*
+        version: link:../../llm/llm-vision-bridge
       '@anotherharness/ah-native-command':
         specifier: workspace:*
         version: link:../../util/native-command
@@ -2131,6 +2134,9 @@ importers:
       '@anotherharness/ah-llm-retry':
         specifier: workspace:*
         version: link:../../llm/llm-retry
+      '@anotherharness/ah-llm-vision-bridge':
+        specifier: workspace:*
+        version: link:../../llm/llm-vision-bridge
       '@anotherharness/ah-mcp-resources':
         specifier: workspace:*
         version: link:../../mcp/mcp-resources
@@ -10874,6 +10880,22 @@ importers:
       '@anotherharness/cordis-plugin-loader':
         specifier: workspace:~
         version: link:../../../vendor/loader
+
+  packages/llm/llm-vision-bridge:
+    dependencies:
+      '@anotherharness/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
+      '@anotherharness/ah-attachment':
+        specifier: workspace:*
+        version: link:../../attachment/attachment
+      '@anotherharness/ah-llm':
+        specifier: workspace:*
+        version: link:../llm
+      '@anotherharness/cordis':
+        specifier: workspace:~
+        version: link:../../../vendor/cordis
 
   packages/llm/plugin-package-inventory-deepseek:
     dependencies:

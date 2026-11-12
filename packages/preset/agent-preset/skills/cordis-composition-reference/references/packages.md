@@ -293,6 +293,7 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@anotherharness/ah-llm-deepseek-api-key` | yes | DeepSeek api-key provider authentication and discovery |
 | `@anotherharness/ah-llm-pi-ai` | yes | pi-ai-backed DeepSeek adapter for the AnotherHarness LLM seam (design-verification twin of ah-llm-deepseek) |
 | `@anotherharness/ah-llm-retry` | yes | Provider-routed LLM request retry policy for the AnotherHarness |
+| `@anotherharness/ah-llm-vision-bridge` | yes | Image descriptions from an image-capable model route for text-only models |
 | `@anotherharness/ah-plugin-package-inventory-deepseek` | yes | Active Loader-backed plugin package inventory for official DeepSeek LLM API requests |
 | `@anotherharness/ah-token-meter` | yes | Replay-aware token measurement service (ctx.tokenMeter) for the AnotherHarness |
 
