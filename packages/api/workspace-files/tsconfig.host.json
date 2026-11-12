@@ -24,6 +24,12 @@
       "path": "../../fs/fs"
     },
     {
+      "path": "../../lsp/lsp"
+    },
+    {
+      "path": "../../sandbox/sandbox"
+    },
+    {
       "path": "../../sandbox/sandbox-policy"
     },
     {

@@ -49,6 +49,8 @@ State lives in the type's own store, bucketed by tab id: `root`, `levels` (loadi
 
 Each open `DirectoryNode` owns its target watch for the Tab lifetime; collapse closes that node and its hidden descendants. Expansion changes during ancestor restoration update the store and pending nodes, so restored descendants follow the latest expansion preferences. Automatic refresh defaults to enabled; its separate toggle is hidden while state, labels, styles, and toggle logic remain. Changes received during a directory read or its completion remain pending for another refresh.
 
+File actions call `create`, `rename`, and `deleteEntry` on the [`workspaceFiles` Remote](../../api/workspace-files/README.md#editing). Delete always confirms and names the item; a folder is deleted with its contents. A new file opens in the preview. After a rename or delete the body emits `workspace-file/moved(sessionId, from, to)` with file addresses (`to` is `undefined` after a delete), which [`ui-code-editor`](../ui-code-editor/README.md) uses to move drafts and tabs.
+
 <a id="model-experience"></a>
 ## Model Experience
 
@@ -61,7 +63,7 @@ None; directory listings travel over the Remote and assemble no model request.
 ## Known Limitations and Deferred Work
 
 <a id="known-limitations-and-deferred-work"></a>
-- **Listing only.** No search, artifact filter, drag-and-drop, rename, context menu, or current-file highlight.
+- **No search or drag-and-drop.** The tree offers New File, New Folder, Rename (F2), and Delete from its context menu and header, but no search, artifact filter, drag-and-drop, or current-file highlight.
 - **One root.** The tree is rooted at the session's working directory; there is no way to browse above it, and the Host refuses paths outside the workspace root anyway.
 
 <a id="dev-note"></a>

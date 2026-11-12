@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for edit-code.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/edit-code.md
+/edit-code:
+  en: c7cd2ae172a82daf
+  zh: a30e493fa36a96f0
+/edit-code/open-and-edit-a-file:
+  en: 5890683c49d3d737
+  zh: b0a088e8b6d6c419
+/edit-code/when-the-file-changes-on-disk:
+  en: d5b9d60f17feb019
+  zh: 123d7560420ad98f
+/edit-code/manage-files:
+  en: a3fd7ddacaa24987
+  zh: ff555a9337b8d05c
+/edit-code/navigate-code:
+  en: f7a46186a83f4581
+  zh: 2def6463fae9b1f7

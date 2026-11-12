@@ -9,7 +9,7 @@ kind: "package-reference"
 
 ## 概述
 
-使用本包可从 Web Client 预览 Session 文件系统允许读取的文件。它按页读取 UTF-8 文本、按有界窗口或完整文件读取原始字节、从基文件目录解析关联文件，并报告文件元数据。可以跟随一个文件或一个目录直接子项的变化。文件读取和监听可以指向工作区外路径；目录列举和监听仍限定于工作区。本服务不提供修改操作。
+使用本包可从 Web Client 预览 Session 文件系统允许读取的文件。它按页读取 UTF-8 文本、按有界窗口或完整文件读取原始字节、从基文件目录解析关联文件，并报告文件元数据。可以跟随一个文件或一个目录直接子项的变化。文件读取和监听可以指向工作区外路径；目录列举和监听仍限定于工作区。代码编辑器在工作区内保存、创建、重命名和删除条目，并在挂载了语言服务器时查询某个位置的信息。
 
 ## 目录
 
@@ -57,12 +57,26 @@ kind: "package-reference"
 
 `changes` 是 `stream` 模式的 Remote，只接受目标路径。Host 从 `stat` 取得实际目标类型；只要当前类型是目录，就要求位于工作区内，目标类型变化后也执行该检查。一代流先注册观察队列、解析目标并建立 `fs.watch`，然后产出 `{ kind: 'ready' }`。随后产出 `{ kind: 'change', change }`，其中 `change` 为当前 stat 元数据 `{ absolutePath, version }` 或 `{ absolutePath, absent: true }`。本地提供方使用 Chokidar，目录仅监听直接子项。匹配目标的 `fs/observed` 也触发失效。流在初始化期间排队变化。取消会独立于消费方拉取帧的进度关闭 watcher，流或插件拆除等待关闭完成。父目录保持存在时，缺失文件仍可监听同一路径的重建。
 
+<a id="editing"></a>
+### 编辑
+
+这些方法服务于 [`ui-code-editor`](../../client/ui-code-editor/README.zh.md) 和[文件树](../../client/ui-sidebar-files/README.zh.md)。每个路径都必须位于工作区内，最终的符号链接和工作区根本身会被拒绝；每次修改都在以 Session 工作区为根的 `workspace-write` 沙箱策略下运行，并发出不带代理 actor 的 `fs/observed`。
+
+| 方法 | 作用 |
+|---|---|
+| `write(path, content, expectedVersion)` | 普通文件版本仍匹配时替换其文本；否则返回带 `currentVersion` 的 `workspace-file/conflict`，不写入任何内容。超过 `maxEditableBytes` 或含 NUL 的内容被拒绝。 |
+| `create(path, kind, content?)` | 创建文件（可带内容）或目录，并创建缺失的父目录；路径已被占用时返回 `workspace-file/exists`。 |
+| `rename(from, to)` | 移动文件或目录；目标已被占用时返回 `exists`。 |
+| `deleteEntry(path, recursive)` | 删除文件或目录；非空目录需要 `recursive`，否则返回 `not-empty`。`remove` 是 Client 命名空间服务的保留成员。 |
+| `navigate(path, position, operation)` | 通过 `ctx.lsp` 执行悬停、`goToDefinition` 或 `findReferences`，位置从零开始，结果路径为绝对路径；`ctx.lsp` 不存在或没有提供方处理该文件时返回 `workspace-file/no-language-server`。 |
+
 ### 配置
 
 | 字段 | 默认值 | 含义 |
 |---|---|---|
 | `maxBytes` | `2097152`（2 MiB） | 单页文本与单个字节窗口的字节上限（含）；更大的页或窗口失败 |
 | `maxFileBytes` | `33554432`（32 MiB） | `readBytes` 未传 `range` 时的完整文件字节上限（含）；更大文件以 `too-large` 失败 |
+| `maxEditableBytes` | `1048576`（1 MiB） | `write` 和 `create` 接受的最大内容（UTF-8 字节） |
 | `maxLines` | `5000` | 页大小的缺省值与上限（行）；更大的 `limit` 被拒绝 |
 | `maxEntries` | `2000` | 返回目录条目数上限；其余丢弃并报告截断 |
 
@@ -70,7 +84,7 @@ kind: "package-reference"
 
 ### 失败
 
-每种失败都是一个带类型化 details 的 `RemoteError` 代码，声明于 [`src/types.ts`](src/types.ts)：`workspace-file/not-found`、`workspace-file/outside-workspace`（目录列举或监听）、`workspace-file/watch-unsupported`（监听初始化失败）、`workspace-file/too-large`（带 `limit`，即适用的页、窗口或完整文件上限）、`workspace-file/not-text`、`workspace-file/not-regular-file`（`kind` 为 `directory`、`symlink` 或 `other`）以及 `workspace-file/not-directory`（`kind` 为 `file`、`symlink` 或 `other`）。调用方按代码分支，绝不按消息文本。
+每种失败都是一个带类型化 details 的 `RemoteError` 代码，声明于 [`src/types.ts`](src/types.ts)：`workspace-file/not-found`、`workspace-file/outside-workspace`（目录列举或监听）、`workspace-file/watch-unsupported`（监听初始化失败）、`workspace-file/too-large`（带 `limit`，即适用的页、窗口或完整文件上限）、`workspace-file/not-text`、`workspace-file/conflict`、`workspace-file/write-denied`、`workspace-file/exists`、`workspace-file/not-empty`、`workspace-file/no-language-server`、`workspace-file/not-regular-file`（`kind` 为 `directory`、`symlink` 或 `other`）以及 `workspace-file/not-directory`（`kind` 为 `file`、`symlink` 或 `other`）。调用方按代码分支，绝不按消息文本。
 
 ### Client 文件资源
 

@@ -9,7 +9,7 @@ English | [中文](README.zh.md)
 
 ## Summary
 
-Use this package to preview files readable through a Session's filesystem from the web client. It reads UTF-8 text by page, reads bounded byte windows or complete files, resolves related files from a base file's directory, and reports file metadata. Follow changes to a file or a directory's direct entries. File reads and watches may target paths outside the workspace; directory listing and watches remain workspace-scoped. The service exposes no mutation operation.
+Use this package to preview files readable through a Session's filesystem from the web client. It reads UTF-8 text by page, reads bounded byte windows or complete files, resolves related files from a base file's directory, and reports file metadata. Follow changes to a file or a directory's direct entries. File reads and watches may target paths outside the workspace; directory listing and watches remain workspace-scoped. The code editor saves, creates, renames, and deletes entries inside the workspace, and asks the language server about a position when one is mounted.
 
 ## Table of Contents
 
@@ -57,12 +57,26 @@ Every operation first uses `lstat` to reject a missing path or the wrong file ki
 
 `changes` is a `stream` Remote accepting only a target path. The Host derives the target's type from `stat` and requires workspace containment whenever that type is a directory, including after a type change. A generation registers its observation queue, resolves the target, and starts `fs.watch` before yielding `{ kind: 'ready' }`. It then yields `{ kind: 'change', change }`, where `change` is current stat metadata `{ absolutePath, version }` or `{ absolutePath, absent: true }`. Local providers use Chokidar; directories watch only direct entries. Matching `fs/observed` emissions also invalidate the target. The generation queues changes during setup. Cancellation closes the watcher independently of consumer pulls, and generation or plugin teardown awaits closure. Missing files remain watchable for same-path recreation while their parent directory remains.
 
+<a id="editing"></a>
+### Editing
+
+These methods serve [`ui-code-editor`](../../client/ui-code-editor/README.md) and the [Files tree](../../client/ui-sidebar-files/README.md). Every path must stay inside the workspace, final symbolic links and the workspace root are refused, and each mutation runs under a `workspace-write` sandbox policy rooted at the Session workspace and emits `fs/observed` with no agent actor.
+
+| Method | Effect |
+|---|---|
+| `write(path, content, expectedVersion)` | Replaces a regular file's text when its version still matches; otherwise `workspace-file/conflict` with `currentVersion` and nothing written. Content above `maxEditableBytes` or holding NUL is refused. |
+| `create(path, kind, content?)` | Creates a file (with optional content) or a directory, with missing parents; `workspace-file/exists` when taken. |
+| `rename(from, to)` | Moves a file or directory; `exists` when the target is taken. |
+| `deleteEntry(path, recursive)` | Deletes a file or directory; a non-empty directory needs `recursive`, else `not-empty`. `remove` is a reserved member of the Client namespace service. |
+| `navigate(path, position, operation)` | Hover, `goToDefinition`, or `findReferences` through `ctx.lsp`, with zero-based positions and absolute result paths; `workspace-file/no-language-server` when `ctx.lsp` is absent or no provider handles the file. |
+
 ### Configuration
 
 | Field | Default | Meaning |
 |---|---|---|
 | `maxBytes` | `2097152` (2 MiB) | Inclusive byte cap on one page's text and on one byte window; a larger page or window fails |
 | `maxFileBytes` | `33554432` (32 MiB) | Inclusive complete-file cap for `readBytes` without `range`; larger files fail with `too-large` |
+| `maxEditableBytes` | `1048576` (1 MiB) | Largest content, in UTF-8 bytes, that `write` and `create` accept |
 | `maxLines` | `5000` | Default and largest page size in lines; a larger `limit` is refused |
 | `maxEntries` | `2000` | Cap on returned directory entries; the rest is dropped and reported cut |
 
@@ -70,7 +84,7 @@ The generated [configuration catalog](../../../docs/config-catalog.md#anotherhar
 
 ### Failures
 
-Each failure is one `RemoteError` code with typed details, declared in [`src/types.ts`](src/types.ts): `workspace-file/not-found`, `workspace-file/outside-workspace` (directory listing or watching), `workspace-file/watch-unsupported` (watch initialization failed), `workspace-file/too-large` (with `limit`, the applicable page, window, or complete-file cap), `workspace-file/not-text`, `workspace-file/not-regular-file` (`kind`: `directory`, `symlink`, or `other`), and `workspace-file/not-directory` (`kind`: `file`, `symlink`, or `other`). Callers branch on the code, never on message text.
+Each failure is one `RemoteError` code with typed details, declared in [`src/types.ts`](src/types.ts): `workspace-file/not-found`, `workspace-file/outside-workspace` (directory listing or watching), `workspace-file/watch-unsupported` (watch initialization failed), `workspace-file/too-large` (with `limit`, the applicable page, window, or complete-file cap), `workspace-file/not-text`, `workspace-file/conflict`, `workspace-file/write-denied`, `workspace-file/exists`, `workspace-file/not-empty`, `workspace-file/no-language-server`, `workspace-file/not-regular-file` (`kind`: `directory`, `symlink`, or `other`), and `workspace-file/not-directory` (`kind`: `file`, `symlink`, or `other`). Callers branch on the code, never on message text.
 
 ### Client file resources
 

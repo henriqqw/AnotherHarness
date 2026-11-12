@@ -1,0 +1,231 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--dsw-alias-bg-document-preview, transparent);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-bottom: 0.5px solid var(--dsw-alias-border-l1);
+  font-size: 12px;
+}
+
+.button,
+.primary,
+.danger {
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--dsw-radius-sm);
+  border: 0.5px solid var(--dsw-alias-border-l3);
+  background: var(--dsw-alias-bg-layer-1);
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled),
+.primary:hover:not(:disabled) {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.primary {
+  border-color: transparent;
+  background: var(--dsw-alias-button-primary-fill, var(--dsw-alias-brand-primary));
+  color: var(--dsw-alias-label-primary-foreground, #fff);
+}
+
+.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+  background: var(--dsw-alias-button-primary-fill, var(--dsw-alias-brand-primary));
+}
+
+.danger {
+  border-color: var(--dsw-alias-state-error-primary);
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.danger:hover {
+  background: var(--dsw-alias-interactive-bg-hover-danger, var(--dsw-alias-interactive-bg-hover));
+}
+
+.button:disabled,
+.primary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  corner-shape: round;
+  background: var(--dsw-alias-label-primary);
+}
+
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 0.5px solid var(--dsw-alias-border-l2);
+  background: var(--dsw-alias-state-warn-tertiary, var(--dsw-alias-bg-layer-1));
+  color: var(--dsw-alias-state-warn-label, var(--dsw-alias-label-primary));
+  font-size: 12px;
+}
+
+.bannerText {
+  flex: 1 1 200px;
+}
+
+.error {
+  margin: 0;
+  padding: 6px 10px;
+  color: var(--dsw-alias-state-error-primary);
+  font-size: 12px;
+}
+
+.editor {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.editor[hidden] {
+  display: none;
+}
+
+.compare {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.compareLabels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px 10px;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+}
+
+.compareBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  font-family: var(--ds-font-family-code, ui-monospace, monospace);
+  font-size: 12px;
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  padding: 0 6px;
+  border-top: 0.5px solid var(--dsw-alias-border-l1);
+  color: var(--dsw-alias-label-secondary);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.statusItem,
+.statusSelect,
+.statusToggle {
+  height: 20px;
+  padding: 0 6px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 11px;
+  line-height: 20px;
+}
+
+.statusItem:is(button),
+.statusSelect,
+.statusToggle {
+  cursor: pointer;
+}
+
+.statusItem:is(button):hover,
+.statusSelect:hover,
+.statusToggle:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.statusToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status {
+  margin: 0;
+  padding: 16px;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 13px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  max-height: 40%;
+  min-height: 0;
+  border-top: 0.5px solid var(--dsw-alias-border-l1);
+  font-size: 12px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 10px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.panelList {
+  margin: 0;
+  padding: 0 0 4px;
+  overflow: auto;
+  list-style: none;
+}
+
+.panelItem {
+  display: block;
+  width: 100%;
+  padding: 2px 10px;
+  border: none;
+  background: none;
+  color: var(--dsw-alias-label-primary);
+  font-family: var(--ds-font-family-code, ui-monospace, monospace);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.panelItem:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}

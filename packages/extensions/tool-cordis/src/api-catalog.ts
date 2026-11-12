@@ -1108,6 +1108,27 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         throws: ['when the provider does not support watching or cannot initialize the watcher.'],
       },
       {
+        signature: 'makeDirectory(target: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void>',
+        description: 'Create a directory, with any missing parents; an existing entry at the path is refused.',
+        parameters: [{ name: 'target', description: 'the resolved directory path to create.' }, { name: 'signal', description: 'aborts before the directory is created.' }, { name: 'sandboxPolicy', description: 'the per-call mode and workspace root; a sandboxing backend fences the mutation by it.' }],
+        returns: 'resolves once the directory exists.',
+        throws: ['`FS_EXISTS` when the path is taken, `FS_NOT_DIRECTORY` when a parent is a file, `FS_UNSUPPORTED` when the provider cannot create directories.'],
+      },
+      {
+        signature: 'rename(from: FsTarget, to: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void>',
+        description: 'Move a file or directory to a new path without replacing anything there.',
+        parameters: [{ name: 'from', description: 'the resolved entry to move.' }, { name: 'to', description: 'the resolved destination path; it must not exist.' }, { name: 'signal', description: 'aborts before the move.' }, { name: 'sandboxPolicy', description: 'the per-call mode and workspace root; a sandboxing backend fences both paths by it.' }],
+        returns: 'resolves once the entry is at `to`.',
+        throws: ['`FS_EXISTS` when `to` is taken, `FS_NOT_FOUND` when `from` is missing, `FS_UNSUPPORTED` when the provider cannot move entries.'],
+      },
+      {
+        signature: 'remove( target: FsTarget, options: { readonly recursive?: boolean }, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy, ): Promise<void>',
+        description: 'Delete a file, a symbolic link (not its target), or a directory. A non-empty directory needs `recursive`.',
+        parameters: [{ name: 'target', description: 'the resolved entry to delete.' }, { name: 'options', description: '`recursive` deletes a directory with its contents.' }, { name: 'signal', description: 'aborts before the deletion.' }, { name: 'sandboxPolicy', description: 'the per-call mode and workspace root; a sandboxing backend fences the mutation by it.' }],
+        returns: 'resolves once the entry is gone.',
+        throws: ['`FS_NOT_FOUND` when nothing is there, `FS_NOT_EMPTY` for a non-empty directory without `recursive`, `FS_UNSUPPORTED` when the provider cannot delete entries.'],
+      },
+      {
         signature: 'abstract resolve(path: string, opts?: { cwd?: string; signal?: AbortSignal }): Promise<FsTarget>',
         description: 'Resolve a model/plugin-supplied path into a stable FsTarget. May perform I/O (a remote/sandboxed backend may need a round-trip to map a path to a stable identity), hence async even though the local backend only normalizes + realpaths.',
         parameters: [{ name: 'path', description: 'the path to resolve; relative paths resolve against `opts.cwd`.' }, { name: 'opts', description: 'optional cwd override and cancellation signal.' }],
@@ -3865,6 +3886,36 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         description: 'Read a complete regular file or one byte range without text decoding.',
         parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'target path, absolute or workspace-relative; relative to the base file\'s directory when provided.' }, { name: 'options', description: 'optional base file and range; without a range the complete-file cap applies.' }, { name: 'signal', description: 'caller cancellation.' }],
         returns: 'native bytes with the file\'s version and size at the preceding stat, byte offset, and EOF marker.',
+      },
+      {
+        signature: '@Remote async write( workspaceFileScope: WorkspaceFileScope, path: string, content: string, expectedVersion: string, signal: AbortSignal, ): Promise<WorkspaceFileStat>',
+        description: 'Save the full text of one regular file inside the workspace, guarded by the version the editor loaded. A version mismatch writes nothing and reports the current version, so neither the user nor the agent overwrites the other\'s change unseen.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'absolute path or path relative to the workspace root; it must stay inside the workspace.' }, { name: 'content', description: 'the complete new UTF-8 text.' }, { name: 'expectedVersion', description: 'the version the editor loaded.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: 'the file\'s absolute path, its new version, and its byte size.',
+      },
+      {
+        signature: '@Remote async create( workspaceFileScope: WorkspaceFileScope, path: string, kind: \'file\' | \'directory\', content: string | undefined, signal: AbortSignal, ): Promise<WorkspaceFileStat>',
+        description: 'Create a file or a directory inside the workspace, with any missing parent directories. The path must be free.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'absolute path or path relative to the workspace root; it must stay inside the workspace.' }, { name: 'kind', description: '`file` or `directory`.' }, { name: 'content', description: 'initial UTF-8 text of a file; empty when omitted, ignored for a directory.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: 'the new entry\'s absolute path and version.',
+      },
+      {
+        signature: '@Remote async rename(workspaceFileScope: WorkspaceFileScope, from: string, to: string, signal: AbortSignal): Promise<WorkspaceFileStat>',
+        description: 'Move a file or directory to a free path inside the workspace. Symbolic links are refused, so a link never moves its target.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'from', description: 'the entry to move, absolute or relative to the workspace root.' }, { name: 'to', description: 'the destination, absolute or relative to the workspace root; it must not exist.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: 'the moved entry\'s absolute path and version.',
+      },
+      {
+        signature: '@Remote async deleteEntry( workspaceFileScope: WorkspaceFileScope, path: string, recursive: boolean, signal: AbortSignal, ): Promise<{ readonly removed: true }>',
+        description: 'Delete a file or directory inside the workspace. Symbolic links and the workspace root are refused; a non-empty directory needs `recursive`. Named `deleteEntry` because `remove` is a member of the Client namespace service.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'the entry to delete, absolute or relative to the workspace root.' }, { name: 'recursive', description: 'delete a directory with its contents.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: '`{ removed: true }` once the entry is gone.',
+      },
+      {
+        signature: '@Remote async navigate( workspaceFileScope: WorkspaceFileScope, path: string, position: WorkspaceNavigationPosition, operation: WorkspaceNavigationOperation, signal: AbortSignal, ): Promise<WorkspaceNavigation>',
+        description: 'Ask the language server about a position in a file: hover text, the definition, or every reference. Refused with `workspace-file/no-language-server` when no server handles the file.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'absolute path or path relative to the workspace root.' }, { name: 'position', description: 'zero-based line and UTF-16 column.' }, { name: 'operation', description: 'hover, goToDefinition, or findReferences.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: 'hover text, or the locations found.',
       },
       {
         signature: '@Remote async stat(workspaceFileScope: WorkspaceFileScope, path: string, signal: AbortSignal): Promise<WorkspaceFileStat>',
@@ -8650,6 +8701,22 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'WorkspaceInsertSessionBeforeRequest',
     declaration: 'export interface WorkspaceInsertSessionBeforeRequest {\n    readonly workspaceId: WorkspaceId;\n    readonly sessionId: SessionId;\n    readonly beforeSessionId?: SessionId;\n}',
+  },
+  {
+    name: 'WorkspaceNavigation',
+    declaration: 'export type WorkspaceNavigation = {\n    readonly kind: \'hover\';\n    readonly contents?: string;\n} | {\n    readonly kind: \'locations\';\n    readonly locations: readonly WorkspaceNavigationLocation[];\n};',
+  },
+  {
+    name: 'WorkspaceNavigationLocation',
+    declaration: 'export interface WorkspaceNavigationLocation {\n    readonly absolutePath: string;\n    readonly start: WorkspaceNavigationPosition;\n    readonly end: WorkspaceNavigationPosition;\n}',
+  },
+  {
+    name: 'WorkspaceNavigationOperation',
+    declaration: 'export type WorkspaceNavigationOperation = \'hover\' | \'goToDefinition\' | \'findReferences\';',
+  },
+  {
+    name: 'WorkspaceNavigationPosition',
+    declaration: 'export interface WorkspaceNavigationPosition {\n    readonly line: number;\n    readonly character: number;\n}',
   },
   {
     name: 'WorkspaceOrderValue',

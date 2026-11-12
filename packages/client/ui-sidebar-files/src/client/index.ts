@@ -18,6 +18,8 @@ import type {} from '@anotherharness/ah-client-ui-session/client'
 import type {} from '@anotherharness/ah-client-ui-sidebar-right/client'
 import { FILES_ID, filesDefinition } from './definition.tsx'
 import { createList, createWatch, filesFace } from './face.ts'
+import { createFileOperations } from './operations.ts'
+import type { FileActionsInjected } from './FilesBody.tsx'
 import { FilesBody } from './FilesBody.tsx'
 import { FilesTitle } from './FilesTitle.tsx'
 import { en, zh } from './locales.ts'
@@ -26,7 +28,23 @@ import { createFilesStore } from './store.ts'
 export type { SidebarFilesKey } from './locales.ts'
 export type { DirLevel, FilesState, FilesTabState, LevelState } from './store.ts'
 export type { FilesInjected, ListWorkspaceDirectory, WorkspaceFilesListRemote } from './face.ts'
-export type { FilesBodyProps } from './FilesBody.tsx'
+export type { FileActionsInjected, FilesBodyProps } from './FilesBody.tsx'
+export type { FileOperationResult, FileOperations, WorkspaceFilesMutationRemote } from './operations.ts'
+export type { ActionTarget, FileDialog, FileMenu } from './FileActions.tsx'
+
+declare module '@anotherharness/cordis' {
+  interface Events {
+    /**
+     * The Files tree renamed or deleted an entry. Open views of the entry, or of
+     * anything under it when it is a folder, follow the move or close.
+     * @param sessionId - the Session whose workspace changed.
+     * @param from - the entry's file address before the change.
+     * @param to - its file address after a rename; `undefined` after a delete.
+     * @mode emit
+     */
+    'workspace-file/moved'(sessionId: string, from: string, to: string | undefined): void
+  }
+}
 
 declare module '@anotherharness/ah-client-ui-slots' {
   interface SlotMap {
@@ -82,7 +100,13 @@ export function apply(ctx: ClientContext): void {
   ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'ui-sidebar-files: dictionaries')
 
   const store = createFilesStore()
-  const inject = filesFace(createList(ctx.remote), createWatch(ctx.remote))
+  const face = filesFace(createList(ctx.remote), createWatch(ctx.remote))
+  const operations = createFileOperations(ctx.remote)
+  const announceMove = (sessionId: string, from: string, to: string | undefined): void => {
+    ctx.emit('workspace-file/moved', sessionId, from, to)
+  }
+  const inject: (...args: Parameters<typeof face>) => ReturnType<typeof face> & FileActionsInjected =
+    (...args) => ({ ...face(...args), operations, announceMove })
   ctx.effect(() => ctx.slots.inject('sidebar.right.pane.tab', () => ctx.slots.register(
     {
       name: 'sidebar.right.pane.tab', key: FILES_ID, locale: NS, store, inject,

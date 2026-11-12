@@ -20,6 +20,7 @@ import { FilesBody } from '../src/client/FilesBody.tsx'
 import type { FilesBodyProps } from '../src/client/FilesBody.tsx'
 import { zh } from '../src/client/locales.ts'
 import { createFilesStore } from '../src/client/store.ts'
+import type { FileOperations } from '../src/client/operations.ts'
 import { scriptedList } from './scripted-list.client.ts'
 import type { ScriptedList } from './scripted-list.client.ts'
 import type { TabId } from '@anotherharness/ah-client-ui-dockkit'
@@ -54,6 +55,8 @@ export interface Mounted {
   readonly face: FilesInjected
   readonly controller: AbortController
   readonly tabActions: MockedTabActions
+  readonly operations: { readonly [K in keyof FileOperations]: Mock<FileOperations[K]> }
+  readonly announceMove: Mock<(sessionId: string, from: string, to: string | undefined) => void>
   /** Render a fresh body over the same store and face, as a tab switch remounts it. */
   readonly remount: () => RenderResult
 }
@@ -74,6 +77,12 @@ function harness(cwd: string | null, refreshShortcut?: ReturnType<FilesBodyProps
     openTab: vi.fn<SidebarRightTabActions['openTab']>(),
     close: vi.fn<SidebarRightTabActions['close']>(),
   }
+  const operations = {
+    create: vi.fn<FileOperations['create']>(() => Promise.resolve({ ok: true })),
+    rename: vi.fn<FileOperations['rename']>(() => Promise.resolve({ ok: true })),
+    remove: vi.fn<FileOperations['remove']>(() => Promise.resolve({ ok: true })),
+  }
+  const announceMove = vi.fn<(sessionId: string, from: string, to: string | undefined) => void>()
   const sessions = { byId: cwd === null ? {} : { [SESSION]: { cwd } } } as unknown as SessionListState
   const shared = {
     // A page tab's address is the shell's to mint; the body never reads it.
@@ -93,9 +102,11 @@ function harness(cwd: string | null, refreshShortcut?: ReturnType<FilesBodyProps
     useStore: hookOf(instance),
     actions: instance.actions,
     ...face,
+    operations,
+    announceMove,
     t: makeTranslate(zh),
   }
-  return { instance, script, face, controller, tabActions, shared }
+  return { instance, script, face, controller, tabActions, operations, announceMove, shared }
 }
 
 /**

@@ -489,6 +489,68 @@ Host Remote file reads and workspace directory observations over the composed fi
 @Remote async readBytes( workspaceFileScope: WorkspaceFileScope, path: string, options: WorkspaceByteReadOptions, signal: AbortSignal, ): Promise<WorkspaceFileBytes>
 
 /**
+ * Save the full text of one regular file inside the workspace, guarded by the
+ * version the editor loaded. A version mismatch writes nothing and reports
+ * the current version, so neither the user nor the agent overwrites the
+ * other's change unseen.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param path - absolute path or path relative to the workspace root; it must stay inside the workspace.
+ * @param content - the complete new UTF-8 text.
+ * @param expectedVersion - the version the editor loaded.
+ * @param signal - caller cancellation.
+ * @returns the file's absolute path, its new version, and its byte size.
+ */
+@Remote async write( workspaceFileScope: WorkspaceFileScope, path: string, content: string, expectedVersion: string, signal: AbortSignal, ): Promise<WorkspaceFileStat>
+
+/**
+ * Create a file or a directory inside the workspace, with any missing parent
+ * directories. The path must be free.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param path - absolute path or path relative to the workspace root; it must stay inside the workspace.
+ * @param kind - `file` or `directory`.
+ * @param content - initial UTF-8 text of a file; empty when omitted, ignored for a directory.
+ * @param signal - caller cancellation.
+ * @returns the new entry's absolute path and version.
+ */
+@Remote async create( workspaceFileScope: WorkspaceFileScope, path: string, kind: 'file' | 'directory', content: string | undefined, signal: AbortSignal, ): Promise<WorkspaceFileStat>
+
+/**
+ * Move a file or directory to a free path inside the workspace. Symbolic
+ * links are refused, so a link never moves its target.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param from - the entry to move, absolute or relative to the workspace root.
+ * @param to - the destination, absolute or relative to the workspace root; it must not exist.
+ * @param signal - caller cancellation.
+ * @returns the moved entry's absolute path and version.
+ */
+@Remote async rename(workspaceFileScope: WorkspaceFileScope, from: string, to: string, signal: AbortSignal): Promise<WorkspaceFileStat>
+
+/**
+ * Delete a file or directory inside the workspace. Symbolic links and the
+ * workspace root are refused; a non-empty directory needs `recursive`. Named
+ * `deleteEntry` because `remove` is a member of the Client namespace service.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param path - the entry to delete, absolute or relative to the workspace root.
+ * @param recursive - delete a directory with its contents.
+ * @param signal - caller cancellation.
+ * @returns `{ removed: true }` once the entry is gone.
+ */
+@Remote async deleteEntry( workspaceFileScope: WorkspaceFileScope, path: string, recursive: boolean, signal: AbortSignal, ): Promise<{ readonly removed: true }>
+
+/**
+ * Ask the language server about a position in a file: hover text, the
+ * definition, or every reference. Refused with
+ * `workspace-file/no-language-server` when no server handles the file.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param path - absolute path or path relative to the workspace root.
+ * @param position - zero-based line and UTF-16 column.
+ * @param operation - hover, goToDefinition, or findReferences.
+ * @param signal - caller cancellation.
+ * @returns hover text, or the locations found.
+ */
+@Remote async navigate( workspaceFileScope: WorkspaceFileScope, path: string, position: WorkspaceNavigationPosition, operation: WorkspaceNavigationOperation, signal: AbortSignal, ): Promise<WorkspaceNavigation>
+
+/**
  * Report one regular file's identity, version, and size without its content.
  * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
  * @param path - absolute path or path relative to the workspace root; files outside it are allowed.

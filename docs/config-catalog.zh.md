@@ -222,7 +222,7 @@ export interface Config {
 ## `@anotherharness/ah-api-session-controller`
 
 - `inject`: `agentDefaultModel` · `agents` · `attachments` · `fileUploads` · `fs` · `llm` · `sessions` · `sessionProjections` · `sessionQuery` · `typert` · `workspaceRegistry`
-- `source`: [`packages/api/session-controller/src/index.ts:80`](../packages/api/session-controller/src/index.ts)
+- `source`: [`packages/api/session-controller/src/index.ts:82`](../packages/api/session-controller/src/index.ts)
 
 ```ts config-catalog
 /** Session Controller deployment policy. */
@@ -257,7 +257,8 @@ export interface SettingsControllerInternals {
 ## `@anotherharness/ah-api-terminal-controller`
 
 - `inject`: `subprocess` · `sandboxPolicy` · `workingDirectory` · `typert`
-- `source`: [`packages/api/terminal-controller/src/index.ts:27`](../packages/api/terminal-controller/src/index.ts)
+- `refs`: `Volatile` (`@anotherharness/cordis`)
+- `source`: [`packages/api/terminal-controller/src/index.ts:34`](../packages/api/terminal-controller/src/index.ts)
 
 ```ts config-catalog
 /** Deployment limits and an optional shell profile. */
@@ -273,6 +274,12 @@ export interface Config {
   } | undefined
   /** Executable names or paths checked for the new-terminal shell selector. */
   readonly shellCandidates: string[]
+  /** User-defined terminal profiles; an entry replaces a detected profile with the same id. */
+  readonly profiles: TerminalProfileConfig[]
+  /** Detect the execution environment's shells, WSL distributions, and interop shells. */
+  readonly detectProfiles: boolean
+  /** Profile identity opened by the plain new-terminal action; editable from Settings. */
+  readonly defaultProfile?: Volatile<string | undefined> | undefined
   /** Maximum retained terminals and pending allocations per Session. */
   readonly maxTerminals: number
   /** Maximum terminal width in columns. */
@@ -294,6 +301,25 @@ export interface Config {
   /** Delay before retrying failed owned terminal cleanup. */
   readonly cleanupRetryMs: number
 }
+
+/** A user-defined profile from the controller configuration. */
+export interface TerminalProfileConfig {
+  /** Stable identity; a configured entry replaces a detected entry with the same id. */
+  id: string
+  /** User-visible name. */
+  name: string
+  /** Executable path or PATH name, verified by the subprocess provider. */
+  path: string
+  /** Arguments passed to the shell. */
+  args?: string[] | undefined
+  /** Environment variables layered onto the terminal's environment. */
+  env?: Record<string, string> | undefined
+  /** Menu icon. */
+  icon?: TerminalProfileIcon | undefined
+}
+
+/** Menu icons a terminal profile can name. */
+export type TerminalProfileIcon = 'bash' | 'zsh' | 'fish' | 'pwsh' | 'cmd' | 'wsl' | 'git' | 'terminal'
 ```
 <!-- END GENERATED config-catalog:@anotherharness/ah-api-terminal-controller -->
 
@@ -322,7 +348,7 @@ export interface Config {
 ## `@anotherharness/ah-api-workspace-files`
 
 - `inject`: `fs` · `sandboxPolicy` · `sessions` · `typert`
-- `source`: [`packages/api/workspace-files/src/index.ts:70`](../packages/api/workspace-files/src/index.ts)
+- `source`: [`packages/api/workspace-files/src/index.ts:79`](../packages/api/workspace-files/src/index.ts)
 
 ```ts config-catalog
 /** Deployment caps on one page or one listing. */
@@ -337,6 +363,8 @@ export interface Config {
   readonly maxBytes: number
   /** Inclusive byte cap on a complete-file read; larger files are refused, never truncated. */
   readonly maxFileBytes: number
+  /** Largest file content, in UTF-8 bytes, the editor may save; larger content is refused. */
+  readonly maxEditableBytes: number
   /** Default and largest page size in lines; a request asking for more is refused. */
   readonly maxLines: number
   /** Cap on returned directory entries; the rest is dropped and reported cut. */
@@ -1355,7 +1383,7 @@ export interface Config {
 
 ## `@anotherharness/ah-fs-local`
 
-- `source`: [`packages/fs/fs-local/src/index.ts:45`](../packages/fs/fs-local/src/index.ts)
+- `source`: [`packages/fs/fs-local/src/index.ts:47`](../packages/fs/fs-local/src/index.ts)
 
 ```ts config-catalog
 /** Configuration for the local filesystem backend. */
@@ -3696,7 +3724,7 @@ export interface Config {
 ## `@anotherharness/ah-tool-bash-persistent`
 
 - `inject`: `tools` · `terminals` · `workingDirectory`
-- `source`: [`packages/shell/tool-bash-persistent/src/index.ts:445`](../packages/shell/tool-bash-persistent/src/index.ts)
+- `source`: [`packages/shell/tool-bash-persistent/src/index.ts:455`](../packages/shell/tool-bash-persistent/src/index.ts)
 
 ```ts config-catalog
 /** Configuration for the persistent Bash tool. */
@@ -4539,6 +4567,7 @@ export interface Config {
 | `@anotherharness/ah-client-ui-attachment` | — | [`packages/client/ui-attachment/src/index.ts`](../packages/client/ui-attachment/src/index.ts) |
 | `@anotherharness/ah-client-ui-brand-official` | — | [`packages/client/ui-brand-official/src/index.ts`](../packages/client/ui-brand-official/src/index.ts) |
 | `@anotherharness/ah-client-ui-chat` | — | [`packages/client/ui-chat/src/index.ts`](../packages/client/ui-chat/src/index.ts) |
+| `@anotherharness/ah-client-ui-code-editor` | — | [`packages/client/ui-code-editor/src/index.ts`](../packages/client/ui-code-editor/src/index.ts) |
 | `@anotherharness/ah-client-ui-commands` | — | [`packages/client/ui-commands/src/index.ts`](../packages/client/ui-commands/src/index.ts) |
 | `@anotherharness/ah-client-ui-conversation` | — | [`packages/client/ui-conversation/src/index.ts`](../packages/client/ui-conversation/src/index.ts) |
 | `@anotherharness/ah-client-ui-cordis` | — | [`packages/extensions/ui-cordis/src/index.ts`](../packages/extensions/ui-cordis/src/index.ts) |

@@ -63,7 +63,7 @@ async function boot() {
   ctx.provide('remote.workspaceFiles', workspaceFiles as never)
   const fiber = ctx.plugin({ inject: [...inject], apply })
   await fiber.await()
-  return { tabs, registered, dictionaries, fiber, sidebar, commands }
+  return { ctx, tabs, registered, dictionaries, fiber, sidebar, commands }
 }
 
 describe('ui-sidebar-files apply', () => {
@@ -71,6 +71,7 @@ describe('ui-sidebar-files apply', () => {
     const h = await boot()
     try {
       const command = h.commands[0]!
+      expect(command.label()).toBe('guide.title')
       const input = { region: 'page', modal: null, target: null } as const
       expect(command.resolve(input)).toEqual({ status: 'blocked', reason: 'shortcut.noSession' })
       const target = { sessionId: 'files-session' }
@@ -87,7 +88,7 @@ describe('ui-sidebar-files apply', () => {
   })
 
   it('registers the type, its dictionaries, and the body and title seats under the type\'s id', async () => {
-    const { tabs, registered, dictionaries } = await boot()
+    const { ctx, tabs, registered, dictionaries } = await boot()
     const definition = tabs.get(FILES_KIND)
     expect(definition?.id).toBe(FILES_ID)
     expect(definition?.priority).toBe('builtin')
@@ -103,6 +104,12 @@ describe('ui-sidebar-files apply', () => {
     ])
     expect(registered[0]?.store).toBeDefined()
     expect(typeof registered[0]?.inject).toBe('function')
+    const injected = (registered[0]?.inject as (sessionId: string, actions: unknown) => Record<string, unknown>)('s-1', {})
+    expect(Object.keys(injected)).toEqual(expect.arrayContaining(['start', 'refresh', 'toggle', 'operations', 'announceMove']))
+    const moved = vi.fn()
+    ctx.on('workspace-file/moved', moved)
+    ;(injected.announceMove as (sessionId: string, from: string, to: string | undefined) => void)('s-1', 'a', undefined)
+    expect(moved).toHaveBeenCalledWith('s-1', 'a', undefined)
   })
 
   it('takes every registration back when the plugin is disposed', async () => {

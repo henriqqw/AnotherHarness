@@ -8,8 +8,8 @@
  * anything else is shown but refuses to open. The header uses the shared
  * PathLabel for the root, followed by reload and workspace directory actions.
  */
-import { useEffect, useLayoutEffect, useRef } from 'react'
-import type { ReactNode } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, ReactNode } from 'react'
 import clsx from 'clsx'
 import type { RemoteFailure } from '@anotherharness/ah-api-remotes/client'
 import type {
@@ -17,15 +17,29 @@ import type {
 } from '@anotherharness/ah-client-ui-slots'
 import {
   FileTypeIcon, IconFolderCloseRegular, IconFolderOpenRegular, IconRefreshOutlineRegular, Tooltip, classifyFileType,
-  IconPauseOutlineRegular, IconPlayOutlineRegular, PathLabel,
+  IconPauseOutlineRegular, IconPlayOutlineRegular, PathLabel, IconEditOutlineRegular,
 } from '@anotherharness/ah-client-ui-primitives'
 import { fileAddressFor } from '@anotherharness/ah-util-workspace-path'
 import type { WorkspaceDirectoryEntry } from '@anotherharness/ah-api-workspace-files/types'
 import { childPath } from './face.ts'
 import type { FilesInjected } from './face.ts'
+import { parentOf as parentOfPath } from './operations.ts'
+import { FileContextMenu, FileDialogView, type ActionTarget, type FileDialog, type FileMenu } from './FileActions.tsx'
+import type { FileOperations } from './operations.ts'
 import type {} from './locales.ts'
 import type { FilesTabState, createFilesStore } from './store.ts'
 import css from './FilesBody.module.css'
+
+/** What the tree's file actions need: the operations, and a way to tell open views an entry moved. */
+export interface FileActionsInjected {
+  readonly operations: FileOperations
+  /**
+   * @param sessionId - the Session whose workspace changed.
+   * @param from - the entry's file address before the change.
+   * @param to - its address after a rename; `undefined` after a delete.
+   */
+  readonly announceMove: (sessionId: string, from: string, to: string | undefined) => void
+}
 
 /** The body's composed props: the tab it draws, its store, its face, and its copy. */
 export type FilesBodyProps =
@@ -33,6 +47,7 @@ export type FilesBodyProps =
   & PropsRenderSlots<'sidebar.right.tab.files.actions'>
   & PropsStore<ReturnType<typeof createFilesStore>>
   & FilesInjected
+  & FileActionsInjected
   & PropsLocale<'sidebarFiles'>
 
 /** Natural, case-insensitive name order, so `file2` precedes `file10`. */
@@ -74,6 +89,10 @@ interface TreeContext {
   readonly state: FilesTabState
   readonly onToggle: (parent: string, path: string) => void
   readonly onOpen: (path: string) => void
+  /** Open the context menu for a row. @param event - the pointer event. @param target - the row. */
+  readonly onMenu: (event: ReactMouseEvent, target: ActionTarget) => void
+  /** Rename (F2) or delete (Delete) a focused row. @param event - the key event. @param target - the row. */
+  readonly onKey: (event: ReactKeyboardEvent, target: ActionTarget) => void
   readonly t: TranslateNS<'sidebarFiles'>
 }
 
@@ -84,7 +103,9 @@ function Entry({ parent, entry, tree }: { parent: string; entry: WorkspaceDirect
     const expanded = tree.state.expanded.includes(path)
     return (
       <li className={css.item} data-files-entry="directory" data-files-path={path}>
-        <button type="button" className={css.row} aria-expanded={expanded} onClick={() => { tree.onToggle(parent, path) }}>
+        <button type="button" className={css.row} aria-expanded={expanded} onClick={() => { tree.onToggle(parent, path) }}
+          onContextMenu={(event) => { tree.onMenu(event, { path, type: 'directory' }) }}
+          onKeyDown={(event) => { tree.onKey(event, { path, type: 'directory' }) }}>
           {expanded ? <IconFolderOpenRegular className={css.icon} /> : <IconFolderCloseRegular className={css.icon} />}
           <span className={css.name}>{entry.name}</span>
         </button>
@@ -95,7 +116,9 @@ function Entry({ parent, entry, tree }: { parent: string; entry: WorkspaceDirect
   if (entry.type === 'file') {
     return (
       <li className={css.item} data-files-entry="file" data-files-path={path}>
-        <button type="button" className={css.row} onClick={() => { tree.onOpen(path) }}>
+        <button type="button" className={css.row} onClick={() => { tree.onOpen(path) }}
+          onContextMenu={(event) => { tree.onMenu(event, { path, type: 'file' }) }}
+          onKeyDown={(event) => { tree.onKey(event, { path, type: 'file' }) }}>
           <FileTypeIcon kind={classifyFileType(entry.name)} size={16} className={css.fileIcon} />
           <span className={css.name}>{entry.name}</span>
         </button>
@@ -139,8 +162,11 @@ function Level({ path, tree }: { path: string; tree: TreeContext }): ReactNode {
 /** The file tree's body: the workspace root and whatever the reader has opened under it. */
 export function FilesBody({
   useTabInfo, sessionId, useSessions, useStore, actions,
-  start, refresh, setAutoRefresh, toggle, t, renderSlot,
+  start, refresh, setAutoRefresh, toggle, t, renderSlot, operations, announceMove,
 }: FilesBodyProps): ReactNode {
+  const [menu, setMenu] = useState<FileMenu | undefined>()
+  const [dialog, setDialog] = useState<FileDialog | undefined>()
+  const closeMenu = useCallback(() => { setMenu(undefined) }, [])
   const { tab } = useTabInfo()
   useEffect(() => tab.actions.bindCommands({ refresh: () => { refresh(tab.id) } }), [tab.actions, tab.id, refresh])
   const { signal, actions: tabActions } = tab
@@ -185,7 +211,28 @@ export function FilesBody({
     onToggle: (parent, path) => { toggle(tab.id, parent, path, state.expanded, signal) },
     // Every row is under the tree's root, so its address is session-relative.
     onOpen: (path) => { tabActions.openResource(fileAddressFor(sessionId, state.root, path)) },
+    onMenu: (event, target) => {
+      event.preventDefault()
+      event.stopPropagation()
+      setMenu({ x: event.clientX, y: event.clientY, target, directory: target.type === 'directory' ? target.path : parentOfPath(target.path) })
+    },
+    onKey: (event, target) => {
+      if (event.key === 'F2') setDialog({ kind: 'rename', target })
+      else if (event.key === 'Delete') setDialog({ kind: 'delete', target })
+      else return
+      event.preventDefault()
+    },
     t,
+  }
+  const finish = (done: FileDialog, path: string | undefined): void => {
+    setDialog(undefined)
+    refresh(tab.id)
+    const address = (target: string): string => fileAddressFor(sessionId, state.root, target)
+    // A new file opens in the preview, ready to edit.
+    if (done.kind === 'create-file' && path !== undefined) tabActions.openResource(address(path))
+    // Open views of a renamed or deleted entry follow it or close.
+    if (done.kind === 'rename' && path !== undefined) announceMove(sessionId, address(done.target.path), address(path))
+    if (done.kind === 'delete') announceMove(sessionId, address(done.target.path), undefined)
   }
   const reload = (): void => {
     refresh(tab.id)
@@ -214,6 +261,18 @@ export function FilesBody({
             <IconRefreshOutlineRegular />
           </button>
         </Tooltip>
+        <Tooltip label={t('action.newFile')} side="bottom" delayMs={500}>
+          <button type="button" className={css.tool} aria-label={t('action.newFile')} data-files-new-file
+            onClick={() => { setDialog({ kind: 'create-file', directory: state.root }) }}>
+            <IconEditOutlineRegular />
+          </button>
+        </Tooltip>
+        <Tooltip label={t('action.newFolder')} side="bottom" delayMs={500}>
+          <button type="button" className={css.tool} aria-label={t('action.newFolder')} data-files-new-folder
+            onClick={() => { setDialog({ kind: 'create-folder', directory: state.root }) }}>
+            <IconFolderCloseRegular />
+          </button>
+        </Tooltip>
         {renderSlot('sidebar.right.tab.files.actions', {
           absolutePath: state.root,
         })}
@@ -223,9 +282,18 @@ export function FilesBody({
         className={css.body}
         data-files-body
         onScroll={(event) => { scrollTopRef.current = event.currentTarget.scrollTop }}
+        onContextMenu={(event) => {
+          event.preventDefault()
+          setMenu({ x: event.clientX, y: event.clientY, target: undefined, directory: state.root })
+        }}
       >
         <ul className={css.level}><Level path={state.root} tree={tree} /></ul>
       </div>
+      {menu !== undefined && <FileContextMenu menu={menu} onDialog={setDialog} onClose={closeMenu} t={t} />}
+      {dialog !== undefined && (
+        <FileDialogView dialog={dialog} sessionId={sessionId} operations={operations} onDone={finish}
+          onClose={() => { setDialog(undefined) }} t={t} />
+      )}
     </div>
   )
 }

@@ -182,6 +182,13 @@ const RESOURCE_SCHEME = 'ah-resource://'
 /** Synchronous close/replacement hook; resource owners retain any background cleanup. */
 export type SidebarRightCloseHandler = (sessionId: SessionId, tab: TabRecord) => void
 
+/**
+ * Synchronous veto on an explicit close: `false` keeps the tab. A guard that
+ * vetoes owns what happens next, typically asking the user and closing the tab
+ * again once it may go.
+ */
+export type SidebarRightCloseGuard = (sessionId: SessionId, tab: TabRecord) => boolean
+
 /** The outward right-Sidebar face (`ctx.sidebarRight`). */
 export interface ISidebarRight {
   /**
@@ -267,6 +274,7 @@ export class SidebarRightController implements ISidebarRight {
   private readonly adopted: ReadonlyMap<SessionId, Adoption>
   private readonly rooms: ReadonlyMap<SessionId, RoomRule>
   private readonly closeHandlers = new Map<string, SidebarRightCloseHandler>()
+  private readonly closeGuards = new Map<string, Set<SidebarRightCloseGuard>>()
 
   /**
    * Register resource cleanup before explicit removal. Failure preserves the tab.
@@ -278,6 +286,21 @@ export class SidebarRightController implements ISidebarRight {
     if (this.closeHandlers.has(kind)) throw new Error(`sidebarRight: close handler already registered for ${kind}`)
     this.closeHandlers.set(kind, handler)
     return () => { if (this.closeHandlers.get(kind) === handler) this.closeHandlers.delete(kind) }
+  }
+
+  /**
+   * Register a veto on explicitly closing tabs of one kind, such as a file
+   * with unsaved changes. Several plugins may guard the same kind; any `false`
+   * keeps the tab. Replacing a tab is not guarded.
+   * @param kind - the tab kind to guard.
+   * @param guard - returns `false` to keep the tab open.
+   * @returns an effect-scoped unregister callback.
+   */
+  registerCloseGuard(kind: string, guard: SidebarRightCloseGuard): () => void {
+    const guards = this.closeGuards.get(kind) ?? new Set()
+    guards.add(guard)
+    this.closeGuards.set(kind, guards)
+    return () => { guards.delete(guard) }
   }
 
   /**
@@ -373,6 +396,7 @@ export class SidebarRightController implements ISidebarRight {
     if (actions === undefined || surface === undefined) return
     const tab = surface.layout.tabs[tabId]
     if (tab === undefined || !canCloseTab(surface, tabId)) return
+    for (const guard of this.closeGuards.get(tab.kind) ?? []) if (!guard(sessionId, tab)) return
     this.removeAfterCleanup(sessionId, tab, () => { actions.closeTab(sessionId, tabId) })
   }
 

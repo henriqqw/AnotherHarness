@@ -70,6 +70,10 @@
     - id: ui-open-in-app
       name: '@anotherharness/ah-client-ui-open-in-app'
 
+    # Code editor for workspace files: edit and save from the file preview.
+    - id: ui-code-editor
+      name: '@anotherharness/ah-client-ui-code-editor'
+
     - id: workspace
       name: '@anotherharness/ah-workspace'
 

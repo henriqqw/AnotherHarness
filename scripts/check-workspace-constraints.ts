@@ -182,6 +182,7 @@ const packageFileExtras: Readonly<Record<string, readonly string[]>> = {
   '@anotherharness/ah-client-ui-dockkit': ['lib/**/*.css'],
   '@anotherharness/ah-client-ui-sidebar-documentpreview': ['lib/client.*.js'],
   '@anotherharness/ah-client-ui-sidebar-terminal': ['lib/client.*.js'],
+  '@anotherharness/ah-client-ui-code-editor': ['lib/client.*.js'],
   '@anotherharness/ah-client-web': ['lib/**/*.css', 'lib/apply-injections.js'],
   '@anotherharness/ah-client-ui-theme': ['lib/styles'],
   // The physical-key protocol is a public entry usable without the browser service.

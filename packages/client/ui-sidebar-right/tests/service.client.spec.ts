@@ -739,6 +739,30 @@ describe('explicit tab resource cleanup', () => {
   })
 })
 
+it('keeps a tab a close guard vetoes, and closes it once every guard allows', () => {
+  const h = harness()
+  h.adopt(SESSION, h.instance)
+  h.publish()
+  h.controller.openResource('ah-resource://file/session/s-test/terminal')
+  h.publish()
+  const tabId = h.tabOf('terminal')
+  let allow = false
+  const guard = vi.fn(() => allow)
+  const other = vi.fn(() => true)
+  const release = h.controller.registerCloseGuard('text', guard)
+  const releaseOther = h.controller.registerCloseGuard('text', other)
+  h.controller.closeIn(SESSION, tabId)
+  expect(guard).toHaveBeenCalledWith(SESSION, h.layout().tabs[tabId])
+  expect(h.layout().tabs[tabId]).toBeDefined()
+  release()
+  release()
+  h.controller.closeIn(SESSION, tabId)
+  expect(other).toHaveBeenCalledOnce()
+  expect(h.layout().tabs[tabId]).toBeUndefined()
+  allow = true
+  releaseOther()
+})
+
 it('releases close handlers without a stale disposer removing a replacement', () => {
   const h = harness()
   h.adopt(SESSION, h.instance)

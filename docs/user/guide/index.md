@@ -27,6 +27,7 @@ The agent can read and edit workspace files, run commands, delegate work, and ma
 - [Configure models](./providers.md)
 - [Manage conversations](./conversations.md)
 - [Use terminals](./terminal.md)
+- [Edit code](./edit-code.md)
 - [Use the Python SDK](./python-sdk.md)
 - [Publish the Web UI behind a reverse proxy](./public-deployments.md)
 - [Use other CLI modes](../../../apps/cli/README.md)

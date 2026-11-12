@@ -249,6 +249,12 @@ export default defineConfig({
         // Trajectory's compact Markdown projection retains deferred branch coverage.
         'packages/client/ui-primitives/src/markdown/plain-text.ts',
         'packages/client/ui-user-questions/src/client/QuestionComposer.tsx',
+        // The CodeMirror view needs a browser layout engine (measuring, scrolling,
+        // hover tooltips). Its logic lives in covered modules: drafts, files,
+        // close flow, follow-moves, and navigation.
+        'packages/client/ui-code-editor/src/client/EditorBody.tsx',
+        'packages/client/ui-code-editor/src/client/CompareView.tsx',
+        'packages/client/ui-code-editor/src/client/file-editor.ts',
         'packages/client/ui-primitives/src/Menu.tsx',
         'packages/client/ui-primitives/src/RiskConfirmation.tsx',
         'packages/client/ui-workspace/src/client/WorkspaceBrowser.tsx',

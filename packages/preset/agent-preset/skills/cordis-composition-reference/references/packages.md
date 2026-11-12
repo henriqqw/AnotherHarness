@@ -70,6 +70,7 @@ Every package below exports a Cordis plugin that a bundle patch can name in a Lo
 | `@anotherharness/ah-client-ui-attachment` | no | Dynamic attachment presentation plugin for conversation input, message-image, and trajectory image slots |
 | `@anotherharness/ah-client-ui-brand-official` | no | Official AnotherHarness brand occupants for the Web client's sidebar slots |
 | `@anotherharness/ah-client-ui-chat` | no | Chat Conversation target, node definitions, renderers, and details surface |
+| `@anotherharness/ah-client-ui-code-editor` | no | CodeMirror 6 code editor for workspace files: edit and save from the file preview with VS Code keys, conflict handling, minimap, and autocomplete |
 | `@anotherharness/ah-client-ui-commands` | no | Client command surface: global directory cache, '/' source, three command UI kinds, popupSelect registry |
 | `@anotherharness/ah-client-ui-conversation` | no | Target-neutral Conversation assembly, shell, composer, queue, and view navigation |
 | `@anotherharness/ah-client-ui-deliverables` | no | Changed-files card with per-file comparison tabs, delivery cards, and clickable final-response file references for Web |

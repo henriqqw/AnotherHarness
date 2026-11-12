@@ -272,6 +272,7 @@ export const EVENT_WALK_EXEMPTIONS: Record<string, string> = {
   'slash/input-insert-text': 'client-face slash-input protocol — packages/client/ui-input-trigger/README.md owns the API',
   'slots/changed': 'client-face slot invalidation signal — packages/client/ui-renderer/README.md owns the API',
   'theme/change': 'client-face theme switch signal — packages/client/ui-theme/README.md owns the API',
+  'workspace-file/moved': 'client-face Files tree move signal — packages/client/ui-sidebar-files/README.md owns the API',
 }
 
 /**
@@ -956,6 +957,9 @@ export const TYPE_LINK_EXEMPTIONS: Readonly<Record<string, string>> = {
   WorkspaceFileWatchFrame: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
   WorkspaceFileRange: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
   WorkspaceFileStat: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
+  WorkspaceNavigation: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
+  WorkspaceNavigationOperation: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
+  WorkspaceNavigationPosition: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
   WorkspaceFileText: 'Host workspace file endpoint contract is owned by packages/api/workspace-files/README.md',
   TerminalProfiles: 'Browser terminal profile lists are owned by packages/api/terminal-controller/README.md',
   AgentTerminalInfo: 'Agent terminal listings are owned by packages/api/terminal-controller/README.md',

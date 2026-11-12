@@ -1,0 +1,109 @@
+{
+  "name": "@anotherharness/ah-client-ui-code-editor",
+  "description": "CodeMirror 6 code editor for workspace files: edit and save from the file preview with VS Code keys, conflict handling, minimap, and autocomplete",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/client/ui-code-editor"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/client.*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-api-gateway",
+        "@anotherharness/ah-api-remotes",
+        "@anotherharness/ah-api-workspace-files",
+        "@anotherharness/ah-client-locale",
+        "@anotherharness/ah-client-resources",
+        "@anotherharness/ah-client-ui-layout",
+        "@anotherharness/ah-client-ui-renderer",
+        "@anotherharness/ah-client-ui-sidebar-documentpreview",
+        "@anotherharness/ah-client-ui-sidebar-files",
+        "@anotherharness/ah-client-ui-sidebar-right"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-api-gateway": "workspace:*",
+    "@anotherharness/ah-api-remotes": "workspace:*",
+    "@anotherharness/ah-api-workspace-files": "workspace:*",
+    "@anotherharness/ah-client-locale": "workspace:*",
+    "@anotherharness/ah-client-resources": "workspace:*",
+    "@anotherharness/ah-client-store": "workspace:*",
+    "@anotherharness/ah-client-test-runtime": "workspace:*",
+    "@anotherharness/ah-client-ui-dockkit": "workspace:*",
+    "@anotherharness/ah-client-ui-layout": "workspace:*",
+    "@anotherharness/ah-client-ui-primitives": "workspace:*",
+    "@anotherharness/ah-client-ui-renderer": "workspace:*",
+    "@anotherharness/ah-client-ui-sidebar-documentpreview": "workspace:*",
+    "@anotherharness/ah-client-ui-sidebar-files": "workspace:*",
+    "@anotherharness/ah-client-ui-sidebar-right": "workspace:*",
+    "@anotherharness/ah-client-ui-slots": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "@codemirror/autocomplete": "6.20.4",
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/lang-cpp": "6.0.3",
+    "@codemirror/lang-css": "6.3.1",
+    "@codemirror/lang-go": "6.0.1",
+    "@codemirror/lang-html": "6.4.12",
+    "@codemirror/lang-java": "6.0.2",
+    "@codemirror/lang-javascript": "6.2.5",
+    "@codemirror/lang-json": "6.0.2",
+    "@codemirror/lang-markdown": "6.5.2",
+    "@codemirror/lang-php": "6.0.2",
+    "@codemirror/lang-python": "6.2.1",
+    "@codemirror/lang-rust": "6.0.2",
+    "@codemirror/lang-sql": "6.10.0",
+    "@codemirror/lang-xml": "6.1.0",
+    "@codemirror/lang-yaml": "6.1.3",
+    "@codemirror/language": "6.13.1",
+    "@codemirror/legacy-modes": "6.5.5",
+    "@codemirror/merge": "6.12.3",
+    "@codemirror/search": "6.7.2",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.15",
+    "@lezer/highlight": "1.2.5",
+    "@replit/codemirror-indentation-markers": "6.5.3",
+    "@replit/codemirror-minimap": "0.5.2",
+    "@replit/codemirror-vscode-keymap": "6.0.2",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "~18.3.1",
+    "codemirror": "6.0.2",
+    "react": "^18.2.0"
+  }
+}

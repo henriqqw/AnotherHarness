@@ -18,6 +18,28 @@
 // augments its error map rather than defining an unrelated ambient module.
 import type {} from '@anotherharness/ah-typert-protocol'
 
+/** The language-server queries the editor offers. */
+export type WorkspaceNavigationOperation = 'hover' | 'goToDefinition' | 'findReferences'
+
+/** A zero-based line and UTF-16 column, the language-server convention. */
+export interface WorkspaceNavigationPosition {
+  readonly line: number
+  readonly character: number
+}
+
+/** One place a definition or reference lives. */
+export interface WorkspaceNavigationLocation {
+  /** Absolute path in the filesystem's execution world. */
+  readonly absolutePath: string
+  readonly start: WorkspaceNavigationPosition
+  readonly end: WorkspaceNavigationPosition
+}
+
+/** What a `navigate` query found: hover text (or none), or a list of locations. */
+export type WorkspaceNavigation =
+  | { readonly kind: 'hover'; readonly contents?: string }
+  | { readonly kind: 'locations'; readonly locations: readonly WorkspaceNavigationLocation[] }
+
 /** Identity and freshness of one workspace file, without its content. */
 export interface WorkspaceFileStat {
   /**
@@ -158,6 +180,16 @@ declare module '@anotherharness/ah-typert-protocol' {
     'workspace-file/not-found': { readonly path: string }
     /** The directory listing or watch path resolves outside the Session's workspace root. */
     'workspace-file/outside-workspace': { readonly path: string }
+    /** The file changed since the editor loaded it; nothing was written. */
+    'workspace-file/conflict': { readonly path: string; readonly currentVersion: string | undefined }
+    /** The sandbox refused the write. */
+    'workspace-file/write-denied': { readonly path: string }
+    /** A create or rename target is already taken; nothing changed. */
+    'workspace-file/exists': { readonly path: string }
+    /** A non-empty directory was deleted without `recursive`; nothing changed. */
+    'workspace-file/not-empty': { readonly path: string }
+    /** No language server handles this file, so hover and navigation are unavailable. */
+    'workspace-file/no-language-server': { readonly path: string }
     /** The requested page exceeds the configured byte cap; nothing is returned. */
     'workspace-file/too-large': { readonly path: string; readonly limit: number }
     /** The content read so far is not decodable UTF-8 text, or the page carries NUL bytes. */
