@@ -78,14 +78,18 @@ describe('official browser-brand plugin', () => {
     expect(subject.slots.entries(HERO_HOLE)).toHaveLength(0)
   })
 
-  it('renders the official name independently from both requested mark sizes', () => {
+  it('AC-2 renders the official wordmark independently from both requested jellyfish mark sizes', () => {
     const name = render(<OfficialBrandName />)
-    expect(name.container.querySelector('svg')?.getAttribute('viewBox')).toBe('26 0 156 24')
+    const wordmark = name.container.querySelector('svg')!
+    expect(wordmark.getAttribute('height')).toBe('18')
+    expect(wordmark.querySelector('image')).toBeNull()
+    expect(wordmark.querySelectorAll('path')).toHaveLength(2)
     name.unmount()
 
     const mark = render(<OfficialBrandMark size={34} />)
-    expect(mark.container.querySelector('svg')?.getAttribute('width')).toBe('34')
+    expect(mark.container.querySelector('svg')?.getAttribute('height')).toBe('34')
+    expect(mark.container.querySelector('image')?.getAttribute('href')).toMatch(/^data:image\/png;base64,/)
     mark.rerender(<OfficialBrandMark size={24} />)
-    expect(mark.container.querySelector('svg')?.getAttribute('width')).toBe('24')
+    expect(mark.container.querySelector('svg')?.getAttribute('height')).toBe('24')
   })
 })

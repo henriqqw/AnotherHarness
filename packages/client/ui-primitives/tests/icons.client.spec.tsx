@@ -123,28 +123,32 @@ describe('product icon set', () => {
   })
 })
 
-describe('FishLogo', () => {
-  it('renders the fish path in currentColor at the native ratio', () => {
-    const { container } = render(<primitives.FishLogo />)
+describe('BrandMark', () => {
+  it('AC-9 renders the jellyfish artwork at the requested height with its native ratio', () => {
+    const { container } = render(<primitives.BrandMark />)
     const svg = container.querySelector('svg')!
-    expect(svg.getAttribute('width')).toBe('24')
-    expect(Number(svg.getAttribute('height'))).toBeCloseTo(17.66, 1)
-    expect(svg.getAttribute('viewBox')).toBe('0 0 23.16 17.04')
-    expect(container.querySelectorAll('path')).toHaveLength(1)
-    expect(container.innerHTML).toContain('currentColor')
-    expect(container.innerHTML).not.toContain('M0 0L23.16')
+    expect(svg.getAttribute('height')).toBe('24')
+    expect(Number(svg.getAttribute('width'))).toBeCloseTo(24 * primitives.BRAND_MARK_ASPECT, 5)
+    expect(svg.getAttribute('aria-hidden')).toBe('true')
+    expect(container.querySelector('image')?.getAttribute('href')).toMatch(/^data:image\/png;base64,/)
+    expect(container.querySelector('path')).toBeNull()
   })
 })
 
 describe('BrandWordmark', () => {
-  it('can render the name artwork with or without its leading mark', () => {
+  it('AC-9 renders the two-tone AnotherHarness name with or without its leading mark', () => {
     const view = render(<primitives.BrandWordmark />)
     const svg = view.container.querySelector('svg')!
-    expect(svg.getAttribute('width')).toBe('182')
-    expect(svg.getAttribute('viewBox')).toBe('0 0 182 24')
+    expect(svg.getAttribute('height')).toBe('24')
+    expect(svg.querySelector('image')).not.toBeNull()
+    const [another, harness] = [...svg.querySelectorAll('path')]
+    expect(another?.getAttribute('fill')).toBe('currentColor')
+    expect(harness?.getAttribute('fill')).toBe('var(--dsw-alias-brand-accent-text)')
+    const withMark = Number(svg.getAttribute('width'))
 
-    view.rerender(<primitives.BrandWordmark includeMark={false} />)
-    expect(svg.getAttribute('width')).toBe('156')
-    expect(svg.getAttribute('viewBox')).toBe('26 0 156 24')
+    view.rerender(<primitives.BrandWordmark includeMark={false} size={12} />)
+    expect(svg.querySelector('image')).toBeNull()
+    expect(svg.getAttribute('height')).toBe('12')
+    expect(Number(svg.getAttribute('width'))).toBeLessThan(withMark / 2)
   })
 })

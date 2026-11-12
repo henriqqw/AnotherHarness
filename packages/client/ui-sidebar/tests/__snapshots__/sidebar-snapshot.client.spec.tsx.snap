@@ -122,11 +122,11 @@ exports[`sidebar shell snapshots > renders Windows caption controls in expanded 
             >
               <svg
                 aria-hidden="true"
-                data-content="965fe321"
+                data-content="f52275b5"
                 fill="none"
-                height="17.6580310880829"
-                viewBox="0 0 23.16 17.04"
-                width="24"
+                height="24"
+                viewBox="0 0 106 128"
+                width="19.875"
               />
             </div>
           </span>
@@ -262,11 +262,11 @@ exports[`sidebar shell snapshots > renders the collapsed rail after the crossfad
           >
             <svg
               aria-hidden="true"
-              data-content="965fe321"
+              data-content="f52275b5"
               fill="none"
-              height="17.6580310880829"
-              viewBox="0 0 23.16 17.04"
-              width="24"
+              height="24"
+              viewBox="0 0 106 128"
+              width="19.875"
             />
           </div>
         </span>
@@ -374,11 +374,11 @@ exports[`sidebar shell snapshots > renders the expanded column (wordmark, capsul
             >
               <svg
                 aria-hidden="true"
-                data-content="965fe321"
+                data-content="f52275b5"
                 fill="none"
-                height="17.6580310880829"
-                viewBox="0 0 23.16 17.04"
-                width="24"
+                height="24"
+                viewBox="0 0 106 128"
+                width="19.875"
               />
             </div>
           </span>
@@ -517,11 +517,11 @@ exports[`sidebar shell snapshots > renders the expanded column in the default lo
             >
               <svg
                 aria-hidden="true"
-                data-content="965fe321"
+                data-content="f52275b5"
                 fill="none"
-                height="17.6580310880829"
-                viewBox="0 0 23.16 17.04"
-                width="24"
+                height="24"
+                viewBox="0 0 106 128"
+                width="19.875"
               />
             </div>
           </span>

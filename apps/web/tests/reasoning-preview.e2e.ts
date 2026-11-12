@@ -65,16 +65,14 @@ it('shows completed paragraph first lines across blank lines with a right-edge f
       const reasoning = page.locator('[data-variant="think"][data-state="running"]')
       await expandOwningTurnProcess(page, reasoning)
       await reasoning.waitFor()
-      const whale = page.locator('[data-chat-running] span[aria-hidden="true"]:has(> svg)')
-      const animatedWhale = whale.locator(':scope > span')
-      const restingWhale = whale.locator(':scope > svg')
-      await whale.waitFor()
-      expect(await whale.locator('animate').count()).toBe(0)
-      const expectStaticWhale = async () => {
-        await expect.poll(() => animatedWhale.isVisible()).toBe(false)
-        await expect.poll(() => restingWhale.isVisible()).toBe(true)
-        expect(await animatedWhale.evaluate(element => getComputedStyle(element).maskImage)).toBe('none')
-        const colors = await restingWhale.locator('path').evaluate((path) => {
+      const jellyfish = page.locator('[data-chat-running] span[aria-hidden="true"]:has(> svg)')
+      const bell = jellyfish.locator('svg > path').first()
+      await jellyfish.waitFor()
+      expect(await jellyfish.locator('animate').count()).toBe(0)
+      expect(await jellyfish.locator('svg > path').count()).toBe(4)
+      const expectStaticJellyfish = async () => {
+        await expect.poll(() => bell.evaluate(path => getComputedStyle(path).animationName)).toBe('none')
+        const colors = await bell.evaluate((path) => {
           const probe = document.createElement('span')
           probe.style.cssText = 'color: Canvas; forced-color-adjust: none'
           document.body.append(probe)
@@ -94,26 +92,15 @@ it('shows completed paragraph first lines across blank lines with a right-edge f
       }
       try {
         await page.emulateMedia({ reducedMotion: 'no-preference', forcedColors: 'none' })
-        await expect.poll(() => animatedWhale.isVisible()).toBe(true)
-        expect(await animatedWhale.evaluate(element => getComputedStyle(element).maskMode)).toBe('alpha')
-        const imageSize = await animatedWhale.evaluate(async (element) => {
-          const source = getComputedStyle(element).maskImage.match(/^url\("?(data:image\/png;base64,[A-Za-z0-9+/=]+)"?\)$/)?.[1]
-          if (source === undefined) throw new Error('Running whale mask must use the bundled PNG data URL')
-          const image = new Image()
-          image.src = source
-          await image.decode()
-          return [image.naturalWidth, image.naturalHeight]
-        })
-        expect(imageSize).toEqual([28, 28])
-        expect(await restingWhale.isVisible()).toBe(false)
-        const firstWhaleFrame = await whale.screenshot({ animations: 'allow' })
-        await expect.poll(async () => !(await whale.screenshot({ animations: 'allow' })).equals(firstWhaleFrame), {
+        await expect.poll(() => bell.evaluate(path => getComputedStyle(path).animationName)).not.toBe('none')
+        const firstFrame = await jellyfish.screenshot({ animations: 'allow' })
+        await expect.poll(async () => !(await jellyfish.screenshot({ animations: 'allow' })).equals(firstFrame), {
           timeout: 5000,
         }).toBe(true)
         await page.emulateMedia({ reducedMotion: 'reduce' })
-        await expectStaticWhale()
+        await expectStaticJellyfish()
         await page.emulateMedia({ reducedMotion: 'no-preference', forcedColors: 'active' })
-        await expectStaticWhale()
+        await expectStaticJellyfish()
       } finally {
         await page.emulateMedia({ reducedMotion: null, forcedColors: null })
       }
@@ -139,7 +126,7 @@ it('shows completed paragraph first lines across blank lines with a right-edge f
       third.proceed.resolve(undefined)
       await settled
       await page.getByText('Done', { exact: true }).waitFor()
-      await whale.waitFor({ state: 'detached' })
+      await jellyfish.waitFor({ state: 'detached' })
       expect(console.pageErrors).toEqual([])
       expect(console.warnings).toEqual([])
     } finally {

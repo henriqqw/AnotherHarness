@@ -78,6 +78,10 @@ let windowsLanguage: string | undefined
 let backendReady = false
 /** Error-level console output of the primary window, attached to crash reports. */
 const rendererConsole = new RendererConsoleTail()
+/** Root files of the Web dist that `index.html` and the manifest reference, served from `ah://app`. */
+const WEB_PUBLIC_FILES: ReadonlySet<string> = new Set([
+  '/favicon.svg', '/favicon-dark.svg', '/favicon.ico', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/manifest.webmanifest',
+])
 
 // Platform-conventional logs directory (macOS ~/Library/Logs/<name>, otherwise under userData);
 // set before ready so the first fatal report already resolves under it.
@@ -667,7 +671,7 @@ async function main(): Promise<void> {
     if (url.hostname === 'shell') return serveWebDocument(request, join(app.getAppPath(), 'renderer'))
     if (url.hostname === 'app') {
       if (url.pathname === '/' || url.pathname === '/index.html' || url.pathname.startsWith('/assets/')
-        || ['/favicon.svg', '/manifest.webmanifest'].includes(url.pathname)) {
+        || WEB_PUBLIC_FILES.has(url.pathname)) {
         return serveWebDocument(request, join(resources.ah, 'node_modules', '@anotherharness', 'ah-web-frontend', 'dist'))
       }
       if (backend.host === undefined || hostUrl === undefined || hostCookie === undefined) {

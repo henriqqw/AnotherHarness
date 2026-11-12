@@ -1,7 +1,7 @@
 AnotherHarness
 AnotherHarness
 Add an API key to get started
-Configure official DeepSeek models to start using Harness
+Configure official DeepSeek models to start using AnotherHarness
 Enter API key [password]
 Save and continue [disabled]
 Set up later

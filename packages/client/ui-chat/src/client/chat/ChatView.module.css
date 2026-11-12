@@ -186,30 +186,66 @@
   overflow: hidden;
 }
 
-.runningWhaleAnimated {
-  display: none;
-  position: absolute;
-  inset: 0;
+.runningJellyfish {
+  display: block;
+  overflow: visible;
 }
 
-.runningWhaleStill {
-  display: initial;
+.runningBell,
+.runningTentacle {
+  transform-box: fill-box;
 }
 
-@supports (mask-mode: alpha) and (mask-image: url('')) {
-  @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
-    .runningWhaleAnimated {
-      display: block;
-      background: currentColor;
-      mask: url('./running-whale@2x.png') center / 100% 100% no-repeat;
-      mask-mode: alpha;
-      /* Keep animated-mask repaints on an icon-sized composited layer. */
-      will-change: transform;
-    }
+.runningBell {
+  transform-origin: 50% 100%;
+}
 
-    .runningWhaleStill {
-      display: none;
-    }
+.runningTentacle {
+  transform-origin: 50% 0%;
+}
+
+/* The bell contracts while the tentacles trail in alternating sways. */
+@keyframes running-bell-pulse {
+  0%,
+  100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale(1.08, 0.88);
+  }
+}
+
+@keyframes running-tentacle-sway {
+  0%,
+  100% {
+    transform: skewX(0deg);
+  }
+
+  33% {
+    transform: skewX(-12deg);
+  }
+
+  66% {
+    transform: skewX(10deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .runningBell {
+    animation: running-bell-pulse 1.4s ease-in-out infinite;
+  }
+
+  .runningTentacle {
+    animation: running-tentacle-sway 1.4s ease-in-out infinite;
+  }
+
+  .runningTentacle:nth-of-type(3) {
+    animation-delay: -0.25s;
+  }
+
+  .runningTentacle:nth-of-type(4) {
+    animation-delay: -0.5s;
   }
 }
 

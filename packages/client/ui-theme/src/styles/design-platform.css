@@ -7,6 +7,18 @@ body {
   --dsw-static-amber-500: rgb(245, 158, 11);
   --dsw-static-amber-600: rgb(221, 134, 41);
   --dsw-static-amber-900: rgb(39, 36, 31);
+  --dsw-static-brand-forest: rgb(24, 61, 43);
+  --dsw-static-brand-forest-tint: rgb(30, 51, 36);
+  --dsw-static-brand-graphite: rgb(32, 33, 36);
+  --dsw-static-brand-ivory: rgb(241, 240, 232);
+  --dsw-static-brand-leaf: rgb(35, 122, 42);
+  --dsw-static-brand-lime: rgb(184, 243, 74);
+  --dsw-static-brand-lime-electric: rgb(212, 255, 101);
+  --dsw-static-brand-lime-tint: rgb(241, 250, 227);
+  --dsw-static-brand-lime-tint-strong: rgb(226, 245, 194);
+  --dsw-static-brand-mint: rgb(118, 221, 183);
+  --dsw-static-brand-obsidian: rgb(17, 18, 20);
+  --dsw-static-brand-slate: rgb(119, 126, 131);
   --dsw-static-blue-100: rgb(219, 234, 254);
   --dsw-static-blue-300: rgb(147, 197, 253);
   --dsw-static-blue-400: rgb(96, 165, 250);
@@ -19,18 +31,18 @@ body {
   --dsw-static-blue-800: rgb(30, 64, 175);
   --dsw-static-blue-900: rgb(14, 48, 116);
   --dsw-static-blue-950: rgb(23, 37, 84);
-  --dsw-static-deepseek-100: rgb(228, 237, 253);
-  --dsw-static-deepseek-200: rgb(211, 226, 255);
-  --dsw-static-deepseek-300: rgb(183, 200, 254);
+  --dsw-static-azure-100: rgb(228, 237, 253);
+  --dsw-static-azure-200: rgb(211, 226, 255);
+  --dsw-static-azure-300: rgb(183, 200, 254);
   /* Brightened from the platform rgb(103, 158, 254) at the designer's request: legibility on the dark toast surface. */
-  --dsw-static-deepseek-400: rgb(122, 170, 255);
-  --dsw-static-deepseek-450: rgb(86, 134, 254);
-  --dsw-static-deepseek-500: rgb(65, 118, 230);
-  --dsw-static-deepseek-50: rgb(237, 243, 254);
-  --dsw-static-deepseek-600: rgb(72, 104, 178);
-  --dsw-static-deepseek-700-delete: rgb(47, 76, 143);
-  --dsw-static-deepseek-800: rgb(52, 65, 91);
-  --dsw-static-deepseek-900: rgb(40, 49, 66);
+  --dsw-static-azure-400: rgb(122, 170, 255);
+  --dsw-static-azure-450: rgb(86, 134, 254);
+  --dsw-static-azure-500: rgb(65, 118, 230);
+  --dsw-static-azure-50: rgb(237, 243, 254);
+  --dsw-static-azure-600: rgb(72, 104, 178);
+  --dsw-static-azure-700-delete: rgb(47, 76, 143);
+  --dsw-static-azure-800: rgb(52, 65, 91);
+  --dsw-static-azure-900: rgb(40, 49, 66);
   --dsw-static-green-100: rgb(230, 250, 237);
   --dsw-static-green-400: rgb(78, 209, 126);
   --dsw-static-green-500: rgb(34, 197, 94);
@@ -88,6 +100,18 @@ body[data-ds-dark-theme] {
   --dsw-static-amber-500: rgb(245, 158, 11);
   --dsw-static-amber-600: rgb(221, 134, 41);
   --dsw-static-amber-900: rgb(39, 36, 31);
+  --dsw-static-brand-forest: rgb(24, 61, 43);
+  --dsw-static-brand-forest-tint: rgb(30, 51, 36);
+  --dsw-static-brand-graphite: rgb(32, 33, 36);
+  --dsw-static-brand-ivory: rgb(241, 240, 232);
+  --dsw-static-brand-leaf: rgb(35, 122, 42);
+  --dsw-static-brand-lime: rgb(184, 243, 74);
+  --dsw-static-brand-lime-electric: rgb(212, 255, 101);
+  --dsw-static-brand-lime-tint: rgb(241, 250, 227);
+  --dsw-static-brand-lime-tint-strong: rgb(226, 245, 194);
+  --dsw-static-brand-mint: rgb(118, 221, 183);
+  --dsw-static-brand-obsidian: rgb(17, 18, 20);
+  --dsw-static-brand-slate: rgb(119, 126, 131);
   --dsw-static-blue-100: rgb(219, 234, 254);
   --dsw-static-blue-300: rgb(147, 197, 253);
   --dsw-static-blue-400: rgb(96, 165, 250);
@@ -100,18 +124,18 @@ body[data-ds-dark-theme] {
   --dsw-static-blue-800: rgb(30, 64, 175);
   --dsw-static-blue-900: rgb(14, 48, 116);
   --dsw-static-blue-950: rgb(23, 37, 84);
-  --dsw-static-deepseek-100: rgb(228, 237, 253);
-  --dsw-static-deepseek-200: rgb(211, 226, 255);
-  --dsw-static-deepseek-300: rgb(183, 200, 254);
+  --dsw-static-azure-100: rgb(228, 237, 253);
+  --dsw-static-azure-200: rgb(211, 226, 255);
+  --dsw-static-azure-300: rgb(183, 200, 254);
   /* Brightened from the platform rgb(103, 158, 254) at the designer's request: legibility on the dark toast surface. */
-  --dsw-static-deepseek-400: rgb(122, 170, 255);
-  --dsw-static-deepseek-450: rgb(86, 134, 254);
-  --dsw-static-deepseek-500: rgb(65, 118, 230);
-  --dsw-static-deepseek-50: rgb(237, 243, 254);
-  --dsw-static-deepseek-600: rgb(72, 104, 178);
-  --dsw-static-deepseek-700-delete: rgb(47, 76, 143);
-  --dsw-static-deepseek-800: rgb(52, 65, 91);
-  --dsw-static-deepseek-900: rgb(40, 49, 66);
+  --dsw-static-azure-400: rgb(122, 170, 255);
+  --dsw-static-azure-450: rgb(86, 134, 254);
+  --dsw-static-azure-500: rgb(65, 118, 230);
+  --dsw-static-azure-50: rgb(237, 243, 254);
+  --dsw-static-azure-600: rgb(72, 104, 178);
+  --dsw-static-azure-700-delete: rgb(47, 76, 143);
+  --dsw-static-azure-800: rgb(52, 65, 91);
+  --dsw-static-azure-900: rgb(40, 49, 66);
   --dsw-static-green-100: rgb(230, 250, 237);
   --dsw-static-green-400: rgb(78, 209, 126);
   --dsw-static-green-500: rgb(34, 197, 94);
@@ -188,9 +212,9 @@ body {
   --dsw-alias-border-l3: rgba(0, 0, 0, 0.12);
   --dsw-alias-border-l4: rgba(0, 0, 0, 0.16);
   --dsw-alias-brand-primary-invert: var(--dsw-static-neutral-bluish-1000);
-  --dsw-alias-brand-primary-new-colorprimary-new-color: rgb(65, 118, 230);
-  --dsw-alias-brand-primary: var(--dsw-static-neutral-bluish-1000);
-  --dsw-alias-brand-text: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--dsw-static-brand-leaf);
+  --dsw-alias-brand-primary: var(--dsw-static-brand-forest);
+  --dsw-alias-brand-text: var(--dsw-static-brand-forest);
   --dsw-alias-button-contrast-fill: var(--dsw-static-neutral-bluish-700);
   --dsw-alias-button-elevated-fill: var(--dsw-static-neutral-bluish-00);
   --dsw-alias-button-floating-fill: var(--dsw-static-neutral-bluish-00);
@@ -198,11 +222,11 @@ body {
   --dsw-alias-button-ghost-active-border: var(--dsw-static-neutral-bluish-500);
   --dsw-alias-button-ghost-active-fill: var(--dsw-static-neutral-bluish-100);
   --dsw-alias-button-ghost-active-hover: var(--dsw-static-neutral-bluish-150);
-  --dsw-alias-button-info-fill: var(--dsw-static-deepseek-500);
-  --dsw-alias-button-info-hover: var(--dsw-static-deepseek-400);
+  --dsw-alias-button-info-fill: var(--dsw-static-brand-leaf);
+  --dsw-alias-button-info-hover: var(--dsw-static-brand-forest);
   --dsw-alias-button-primary-dimmed: var(--dsw-static-neutral-bluish-100);
   --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
-  --dsw-alias-button-primary-hover: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-button-primary-hover: color-mix(in srgb, var(--dsw-static-brand-forest) 82%, white);
   --dsw-alias-button-tool-bar-fill-invisible: rgba(31, 31, 31, 0.36);
   --dsw-alias-button-tool-bar-fill: rgba(84, 85, 87, 0.5);
   --dsw-alias-button-tool-bar-hover: rgba(84, 85, 87, 0.6);
@@ -212,8 +236,8 @@ body {
   --dsw-alias-interactive-bg-hover-solid: var(--dsw-static-neutral-bluish-75);
   --dsw-alias-interactive-bg-hover: rgba(38, 49, 72, 0.06);
   --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-400);
-  --dsw-alias-label-deep-diving: color-mix(in srgb, var(--dsw-static-deepseek-500) 70%, var(--dsw-static-blue-950));
-  --dsw-alias-label-deep-diving-shimmer: color-mix(in srgb, var(--dsw-static-deepseek-500) 30%, var(--dsw-static-blue-950));
+  --dsw-alias-label-deep-diving: color-mix(in srgb, var(--dsw-static-brand-leaf) 80%, var(--dsw-static-brand-forest));
+  --dsw-alias-label-deep-diving-shimmer: color-mix(in srgb, var(--dsw-static-brand-leaf) 35%, var(--dsw-static-brand-lime));
   --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-200);
   --dsw-alias-label-primary-bluish: var(--dsw-static-blue-900);
   --dsw-alias-label-primary-dimmed: var(--dsw-static-neutral-bluish-950);
@@ -224,7 +248,7 @@ body {
   --dsw-alias-label-shimmer: color-mix(in srgb, var(--dsw-static-neutral-1000) 30%, transparent);
   --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-600);
   --dsw-alias-menu-icon: var(--dsw-static-neutral-bluish-800);
-  --dsw-alias-link: var(--dsw-static-deepseek-500);
+  --dsw-alias-link: var(--dsw-static-brand-leaf);
   --dsw-alias-markdown-citation: var(--dsw-static-neutral-bluish-100);
   --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-50);
   --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-50);
@@ -237,8 +261,8 @@ body {
   --dsw-alias-scrollbar-bg-l2: var(--dsw-static-neutral-200);
   --dsw-alias-scrollbar-hover-l1: var(--dsw-static-neutral-300);
   --dsw-alias-scrollbar-hover-l2: var(--dsw-static-neutral-300);
-  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-500);
-  --dsw-alias-state-business-tertiary: var(--dsw-static-deepseek-100);
+  --dsw-alias-state-business-primary: var(--dsw-static-brand-leaf);
+  --dsw-alias-state-business-tertiary: var(--dsw-static-brand-lime-tint);
   --dsw-alias-code-diff-added: var(--dsw-static-green-500-a08);
   --dsw-alias-code-diff-deleted: var(--dsw-static-red-600-a08);
   --dsw-alias-file-diff-added-bg: rgb(230, 244, 231);
@@ -264,8 +288,8 @@ body {
   --dsw-alias-tooltip-key-bg: color-mix(in srgb, var(--dsw-alias-tooltip-bg), white 18%);
   --dsw-alias-turn-trigger-bg: var(--dsw-alias-markdown-code-block);
   --dsw-alias-turn-trigger-bg-hover: var(--dsw-alias-interactive-bg-hover);
-  --dsw-specific-bubble-highlight: var(--dsw-static-deepseek-200);
-  --dsw-specific-bubble: var(--dsw-static-deepseek-50);
+  --dsw-specific-bubble-highlight: var(--dsw-static-brand-lime-tint-strong);
+  --dsw-specific-bubble: var(--dsw-static-brand-lime-tint);
   --dsw-specific-input-major: var(--dsw-static-neutral-bluish-00);
   --dsw-specific-login-input: var(--dsw-static-neutral-bluish-50);
   --dsw-menu-surface-fill: rgba(248, 249, 250, 0.58);
@@ -273,20 +297,21 @@ body {
   --dsw-specific-menu: var(--dsw-menu-surface-fill);
   --dsw-specific-selector: var(--dsw-static-neutral-bluish-60);
   --dsw-specific-sidebar-fill: var(--dsw-static-neutral-bluish-50);
-  --dsw-specific-sidebar-nav-item-active-accent: var(--dsw-static-deepseek-100);
+  --dsw-specific-sidebar-nav-item-active-accent: var(--dsw-static-brand-lime-tint);
   --dsw-specific-sidebar-nav-item-active: var(--dsw-static-neutral-bluish-100);
   --dsw-specific-sidebar-nav-item-hover: var(--dsw-static-neutral-bluish-75);
   --dsw-specific-tip: var(--dsw-static-neutral-bluish-60);
 
   background-color: var(--dsw-alias-bg-base);
+  --dsw-alias-brand-accent-text: var(--dsw-static-brand-leaf);
 }
 
 body[data-ds-dark-theme] {
-  --dsw-alias-bg-base: var(--dsw-static-neutral-bluish-950);
-  --dsw-alias-bg-document-preview: var(--dsw-static-neutral-bluish-950);
+  --dsw-alias-bg-base: var(--dsw-static-brand-obsidian);
+  --dsw-alias-bg-document-preview: var(--dsw-static-brand-obsidian);
   --dsw-alias-bg-document-selection: color-mix(in srgb, var(--dsw-static-blue-500) 40%, transparent);
   --dsw-alias-label-document-preview: var(--dsw-static-neutral-bluish-300);
-  --dsw-alias-bg-layer-1: var(--dsw-static-neutral-bluish-875);
+  --dsw-alias-bg-layer-1: var(--dsw-static-brand-graphite);
   --dsw-alias-bg-layer-2: var(--dsw-static-neutral-bluish-850);
   --dsw-alias-bg-layer-3: var(--dsw-static-neutral-bluish-800);
   --dsw-alias-bg-mask-1: rgba(0, 0, 0, 0.5);
@@ -306,9 +331,9 @@ body[data-ds-dark-theme] {
   --dsw-alias-border-l3: rgba(255, 255, 255, 0.16);
   --dsw-alias-border-l4: rgba(255, 255, 255, 0.2);
   --dsw-alias-brand-primary-invert: var(--dsw-static-neutral-bluish-50);
-  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--dsw-static-deepseek-450);
-  --dsw-alias-brand-primary: var(--dsw-static-neutral-bluish-50);
-  --dsw-alias-brand-text: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-brand-primary-new-colorprimary-new-color: var(--dsw-static-brand-lime);
+  --dsw-alias-brand-primary: var(--dsw-static-brand-lime);
+  --dsw-alias-brand-text: var(--dsw-static-brand-lime);
   --dsw-alias-button-contrast-fill: var(--dsw-static-neutral-bluish-50);
   --dsw-alias-button-elevated-fill: var(--dsw-static-neutral-bluish-750);
   --dsw-alias-button-floating-fill: var(--dsw-static-neutral-bluish-850);
@@ -316,11 +341,11 @@ body[data-ds-dark-theme] {
   --dsw-alias-button-ghost-active-border: var(--dsw-static-neutral-bluish-600);
   --dsw-alias-button-ghost-active-fill: var(--dsw-static-neutral-bluish-750);
   --dsw-alias-button-ghost-active-hover: var(--dsw-static-neutral-bluish-700);
-  --dsw-alias-button-info-fill: var(--dsw-static-deepseek-400);
-  --dsw-alias-button-info-hover: var(--dsw-static-deepseek-500);
+  --dsw-alias-button-info-fill: var(--dsw-static-brand-lime);
+  --dsw-alias-button-info-hover: var(--dsw-static-brand-lime-electric);
   --dsw-alias-button-primary-dimmed: var(--dsw-static-neutral-bluish-750);
   --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
-  --dsw-alias-button-primary-hover: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-button-primary-hover: var(--dsw-static-brand-lime-electric);
   --dsw-alias-button-tool-bar-fill-invisible: rgba(31, 31, 31, 0.36);
   --dsw-alias-button-tool-bar-fill: rgba(84, 85, 87, 0.5);
   --dsw-alias-button-tool-bar-hover: rgba(84, 85, 87, 0.6);
@@ -330,8 +355,8 @@ body[data-ds-dark-theme] {
   --dsw-alias-interactive-bg-hover-solid: var(--dsw-static-neutral-bluish-800);
   --dsw-alias-interactive-bg-hover: rgba(255, 255, 255, 0.08);
   --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-600);
-  --dsw-alias-label-deep-diving: color-mix(in srgb, var(--dsw-static-deepseek-450) 55%, var(--dsw-static-neutral-bluish-400));
-  --dsw-alias-label-deep-diving-shimmer: color-mix(in srgb, var(--dsw-static-blue-300) 65%, var(--dsw-static-deepseek-400));
+  --dsw-alias-label-deep-diving: color-mix(in srgb, var(--dsw-static-brand-lime) 70%, var(--dsw-static-neutral-bluish-400));
+  --dsw-alias-label-deep-diving-shimmer: var(--dsw-static-brand-lime-electric);
   --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-750);
   --dsw-alias-label-primary-bluish: var(--dsw-static-neutral-bluish-50);
   --dsw-alias-label-primary-dimmed: var(--dsw-static-neutral-bluish-100);
@@ -342,7 +367,7 @@ body[data-ds-dark-theme] {
   --dsw-alias-label-shimmer: color-mix(in srgb, var(--dsw-static-neutral-00) 45%, transparent);
   --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-400);
   --dsw-alias-menu-icon: var(--dsw-alias-label-primary-dimmed);
-  --dsw-alias-link: var(--dsw-static-deepseek-400);
+  --dsw-alias-link: var(--dsw-static-brand-lime);
   --dsw-alias-markdown-citation: var(--dsw-static-neutral-bluish-800);
   --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-850);
   --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-900);
@@ -355,8 +380,8 @@ body[data-ds-dark-theme] {
   --dsw-alias-scrollbar-bg-l2: var(--dsw-static-neutral-600);
   --dsw-alias-scrollbar-hover-l1: var(--dsw-static-neutral-600);
   --dsw-alias-scrollbar-hover-l2: var(--dsw-static-neutral-550);
-  --dsw-alias-state-business-primary: var(--dsw-static-deepseek-400);
-  --dsw-alias-state-business-tertiary: var(--dsw-static-deepseek-800);
+  --dsw-alias-state-business-primary: var(--dsw-static-brand-lime);
+  --dsw-alias-state-business-tertiary: var(--dsw-static-brand-forest-tint);
   --dsw-alias-code-diff-added: var(--dsw-static-green-500-a12);
   --dsw-alias-code-diff-deleted: var(--dsw-static-red-400-a12);
   --dsw-alias-file-diff-added-bg: rgb(31, 49, 36);
@@ -395,6 +420,7 @@ body[data-ds-dark-theme] {
   --dsw-specific-sidebar-nav-item-active: var(--dsw-static-neutral-bluish-750);
   --dsw-specific-sidebar-nav-item-hover: var(--dsw-static-neutral-bluish-850);
   --dsw-specific-tip: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-brand-accent-text: var(--dsw-static-brand-lime);
 }
 
 /* Overlays without MenuSurface's opaque backing cannot blur page content over

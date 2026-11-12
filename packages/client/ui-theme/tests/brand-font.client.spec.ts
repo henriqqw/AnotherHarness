@@ -2,29 +2,34 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
+const WOFF2_SIGNATURE = 0x774f4632
+const BRAND_WEIGHTS = [300, 400, 500, 700] as const
+
 describe('offline brand font', () => {
-  it('ships a local WOFF2 with its redistribution license', () => {
+  it('AC-7 ships local Plus Jakarta Sans WOFF2 faces with their redistribution license', () => {
     const css = readFileSync(new URL('../src/styles/brand-font.css', import.meta.url), 'utf8')
-    const fontPath = /url\(\.\/([^)]*\.woff2)\)/.exec(css)?.[1]
-    expect(fontPath).toBeDefined()
-    const font = readFileSync(new URL(`../src/styles/${fontPath!}`, import.meta.url))
-    expect(font.readUInt32BE(0)).toBe(0x774f4632)
-    expect(css).toContain('font-weight: 400')
-    expect(css).toContain('font-weight: 300')
-    const light = readFileSync(new URL('../src/styles/montserrat-light.woff2', import.meta.url))
-    expect(light.readUInt32BE(0)).toBe(0x774f4632)
-    expect(css).toContain('font-weight: 500')
-    const medium = readFileSync(new URL('../src/styles/montserrat-medium.woff2', import.meta.url))
-    expect(medium.readUInt32BE(0)).toBe(0x774f4632)
+    expect(css).toContain("font-family: 'Plus Jakarta Sans'")
     expect(css).toContain('font-style: normal')
     expect(css).not.toMatch(/url\(https?:/)
-    const license = readFileSync(new URL('../src/styles/Montserrat-OFL.txt', import.meta.url), 'utf8')
-    expect(license).toContain('SIL OPEN FONT LICENSE Version 1.1')
+    expect(css).not.toContain('Montserrat')
+    for (const weight of BRAND_WEIGHTS) {
+      expect(css).toContain(`font-weight: ${String(weight)}`)
+      expect(css).toContain(`url(./plus-jakarta-sans-${String(weight)}.woff2)`)
+      const font = readFileSync(new URL(`../src/styles/plus-jakarta-sans-${String(weight)}.woff2`, import.meta.url))
+      expect(font.readUInt32BE(0)).toBe(WOFF2_SIGNATURE)
+    }
+    const license = readFileSync(new URL('../src/styles/PlusJakartaSans-OFL.txt', import.meta.url), 'utf8')
+    expect(license).toContain('SIL Open Font License, Version 1.1')
     const manifest = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
       files: string[]
       exports: Record<string, unknown>
     }
     expect(manifest.files).toContain('lib/styles')
     expect(manifest.exports['./brand-font.css']).toBe('./lib/styles/brand-font.css')
+  })
+
+  it('AC-7 selects Plus Jakarta Sans as the brand font family', () => {
+    const base = readFileSync(new URL('../src/styles/base.css', import.meta.url), 'utf8')
+    expect(base).toMatch(/--dsw-font-family-brand: 'Plus Jakarta Sans',/)
   })
 })

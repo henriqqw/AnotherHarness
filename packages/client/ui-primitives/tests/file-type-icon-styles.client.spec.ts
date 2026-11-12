@@ -9,17 +9,17 @@ const css = readFileSync(fileURLToPath(new URL('../src/FileTypeIcon.module.css',
 type TraditionalFileType = Exclude<FileType, CodeFileType>
 
 const TYPE_COLORS: Readonly<Record<TraditionalFileType, string>> = {
-  code: 'var(--dsw-static-deepseek-500)',
+  code: 'var(--dsw-static-azure-500)',
   excel: 'var(--dsw-static-green-500)',
   folder: 'var(--dsw-static-amber-400)',
-  html: 'var(--dsw-static-deepseek-500)',
+  html: 'var(--dsw-static-azure-500)',
   image: 'var(--ah-file-type-violet)',
-  markdown: 'var(--dsw-static-deepseek-500)',
+  markdown: 'var(--dsw-static-azure-500)',
   other: 'var(--dsw-static-neutral-bluish-300)',
   pdf: 'var(--dsw-static-red-600)',
   ppt: 'var(--dsw-static-amber-500)',
   video: 'var(--ah-file-type-violet)',
-  word: 'var(--dsw-static-deepseek-450)',
+  word: 'var(--dsw-static-azure-450)',
 }
 
 describe('FileTypeIcon.module.css', () => {

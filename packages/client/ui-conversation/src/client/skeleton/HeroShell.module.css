@@ -76,7 +76,7 @@
 }
 
 /* Keep hover detection on a stationary box while the mark moves within it;
-   hover rules target the hitbox so a slot-occupant mark swims too. */
+   hover rules target the hitbox so a slot-occupant mark bobs too. */
 .fishHitbox {
   display: inline-flex;
   flex: none;
@@ -84,38 +84,31 @@
   justify-content: center;
 }
 
-/* The swim morph's curves poke slightly past the viewBox edges, so clipping
-   would slice the tail mid-wag. The hero mark stays in the same primary ink
-   as its headline. */
 .fish {
   display: block;
   overflow: visible;
-  transform-origin: 50% 60%;
-  color: var(--dsw-alias-label-primary);
+  transform-origin: 50% 40%;
 }
 
-/* Hover swim: a slow continuous sway about the body center — the head
-   (left) lifts as the whale rises, then settles back with a small
-   counter-tilt, like treading water. Negative rotation = head up (the head
-   is the left half; origin 50% 60%). */
-@keyframes hero-fish-swim {
+/* Hover bob: the jellyfish rises while its bell contracts, then sinks back. */
+@keyframes hero-mark-bob {
   0%,
   100% {
     transform: none;
   }
 
-  35% {
-    transform: rotate(-4deg) translate(-0.4px, -0.9px);
+  40% {
+    transform: translateY(-3px) scale(1.03, 0.97);
   }
 
   70% {
-    transform: rotate(1.6deg) translate(0.3px, 0.2px);
+    transform: translateY(-1px) scale(0.99, 1.01);
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .fishHitbox:hover .fish {
-    animation: hero-fish-swim 1.6s ease-in-out infinite;
+    animation: hero-mark-bob 1.6s ease-in-out infinite;
   }
 }
 

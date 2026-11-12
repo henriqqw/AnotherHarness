@@ -6,7 +6,7 @@ export default clientBundle(
   {
     lib: {
       copy: [{
-        from: 'src/styles/{brand-font.css,montserrat-*.woff2,Montserrat-OFL.txt}',
+        from: 'src/styles/{brand-font.css,plus-jakarta-sans-*.woff2,PlusJakartaSans-OFL.txt}',
         to: 'lib/styles',
       }],
     },

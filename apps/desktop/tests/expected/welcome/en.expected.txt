@@ -1,6 +1,6 @@
 AnotherHarness
 AnotherHarness
 Welcome to AnotherHarness
-Build potential. Explore intelligence.
+Modular Intelligence for AI Agents
 Sign in
 Add API Key

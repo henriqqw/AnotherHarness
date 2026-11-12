@@ -36,8 +36,8 @@ function brandFontLicense(): Plugin {
     async generateBundle() {
       this.emitFile({
         type: 'asset',
-        fileName: 'assets/fonts/Montserrat-OFL.txt',
-        source: await readFile(src('../../packages/client/ui-theme/src/styles/Montserrat-OFL.txt')),
+        fileName: 'assets/fonts/PlusJakartaSans-OFL.txt',
+        source: await readFile(src('../../packages/client/ui-theme/src/styles/PlusJakartaSans-OFL.txt')),
       })
     },
   }
