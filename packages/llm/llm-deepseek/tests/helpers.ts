@@ -2,7 +2,6 @@
 import { Context } from '@anotherharness/cordis'
 import AttachmentStore from '@anotherharness/ah-attachment'
 import type { ModuleLoaderV2 } from '@anotherharness/cordis-plugin-loader'
-import type { AnonymousUserId } from '@anotherharness/ah-anonymous-user-id'
 import { createServer } from 'node:http'
 import type { IncomingHttpHeaders, ServerResponse } from 'node:http'
 import { once } from 'node:events'
@@ -45,7 +44,7 @@ export async function assemble(stream: AsyncIterable<StreamChunk>, model = MODEL
 }
 export function adapter(config: Config = {}, dependencies: Partial<DeepSeekAdapterOptions> = {}) {
   const files = new DeepSeekFileStore()
-  return new DeepSeekAdapter({ options: () => resolveAdapterOptions(config), resolveAuth: () => Promise.resolve({ headers: { 'x-api-key': 'test-key' } }), resolveUserId: () => 'test-user' as AnonymousUserId, resolveAttachments: () => undefined, resolveImageAccess: () => undefined, resolveFiles: () => files, prepareExtensions, ...dependencies })
+  return new DeepSeekAdapter({ options: () => resolveAdapterOptions(config), resolveAuth: () => Promise.resolve({ headers: { 'x-api-key': 'test-key' } }), resolveAttachments: () => undefined, resolveImageAccess: () => undefined, resolveFiles: () => files, prepareExtensions, ...dependencies })
 }
 export async function server(reply: (response: ServerResponse, count: number) => void = response => response.end(sse(textEvents))) {
   const requests: { path: string; headers: IncomingHttpHeaders; body: Record<string, unknown> }[] = []

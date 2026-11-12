@@ -32,10 +32,12 @@ describe('ah-base bundle', () => {
     )
     expect(rows.length).toBeGreaterThan(50)
     expect(rows.some(row => row.id === 'agent-loop')).toBe(true)
-    expect(rows.find(row => row.id === 'session-telemetry-otel')?.disabled).toBeUndefined()
-    expect(rows.find(row => row.id === 'session-telemetry-otel')?.config?.['mode']).toEqual({
-      __jsExpr: "process.env.AH_TELEMETRY_MODE || 'FEEDBACK_ONLY'",
-    })
+    // Spec 0002: the shipped base never sends Session data or telemetry off the machine on its own.
+    for (const id of ['otel', 'session-telemetry-otel', 'session-log-deepseek', 'plugin-package-inventory-deepseek']) {
+      expect(rows.find(row => row.id === id)).toBeUndefined()
+    }
+    expect(manifest.dependencies).not.toHaveProperty('@anotherharness/ah-session-telemetry-otel')
+    expect(manifest.dependencies).not.toHaveProperty('@anotherharness/ah-session-log-deepseek')
     expect(rows.find(row => row.id === 'hmr')).toMatchObject({
       config: { root: [] },
     })

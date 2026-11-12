@@ -14,7 +14,6 @@ import SessionStore, { SessionId } from '@anotherharness/ah-session'
 import { credentialRef } from '@anotherharness/ah-credentials'
 import LocalCredentialProvider from '@anotherharness/ah-credentials-local'
 import { profileComposition } from '../../../settings/settings/tests/profile-composition.ts'
-import { getOrCreateAnonymousUserId } from '@anotherharness/ah-anonymous-user-id'
 import DeepSeekLlmApiExtensionRegistry from '@anotherharness/ah-deepseek-llm-api-extensions'
 import * as SessionLogDeepSeek from '@anotherharness/ah-session-log-deepseek'
 import * as DeepSeekPluginPackageInventory from '@anotherharness/ah-plugin-package-inventory-deepseek'
@@ -204,7 +203,8 @@ describe('llm-deepseek real dynamic composition', () => {
     expect(ctx.settings.describe().map(entry => entry.ns)).toContain(NS)
     await assemble(ctx, { model: 'deepseek-v4-flash', messages: [] })
     expect(serverA.headers[0]?.['x-api-key']).toBe('boot-key')
-    expect(serverA.headers[0]?.['x-another-harness-user-id']).toBe(getOrCreateAnonymousUserId())
+    // Spec 0002: no persistent installation identity reaches the provider.
+    expect(serverA.headers[0]).not.toHaveProperty('x-another-harness-user-id')
 
     // External edits, exactly as a user or the web UI would leave them on disk.
     await writeFile(settingsPath, JSON.stringify([{ id: NS, config: { baseURL: serverB.url } }]))

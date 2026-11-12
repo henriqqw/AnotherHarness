@@ -28,7 +28,6 @@
   "license": "MIT",
   "peerDependencies": {
     "@anotherharness/cordis": "workspace:~",
-    "@anotherharness/ah-anonymous-user-id": "workspace:*",
     "@anotherharness/ah-atomic-write": "workspace:*",
     "@anotherharness/ah-attachment": "workspace:*",
     "@anotherharness/ah-deepseek-llm-api-extensions": "workspace:*",
@@ -51,7 +50,6 @@
     "@anotherharness/ah-llm-deepseek-account": "workspace:*",
     "@anotherharness/cordis": "workspace:~",
     "@anotherharness/ah-agent": "workspace:*",
-    "@anotherharness/ah-anonymous-user-id": "workspace:*",
     "@anotherharness/ah-atomic-write": "workspace:*",
     "@anotherharness/ah-attachment": "workspace:*",
     "@anotherharness/ah-attachment-local": "workspace:*",

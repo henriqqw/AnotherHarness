@@ -29,8 +29,6 @@ describe('ah-sdk-minimal bundle', () => {
       ['sdk-app-startup', '@anotherharness/ah-sdk-app'],
       ['sdk-jsonrpc-server', '@anotherharness/ah-sdk-jsonrpc-server'],
       ['deepseek-llm-api-extensions', '@anotherharness/ah-deepseek-llm-api-extensions'],
-      ['session-log-deepseek', '@anotherharness/ah-session-log-deepseek'],
-      ['plugin-package-inventory-deepseek', '@anotherharness/ah-plugin-package-inventory-deepseek'],
       ['llm-deepseek', '@anotherharness/ah-llm-deepseek-api-key'],
       ['sandbox', '@anotherharness/ah-sandbox-local'],
       ['filesystem', '@anotherharness/ah-fs-local'],

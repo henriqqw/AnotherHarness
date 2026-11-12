@@ -22,8 +22,6 @@ flowchart LR
   cfg --> plugin_ah_base_deepseek_llm_api_extensions
   plugin_ah_base_session["session<br/>@anotherharness/ah-session"]
   cfg --> plugin_ah_base_session
-  plugin_ah_base_session_log_deepseek["session-log-deepseek<br/>@anotherharness/ah-session-log-deepseek"]
-  cfg --> plugin_ah_base_session_log_deepseek
   plugin_ah_base_typert["typert<br/>@anotherharness/ah-typert-registry"]
   cfg --> plugin_ah_base_typert
   plugin_ah_base_typert_loader["typert-loader<br/>@anotherharness/ah-typert-loader"]
@@ -38,8 +36,6 @@ flowchart LR
   cfg --> plugin_ah_base_user_questions
   plugin_ah_base_agent["agent<br/>@anotherharness/ah-agent"]
   cfg --> plugin_ah_base_agent
-  plugin_ah_base_plugin_package_inventory_deepseek["plugin-package-inventory-deepseek<br/>@anotherharness/ah-plugin-package-inventory-deepseek"]
-  cfg --> plugin_ah_base_plugin_package_inventory_deepseek
   plugin_ah_base_agent_default_model["agent-default-model<br/>@anotherharness/ah-agent-default-model"]
   cfg --> plugin_ah_base_agent_default_model
   plugin_ah_base_jobs["jobs<br/>@anotherharness/ah-jobs-local"]
@@ -80,10 +76,6 @@ flowchart LR
   cfg --> plugin_ah_base_storage_domain
   plugin_ah_base_session_projection_cache["session-projection-cache<br/>@anotherharness/ah-session-projection-cache"]
   cfg --> plugin_ah_base_session_projection_cache
-  plugin_ah_base_otel["otel<br/>@anotherharness/ah-otel"]
-  cfg --> plugin_ah_base_otel
-  plugin_ah_base_session_telemetry_otel["session-telemetry-otel<br/>@anotherharness/ah-session-telemetry-otel"]
-  cfg --> plugin_ah_base_session_telemetry_otel
   plugin_ah_base_subprocess["subprocess<br/>@anotherharness/ah-subprocess-local"]
   cfg --> plugin_ah_base_subprocess
   plugin_ah_base_sandbox["sandbox<br/>@anotherharness/ah-sandbox-local"]
@@ -209,7 +201,6 @@ flowchart LR
 | `llm` | `@anotherharness/ah-llm` |
 | `deepseek-llm-api-extensions` | `@anotherharness/ah-deepseek-llm-api-extensions` |
 | `session` | `@anotherharness/ah-session` |
-| `session-log-deepseek` | `@anotherharness/ah-session-log-deepseek` |
 | `typert` | `@anotherharness/ah-typert-registry` |
 | `typert-loader` | `@anotherharness/ah-typert-loader` |
 | `typert-gateway` | `@anotherharness/ah-api-gateway` |
@@ -217,7 +208,6 @@ flowchart LR
 | `session-title-llm` | `@anotherharness/ah-session-title-first-prompt-llm` |
 | `user-questions` | `@anotherharness/ah-user-questions` |
 | `agent` | `@anotherharness/ah-agent` |
-| `plugin-package-inventory-deepseek` | `@anotherharness/ah-plugin-package-inventory-deepseek` |
 | `agent-default-model` | `@anotherharness/ah-agent-default-model` |
 | `jobs` | `@anotherharness/ah-jobs-local` |
 | `llm-retry` | `@anotherharness/ah-llm-retry` |
@@ -238,8 +228,6 @@ flowchart LR
 | `storage-json` | `@anotherharness/ah-storage-json` |
 | `storage-domain` | `@anotherharness/ah-storage-domain` |
 | `session-projection-cache` | `@anotherharness/ah-session-projection-cache` |
-| `otel` | `@anotherharness/ah-otel` |
-| `session-telemetry-otel` | `@anotherharness/ah-session-telemetry-otel` |
 | `subprocess` | `@anotherharness/ah-subprocess-local` |
 | `sandbox` | `@anotherharness/ah-sandbox-local` |
 | `sandbox-policy` | `@anotherharness/ah-sandbox-policy` |

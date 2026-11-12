@@ -4,7 +4,6 @@ import type {} from '@anotherharness/ah-settings'
 import type {} from '@anotherharness/cordis-plugin-loader'
 import type {} from '@anotherharness/ah-fs'
 import { resolveImageAttachmentAccess } from '@anotherharness/ah-llm'
-import { getOrCreateAnonymousUserId, type AnonymousUserId } from '@anotherharness/ah-anonymous-user-id'
 import { deepEqualJson } from '@anotherharness/ah-util-values'
 import { DeepSeekAdapter } from './adapter.ts'
 import type { DeepSeekAdapterOptions, DeepSeekConnectionOptions } from './types.ts'
@@ -19,14 +18,12 @@ export function registerDeepSeekProvider<C extends DeepSeekConnectionOptions>(
   ctx: Context, provider: string, dependencies: Pick<DeepSeekAdapterOptions<C>,
   'options' | 'resolveAuth' | 'providerName' | 'discoverModels'>): void {
   ctx.inject(['settings'], (child) => { child.effect(() => child.settings.configure({ auto: false }, ctx.fiber)) })
-  let userId: AnonymousUserId | undefined
   // These conditions repeat on every request of a route; log each first occurrence only.
   const degradedReplays = new Set<string>()
   const omittedRoutes = new Set<string>()
   const unacceptedRoutes = new Set<string>()
   const adapter = new DeepSeekAdapter({
     ...dependencies,
-    resolveUserId: () => userId ??= getOrCreateAnonymousUserId(),
     onReplayDegrade: ({ provider, model, reason }) => {
       const key = `${provider}/${model}\u0000${reason}`
       if (degradedReplays.has(key)) return

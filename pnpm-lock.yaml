@@ -506,6 +506,9 @@ importers:
       '@anotherharness/ah-bash-local':
         specifier: workspace:*
         version: link:../../packages/shell/bash-local
+      '@anotherharness/ah-client-ui-settings-session-log':
+        specifier: workspace:*
+        version: link:../../packages/client/ui-settings-session-log
       '@anotherharness/ah-credentials-local':
         specifier: workspace:*
         version: link:../../packages/credentials/credentials-local
@@ -563,6 +566,9 @@ importers:
       '@anotherharness/ah-loader-smoke':
         specifier: workspace:*
         version: link:../../packages/test-support/loader-smoke
+      '@anotherharness/ah-otel':
+        specifier: workspace:*
+        version: link:../../packages/telemetry/otel
       '@anotherharness/ah-plugin-package-inventory-deepseek':
         specifier: workspace:*
         version: link:../../packages/llm/plugin-package-inventory-deepseek
@@ -590,6 +596,9 @@ importers:
       '@anotherharness/ah-session-query':
         specifier: workspace:*
         version: link:../../packages/session-query/session-query
+      '@anotherharness/ah-session-telemetry-otel':
+        specifier: workspace:*
+        version: link:../../packages/session/session-telemetry-otel
       '@anotherharness/ah-settings':
         specifier: workspace:*
         version: link:../../packages/settings/settings
@@ -2140,9 +2149,6 @@ importers:
       '@anotherharness/ah-mcp-resources':
         specifier: workspace:*
         version: link:../../mcp/mcp-resources
-      '@anotherharness/ah-otel':
-        specifier: workspace:*
-        version: link:../../telemetry/otel
       '@anotherharness/ah-permission-presets':
         specifier: workspace:*
         version: link:../../interaction/permission-presets
@@ -2152,9 +2158,6 @@ importers:
       '@anotherharness/ah-plugin-manager':
         specifier: workspace:*
         version: link:../../boot/plugin-manager
-      '@anotherharness/ah-plugin-package-inventory-deepseek':
-        specifier: workspace:*
-        version: link:../../llm/plugin-package-inventory-deepseek
       '@anotherharness/ah-ptc-runtime-node':
         specifier: workspace:*
         version: link:../../ptc-runtime/ptc-runtime-node
@@ -2176,9 +2179,6 @@ importers:
       '@anotherharness/ah-session-checkpoint-policy':
         specifier: workspace:*
         version: link:../../session/session-checkpoint-policy
-      '@anotherharness/ah-session-log-deepseek':
-        specifier: workspace:*
-        version: link:../../session/session-log-deepseek
       '@anotherharness/ah-session-persistence-jsonl':
         specifier: workspace:*
         version: link:../../session/session-persistence-jsonl
@@ -2191,9 +2191,6 @@ importers:
       '@anotherharness/ah-session-query-sqlite':
         specifier: workspace:*
         version: link:../../session-query/session-query-sqlite
-      '@anotherharness/ah-session-telemetry-otel':
-        specifier: workspace:*
-        version: link:../../session/session-telemetry-otel
       '@anotherharness/ah-session-title':
         specifier: workspace:*
         version: link:../../session/session-title
@@ -2437,9 +2434,6 @@ importers:
       '@anotherharness/ah-mcp-resources':
         specifier: workspace:*
         version: link:../../mcp/mcp-resources
-      '@anotherharness/ah-plugin-package-inventory-deepseek':
-        specifier: workspace:*
-        version: link:../../llm/plugin-package-inventory-deepseek
       '@anotherharness/ah-sandbox-local':
         specifier: workspace:*
         version: link:../../sandbox/sandbox-local
@@ -2455,9 +2449,6 @@ importers:
       '@anotherharness/ah-session':
         specifier: workspace:*
         version: link:../../core/session
-      '@anotherharness/ah-session-log-deepseek':
-        specifier: workspace:*
-        version: link:../../session/session-log-deepseek
       '@anotherharness/ah-session-persistence-jsonl':
         specifier: workspace:*
         version: link:../../session/session-persistence-jsonl
@@ -2558,9 +2549,6 @@ importers:
       '@anotherharness/ah-client-modules':
         specifier: workspace:*
         version: link:../../client/modules
-      '@anotherharness/ah-client-product-analytics':
-        specifier: workspace:*
-        version: link:../../client/product-analytics
       '@anotherharness/ah-client-resources':
         specifier: workspace:*
         version: link:../../client/resources
@@ -2663,9 +2651,6 @@ importers:
       '@anotherharness/ah-client-ui-settings-plugins':
         specifier: workspace:*
         version: link:../../client/ui-settings-plugins
-      '@anotherharness/ah-client-ui-settings-session-log':
-        specifier: workspace:*
-        version: link:../../client/ui-settings-session-log
       '@anotherharness/ah-client-ui-settings-shell':
         specifier: workspace:*
         version: link:../../client/ui-settings-shell
@@ -2765,9 +2750,6 @@ importers:
       '@anotherharness/ah-host-plugin-inventory':
         specifier: workspace:*
         version: link:../../host/plugin-inventory
-      '@anotherharness/ah-host-product-telemetry-otel':
-        specifier: workspace:*
-        version: link:../../host/product-telemetry-otel
       '@anotherharness/ah-host-webserver':
         specifier: workspace:*
         version: link:../../host/webserver
@@ -2901,9 +2883,6 @@ importers:
       '@anotherharness/ah-fs-local':
         specifier: workspace:*
         version: link:../../fs/fs-local
-      '@anotherharness/ah-otel':
-        specifier: workspace:*
-        version: link:../../telemetry/otel
       '@anotherharness/ah-sandbox-policy':
         specifier: workspace:*
         version: link:../../sandbox/sandbox-policy
@@ -10637,9 +10616,6 @@ importers:
       '@anotherharness/ah-agent-loop':
         specifier: workspace:*
         version: link:../../core/agent-loop
-      '@anotherharness/ah-anonymous-user-id':
-        specifier: workspace:*
-        version: link:../../identity/anonymous-user-id
       '@anotherharness/ah-atomic-write':
         specifier: workspace:*
         version: link:../../util/atomic-write

@@ -177,10 +177,7 @@
     "@anotherharness/ah-api-account-controller": "workspace:*",
     "@anotherharness/ah-client-ui-settings-account": "workspace:*",
     "@anotherharness/ah-client-shortcuts": "workspace:*",
-    "@anotherharness/ah-client-ui-shortcuts": "workspace:*",
-    "@anotherharness/ah-client-product-analytics": "workspace:*",
-    "@anotherharness/ah-host-product-telemetry-otel": "workspace:*",
-    "@anotherharness/ah-client-ui-settings-session-log": "workspace:*"
+    "@anotherharness/ah-client-ui-shortcuts": "workspace:*"
   },
   "peerDependencies": {
     "@anotherharness/cordis": "workspace:~",
@@ -200,7 +197,6 @@
     "@anotherharness/ah-shell-env": "workspace:*",
     "@anotherharness/ah-system-prompt": "workspace:*",
     "@anotherharness/ah-typert-registry": "workspace:*",
-    "@deepseek-ai/libreoffice-kit": "^0.1.5",
-    "@anotherharness/ah-otel": "workspace:*"
+    "@deepseek-ai/libreoffice-kit": "^0.1.5"
   }
 }

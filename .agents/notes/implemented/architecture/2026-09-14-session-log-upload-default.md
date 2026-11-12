@@ -2,6 +2,8 @@
 
 Status: implemented
 
+> AnotherHarness: no shipped bundle mounts `session-log-deepseek` ([spec 0002](../../../../specs/privacy/0002-user-data-privacy-by-default.md)). The default below applies only when an operator mounts the plugin.
+
 English | [中文](2026-09-14-session-log-upload-default.zh.md)
 ## Problem
 

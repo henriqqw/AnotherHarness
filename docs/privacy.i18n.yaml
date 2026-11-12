@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for privacy.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/privacy.md
+/privacy:
+  en: 57b67f006cb61cb2
+  zh: 685580869750e4b3
+/privacy/what-leaves-the-machine:
+  en: 811503128ee67004
+  zh: daf37fd7ad7bfdc4
+/privacy/what-never-leaves-the-machine:
+  en: 8779314c68f3fcf5
+  zh: ca1f1a446242c14d
+/privacy/optional-capabilities-for-operators:
+  en: 5f1db6e3104f1663
+  zh: 2843a7c04f5ed23e
+/privacy/data-at-rest:
+  en: 3d7796ebe608a69f
+  zh: eb2786d13603bc5a

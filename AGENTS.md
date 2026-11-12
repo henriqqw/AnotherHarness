@@ -6,6 +6,10 @@ AnotherHarness is an all-plugin Cordis agent harness. Read [docs/architecture.md
 
 This repository is public and Git history is permanent. Never commit, push, or write into issues, PRs, commit messages, logs, fixtures, snapshots, or docs any secret (keys, tokens, passwords, private keys), real account or machine identifier, personal or user data (names, emails, usernames, home paths, transcripts), private-project data, or local environment data. Use placeholders, keep secrets in the gitignored `.env`, inspect every staged line before committing, keep private notes in `.private/`, and on any leak stop and tell the user; the secret must be rotated ([rules](docs/public-repository-safety.md)).
 
+## User data privacy (default)
+
+The shipped product sends nothing off the machine unless the user directly causes it, and no request carries a persistent installation identity. Never add telemetry, analytics, uploads, background network probes, or identifying headers to a shipped bundle ([privacy](docs/privacy.md), [spec 0002](specs/privacy/0002-user-data-privacy-by-default.md)).
+
 ## Spec-Driven Development and engineering principles
 
 - Every non-trivial change starts from an approved spec in `specs/` copied from [the template](specs/_template.md); each acceptance criterion maps to a named test, and deviations update the spec first ([workflow](docs/spec-driven-development.md)).

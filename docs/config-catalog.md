@@ -574,12 +574,10 @@ export interface Config extends ContactConfig {
   developerTools: Volatile<boolean>
 }
 
-/** Questionnaire destination and bonus notice timings shared by Host and Client. */
+/** Support page destination and bonus notice timings shared by Host and Client. */
 export interface ContactConfig {
-  /** HTTPS questionnaire URL; override for a test form. */
+  /** HTTPS support page opened as configured, with no account, build, or device data appended. */
   contactFormUrl: string
-  /** Questionnaire source option; empty until Harness is supported by the form. */
-  contactSource: string
   /** First delay before retrying a failed bonus acknowledgement. */
   bonusAckRetryDelayMs: number
   /** Ceiling for the acknowledgement retry backoff. */

@@ -24,11 +24,10 @@
 | 标头 | 出现条件 | 值 |
 |---|---|---|
 | `user-agent` | 每个提供方 HTTP 请求，包括 Files API 操作 | 采用 `product/version (+url)` 形式的应用身份；默认产品为 `another-harness` |
-| `x-another-harness-user-id` | 每个已授权的模型请求 | 已解析 Harness home 的稳定匿名 UUID |
 | `x-another-harness-session-id` | 携带会话 id 的模型请求 | 确切的请求 `sessionId` 字符串 |
 | `x-another-harness-compact` | 用途为 `compaction` 的模型请求 | 字面字符串 `1` |
 
-凭据失败发生在解析匿名用户 id 之前，因此未授权请求既不会发送这些标头，也不会创建身份文件。没有会话的直接请求会省略 `x-another-harness-session-id`。会话标题请求没有额外的用途标头；请求携带 `sessionId` 时，仍然适用普通的会话 id 规则。
+没有任何标头携带持久的安装身份（[隐私](privacy.zh.md)）。未授权请求不会发送这些标头。没有会话的直接请求会省略 `x-another-harness-session-id`。会话标题请求没有额外的用途标头；请求携带 `sessionId` 时，仍然适用普通的会话 id 规则。
 
 ## 正文扩展事务
 
@@ -40,7 +39,7 @@
 
 ## `ah_plugin_packages`
 
-[`@anotherharness/ah-plugin-package-inventory-deepseek`](../packages/llm/plugin-package-inventory-deepseek/README.zh.md) 贡献完整存活的 Loader-backed 插件包清单。该字段默认启用。
+[`@anotherharness/ah-plugin-package-inventory-deepseek`](../packages/llm/plugin-package-inventory-deepseek/README.zh.md) 贡献完整存活的 Loader-backed 插件包清单。没有任何随附 bundle 挂载该贡献器；运维者挂载它时，该字段默认启用。
 
 ```json
 {
@@ -73,7 +72,7 @@
 
 ## `ah_session_log`
 
-[`@anotherharness/ah-session-log-deepseek`](../packages/session/session-log-deepseek/README.zh.md) 贡献权威会话日志的一段连续后缀。该字段默认启用。它适用于携带存活会话且至少存在一个事件的请求；直接请求、陈旧会话 id 或空日志会省略该字段，第一条待发事件本身超过 `maxBytes` 或无法序列化的请求也会省略该字段；组合可用 `enabled: false` 禁用它。下方示例使用逻辑 Session 格式 2 仅为说明协议字段，并不标识[当前写入格式](session-format-status.zh.md)。
+[`@anotherharness/ah-session-log-deepseek`](../packages/session/session-log-deepseek/README.zh.md) 贡献权威会话日志的一段连续后缀。没有任何随附 bundle 挂载该贡献器；运维者挂载它时，该字段默认启用。它适用于携带存活会话且至少存在一个事件的请求；直接请求、陈旧会话 id 或空日志会省略该字段，第一条待发事件本身超过 `maxBytes` 或无法序列化的请求也会省略该字段；组合可用 `enabled: false` 禁用它。下方示例使用逻辑 Session 格式 2 仅为说明协议字段，并不标识[当前写入格式](session-format-status.zh.md)。
 
 ```json
 {
@@ -157,6 +156,6 @@
 
 ## 暴露内容与接收方要求
 
-请求标头会暴露 Harness 应用版本、一个匿名 Harness-home 身份和可选的会话身份。`ah_plugin_packages` 会暴露存活 npm 包的名称与版本。除非组合禁用该字段，`ah_session_log` 可能暴露会话工作目录、系统提示词快照、用户与 Assistant 内容、嵌入式 Assistant stream、失败 attempt 输出、工具参数与结果、压缩摘要、反馈和插件持有的事件。适配器 API key 不是会话事件，因此不会进入该字段。通过 `baseURL` 选择的网关会收到与官方端点相同的值。
+请求标头会暴露 Harness 应用版本和可选的会话身份。运维者挂载相应贡献器时，`ah_plugin_packages` 会暴露存活 npm 包的名称与版本，`ah_session_log` 可能暴露会话工作目录、系统提示词快照、用户与 Assistant 内容、嵌入式 Assistant stream、失败 attempt 输出、工具参数与结果、压缩摘要、反馈和插件持有的事件。适配器 API key 不是会话事件，因此不会进入该字段。通过 `baseURL` 选择的网关会收到与官方端点相同的值。
 
 接收方按名称定位扩展字段，按各字段自己的 `version` 分派，保留不同的包版本，并忽略 JSON 成员顺序。会话日志接收方必须先校验连续序号范围，再解释事件类型。遇到不带 `ignorable: true` 的未知权威事件时，接收方无法进行无损重建。即使缺少注册表或某项贡献，基础请求仍然可用；字段缺失表示该项贡献不适用于本次请求。会话日志积压补传期间，`throughSeq` 落后于会话的最新事件，因此 2xx 并不表示接收方已持有当前完整日志。

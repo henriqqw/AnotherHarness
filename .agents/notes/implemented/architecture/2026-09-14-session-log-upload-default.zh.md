@@ -2,6 +2,8 @@
 
 Status: implemented
 
+> AnotherHarness：没有任何随附 bundle 挂载 `session-log-deepseek`（[规格 0002](../../../../specs/privacy/0002-user-data-privacy-by-default.md)）。以下默认值仅在运维者挂载该插件时适用。
+
 [English](2026-09-14-session-log-upload-default.md) | 中文
 ## 问题
 

@@ -17,12 +17,6 @@
     - id: deepseek-llm-api-extensions
       name: '@anotherharness/ah-deepseek-llm-api-extensions'
 
-    - id: session-log-deepseek
-      name: '@anotherharness/ah-session-log-deepseek'
-
-    - id: plugin-package-inventory-deepseek
-      name: '@anotherharness/ah-plugin-package-inventory-deepseek'
-
     - id: llm-deepseek
       name: '@anotherharness/ah-llm-deepseek-api-key'
       config:

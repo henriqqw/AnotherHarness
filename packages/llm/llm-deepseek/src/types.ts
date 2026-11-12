@@ -1,7 +1,6 @@
 /** Model catalog and request-local dependencies for DeepSeek Messages. */
 import type { LlmModelInfo, ModelModality, SystemPromptUpdate, ToolUpdate, ResolvedRetryPolicy, ImageAttachmentAccess } from '@anotherharness/ah-llm'
 import type { AttachmentStore, ImageAttachmentRef } from '@anotherharness/ah-attachment'
-import type { AnonymousUserId } from '@anotherharness/ah-anonymous-user-id'
 import type { DeepSeekLlmApiExtensionRequest, PreparedDeepSeekLlmApiExtensions } from '@anotherharness/ah-deepseek-llm-api-extensions'
 import type { DeepSeekFileStore, DeepSeekFilePolicy } from './file-store.ts'
 
@@ -105,8 +104,6 @@ export interface DeepSeekAdapterOptions<Connection extends DeepSeekConnectionOpt
   options: () => Connection
   /** Resolve authentication from this request's connection snapshot; never re-read the endpoint. */
   resolveAuth: (connection: Connection) => Promise<DeepSeekRequestAuth>
-  /** Resolve the harness-home anonymous id shared with telemetry and feedback. */
-  resolveUserId: () => AnonymousUserId
   /** Resolve the current durable attachment service; absence rejects image input. */
   resolveAttachments?: () => AttachmentStore | undefined
   /** Bridge one attachment reference into the current model-tool execution world. */
