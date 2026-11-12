@@ -256,6 +256,45 @@ Typed Remote control of transient Session-owned terminal processes.
 @Remote async profiles(agent: Agent, signal: AbortSignal): Promise<TerminalProfiles>
 
 /**
+ * List the agent's own PTY sessions in this Session.
+ * @param agent - Session owner supplied by the Gateway.
+ * @returns one entry per agent terminal; none without a terminal service.
+ */
+@Remote agentList(agent: Agent): AgentTerminalInfo[]
+
+/**
+ * Watch one agent terminal live: its retained screen, then output and control changes.
+ * @param agent - Session owner supplied by the Gateway.
+ * @param terminalId - the agent PTY session.
+ * @param signal - stream cancellation; never stops the session.
+ * @returns the screen followed by ordered output and state frames.
+ */
+@Remote({ mode: 'stream' }) followAgent(agent: Agent, terminalId: string, signal: AbortSignal): AsyncIterable<TerminalFrame>
+
+/**
+ * Take the keyboard of an agent terminal; the agent's sends are refused until control returns.
+ * @param agent - Session owner supplied by the Gateway.
+ * @param terminalId - the agent PTY session.
+ */
+@Remote takeOverAgent(agent: Agent, terminalId: string): void
+
+/**
+ * Return the keyboard of an agent terminal to the agent.
+ * @param agent - Session owner supplied by the Gateway.
+ * @param terminalId - the agent PTY session.
+ */
+@Remote giveBackAgent(agent: Agent, terminalId: string): void
+
+/**
+ * Type into an agent terminal the user controls.
+ * @param agent - Session owner supplied by the Gateway.
+ * @param terminalId - the agent PTY session.
+ * @param data - raw input, including control characters.
+ * @returns after the backend accepts the input.
+ */
+@Remote async writeAgent(agent: Agent, terminalId: string, data: string): Promise<void>
+
+/**
  * List retained terminals without resolving or activating an Agent.
  * @param sessionId - displayed Session identity, including offline history.
  * @returns terminals retained for this Host lifetime.

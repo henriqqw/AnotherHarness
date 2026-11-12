@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { isUserControlError } from '../src/index.ts'
 import { provideWorkingDirectoryFixture, unsupportedInbox } from '@anotherharness/ah-agent-loop-testkit'
 import { Context } from '@anotherharness/cordis'
 import { ToolCallId } from '@anotherharness/ah-llm'
@@ -76,7 +77,7 @@ function call(
   })
 }
 
-type StubMode =
+type StubMode = | 'user-control'
   | 'normal'
   | 'prompt-only'
   | 'prompt-crlf'
@@ -133,6 +134,7 @@ class StubPtySession implements TerminalBackendSession {
       return this.operation(Promise.resolve(this.result(this.motd, 'stdin_read')))
     }
     if (this.mode === 'send-error') throw new Error('stub send failed')
+    if (this.mode === 'user-control') throw Object.assign(new Error('PTY session pty-1 is under user control'), { code: 'USER_CONTROL' })
     if (this.throwOnSend) throw new Error('PTY session has exited')
     if (this.mode === 'wait-for-abort' || this.mode === 'end-on-abort') {
       const done = new Promise<ReturnType<StubPtySession['result']>>((resolve) => {
@@ -697,6 +699,18 @@ describe('tool-bash-persistent', () => {
     const { ctx, owner, stub } = await setup({ backendType: 'stub' }, 'spawn-error')
     expect((await call(ctx, owner, 'pwd')).isError).toBe(true)
     expect(stub.sessions).toHaveLength(0)
+  })
+
+  it('keeps the shell alive when the user holds control (spec terminal/0001 AC-3)', async () => {
+    const { ctx, owner, stub } = await setup()
+    await call(ctx, owner, 'warm up')
+    stub.sessions[0]!.mode = 'user-control'
+    const refused = await call(ctx, owner, 'blocked')
+    expect(refused.isError).toBe(true)
+    expect(text(refused)).toContain('under user control')
+    expect(stub.sessions[0]?.closed).toEqual([])
+    expect(isUserControlError(new Error('plain'))).toBe(false)
+    expect(isUserControlError('USER_CONTROL')).toBe(false)
   })
 
   it('resets a cached shell after startSend fails', async () => {

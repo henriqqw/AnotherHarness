@@ -153,6 +153,63 @@ describe('TerminalSessionService backend registry', () => {
   })
 })
 
+/** A stub that also supports live observation and user input. */
+class ObservableStubSession extends StubSession {
+  readonly writes: string[] = []
+  readonly listeners = new Set<(data: string) => void>()
+  resets = 0
+  attach(listener: (data: string) => void) {
+    this.listeners.add(listener)
+    return { screen: 'retained', dispose: () => { this.listeners.delete(listener) } }
+  }
+
+  async write(data: string): Promise<void> { this.writes.push(data) }
+  resetReadiness(): void { this.resets += 1 }
+}
+
+describe('TerminalSessionService live view and user control (spec terminal/0001 AC-2, AC-3)', () => {
+  it('observes output, hands the keyboard to the user, refuses agent sends, and gives control back', async () => {
+    const ctx = await harness()
+    const sessions: ObservableStubSession[] = []
+    ctx.terminals.registerBackend({ type: 'live', async spawn() { const session = new ObservableStubSession(); sessions.push(session); return session } })
+    const owner = stubAgent(ctx, 'owner')
+    await ctx.agents.register(owner)
+    const { sessionId } = await ctx.terminals.spawn(owner, { type: 'live' })
+    const seen: string[] = []
+    const attachment = ctx.terminals.observe(owner, sessionId, (data) => { seen.push(data) })
+    expect(attachment.screen).toBe('retained')
+    for (const listener of sessions[0]!.listeners) listener('ls\n')
+    expect(seen).toEqual(['ls\n'])
+    attachment.dispose()
+    expect(sessions[0]!.listeners.size).toBe(0)
+
+    await expect(ctx.terminals.userWrite(owner, sessionId, 'x')).rejects.toMatchObject({ code: 'NOT_USER_CONTROLLED' })
+    ctx.terminals.giveBack(owner, sessionId)
+    expect(sessions[0]!.resets).toBe(0)
+    ctx.terminals.takeOver(owner, sessionId)
+    expect(ctx.terminals.list(owner)[0]).toMatchObject({ controlledBy: 'user' })
+    expect(() => ctx.terminals.startSend(owner, sessionId, { text: 'pwd', submit: true }))
+      .toThrow(expect.objectContaining({ code: 'USER_CONTROL', message: expect.stringContaining('user control') as string }) as Error)
+    await ctx.terminals.userWrite(owner, sessionId, 'echo hi\r')
+    expect(sessions[0]!.writes).toEqual(['echo hi\r'])
+    ctx.terminals.giveBack(owner, sessionId)
+    expect(sessions[0]!.resets).toBe(1)
+    expect(ctx.terminals.list(owner)[0]).not.toHaveProperty('controlledBy')
+    expect(() => ctx.terminals.startSend(owner, sessionId, { text: 'pwd', submit: true })).not.toThrow()
+  })
+
+  it('reports sessions that cannot be observed or typed into', async () => {
+    const ctx = await harness()
+    const b = backend()
+    ctx.terminals.registerBackend(b.provider)
+    const owner = stubAgent(ctx, 'owner')
+    await ctx.agents.register(owner)
+    const { sessionId } = await ctx.terminals.spawn(owner, { type: 'stub' })
+    expect(() => ctx.terminals.observe(owner, sessionId, () => {})).toThrow(expect.objectContaining({ code: 'UNSUPPORTED' }) as Error)
+    expect(() => { ctx.terminals.takeOver(owner, sessionId) }).toThrow(expect.objectContaining({ code: 'UNSUPPORTED' }) as Error)
+  })
+})
+
 describe('TerminalSessionService ownership and lifecycle', () => {
   it('publishes only after spawn and fences every operation to the exact owner', async () => {
     const ctx = await harness()

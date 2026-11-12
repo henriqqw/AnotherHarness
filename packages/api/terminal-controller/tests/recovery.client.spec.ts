@@ -38,6 +38,11 @@ function fixture() {
       })
     })),
     shells: vi.fn<TerminalRemote['shells']>(async () => success([info.shell])),
+    agentList: vi.fn<TerminalRemote['agentList']>(async () => success([])),
+    followAgent: vi.fn<TerminalRemote['followAgent']>(),
+    takeOverAgent: vi.fn<TerminalRemote['takeOverAgent']>(async () => success(undefined)),
+    giveBackAgent: vi.fn<TerminalRemote['giveBackAgent']>(async () => success(undefined)),
+    writeAgent: vi.fn<TerminalRemote['writeAgent']>(async () => success(undefined)),
     profiles: vi.fn<TerminalRemote['profiles']>(async () => success({ profiles: [{ ...info.shell, id: 'zsh', icon: 'zsh' as const, source: 'detected' as const }] })),
     environment: vi.fn<TerminalRemote['environment']>(async () => success(environment)), list: vi.fn<TerminalRemote['list']>(async () => success([])),
     create: vi.fn<TerminalRemote['create']>(async (_session, request) => success({ ...info, id: request.id })),

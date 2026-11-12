@@ -3144,6 +3144,34 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         returns: 'detected and configured profiles, without their environments.',
       },
       {
+        signature: '@Remote agentList(agent: Agent): AgentTerminalInfo[]',
+        description: 'List the agent\'s own PTY sessions in this Session.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }],
+        returns: 'one entry per agent terminal; none without a terminal service.',
+      },
+      {
+        signature: '@Remote({ mode: \'stream\' }) followAgent(agent: Agent, terminalId: string, signal: AbortSignal): AsyncIterable<TerminalFrame>',
+        description: 'Watch one agent terminal live: its retained screen, then output and control changes.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }, { name: 'terminalId', description: 'the agent PTY session.' }, { name: 'signal', description: 'stream cancellation; never stops the session.' }],
+        returns: 'the screen followed by ordered output and state frames.',
+      },
+      {
+        signature: '@Remote takeOverAgent(agent: Agent, terminalId: string): void',
+        description: 'Take the keyboard of an agent terminal; the agent\'s sends are refused until control returns.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }, { name: 'terminalId', description: 'the agent PTY session.' }],
+      },
+      {
+        signature: '@Remote giveBackAgent(agent: Agent, terminalId: string): void',
+        description: 'Return the keyboard of an agent terminal to the agent.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }, { name: 'terminalId', description: 'the agent PTY session.' }],
+      },
+      {
+        signature: '@Remote async writeAgent(agent: Agent, terminalId: string, data: string): Promise<void>',
+        description: 'Type into an agent terminal the user controls.',
+        parameters: [{ name: 'agent', description: 'Session owner supplied by the Gateway.' }, { name: 'terminalId', description: 'the agent PTY session.' }, { name: 'data', description: 'raw input, including control characters.' }],
+        returns: 'after the backend accepts the input.',
+      },
+      {
         signature: '@Remote list(sessionId: SessionId): WebTerminalInfo[]',
         description: 'List retained terminals without resolving or activating an Agent.',
         parameters: [{ name: 'sessionId', description: 'displayed Session identity, including offline history.' }],
@@ -3244,6 +3272,28 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         description: 'Close one owned session and remove it only after quiescent backend cleanup.',
         parameters: [{ name: 'owner', description: 'exact session owner.' }, { name: 'id', description: 'target PTY identity.' }, { name: 'reason', description: 'diagnostic cleanup reason.' }],
         returns: 'true for a newly closed session, false when the same close is already in flight.',
+      },
+      {
+        signature: 'observe(owner: Agent, id: TerminalSessionId, listener: (data: string) => void): TerminalAttachment',
+        description: 'Observe one owned session\'s raw output for a live view.',
+        parameters: [{ name: 'owner', description: 'exact session owner.' }, { name: 'id', description: 'target PTY identity.' }, { name: 'listener', description: 'receives every output chunk after the retained screen.' }],
+        returns: 'the retained screen and a disposer.',
+      },
+      {
+        signature: 'takeOver(owner: Agent, id: TerminalSessionId): void',
+        description: 'Give the user the keyboard: agent sends are refused until giveBack.',
+        parameters: [{ name: 'owner', description: 'exact session owner.' }, { name: 'id', description: 'target PTY identity.' }],
+      },
+      {
+        signature: 'giveBack(owner: Agent, id: TerminalSessionId): void',
+        description: 'Return the keyboard to the owning agent, discarding prompt evidence the user\'s typing produced.',
+        parameters: [{ name: 'owner', description: 'exact session owner.' }, { name: 'id', description: 'target PTY identity.' }],
+      },
+      {
+        signature: 'async userWrite(owner: Agent, id: TerminalSessionId, data: string): Promise<void>',
+        description: 'Deliver raw user input to a session the user controls.',
+        parameters: [{ name: 'owner', description: 'exact session owner.' }, { name: 'id', description: 'target PTY identity.' }, { name: 'data', description: 'raw input, including control characters.' }],
+        returns: 'when the backend accepted the input.',
       },
       {
         signature: 'list(owner: Agent): TerminalSessionSnapshot[]',
@@ -4696,6 +4746,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'AgentStatus',
     declaration: 'export type AgentStatus = \'idle\' | \'running\';',
+  },
+  {
+    name: 'AgentTerminalInfo',
+    declaration: 'export interface AgentTerminalInfo {\n    readonly id: WebTerminalId;\n    readonly title: string;\n    readonly state: \'running\' | \'exited\' | \'failed\';\n    readonly controlledBy: \'agent\' | \'user\';\n}',
   },
   {
     name: 'AhEnvironment',
@@ -7822,6 +7876,10 @@ export const TYPE_API: readonly TypeApiEntry[] = [
     declaration: 'export interface TeamWaitResult {\n    readonly timedOut: boolean;\n}',
   },
   {
+    name: 'TerminalAttachment',
+    declaration: 'export interface TerminalAttachment {\n    readonly screen: string;\n    dispose(): void;\n}',
+  },
+  {
     name: 'TerminalAttachmentId',
     declaration: 'export type TerminalAttachmentId = Branded<\'TerminalAttachmentId\'>;',
   },
@@ -7831,7 +7889,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   },
   {
     name: 'TerminalBackendSession',
-    declaration: 'export interface TerminalBackendSession {\n    readonly motd: string;\n    readonly pid?: number;\n    startSend(request: TerminalSendRequest): TerminalSendOperation;\n    read(request: TerminalReadRequest): TerminalReadResult;\n    signal(signal: TerminalSignal): Promise<TerminalSignalResult>;\n    status(): TerminalSessionStatus;\n    close(reason: string): Promise<void>;\n}',
+    declaration: 'export interface TerminalBackendSession {\n    readonly motd: string;\n    readonly pid?: number;\n    startSend(request: TerminalSendRequest): TerminalSendOperation;\n    read(request: TerminalReadRequest): TerminalReadResult;\n    signal(signal: TerminalSignal): Promise<TerminalSignalResult>;\n    status(): TerminalSessionStatus;\n    close(reason: string): Promise<void>;\n    attach?(listener: (data: string) => void): TerminalAttachment;\n    write?(data: string): Promise<void>;\n    resetReadiness?(): void;\n}',
   },
   {
     name: 'TerminalBackendSpawnSpec',
@@ -7911,7 +7969,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   },
   {
     name: 'TerminalSessionSnapshot',
-    declaration: 'export interface TerminalSessionSnapshot {\n    sessionId: TerminalSessionIdValue;\n    name?: string;\n    type: string;\n    pid?: number;\n    status: TerminalSessionStatus;\n}',
+    declaration: 'export interface TerminalSessionSnapshot {\n    sessionId: TerminalSessionIdValue;\n    name?: string;\n    type: string;\n    pid?: number;\n    status: TerminalSessionStatus;\n    controlledBy?: \'user\';\n}',
   },
   {
     name: 'TerminalSessionStatus',
@@ -8423,7 +8481,7 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   },
   {
     name: 'WebTerminalInfo',
-    declaration: 'export interface WebTerminalInfo {\n    readonly id: WebTerminalId;\n    readonly title: string;\n    readonly shell: TerminalShell;\n    readonly cwd: string;\n    readonly cols: number;\n    readonly rows: number;\n    readonly state: \'running\' | \'exited\' | \'failed\';\n    readonly exitCode: number | null;\n    readonly error?: string;\n    readonly controllerId?: TerminalAttachmentId;\n}',
+    declaration: 'export interface WebTerminalInfo {\n    readonly id: WebTerminalId;\n    readonly title: string;\n    readonly shell: TerminalShell;\n    readonly cwd: string;\n    readonly cols: number;\n    readonly rows: number;\n    readonly state: \'running\' | \'exited\' | \'failed\';\n    readonly exitCode: number | null;\n    readonly error?: string;\n    readonly controllerId?: TerminalAttachmentId;\n    readonly agentControl?: \'agent\' | \'user\';\n}',
   },
   {
     name: 'WebUpgradeRoute',

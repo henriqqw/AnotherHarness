@@ -64,7 +64,8 @@
   },
   "peerDependencies": {
     "@anotherharness/ah-subprocess": "workspace:*",
-    "@anotherharness/cordis": "workspace:~"
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-terminal": "workspace:*"
   },
   "devDependencies": {
     "@anotherharness/cordis": "workspace:~",
@@ -81,7 +82,8 @@
     "@anotherharness/ah-subprocess": "workspace:*",
     "@anotherharness/ah-subprocess-local": "workspace:*",
     "@anotherharness/ah-util-crypto": "workspace:*",
-    "@anotherharness/ah-working-directory": "workspace:*"
+    "@anotherharness/ah-working-directory": "workspace:*",
+    "@anotherharness/ah-terminal": "workspace:*"
   },
   "files": [
     "lib/index.js",
@@ -92,5 +94,10 @@
     "lib/typert.host.d.ts",
     "lib/typert.remote-client.js",
     "lib/typert.remote-client.d.ts"
-  ]
+  ],
+  "peerDependenciesMeta": {
+    "@anotherharness/ah-terminal": {
+      "optional": true
+    }
+  }
 }

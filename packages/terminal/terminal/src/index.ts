@@ -20,6 +20,7 @@ import type {
   TerminalSignalResult,
   TerminalSpawnRequest,
   TerminalSpawnResult,
+  TerminalAttachment,
 } from './types.ts'
 
 export type {
@@ -39,6 +40,7 @@ export type {
   TerminalSpawnRequest,
   TerminalSpawnResult,
   TerminalWaitReason,
+  TerminalAttachment,
 } from './types.ts'
 export { TerminalBackendCleanupError } from './types.ts'
 
@@ -61,6 +63,9 @@ export type TerminalErrorCode =
   | 'OWNER_NOT_LIVE'
   | 'SEND_ACTIVE'
   | 'SERVICE_DISPOSING'
+  | 'USER_CONTROL'
+  | 'NOT_USER_CONTROLLED'
+  | 'UNSUPPORTED'
 
 /** Error carrying a stable {@link TerminalErrorCode}. */
 export class TerminalError extends Error {
@@ -87,6 +92,8 @@ interface SessionRecord {
   readonly session: TerminalBackendSession
   active: TerminalSendOperation | undefined
   closing: Promise<void> | undefined
+  /** Who may type: the owning agent, or the user after a take-over. */
+  control: 'agent' | 'user'
 }
 
 interface PendingSpawn {
@@ -190,6 +197,7 @@ export class TerminalSessionService extends Service {
         session,
         active: undefined,
         closing: undefined,
+        control: 'agent',
       }
       this.sessions.set(sessionId, record)
       return this.snapshot(record, session.motd)
@@ -244,6 +252,12 @@ export class TerminalSessionService extends Service {
     const record = this.expectOwned(owner, id)
     if (record.closing !== undefined) throw new Error(`PTY session ${id} is closing`)
     if (record.active !== undefined) throw new TerminalError(`PTY session ${id} already has an active send`, 'SEND_ACTIVE')
+    if (record.control === 'user') {
+      throw new TerminalError(
+        `PTY session ${id} is under user control: the user is typing in it. Wait and retry later, or ask the user to give control back.`,
+        'USER_CONTROL',
+      )
+    }
     const operation = record.session.startSend(request)
     record.active = operation
     void operation.done.then(
@@ -298,6 +312,57 @@ export class TerminalSessionService extends Service {
       record.closing = undefined
       throw error
     }
+  }
+
+  /**
+   * Observe one owned session's raw output for a live view.
+   * @param owner - exact session owner.
+   * @param id - target PTY identity.
+   * @param listener - receives every output chunk after the retained screen.
+   * @returns the retained screen and a disposer.
+   */
+  observe(owner: Agent, id: TerminalSessionId, listener: (data: string) => void): TerminalAttachment {
+    const record = this.expectOwned(owner, id)
+    if (record.session.attach === undefined) throw new TerminalError(`PTY session ${id} cannot be observed`, 'UNSUPPORTED')
+    return record.session.attach(listener)
+  }
+
+  /**
+   * Give the user the keyboard: agent sends are refused until {@link giveBack}.
+   * @param owner - exact session owner.
+   * @param id - target PTY identity.
+   */
+  takeOver(owner: Agent, id: TerminalSessionId): void {
+    const record = this.expectOwned(owner, id)
+    if (record.session.write === undefined) throw new TerminalError(`PTY session ${id} does not accept user input`, 'UNSUPPORTED')
+    record.control = 'user'
+  }
+
+  /**
+   * Return the keyboard to the owning agent, discarding prompt evidence the user's typing produced.
+   * @param owner - exact session owner.
+   * @param id - target PTY identity.
+   */
+  giveBack(owner: Agent, id: TerminalSessionId): void {
+    const record = this.expectOwned(owner, id)
+    if (record.control === 'agent') return
+    record.control = 'agent'
+    record.session.resetReadiness?.()
+  }
+
+  /**
+   * Deliver raw user input to a session the user controls.
+   * @param owner - exact session owner.
+   * @param id - target PTY identity.
+   * @param data - raw input, including control characters.
+   * @returns when the backend accepted the input.
+   */
+  async userWrite(owner: Agent, id: TerminalSessionId, data: string): Promise<void> {
+    const record = this.expectOwned(owner, id)
+    if (record.control !== 'user' || record.session.write === undefined) {
+      throw new TerminalError(`PTY session ${id} is not under user control`, 'NOT_USER_CONTROLLED')
+    }
+    await record.session.write(data)
   }
 
   /**
@@ -400,6 +465,7 @@ export class TerminalSessionService extends Service {
       type: record.type,
       ...record.session.pid !== undefined ? { pid: record.session.pid } : {},
       status: record.session.status(),
+      ...record.control === 'user' ? { controlledBy: 'user' as const } : {},
       ...motd !== undefined ? { motd } : {},
     }
   }

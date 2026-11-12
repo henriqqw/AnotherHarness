@@ -82,6 +82,17 @@ export interface WebTerminalInfo {
   readonly exitCode: number | null
   readonly error?: string
   readonly controllerId?: TerminalAttachmentId
+  /** Present on an agent terminal: who holds its keyboard. */
+  readonly agentControl?: 'agent' | 'user'
+}
+
+/** One of the agent's own PTY sessions, listed for the Terminal sidebar. */
+export interface AgentTerminalInfo {
+  readonly id: WebTerminalId
+  readonly title: string
+  readonly state: 'running' | 'exited' | 'failed'
+  /** The agent types by default; the user after a take-over. */
+  readonly controlledBy: 'agent' | 'user'
 }
 
 /** Create is idempotent for an open identity; closed identities cannot be recreated. */

@@ -156,6 +156,45 @@ async function initialize(session: LocalPtySession, terminal: FakeTerminal): Pro
   await pending
 }
 
+describe('LocalPtySession live view and user input', () => {
+  it('replays the retained raw tail, streams later output, and accepts user input until exit', async () => {
+    vi.useFakeTimers()
+    const terminal = new FakeTerminal()
+    const session = new LocalPtySession(terminal, config({ scrollbackMaxBytes: 8 }))
+    try {
+      await initialize(session, terminal)
+      const seen: string[] = []
+      const attachment = session.attach((data) => { seen.push(data) })
+      expect(attachment.screen.length).toBeLessThanOrEqual(8)
+      expect(attachment.screen.endsWith('ah> ')).toBe(true)
+      terminal.emitData('hello')
+      await vi.advanceTimersByTimeAsync(0)
+      expect(seen.join('')).toBe('hello')
+      attachment.dispose()
+      terminal.emitData('more')
+      await vi.advanceTimersByTimeAsync(0)
+      expect(seen.join('')).toBe('hello')
+      await session.write('ls\r')
+      expect(terminal.writes).toContain('ls\r')
+      session.resetReadiness()
+      expect(session['promptSeen']).toBe(false)
+      terminal.emitExit(0)
+      await vi.advanceTimersByTimeAsync(10)
+      await expect(session.write('x')).rejects.toThrow('PTY session has exited')
+    } finally {
+      await session.close('test').catch(() => {})
+    }
+  })
+
+  it('refuses user input while closing', async () => {
+    const terminal = new FakeTerminal()
+    terminal.autoExitOnKill = true
+    const session = new LocalPtySession(terminal, config())
+    void session.close('test')
+    await expect(session.write('x')).rejects.toThrow('PTY session is closing')
+  })
+})
+
 describe('LocalPtySession readiness and output', () => {
   it('polls startup and settles sends without assembling scrollback for status checks', async () => {
     vi.useFakeTimers()

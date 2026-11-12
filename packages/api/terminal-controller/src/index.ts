@@ -8,12 +8,15 @@ import type {} from '@anotherharness/ah-working-directory'
 import { Remote, RemoteError, TypertRemoteService } from '@anotherharness/ah-typert-protocol'
 import { discoverShells, resolveShell } from './shells.ts'
 import { detectProfiles, mergeProfiles, verifyConfiguredProfile } from './profiles.ts'
+import { AgentTerminals } from './agent-terminals.ts'
+// Type-only: the optional ctx.terminals Context merge (the agent's own PTY sessions).
+import type {} from '@anotherharness/ah-terminal'
 import type { TerminalProfileConfig } from './profiles.ts'
 import { BrowserTerminal } from './terminal.ts'
 import { TerminalRetention } from './retention.ts'
 import type {
   TerminalShell, TerminalAttachmentId, TerminalCreateRequest, TerminalEnvironment, TerminalFrame, TerminalProfile,
-  TerminalProfiles, TerminalRetentionFrame,
+  TerminalProfiles, TerminalRetentionFrame, AgentTerminalInfo,
   WebTerminalId, WebTerminalInfo,
 } from './types.ts'
 
@@ -117,6 +120,7 @@ export class TerminalController extends TypertRemoteService {
 
   private readonly owners = new Map<SessionId, OwnedSession>()
   private readonly lifetime = new AbortController()
+  private readonly agentTerminals: AgentTerminals
 
   /**
    * @param ctx - Host context carrying typed Remote and execution providers.
@@ -124,6 +128,7 @@ export class TerminalController extends TypertRemoteService {
    */
   constructor(ctx: Context, private readonly config: Config) {
     super(ctx, 'terminalController', { namespace: 'terminal' })
+    this.agentTerminals = new AgentTerminals(config.maxBufferedBytes)
     ctx.effect(() => async () => {
       this.lifetime.abort(new Error('Terminal controller disposed'))
       const results = await Promise.allSettled([...this.owners].map(([id, owner]) => this.disposeOwner(id, owner)))
@@ -175,6 +180,61 @@ export class TerminalController extends TypertRemoteService {
       profiles: profiles.map(({ env: _env, ...view }) => view),
       ...defaultProfileId === undefined ? {} : { defaultProfileId },
     }
+  }
+
+  /**
+   * List the agent's own PTY sessions in this Session.
+   * @param agent - Session owner supplied by the Gateway.
+   * @returns one entry per agent terminal; none without a terminal service.
+   */
+  @Remote
+  agentList(agent: Agent): AgentTerminalInfo[] {
+    return this.agentTerminals.list(this.terminals(agent), agent)
+  }
+
+  /**
+   * Watch one agent terminal live: its retained screen, then output and control changes.
+   * @param agent - Session owner supplied by the Gateway.
+   * @param terminalId - the agent PTY session.
+   * @param signal - stream cancellation; never stops the session.
+   * @returns the screen followed by ordered output and state frames.
+   */
+  @Remote({ mode: 'stream' })
+  followAgent(agent: Agent, terminalId: string, signal: AbortSignal): AsyncIterable<TerminalFrame> {
+    return this.agentTerminals.follow(this.requireTerminals(agent), agent, terminalId, signal)
+  }
+
+  /**
+   * Take the keyboard of an agent terminal; the agent's sends are refused until control returns.
+   * @param agent - Session owner supplied by the Gateway.
+   * @param terminalId - the agent PTY session.
+   */
+  @Remote
+  takeOverAgent(agent: Agent, terminalId: string): void {
+    this.agentTerminals.takeOver(this.requireTerminals(agent), agent, terminalId)
+  }
+
+  /**
+   * Return the keyboard of an agent terminal to the agent.
+   * @param agent - Session owner supplied by the Gateway.
+   * @param terminalId - the agent PTY session.
+   */
+  @Remote
+  giveBackAgent(agent: Agent, terminalId: string): void {
+    this.agentTerminals.giveBack(this.requireTerminals(agent), agent, terminalId)
+  }
+
+  /**
+   * Type into an agent terminal the user controls.
+   * @param agent - Session owner supplied by the Gateway.
+   * @param terminalId - the agent PTY session.
+   * @param data - raw input, including control characters.
+   * @returns after the backend accepts the input.
+   */
+  @Remote
+  async writeAgent(agent: Agent, terminalId: string, data: string): Promise<void> {
+    if (Buffer.byteLength(data, 'utf8') > this.config.maxInputBytes) throw new Error('Terminal input exceeds the configured limit')
+    await this.agentTerminals.write(this.requireTerminals(agent), agent, terminalId, data)
   }
 
   /**
@@ -368,6 +428,16 @@ export class TerminalController extends TypertRemoteService {
   private dimensions(cols: number, rows: number): void {
     if (!Number.isSafeInteger(cols) || cols < 2 || cols > this.config.maxCols
       || !Number.isSafeInteger(rows) || rows < 1 || rows > this.config.maxRows) throw new Error('Terminal dimensions exceed the configured limits')
+  }
+
+  private terminals(agent: Agent): Context['terminals'] | undefined {
+    return agent.ctx.get('terminals') ?? this.ctx.get('terminals')
+  }
+
+  private requireTerminals(agent: Agent): Context['terminals'] {
+    const terminals = this.terminals(agent)
+    if (terminals === undefined) throw new RemoteError('terminal/unavailable', 'This deployment runs no agent terminals', {})
+    return terminals
   }
 
   private execution(agent: Agent): { subprocess: Context['subprocess']; sandboxPolicy: Context['sandboxPolicy']; workingDirectory: Context['workingDirectory'] } {

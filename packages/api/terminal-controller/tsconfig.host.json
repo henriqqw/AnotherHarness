@@ -12,7 +12,8 @@
     "src/retention.ts",
     "src/stream.ts",
     "src/shells.ts",
-    "src/profiles.ts"
+    "src/profiles.ts",
+    "src/agent-terminals.ts"
   ],
   "references": [
     {
@@ -56,6 +57,9 @@
     },
     {
       "path": "../../util/lazy-require"
+    },
+    {
+      "path": "../../terminal/terminal"
     }
   ]
 }

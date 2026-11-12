@@ -53,6 +53,15 @@ interface TerminalBackendSession {
   status(): TerminalSessionStatus
   /** Idempotently close the captured owned process tree and await quiescence. */
   close(reason: string): Promise<void>
+  /**
+   * Observe raw output: the retained tail first, then every later chunk.
+   * Absent when the backend cannot be observed.
+   */
+  attach?(listener: (data: string) => void): TerminalAttachment
+  /** Deliver raw user input while the user holds control. Absent when unsupported. */
+  write?(data: string): Promise<void>
+  /** Forget prompt evidence gathered while the user typed, before the agent sends again. */
+  resetReadiness?(): void
 }
 ```
 
@@ -169,6 +178,38 @@ signal(owner: Agent, id: TerminalSessionId, signal: TerminalSignal): Promise<Ter
  * @returns true for a newly closed session, false when the same close is already in flight.
  */
 async kill(owner: Agent, id: TerminalSessionId, reason: string = 'model request'): Promise<boolean>
+
+/**
+ * Observe one owned session's raw output for a live view.
+ * @param owner - exact session owner.
+ * @param id - target PTY identity.
+ * @param listener - receives every output chunk after the retained screen.
+ * @returns the retained screen and a disposer.
+ */
+observe(owner: Agent, id: TerminalSessionId, listener: (data: string) => void): TerminalAttachment
+
+/**
+ * Give the user the keyboard: agent sends are refused until {@link giveBack}.
+ * @param owner - exact session owner.
+ * @param id - target PTY identity.
+ */
+takeOver(owner: Agent, id: TerminalSessionId): void
+
+/**
+ * Return the keyboard to the owning agent, discarding prompt evidence the user's typing produced.
+ * @param owner - exact session owner.
+ * @param id - target PTY identity.
+ */
+giveBack(owner: Agent, id: TerminalSessionId): void
+
+/**
+ * Deliver raw user input to a session the user controls.
+ * @param owner - exact session owner.
+ * @param id - target PTY identity.
+ * @param data - raw input, including control characters.
+ * @returns when the backend accepted the input.
+ */
+async userWrite(owner: Agent, id: TerminalSessionId, data: string): Promise<void>
 
 /**
  * List fresh snapshots for exactly one owner.

@@ -21,6 +21,7 @@ import type {
   TerminalSignal,
   TerminalSignalResult,
   TerminalWaitReason,
+  TerminalAttachment,
 } from '@anotherharness/ah-terminal'
 import type { ResolvedConfig } from './config.ts'
 import { CONTROLLED_PROMPT, TerminalSanitizer } from './sanitize.ts'
@@ -274,6 +275,9 @@ export class LocalPtySession implements TerminalBackendSession {
   private responseWrites = Promise.resolve()
   private pendingResponseWrites = 0
   private emulatorClosed = false
+  /** Raw output tail replayed to a new live view. */
+  private rawTail = ''
+  private readonly observers = new Set<(data: string) => void>()
 
   constructor(
     private readonly terminal: SubprocessTerminalHandle,
@@ -477,7 +481,30 @@ export class LocalPtySession implements TerminalBackendSession {
     const bytes = typeof chunk === 'string' ? Buffer.from(chunk, 'utf8') : chunk
     const data = this.decoder.decode(bytes, { stream: true })
     this.queueEmulatorData(data)
+    this.recordRaw(data)
     this.onData(data)
+  }
+
+  private recordRaw(data: string): void {
+    if (data.length === 0) return
+    const limit = this.config.scrollbackMaxBytes
+    this.rawTail = (this.rawTail + data).slice(-limit)
+    for (const listener of this.observers) listener(data)
+  }
+
+  attach(listener: (data: string) => void): TerminalAttachment {
+    this.observers.add(listener)
+    return { screen: this.rawTail, dispose: () => { this.observers.delete(listener) } }
+  }
+
+  async write(data: string): Promise<void> {
+    if (this.closing) throw new Error('PTY session is closing')
+    if (this.statusValue.kind === 'exited') throw new Error('PTY session has exited')
+    await this.terminal.write(data)
+  }
+
+  resetReadiness(): void {
+    this.resetReadinessEvidence()
   }
 
   private readonly onTerminalEnd = (): void => {

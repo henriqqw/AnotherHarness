@@ -13,6 +13,15 @@ import type { TerminalReadResult, TerminalSessionId } from '@anotherharness/ah-t
 import { deadline, timeoutOf } from '@anotherharness/ah-timeout'
 import { defineTool } from '@anotherharness/ah-tools'
 
+/**
+ * Whether a send failed because the user took over the shell.
+ * @param error - the failure.
+ * @returns true for the terminal service's user-control refusal.
+ */
+export function isUserControlError(error: unknown): boolean {
+  return typeof error === 'object' && error !== null && 'code' in error && error.code === 'USER_CONTROL'
+}
+
 // TODO: Replace the file-search advice; arbitrary command output need not come from a searchable file.
 const TRUNCATED_MESSAGE = '<response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>'
 const LOST_PREFIX_MESSAGE = '<response clipped><NOTE>The beginning of this command output was dropped by the terminal scrollback limit. The following text is the earliest retained output.</NOTE>\n'
@@ -339,7 +348,8 @@ async function executeCommand(
       first = false
       result = await operation.done
     } catch (error: unknown) {
-      await shells.reset(owner, 'persistent bash send failed')
+      // A user take-over refuses the send but must keep the user's shell alive.
+      if (!isUserControlError(error)) await shells.reset(owner, 'persistent bash send failed')
       throw error
     }
     const incremental = operation.readOutput()

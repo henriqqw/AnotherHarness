@@ -142,6 +142,16 @@ export interface TerminalSessionSnapshot {
   pid?: number
   /** Current top-level process status. */
   status: TerminalSessionStatus
+  /** Present while the user holds the keyboard; agent sends are refused until control returns. */
+  controlledBy?: 'user'
+}
+
+/** A live view of one session's raw output. */
+export interface TerminalAttachment {
+  /** Retained raw output up to the moment the listener was registered. */
+  readonly screen: string
+  /** Stop receiving output. */
+  dispose(): void
 }
 
 /** Backend-owned live session retained by {@link TerminalSessionService}. */
@@ -160,6 +170,15 @@ export interface TerminalBackendSession {
   status(): TerminalSessionStatus
   /** Idempotently close the captured owned process tree and await quiescence. */
   close(reason: string): Promise<void>
+  /**
+   * Observe raw output: the retained tail first, then every later chunk.
+   * Absent when the backend cannot be observed.
+   */
+  attach?(listener: (data: string) => void): TerminalAttachment
+  /** Deliver raw user input while the user holds control. Absent when unsupported. */
+  write?(data: string): Promise<void>
+  /** Forget prompt evidence gathered while the user typed, before the agent sends again. */
+  resetReadiness?(): void
 }
 
 /** Replaceable provider for one PTY session type. */
