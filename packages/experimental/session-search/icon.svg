@@ -1,1 +1,13 @@
-<svg width="36" height="36" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" stroke-width="1"><path d="M6.58727 11.8586C9.55061 11.8586 11.9529 9.45637 11.9529 6.49304C11.9529 3.5297 9.55061 1.12744 6.58727 1.12744C3.62394 1.12744 1.22168 3.5297 1.22168 6.49304C1.22168 9.45637 3.62394 11.8586 6.58727 11.8586Z" stroke="#658EFF"></path><path d="M10.2991 10.3933L14.7783 14.8725" stroke="#658EFF"></path></svg>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <circle cx="16" cy="16" r="8.5" fill="url(#ah-session-search-gradient)" />
+  <circle cx="16" cy="16" r="5.4" fill="#FFFFFF" />
+  <path d="M13.4 14.6H18.6" stroke="#3F77D8" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M13.4 17.6H16.8" stroke="#3F77D8" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M22.6 22.6L28 28" stroke="#3F77D8" stroke-width="3.2" stroke-linecap="round" />
+  <defs>
+    <linearGradient id="ah-session-search-gradient" x1="7" y1="7" x2="29" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67C7FE" />
+      <stop offset="1" stop-color="#3F77D8" />
+    </linearGradient>
+  </defs>
+</svg>
