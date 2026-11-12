@@ -105,6 +105,64 @@ export abstract class FileSystem extends Service {
   }
 
   /**
+   * Create a directory, with any missing parents; an existing entry at the path is refused.
+   * @param target - the resolved directory path to create.
+   * @param signal - aborts before the directory is created.
+   * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences the mutation by it.
+   * @returns resolves once the directory exists.
+   * @throws `FS_EXISTS` when the path is taken, `FS_NOT_DIRECTORY` when a parent is a file,
+   *   `FS_UNSUPPORTED` when the provider cannot create directories.
+   */
+  makeDirectory(target: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void> {
+    void target
+    void sandboxPolicy
+    return Promise.reject(signal?.aborted === true
+      ? new FsError('Creating directories was aborted.', 'FS_ABORTED', { cause: signal.reason })
+      : new FsError('Creating directories is not supported by this provider.', 'FS_UNSUPPORTED'))
+  }
+
+  /**
+   * Move a file or directory to a new path without replacing anything there.
+   * @param from - the resolved entry to move.
+   * @param to - the resolved destination path; it must not exist.
+   * @param signal - aborts before the move.
+   * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences both paths by it.
+   * @returns resolves once the entry is at `to`.
+   * @throws `FS_EXISTS` when `to` is taken, `FS_NOT_FOUND` when `from` is missing,
+   *   `FS_UNSUPPORTED` when the provider cannot move entries.
+   */
+  rename(from: FsTarget, to: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void> {
+    void from
+    void to
+    void sandboxPolicy
+    return Promise.reject(signal?.aborted === true
+      ? new FsError('Moving entries was aborted.', 'FS_ABORTED', { cause: signal.reason })
+      : new FsError('Moving entries is not supported by this provider.', 'FS_UNSUPPORTED'))
+  }
+
+  /**
+   * Delete a file, a symbolic link (not its target), or a directory. A non-empty
+   * directory needs `recursive`.
+   * @param target - the resolved entry to delete.
+   * @param options - `recursive` deletes a directory with its contents.
+   * @param signal - aborts before the deletion.
+   * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences the mutation by it.
+   * @returns resolves once the entry is gone.
+   * @throws `FS_NOT_FOUND` when nothing is there, `FS_NOT_EMPTY` for a non-empty directory
+   *   without `recursive`, `FS_UNSUPPORTED` when the provider cannot delete entries.
+   */
+  remove(
+    target: FsTarget, options: { readonly recursive?: boolean }, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy,
+  ): Promise<void> {
+    void target
+    void options
+    void sandboxPolicy
+    return Promise.reject(signal?.aborted === true
+      ? new FsError('Deleting entries was aborted.', 'FS_ABORTED', { cause: signal.reason })
+      : new FsError('Deleting entries is not supported by this provider.', 'FS_UNSUPPORTED'))
+  }
+
+  /**
    * The sandbox mode this backend enforces on mutations BY DEFAULT, or
    * `undefined` when it does not confine at all — the capability fact the tool
    * layer reads to advertise the escalation fields honestly (mirrors

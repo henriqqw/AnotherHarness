@@ -7,6 +7,7 @@
 import { Context } from '@anotherharness/cordis'
 import { constants as bufferConstants } from 'node:buffer'
 import { once } from 'node:events'
+import { mkdir, rename as fsRename, rm, rmdir, unlink } from 'node:fs/promises'
 import { watch } from 'chokidar'
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -25,6 +26,7 @@ import type {
 import {
   applyLiteralEdit,
   listDirectory,
+  mutationError,
   localDisplayPath,
   normalizeLineEndings,
   probe,
@@ -292,6 +294,58 @@ export class LocalFileSystem extends FileSystem {
 
   /* v8 ignore next 5 -- the post-write probe finding the file absent requires a
    * concurrent unlink between rename and stat; fall back to a sentinel version. */
+  /**
+   * Create a directory with any missing parents.
+   * @param target - the resolved directory path.
+   * @param signal - aborts before the directory is created.
+   */
+  override async makeDirectory(target: FsTarget, signal?: AbortSignal): Promise<void> {
+    signal?.throwIfAborted()
+    await this.withLock(target.targetKey, async () => {
+      if (await probeNoFollow(target.targetKey) !== null) {
+        throw new FsError(`cannot create "${target.displayPath}": the path already exists`, 'FS_EXISTS')
+      }
+      await mkdir(target.targetKey, { recursive: true }).catch((error: unknown) => { throw mutationError(error, 'create', target) })
+    })
+  }
+
+  /**
+   * Move an entry to a path that does not exist yet.
+   * @param from - the resolved entry to move.
+   * @param to - the resolved destination.
+   * @param signal - aborts before the move.
+   */
+  override async rename(from: FsTarget, to: FsTarget, signal?: AbortSignal): Promise<void> {
+    signal?.throwIfAborted()
+    await this.withLock(from.targetKey, () => this.withLock(to.targetKey, async () => {
+      if (await probeNoFollow(from.targetKey) === null) {
+        throw new FsError(`cannot move "${from.displayPath}": no entry there`, 'FS_NOT_FOUND')
+      }
+      if (await probeNoFollow(to.targetKey) !== null) {
+        throw new FsError(`cannot move to "${to.displayPath}": the path already exists`, 'FS_EXISTS')
+      }
+      await fsRename(from.targetKey, to.targetKey).catch((error: unknown) => { throw mutationError(error, 'move', from) })
+    }))
+  }
+
+  /**
+   * Delete an entry; a non-empty directory needs `recursive`.
+   * @param target - the resolved entry.
+   * @param options - `recursive` deletes a directory with its contents.
+   * @param signal - aborts before the deletion.
+   */
+  override async remove(target: FsTarget, options: { readonly recursive?: boolean }, signal?: AbortSignal): Promise<void> {
+    signal?.throwIfAborted()
+    await this.withLock(target.targetKey, async () => {
+      const entry = await probeNoFollow(target.targetKey)
+      if (entry === null) throw new FsError(`cannot delete "${target.displayPath}": no entry there`, 'FS_NOT_FOUND')
+      const removal = entry.type === 'directory'
+        ? (options.recursive === true ? rm(target.targetKey, { recursive: true }) : rmdir(target.targetKey))
+        : unlink(target.targetKey)
+      await removal.catch((error: unknown) => { throw mutationError(error, 'delete', target) })
+    })
+  }
+
   private versionAfterWrite(after: { version: FsVersion } | null, target: FsTarget): FsVersion {
     if (after) return after.version
     return FsVersion(`missing:${target.targetKey}`)

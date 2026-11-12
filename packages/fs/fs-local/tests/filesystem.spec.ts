@@ -835,3 +835,49 @@ describe('HMR / disposal', () => {
     expect(local.fs).toBeUndefined()
   })
 })
+
+describe('directory-level mutations', () => {
+  it('creates directories with parents and refuses a taken path', async () => {
+    await fs.makeDirectory(await fs.resolve('a/b'))
+    expect((await stat(join(dir, 'a', 'b'))).isDirectory()).toBe(true)
+    await expect(fs.makeDirectory(await fs.resolve('a'))).rejects.toMatchObject({ code: 'FS_EXISTS' })
+    await writeFile(join(dir, 'file'), 'x')
+    await expect(fs.makeDirectory({ ...await fs.resolve('a'), targetKey: join(dir, 'file', 'child') } as FsTarget))
+      .rejects.toMatchObject({ code: 'FS_NOT_DIRECTORY' })
+  })
+
+  it('moves entries without replacing an existing destination', async () => {
+    await writeFile(join(dir, 'a.txt'), 'A')
+    await writeFile(join(dir, 'b.txt'), 'B')
+    await expect(fs.rename(await fs.resolve('a.txt'), await fs.resolve('b.txt'))).rejects.toMatchObject({ code: 'FS_EXISTS' })
+    await expect(fs.rename(await fs.resolve('missing'), await fs.resolve('c.txt'))).rejects.toMatchObject({ code: 'FS_NOT_FOUND' })
+    await fs.rename(await fs.resolve('a.txt'), await fs.resolve('c.txt'))
+    expect(await readFile(join(dir, 'c.txt'), 'utf8')).toBe('A')
+    await expect(fs.rename(await fs.resolve('c.txt'), await fs.resolve('no/such/c.txt'))).rejects.toMatchObject({ code: 'FS_NOT_FOUND' })
+    expect(lockCount(fs)).toBe(0)
+  })
+
+  it('deletes files, links, and directories, needing recursive for a non-empty one', async () => {
+    await writeFile(join(dir, 'a.txt'), 'A')
+    await symlink(join(dir, 'a.txt'), join(dir, 'link'))
+    await mkdir(join(dir, 'full'))
+    await writeFile(join(dir, 'full', 'x'), 'X')
+    await fs.remove({ ...await fs.resolve('a.txt'), targetKey: join(dir, 'link') } as FsTarget, {})
+    expect(await readFile(join(dir, 'a.txt'), 'utf8')).toBe('A')
+    await fs.remove(await fs.resolve('a.txt'), {})
+    await expect(fs.remove(await fs.resolve('a.txt'), {})).rejects.toMatchObject({ code: 'FS_NOT_FOUND' })
+    await expect(fs.remove(await fs.resolve('full'), {})).rejects.toMatchObject({ code: 'FS_NOT_EMPTY' })
+    await fs.remove(await fs.resolve('full'), { recursive: true })
+    await mkdir(join(dir, 'empty'))
+    await fs.remove(await fs.resolve('empty'), {})
+    await expect(stat(join(dir, 'full'))).rejects.toThrow()
+  })
+
+  it('honors abort before any directory-level mutation', async () => {
+    const target = await fs.resolve('p')
+    const aborted = AbortSignal.abort()
+    await expect(fs.makeDirectory(target, aborted)).rejects.toThrow()
+    await expect(fs.rename(target, target, aborted)).rejects.toThrow()
+    await expect(fs.remove(target, {}, aborted)).rejects.toThrow()
+  })
+})

@@ -109,6 +109,40 @@ export class SandboxedFileSystem extends LocalFileSystem {
   }
 
   /**
+   * Fence directory creation by the per-call policy, then delegate.
+   * @param target - the resolved directory path.
+   * @param signal - aborts before the directory is created.
+   * @param sandboxPolicy - the per-call mode and workspace root.
+   */
+  override async makeDirectory(target: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void> {
+    return super.makeDirectory(await this.checkedTarget(target, sandboxPolicy), signal)
+  }
+
+  /**
+   * Fence both paths of a move by the per-call policy, then delegate.
+   * @param from - the resolved entry to move.
+   * @param to - the resolved destination.
+   * @param signal - aborts before the move.
+   * @param sandboxPolicy - the per-call mode and workspace root.
+   */
+  override async rename(from: FsTarget, to: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void> {
+    return super.rename(await this.checkedTarget(from, sandboxPolicy), await this.checkedTarget(to, sandboxPolicy), signal)
+  }
+
+  /**
+   * Fence a deletion by the per-call policy, then delegate.
+   * @param target - the resolved entry.
+   * @param options - `recursive` deletes a directory with its contents.
+   * @param signal - aborts before the deletion.
+   * @param sandboxPolicy - the per-call mode and workspace root.
+   */
+  override async remove(
+    target: FsTarget, options: { readonly recursive?: boolean }, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy,
+  ): Promise<void> {
+    return super.remove(await this.checkedTarget(target, sandboxPolicy), options, signal)
+  }
+
+  /**
    * Enforce the per-call policy against `target` and return the EXACT target the
    * mutation must use, so the checked identity is the mutated one (no
    * check-here-write-there TOCTOU). `read-only` denies; `workspace-write`

@@ -10,7 +10,7 @@ import { chmod, mkdtemp, readFile, rename, rm, stat, symlink, unlink, writeFile,
 import { tmpdir } from 'node:os'
 import { isAbsolute, join, parse, relative, resolve } from 'node:path'
 import { createServer } from 'node:net'
-import {
+import { mutationError,
   applyLiteralEdit,
   listDirectory,
   probe,
@@ -994,5 +994,22 @@ describe('readForEdit + restoreLineEndings', () => {
     const pending = readForEdit(file, file, ac.signal)
     ac.abort()
     await expect(pending).rejects.toMatchObject({ code: 'FS_ABORTED' })
+  })
+})
+
+describe('mutationError', () => {
+  const target = { displayPath: 'x' }
+  const fail = (code: string) => Object.assign(new Error(code), { code })
+
+  it('maps Node error codes to the filesystem vocabulary', () => {
+    expect(mutationError(fail('ENOENT'), 'create', target).code).toBe('FS_NOT_FOUND')
+    expect(mutationError(fail('EEXIST'), 'create', target).code).toBe('FS_EXISTS')
+    expect(mutationError(fail('EEXIST'), 'delete', target).code).toBe('FS_NOT_EMPTY')
+    expect(mutationError(fail('ENOTEMPTY'), 'delete', target).code).toBe('FS_NOT_EMPTY')
+    expect(mutationError(fail('ENOTDIR'), 'create', target).code).toBe('FS_NOT_DIRECTORY')
+    expect(mutationError(fail('EACCES'), 'move', target).code).toBe('FS_PERMISSION_DENIED')
+    expect(mutationError(fail('EPERM'), 'move', target).code).toBe('FS_PERMISSION_DENIED')
+    expect(mutationError(fail('EIO'), 'move', target)).toMatchObject({ code: 'FS_IO_ERROR', message: 'cannot move "x": EIO' })
+    expect(mutationError('plain', 'move', target)).toMatchObject({ code: 'FS_IO_ERROR', message: 'cannot move "x": plain' })
   })
 })

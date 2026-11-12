@@ -186,6 +186,9 @@ export type FsErrorCode =
   | 'FS_AMBIGUOUS_EDIT'
   | 'FS_EDIT_NOT_FOUND'
   | 'FS_ABORTED'
+  | 'FS_EXISTS'
+  | 'FS_NOT_EMPTY'
+  | 'FS_UNSUPPORTED'
 
 /**
  * Typed filesystem error. Extends {@link HarnessError} so it carries a stable

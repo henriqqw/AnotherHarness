@@ -241,3 +241,28 @@ describe('FsError identity', () => {
     expect((error as FsError).code).toBe('FS_SANDBOX_DENIED')
   })
 })
+
+describe('directory-level mutations are fenced', () => {
+  it('workspace-write allows mutations inside the workspace and denies them outside', async () => {
+    await boot('workspace-write')
+    await fs.makeDirectory(await target(join(workspace, 'd')))
+    await writeFile(join(workspace, 'a.txt'), 'A')
+    await fs.rename(await target(join(workspace, 'a.txt')), await target(join(workspace, 'd', 'a.txt')))
+    expect(await readFile(join(workspace, 'd', 'a.txt'), 'utf8')).toBe('A')
+    await expect(fs.makeDirectory(await target(join(outside, 'd')))).rejects.toMatchObject({ code: 'FS_SANDBOX_DENIED' })
+    await expect(fs.rename(await target(join(workspace, 'd', 'a.txt')), await target(join(outside, 'a.txt'))))
+      .rejects.toMatchObject({ code: 'FS_SANDBOX_DENIED' })
+    await writeFile(join(outside, 'keep.txt'), 'K')
+    await expect(fs.remove(await target(join(outside, 'keep.txt')), {})).rejects.toMatchObject({ code: 'FS_SANDBOX_DENIED' })
+    expect(existsSync(join(outside, 'keep.txt'))).toBe(true)
+    await fs.remove(await target(join(workspace, 'd')), { recursive: true })
+    expect(existsSync(join(workspace, 'd'))).toBe(false)
+  })
+
+  it('read-only denies every directory-level mutation', async () => {
+    await boot('read-only')
+    await writeFile(join(workspace, 'a.txt'), 'A')
+    await expect(fs.makeDirectory(await target(join(workspace, 'd')))).rejects.toMatchObject({ code: 'FS_SANDBOX_DENIED' })
+    await expect(fs.remove(await target(join(workspace, 'a.txt')), {})).rejects.toMatchObject({ code: 'FS_SANDBOX_DENIED' })
+  })
+})

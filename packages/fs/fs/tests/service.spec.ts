@@ -152,6 +152,20 @@ describe('FileSystem provider seam', () => {
       .rejects.toMatchObject({ code: 'FS_IO_ERROR' })
   })
 
+  it('rejects directory creation, moves, and deletions when a provider does not implement them', async () => {
+    const ctx = new Context()
+    await ctx.plugin(FakeFileSystem)
+    const fs = ctx.fs as FakeFileSystem
+    const target = await fs.resolve('a.txt')
+    await expect(fs.makeDirectory(target)).rejects.toMatchObject({ code: 'FS_UNSUPPORTED' })
+    await expect(fs.rename(target, await fs.resolve('b.txt'))).rejects.toMatchObject({ code: 'FS_UNSUPPORTED' })
+    await expect(fs.remove(target, {})).rejects.toMatchObject({ code: 'FS_UNSUPPORTED' })
+    const aborted = AbortSignal.abort()
+    await expect(fs.makeDirectory(target, aborted)).rejects.toMatchObject({ code: 'FS_ABORTED' })
+    await expect(fs.rename(target, target, aborted)).rejects.toMatchObject({ code: 'FS_ABORTED' })
+    await expect(fs.remove(target, {}, aborted)).rejects.toMatchObject({ code: 'FS_ABORTED' })
+  })
+
   it('listDir returns child entry targets without reading file content', async () => {
     const ctx = new Context()
     await ctx.plugin(FakeFileSystem)

@@ -265,6 +265,9 @@ type FsErrorCode =
   | 'FS_AMBIGUOUS_EDIT'
   | 'FS_EDIT_NOT_FOUND'
   | 'FS_ABORTED'
+  | 'FS_EXISTS'
+  | 'FS_NOT_EMPTY'
+  | 'FS_UNSUPPORTED'
 ```
 
 `FS_NOT_DIRECTORY`, `FS_PERMISSION_DENIED`, and `FS_IO_ERROR` are used by directory listing to distinguish an existing non-directory target, a denied listing, and an unexpected backend I/O failure. `FS_SANDBOX_DENIED` is a POLICY refusal from a sandbox-enforcing backend (`ah-fs-sandbox`) — the mode fence denied a write/edit — distinct from `FS_PERMISSION_DENIED` (the host kernel refusing). `FS_NOT_OBSERVED` means the policy plugin has no prior-observation record for this owner (or a `createIfAbsent` hit an existing file). `FS_NOT_FOUND` also represents an edit rejected from confirmed absence. `FS_STALE_VERSION` means the backend version no longer matches the observed one (or the provider itself receives an edit for a missing target). Freshness authorization has no partial/full distinction, so there is no `FS_PARTIAL_OBSERVATION`.
@@ -301,6 +304,42 @@ Abstract filesystem provider. Targets must preserve identity across aliases; rea
  * @throws when the provider does not support watching or cannot initialize the watcher.
  */
 watch(target: FsTarget, changed: (error?: Error) => void, signal: AbortSignal): Promise<() => Promise<void>>
+
+/**
+ * Create a directory, with any missing parents; an existing entry at the path is refused.
+ * @param target - the resolved directory path to create.
+ * @param signal - aborts before the directory is created.
+ * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences the mutation by it.
+ * @returns resolves once the directory exists.
+ * @throws `FS_EXISTS` when the path is taken, `FS_NOT_DIRECTORY` when a parent is a file,
+ *   `FS_UNSUPPORTED` when the provider cannot create directories.
+ */
+makeDirectory(target: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void>
+
+/**
+ * Move a file or directory to a new path without replacing anything there.
+ * @param from - the resolved entry to move.
+ * @param to - the resolved destination path; it must not exist.
+ * @param signal - aborts before the move.
+ * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences both paths by it.
+ * @returns resolves once the entry is at `to`.
+ * @throws `FS_EXISTS` when `to` is taken, `FS_NOT_FOUND` when `from` is missing,
+ *   `FS_UNSUPPORTED` when the provider cannot move entries.
+ */
+rename(from: FsTarget, to: FsTarget, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy): Promise<void>
+
+/**
+ * Delete a file, a symbolic link (not its target), or a directory. A non-empty
+ * directory needs `recursive`.
+ * @param target - the resolved entry to delete.
+ * @param options - `recursive` deletes a directory with its contents.
+ * @param signal - aborts before the deletion.
+ * @param sandboxPolicy - the per-call mode and workspace root; a sandboxing backend fences the mutation by it.
+ * @returns resolves once the entry is gone.
+ * @throws `FS_NOT_FOUND` when nothing is there, `FS_NOT_EMPTY` for a non-empty directory
+ *   without `recursive`, `FS_UNSUPPORTED` when the provider cannot delete entries.
+ */
+remove( target: FsTarget, options: { readonly recursive?: boolean }, signal?: AbortSignal, sandboxPolicy?: SandboxExecutionPolicy, ): Promise<void>
 
 /**
  * Resolve a model/plugin-supplied path into a stable {@link FsTarget}. May perform I/O (a

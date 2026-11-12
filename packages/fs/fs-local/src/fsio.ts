@@ -834,3 +834,24 @@ export function applyLiteralEdit(
 }
 
 export { normalizeLineEndings, restoreLineEndings }
+
+/**
+ * Translate a Node error from a directory-level mutation into the seam vocabulary.
+ * @param error - the rejection from `node:fs/promises`.
+ * @param verb - the operation, for the message.
+ * @param target - the entry the operation touched.
+ * @returns the structured filesystem error.
+ */
+export function mutationError(error: unknown, verb: string, target: { readonly displayPath: string }): FsError {
+  const code = typeof error === 'object' && error !== null && 'code' in error ? error.code : undefined
+  const message = `cannot ${verb} "${target.displayPath}"`
+  if (code === 'ENOENT') return new FsError(`${message}: no such entry or parent`, 'FS_NOT_FOUND', { cause: error })
+  // rmdir reports a non-empty directory as ENOTEMPTY, or EEXIST on some platforms.
+  if (code === 'ENOTEMPTY' || (code === 'EEXIST' && verb === 'delete')) {
+    return new FsError(`${message}: the directory is not empty`, 'FS_NOT_EMPTY', { cause: error })
+  }
+  if (code === 'EEXIST') return new FsError(`${message}: the path already exists`, 'FS_EXISTS', { cause: error })
+  if (code === 'ENOTDIR') return new FsError(`${message}: a parent is not a directory`, 'FS_NOT_DIRECTORY', { cause: error })
+  if (code === 'EACCES' || code === 'EPERM') return new FsError(`${message}: permission denied`, 'FS_PERMISSION_DENIED', { cause: error })
+  return new FsError(`${message}: ${error instanceof Error ? error.message : String(error)}`, 'FS_IO_ERROR', { cause: error })
+}
