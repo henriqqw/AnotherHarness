@@ -42,7 +42,8 @@
     "@anotherharness/ah-tools": "workspace:*",
     "@anotherharness/ah-user-approval": "workspace:*",
     "@anotherharness/cordis": "workspace:~",
-    "@anotherharness/ah-working-directory": "workspace:*"
+    "@anotherharness/ah-working-directory": "workspace:*",
+    "@anotherharness/ah-llm-vision-bridge": "workspace:*"
   },
   "devDependencies": {
     "@anotherharness/ah-agent": "workspace:*",
@@ -65,6 +66,12 @@
     "@anotherharness/ah-session-projection": "workspace:*",
     "@anotherharness/ah-scope": "workspace:*",
     "@anotherharness/ah-ptc-runtime": "workspace:*",
-    "@anotherharness/ah-working-directory": "workspace:*"
+    "@anotherharness/ah-working-directory": "workspace:*",
+    "@anotherharness/ah-llm-vision-bridge": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@anotherharness/ah-llm-vision-bridge": {
+      "optional": true
+    }
   }
 }

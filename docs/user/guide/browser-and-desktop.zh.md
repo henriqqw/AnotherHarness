@@ -11,6 +11,8 @@
 - 支持图片的模型（例如 DeepSeek-V4.1-Flash）直接接收图片本身。
 - 纯文本模型（例如 DeepSeek-V4-Pro）接收由[视觉桥接](../../../packages/llm/llm-vision-bridge/README.zh.md)撰写的描述。随附组合使用 DeepSeek-V4.1-Flash 生成描述；可以将桥接的 `provider` 与 `model` 设为你在 [Models 页面](providers.zh.md)配置的任一支持图片的路由，包括 OpenAI 兼容网关。
 
+Agent（智能体）用 `read_image` 工具自行打开图片文件（例如工作区中的截图）时，规则相同：支持图片的模型接收图片本身，纯文本模型接收视觉桥接的描述。在 Models 页面添加、但未声明图片输入的模型按纯文本模型处理。
+
 要为单个 profile 更换描述模型，在 `$AH_HOME/profiles/<name>/cordis.patch.yml` 中加入以下 patch：
 
 ```yaml

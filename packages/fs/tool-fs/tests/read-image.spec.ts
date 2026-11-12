@@ -7,7 +7,7 @@
  */
 
 import { provideWorkingDirectoryFixture } from '@anotherharness/ah-agent-loop-testkit'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -471,12 +471,56 @@ describe('strict image-modality gate', () => {
     ['a text-only model', 'text-model'],
     ['a model without declared modalities', 'legacy-model'],
     ['a model absent from the catalog', 'unknown-model'],
-  ])('refuses on %s', async (_label, model) => {
+  ])('refuses on %s without a vision bridge', async (_label, model) => {
     await writeFile(join(dir, 'red.png'), PNG_1X1)
     const ctx = await setup()
     const result = await readImage(ctx, { file_path: 'red.png' }, agentOn(model))
     expect(result.isError).toBe(true)
     expect(text(result)).toContain('does not declare image input')
+    expect(text(result)).toContain('ah-llm-vision-bridge')
+  })
+
+  it('describes the image through the vision bridge on a text-only route and offloads the stored image', async () => {
+    await writeFile(join(dir, 'red.png'), PNG_1X1)
+    const ctx = await setup()
+    const describeAsText = vi.fn((_image: ImageAttachmentRef) => Promise.resolve('[Image description by visual/vision-model; you cannot see the image itself]\nA red pixel.'))
+    ctx.provide('visionBridge', { route: { provider: 'visual', model: 'vision-model' }, describeAsText } as never)
+    const result = await readImage(ctx, { file_path: 'red.png' }, agentOn('text-model'))
+    expect(result.isError).toBe(false)
+    expect(describeAsText).toHaveBeenCalledOnce()
+    expect(describeAsText.mock.calls[0]![0]).toMatchObject({ mediaType: 'image/png', width: 1, height: 1 })
+    const blocks = result.content as { type: string; offloaded?: boolean; text?: string }[]
+    expect(blocks.map(block => block.type)).toEqual(['text', 'image', 'text'])
+    expect(blocks[1]!.offloaded).toBe(true)
+    expect(text(result)).toContain('A red pixel.')
+  })
+
+  it('keeps the native image on an image-capable route even when a bridge is mounted', async () => {
+    await writeFile(join(dir, 'red.png'), PNG_1X1)
+    const ctx = await setup()
+    const describeAsText = vi.fn(() => Promise.resolve('unused'))
+    ctx.provide('visionBridge', { route: { provider: 'visual', model: 'vision-model' }, describeAsText } as never)
+    const result = await readImage(ctx, { file_path: 'red.png' }, agentOn('vision-model'))
+    expect(result.isError).toBe(false)
+    expect(describeAsText).not.toHaveBeenCalled()
+    expect((result.content as { type: string; offloaded?: boolean }[]).find(block => block.type === 'image')?.offloaded).toBeUndefined()
+  })
+
+  it.each([
+    [new Error('route offline'), 'route offline'],
+    ['plain failure', 'plain failure'],
+  ])('reports a failed description as a tool error (%s)', async (failure, message) => {
+    await writeFile(join(dir, 'red.png'), PNG_1X1)
+    const ctx = await setup()
+    ctx.provide('visionBridge', {
+      route: { provider: 'visual', model: 'vision-model' },
+      // oxlint-disable-next-line typescript/prefer-promise-reject-errors -- covers a bridge that rejects with a non-Error reason.
+      describeAsText: () => Promise.reject(failure),
+    } as never)
+    const result = await readImage(ctx, { file_path: 'red.png' }, agentOn('text-model'))
+    expect(result.isError).toBe(true)
+    expect(text(result)).toContain('could not describe the image for this text-only route')
+    expect(text(result)).toContain(message)
   })
 
   it('refuses when the route cannot be resolved (no agent, or no header and no options)', async () => {

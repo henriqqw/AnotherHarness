@@ -1126,6 +1126,15 @@ Describes images with the configured image-capable model route.
  * @throws LlmError when the request fails, is aborted, or returns no text.
  */
 async describe(image: ImageAttachmentRef, signal?: AbortSignal): Promise<string>
+
+/**
+ * Describe one stored image as the text a text-only route reads in place of it.
+ * @param image - durable attachment reference readable by the route's adapter.
+ * @param signal - caller cancellation for the model request.
+ * @returns the description prefixed with the route that wrote it.
+ * @throws LlmError when the description fails.
+ */
+async describeAsText(image: ImageAttachmentRef, signal?: AbortSignal): Promise<string>
 ```
 
 Types: [ImageAttachmentRef](attachment.zh.md)

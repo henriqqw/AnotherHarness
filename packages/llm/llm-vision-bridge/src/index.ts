@@ -115,6 +115,17 @@ export class VisionBridge extends Service {
     }
     return text
   }
+
+  /**
+   * Describe one stored image as the text a text-only route reads in place of it.
+   * @param image - durable attachment reference readable by the route's adapter.
+   * @param signal - caller cancellation for the model request.
+   * @returns the description prefixed with the route that wrote it.
+   * @throws LlmError when the description fails.
+   */
+  async describeAsText(image: ImageAttachmentRef, signal?: AbortSignal): Promise<string> {
+    return describedImageText(this.route, await this.describe(image, signal))
+  }
 }
 
 export default VisionBridge

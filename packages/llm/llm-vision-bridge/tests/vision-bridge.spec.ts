@@ -59,6 +59,17 @@ describe('vision bridge', () => {
     }
   })
 
+  it('describes an image as the labelled text a text-only route reads', async () => {
+    const { ctx } = await bridgeWith(textReply('A chart.'), { provider: 'p', model: 'm' })
+    try {
+      expect(await ctx.visionBridge.describeAsText(image)).toBe(
+        '[Image description by p/m; you cannot see the image itself]\nA chart.',
+      )
+    } finally {
+      await ctx.fiber.dispose()
+    }
+  })
+
   it('omits the signal when the caller supplies none and honors configured overrides', async () => {
     const { ctx, calls } = await bridgeWith(textReply('ok'), {
       provider: 'p', model: 'm', instruction: 'Only transcribe text.', maxTokens: 64,

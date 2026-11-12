@@ -18,8 +18,8 @@
   en: c7da73c9e2691ea1
   zh: 0eba82c1c3553ab9
 /anotherharness-ah-tool-fs/use-this-package/minimal-composition:
-  en: eb21d89a3ecbd2d4
-  zh: f05ccbb1e7515f32
+  en: aa9a640a8598d39e
+  zh: e23be7ff53368e6d
 /anotherharness-ah-tool-fs/use-this-package/the-tools:
   en: 29a1d47e9677f2a3
   zh: 0ae3c794cc7c54db
@@ -30,8 +30,8 @@
   en: 53d4ac2db089ef39
   zh: 214ea051ed56f500
 /anotherharness-ah-tool-fs/use-this-package/failures-and-recovery:
-  en: 962b09e21305a04b
-  zh: 382d2b8cce217569
+  en: ea3f625ded165568
+  zh: 4572add0e3bb9228
 /anotherharness-ah-tool-fs/understand-the-implementation:
   en: e30f7038c28e93f8
   zh: a3868dbd90367b13
@@ -78,8 +78,8 @@
   en: 3039bc5e7a796b21
   zh: 6b7a9eaf69c9ea53
 /anotherharness-ah-tool-fs/model-experience/tool-schemas/what-the-model-sees:
-  en: 0c9a2920d5508c7a
-  zh: e18f1bc103247902
+  en: f0a3d96c37347255
+  zh: 0191fce0cbf24dee
 /anotherharness-ah-tool-fs/model-experience/tool-schemas/token-effect:
   en: 68517f7d65ef7e9d
   zh: 544a4b81e8ea16c0
@@ -102,8 +102,8 @@
   en: 9dac44e6d0b9d8de
   zh: 7bc4dc1c5df39eaf
 /anotherharness-ah-tool-fs/model-experience/image-read-result/what-the-model-sees:
-  en: 9b5070a15f565c20
-  zh: 96043df8c0ae7f76
+  en: 3d5f8ae35d856d81
+  zh: dc7e930a36f6afbb
 /anotherharness-ah-tool-fs/model-experience/image-read-result/token-effect:
   en: 68bd5255f1c9ca48
   zh: 0474213531c1aae3
@@ -126,8 +126,8 @@
   en: 2d4f2c8605eccab3
   zh: 67f1f0218f73c6bf
 /anotherharness-ah-tool-fs/model-experience/tool-errors/what-the-model-sees:
-  en: 4e8fac7bac8ced61
-  zh: 7ba921dbcddc9f97
+  en: 9b032e80953a7f98
+  zh: 442bd4b68d0dbc01
 /anotherharness-ah-tool-fs/model-experience/tool-errors/token-effect:
   en: 681cadd5be7b8ac1
   zh: 65e483f62fb819d9

@@ -9742,6 +9742,9 @@ importers:
       '@anotherharness/ah-llm-deepseek-api-key':
         specifier: workspace:*
         version: link:../../llm/llm-deepseek-api-key
+      '@anotherharness/ah-llm-vision-bridge':
+        specifier: workspace:*
+        version: link:../../llm/llm-vision-bridge
       '@anotherharness/ah-ptc-runtime':
         specifier: workspace:*
         version: link:../../ptc-runtime/ptc-runtime

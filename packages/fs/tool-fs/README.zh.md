@@ -39,7 +39,7 @@ kind: "package-reference"
 - name: '@anotherharness/ah-tool-fs'
 ```
 
-策略插件是可选的：省略时，工具直接使用裸提供方（无条件写入、覆盖与编辑，无已观察状态）。加载这些工具的部署也应加载该插件，从而提供写入/编辑前读取行为。`read_image` 只在持久 `ctx.attachments` 服务已挂载时注册；执行时还拒绝确切模型未声明图像输入的路由，因此文本路由的持久历史不会出现图像块。
+策略插件是可选的：省略时，工具直接使用裸提供方（无条件写入、覆盖与编辑，无已观察状态）。加载这些工具的部署也应加载该插件，从而提供写入/编辑前读取行为。`read_image` 只在持久 `ctx.attachments` 服务已挂载时注册；对确切模型未声明图像输入的路由，执行时用可选 `ctx.visionBridge` 服务生成的图像描述代替图像本身，存储的图像保留为已卸载块；未挂载桥接时拒绝，因此文本路由永远不会收到图像块。
 
 ### 工具
 
@@ -73,7 +73,7 @@ kind: "package-reference"
 
 ### 失败与恢复
 
-失败被规范化为 `Error: <message>`，并为调用方保留结构化错误码。稳定消息包括 `file_path must be a non-empty string`、`limit must be less than or equal to <max>`、`cannot read "<path>": not found`、`cannot read "<path>": not a regular file`，以及图像路由拒绝 `cannot read "<path>" as an image: model "<model>" does not declare image input; switch to an image-capable model to read images`。无论拒绝来自策略还是提供方，`FS_NOT_OBSERVED` 都规范化为 `cannot modify "<path>": file has not been read — read the file, then retry`；`FS_STALE_VERSION` 保留提供方原因并追加 `— re-read the file, then retry`。该次重新读取确认缺失后，`edit` 报告 `FS_NOT_FOUND` 而不会重复陈旧恢复指令，`write` 则使用防护创建。
+失败被规范化为 `Error: <message>`，并为调用方保留结构化错误码。稳定消息包括 `file_path must be a non-empty string`、`limit must be less than or equal to <max>`、`cannot read "<path>": not found`、`cannot read "<path>": not a regular file`，以及图像路由拒绝 `cannot read "<path>" as an image: model "<model>" does not declare image input; switch to an image-capable model, or mount @anotherharness/ah-llm-vision-bridge to read images through descriptions`。无论拒绝来自策略还是提供方，`FS_NOT_OBSERVED` 都规范化为 `cannot modify "<path>": file has not been read — read the file, then retry`；`FS_STALE_VERSION` 保留提供方原因并追加 `— re-read the file, then retry`。该次重新读取确认缺失后，`edit` 报告 `FS_NOT_FOUND` 而不会重复陈旧恢复指令，`write` 则使用防护创建。
 
 -----
 
@@ -168,7 +168,7 @@ Read a file before editing it (the default fs-observation-policy requires it), u
 
 #### 模型看到的内容
 
-模型会看到已生成的 [`read`、`read_image`、`write` 和 `edit` schema](../../../docs/tool-catalog.zh.md#anotherharnessah-tool-fs)，参数使用 snake_case。图片工具只在持久附件存储已挂载时出现；schema 本身与路由无关，严格门禁在执行时拒绝。作用域工具限制可以为某个 agent 移除任一定义。
+模型会看到已生成的 [`read`、`read_image`、`write` 和 `edit` schema](../../../docs/tool-catalog.zh.md#anotherharnessah-tool-fs)，参数使用 snake_case。图片工具只在持久附件存储已挂载时出现；schema 本身与路由无关，门禁在执行时决定发送图像还是描述。作用域工具限制可以为某个 agent 移除任一定义。
 
 #### Token 影响
 
@@ -196,7 +196,7 @@ Read a file before editing it (the default fs-observation-policy requires it), u
 
 #### 模型看到的内容
 
-成功的 `read_image` 返回 `<path><resolvedPath></path>`、`<type>image</type>` 和写明媒体类型、规范化尺寸与字节数的 `<content>` 信封，随后是作为原生图像块的图像本身。结果会随持久引用写入会话日志，然后才进入下一次模型请求。
+成功的 `read_image` 返回 `<path><resolvedPath></path>`、`<type>image</type>` 和写明媒体类型、规范化尺寸与字节数的 `<content>` 信封，随后是作为原生图像块的图像本身。在挂载了视觉桥接的纯文本路由上，图像块为已卸载状态，其后附上桥接写出的带标注描述。结果会随持久引用写入会话日志，然后才进入下一次模型请求。
 
 #### Token 影响
 
@@ -224,7 +224,7 @@ Read a file before editing it (the default fs-observation-policy requires it), u
 
 #### 模型看到的内容
 
-失败会规范化为 `Error: <message>`。本包稳定的校验和读取消息是 `file_path must be a non-empty string`、`limit must be less than or equal to <max>`、`old_string must be a non-empty string`、`old_string and new_string must differ`、`cannot read "<path>": not found`、`cannot read "<path>": not a regular file`、`offset <offset> is out of range for "<path>" (<total> lines)`、`cannot read "<path>": the <ext> extension does not declare a supported image format; read_image accepts PNG/JPEG/WebP/GIF files, including extension-less files in those formats`、`cannot read "<path>": the file content is not a supported image format; read_image accepts PNG/JPEG/WebP/GIF`、`cannot read "<path>": the bytes do not decode as a supported PNG/JPEG/WebP/GIF image; the file may be truncated or corrupt`、`cannot read "<path>" as an image: model "<model>" does not declare image input; switch to an image-capable model to read images`，以及类型不匹配的修复消息 `cannot read "<path>": the <ext> extension declares <type>, but the bytes use a different image format; rename the file to match its actual format if it is PNG/JPEG/WebP/GIF, or convert it to one of those formats`（无扩展名路径的不匹配报告 `cannot read "<path>": the file signature claims <type>, but the bytes decode as a different image format; the file may be corrupt`）。16-bit 转换失败会报告 `cannot read "<path>": the 16-bit PNG could not be converted to the normalized 8-bit sRGB form; convert it to an 8-bit PNG/JPEG/WebP and retry`。提供方和策略模板在各自包的 README 中逐字列出。模型侧错误包装把所有 `FS_NOT_OBSERVED` 来源规范化为 `cannot modify "<path>": file has not been read — read the file, then retry`；`FS_STALE_VERSION` 保留提供方原因并追加 `— re-read the file, then retry`。两者都保留结构化错误码和原始原因。该次重新读取确认缺失后，`edit` 会报告 `FS_NOT_FOUND`，而不会重复陈旧恢复指令；`write` 则使用带防护的创建。
+失败会规范化为 `Error: <message>`。本包稳定的校验和读取消息是 `file_path must be a non-empty string`、`limit must be less than or equal to <max>`、`old_string must be a non-empty string`、`old_string and new_string must differ`、`cannot read "<path>": not found`、`cannot read "<path>": not a regular file`、`offset <offset> is out of range for "<path>" (<total> lines)`、`cannot read "<path>": the <ext> extension does not declare a supported image format; read_image accepts PNG/JPEG/WebP/GIF files, including extension-less files in those formats`、`cannot read "<path>": the file content is not a supported image format; read_image accepts PNG/JPEG/WebP/GIF`、`cannot read "<path>": the bytes do not decode as a supported PNG/JPEG/WebP/GIF image; the file may be truncated or corrupt`、`cannot read "<path>" as an image: model "<model>" does not declare image input; switch to an image-capable model, or mount @anotherharness/ah-llm-vision-bridge to read images through descriptions`，以及类型不匹配的修复消息 `cannot read "<path>": the <ext> extension declares <type>, but the bytes use a different image format; rename the file to match its actual format if it is PNG/JPEG/WebP/GIF, or convert it to one of those formats`（无扩展名路径的不匹配报告 `cannot read "<path>": the file signature claims <type>, but the bytes decode as a different image format; the file may be corrupt`）。16-bit 转换失败会报告 `cannot read "<path>": the 16-bit PNG could not be converted to the normalized 8-bit sRGB form; convert it to an 8-bit PNG/JPEG/WebP and retry`。提供方和策略模板在各自包的 README 中逐字列出。模型侧错误包装把所有 `FS_NOT_OBSERVED` 来源规范化为 `cannot modify "<path>": file has not been read — read the file, then retry`；`FS_STALE_VERSION` 保留提供方原因并追加 `— re-read the file, then retry`。两者都保留结构化错误码和原始原因。该次重新读取确认缺失后，`edit` 会报告 `FS_NOT_FOUND`，而不会重复陈旧恢复指令；`write` 则使用带防护的创建。
 
 #### Token 影响
 

@@ -11,6 +11,8 @@ Attach PNG, JPG, WebP, or GIF images in the composer. AH stores them on your mac
 - An image-capable model, such as DeepSeek-V4.1-Flash, receives the image itself.
 - A text-only model, such as DeepSeek-V4-Pro, receives a description written by the [vision bridge](../../../packages/llm/llm-vision-bridge/README.md). The shipped composition uses DeepSeek-V4.1-Flash for descriptions; set the bridge's `provider` and `model` to any image-capable route you configured on the [Models page](providers.md), including OpenAI-compatible gateways.
 
+The same rule applies when the agent opens an image file itself with the `read_image` tool, for example a screenshot in the workspace: an image-capable model receives the image, and a text-only model receives the vision bridge's description. A model added on the Models page without an image input declaration counts as text-only.
+
 To change the description model for one profile, add this patch to `$AH_HOME/profiles/<name>/cordis.patch.yml`:
 
 ```yaml

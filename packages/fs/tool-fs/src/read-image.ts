@@ -6,8 +6,10 @@
  *
  * The route gate is deliberately stricter than the host upload preflight. An
  * image-reading tool is useful only when the exact calling route can inspect
- * its result, so unknown capability refuses instead of relying on an adapter
- * failure after filesystem and attachment work.
+ * its result. A route that declares image input receives the image itself; any
+ * other route receives a description from the mounted vision bridge, with the
+ * stored image offloaded; without a bridge the read refuses before any
+ * filesystem or attachment work.
  * @module @anotherharness/ah-tool-fs/src/read-image
  */
 
@@ -16,6 +18,7 @@ import type { Context } from '@anotherharness/cordis'
 import { AttachmentError, AttachmentId } from '@anotherharness/ah-attachment'
 import type { AttachmentStore, ImageAttachmentRef, ImageMediaType } from '@anotherharness/ah-attachment'
 import type { ContentBlock } from '@anotherharness/ah-llm'
+import type { VisionBridge } from '@anotherharness/ah-llm-vision-bridge'
 import { defineTool } from '@anotherharness/ah-tools'
 import type { GenericCallView, ToolExecution } from '@anotherharness/ah-tools'
 import type {} from '@anotherharness/ah-fs'
@@ -70,6 +73,7 @@ const IMAGE_VALUE_SCHEMA = {
     width: { type: 'integer', required: true },
     height: { type: 'integer', required: true },
     name: { type: 'string' },
+    description: { type: 'string' },
     originalDimensions: {
       type: 'object',
       additionalProperties: false,
@@ -92,6 +96,8 @@ export interface ImageReadValue {
     width: number
     height: number
     name?: string
+    /** Vision-bridge description sent in place of the image to a text-only route. */
+    description?: string
     /** Orientation-applied file dimensions before normalization; present only when storage reduced it. */
     originalDimensions?: {
       width: number
@@ -110,14 +116,19 @@ export function imageMediaTypeForPath(filePath: string): ImageMediaType | undefi
 }
 
 /**
- * Enforce the strict image-capability gate for the calling route. Resolves the
- * session's latest routed provider/model (request header config, then agent
- * options) and requires the exact resolved route to declare `image` input explicitly.
- * @param ctx - the plugin context used to resolve the optional `llm` service.
+ * Decide how the calling route receives a read image. Resolves the session's
+ * latest routed provider/model (request header config, then agent options); a
+ * route that declares `image` input explicitly receives the image itself, and
+ * any other route receives a description from the mounted vision bridge.
+ * @param ctx - the plugin context used to resolve the optional `llm` and `visionBridge` services.
  * @param exec - the tool-execution context supplying the calling agent.
  * @param requestedPath - the raw, not-yet-resolved path rendered in refusal messages.
+ * @returns undefined for an image-capable route, or the bridge that describes the image.
+ * @throws Error when the route cannot be resolved, or it is text-only and no bridge is mounted.
  */
-export async function assertImageCapableRoute(ctx: Context, exec: ToolExecution, requestedPath: string): Promise<void> {
+export async function resolveImageDelivery(
+  ctx: Context, exec: ToolExecution, requestedPath: string,
+): Promise<VisionBridge | undefined> {
   const routed = exec.agent?.session.requestHeader()?.config
   const provider = routed?.provider ?? exec.agent?.options.provider
   const model = routed?.model ?? exec.agent?.options.model
@@ -126,9 +137,10 @@ export async function assertImageCapableRoute(ctx: Context, exec: ToolExecution,
     throw new Error(`cannot read "${requestedPath}" as an image: the current model route could not be resolved`)
   }
   const active = await llm.resolveModelInfo(provider, model, exec.signal)
-  if (active.inputModalities === undefined || !active.inputModalities.includes('image')) {
-    throw new Error(`cannot read "${requestedPath}" as an image: model "${model}" does not declare image input; switch to an image-capable model to read images`)
-  }
+  if (active.inputModalities?.includes('image') === true) return undefined
+  const bridge = ctx.get('visionBridge')
+  if (bridge !== undefined) return bridge
+  throw new Error(`cannot read "${requestedPath}" as an image: model "${model}" does not declare image input; switch to an image-capable model, or mount @anotherharness/ah-llm-vision-bridge to read images through descriptions`)
 }
 
 /** Refuse a media type outside the deployment's accepted set, naming the offending path. */
@@ -191,10 +203,12 @@ ${image.mediaType} image, ${image.width}x${image.height} px, ${image.bytes} byte
  * @returns the two content blocks used by native and nested dispatches.
  */
 function imageReadContent(value: ImageReadValue): ContentBlock[] {
-  return [
-    { type: 'text', text: formatImageReadOutput(value.path, value.image) },
-    { type: 'image', attachment: imageRefFromValue(value.image) },
-  ]
+  const envelope: ContentBlock = { type: 'text', text: formatImageReadOutput(value.path, value.image) }
+  const attachment = imageRefFromValue(value.image)
+  if (value.image.description === undefined) return [envelope, { type: 'image', attachment }]
+  // A text-only route reads the description; the stored image stays in
+  // history for the user and for a later image-capable route.
+  return [envelope, { type: 'image', attachment, offloaded: true }, { type: 'text', text: value.image.description }]
 }
 
 /**
@@ -254,7 +268,7 @@ export function applyReadImageTool(ctx: Context): void {
         throw new Error(`cannot read "${args.file_path}" as an image: no attachment service is mounted`)
       }
       if (declared !== undefined) assertDeploymentAccepts(attachments, declared, args.file_path)
-      await assertImageCapableRoute(ctx, exec, args.file_path)
+      const bridge = await resolveImageDelivery(ctx, exec, args.file_path)
 
       const { target, info } = await resolveRegularReadTarget(ctx, exec, args.file_path)
 
@@ -319,6 +333,17 @@ export function applyReadImageTool(ctx: Context): void {
           { cause: error },
         )
       }
+      let description: string | undefined
+      if (bridge !== undefined) {
+        try {
+          description = await bridge.describeAsText(ref, exec.signal)
+        } catch (error: unknown) {
+          throw new Error(
+            `cannot read "${target.displayPath}": the model "${bridge.route.model}" could not describe the image for this text-only route: ${error instanceof Error ? error.message : String(error)}`,
+            { cause: error },
+          )
+        }
+      }
       ctx.emit('fs/observed', target, { kind: 'present', version: info.version }, exec)
       const value: ImageReadValue = {
         path: ctx.fs.processPath(target),
@@ -332,6 +357,7 @@ export function applyReadImageTool(ctx: Context): void {
           ...ref.originalDimensions === undefined ? {} : {
             originalDimensions: { ...ref.originalDimensions },
           },
+          ...description === undefined ? {} : { description },
         },
       }
       return value
