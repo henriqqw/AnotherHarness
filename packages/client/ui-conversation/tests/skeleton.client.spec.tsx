@@ -1,4 +1,6 @@
 // @vitest-environment jsdom
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import type { GlobalStandardProps, PropsRuntime } from '@anotherharness/ah-client-ui-slots'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { createContext, useContext, type ReactNode } from 'react'
@@ -381,10 +383,10 @@ function mount(
 }
 
 describe('Hero chrome', () => {
-  it('renders the English preview badge through the hero locale seat', () => {
+  it('AC-3 renders the jellyfish mark slot, tagline and preview badge through the hero locale seat', () => {
     const renderSlot = vi.fn<HeroShellProps['renderSlot']>(() => null)
     const view = render(<HeroShell t={makeTranslate(en, commonEn)} renderSlot={renderSlot} />)
-    expect(view.getByText('Into the Unknown')).toBeTruthy()
+    expect(view.getByText('Modular Intelligence for AI Agents')).toBeTruthy()
     expect(view.getByText('Preview')).toBeTruthy()
     expect(renderSlot).toHaveBeenCalledOnce()
     expect(renderSlot.mock.calls[0]?.[0]).toBe('conversation.hero.brand.mark')
@@ -548,7 +550,7 @@ describe('ConversationRoot resident composer', () => {
     expect(b.view.queryByRole('tablist')).toBeNull()
     expect(b.slotCalls).not.toContain('conversation.session.header.utilities')
     expect(b.slotCalls).not.toContain('conversation.session.header.actions')
-    expect(b.view.getByText('探索未至之境')).toBeTruthy()
+    expect(b.view.getByText('为 AI 智能体打造的模块化智能')).toBeTruthy()
     expect(b.view.getByText('预览版')).toBeTruthy()
     expect(b.view.queryByTestId('view-chat')).toBeNull()
     // The same machine-backed textarea is live in the hero, and the
@@ -582,7 +584,7 @@ describe('ConversationRoot resident composer', () => {
     expect(conversationPhase(failed, EMPTY_CONVERSATION_SNAPSHOT)).toBe('engaging')
     const b = mount(failed, undefined, undefined, { summaryBlank: true })
     expect(b.view.container.querySelector('[data-phase]')?.getAttribute('data-phase')).toBe('active')
-    expect(b.view.queryByText('探索未至之境')).toBeNull()
+    expect(b.view.queryByText('为 AI 智能体打造的模块化智能')).toBeNull()
   })
 
   it('settling phase: a summary that does not prove the session blank hides the composer while it opens', () => {
@@ -614,7 +616,7 @@ describe('ConversationRoot resident composer', () => {
     // blank the column for the history round-trip.
     const root = b.view.container.querySelector('[data-phase]')
     expect(root?.getAttribute('data-phase')).toBe('hero')
-    expect(b.view.getByText('探索未至之境')).toBeTruthy()
+    expect(b.view.getByText('为 AI 智能体打造的模块化智能')).toBeTruthy()
     expect(b.view.getByRole('textbox')).toBeTruthy()
   })
 
@@ -840,5 +842,15 @@ describe('ConversationRoot resident composer', () => {
   it('hero phase renders no width handles (no transcript to size)', () => {
     const b = mount(sessionSnapshotOf({ blank: true }))
     expect(b.view.container.querySelector('[data-width-handle]')).toBeNull()
+  })
+})
+
+describe('Hero mark motion', () => {
+  it('AC-3 bobs the hero mark only on hover when motion is allowed', () => {
+    const stylesheet = readFileSync(resolve(import.meta.dirname, '../src/client/skeleton/HeroShell.module.css'), 'utf8')
+    const motion = stylesheet.slice(stylesheet.indexOf('@media (hover: hover) and (prefers-reduced-motion: no-preference)'))
+    expect(motion).toContain('.fishHitbox:hover .fish')
+    expect(motion).toContain('animation: hero-mark-bob')
+    expect(stylesheet.slice(0, stylesheet.indexOf('@media (hover: hover)'))).not.toMatch(/animation:/)
   })
 })

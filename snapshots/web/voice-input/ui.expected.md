@@ -1,6 +1,6 @@
 - banner:
   - button "Open right sidebar"
-- text: Into the Unknown Preview
+- text: Modular Intelligence for AI Agents Preview
 - button "Choose workspace": workspace
 - button "Standard mode"
 - textbox "Describe what you want to build, / commands, @ files or sessions":

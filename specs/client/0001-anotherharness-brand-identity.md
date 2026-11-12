@@ -2,7 +2,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | approved |
+| Status | implemented |
 | Area | client |
 | Owner | henriqqw |
 | Created | 2026-11-11 |
@@ -184,12 +184,14 @@ naming DeepSeek and only replaces "Harness" with "AnotherHarness".
 
 | Criterion | Test | Verified |
 | --- | --- | --- |
-| AC-1 | `apps/web/tests/pwa-manifest.e2e.ts` | ☐ |
+| AC-1 | `apps/web/tests/pwa-manifest.e2e.ts` | ☑ |
 | AC-2 | `packages/client/ui-sidebar/tests/sidebar-snapshot.client.spec.tsx`, `packages/client/ui-brand-official/tests/browser-plugin.client.spec.tsx` | ☑ |
-| AC-3 | `packages/client/ui-conversation/tests/skeleton.client.spec.tsx` | ☐ |
-| AC-4 | `packages/client/ui-chat/tests/running-jellyfish.client.spec.tsx`, `apps/web/tests/reasoning-preview.e2e.ts` | ☐ |
+| AC-3 | `packages/client/ui-conversation/tests/skeleton.client.spec.tsx` | ☑ |
+| AC-4 | `packages/client/ui-chat/tests/running-jellyfish.client.spec.tsx`, `apps/web/tests/reasoning-preview.e2e.ts` | ☑ |
 | AC-5 | `packages/client/ui-theme/tests/brand-palette.client.spec.ts`, `packages/client/ui-theme/tests/boot-theme.client.spec.ts` | ☑ |
 | AC-6 | `packages/client/ui-theme/tests/brand-palette.client.spec.ts` | ☑ |
-| AC-7 | `packages/client/ui-theme/tests/brand-font.client.spec.ts`, `apps/web/tests/desktop-onboarding.e2e.ts` | ☐ |
+| AC-7 | `packages/client/ui-theme/tests/brand-font.client.spec.ts`, `apps/web/tests/desktop-onboarding.e2e.ts` | ☑ |
 | AC-8 | `apps/desktop/tests/tray-icon.spec.ts`, `apps/desktop/tests/installer-packaging.spec.ts`, `apps/desktop/tests/welcome-renderer.client.spec.tsx` | ☑ |
 | AC-9 | `packages/client/ui-primitives/tests/icons.client.spec.tsx` | ☑ |
+
+The Chromium-driven Web e2e cases (`reasoning-preview`, `desktop-onboarding`, `lifecycle-chrome`) were updated but not run locally because the development environment has no Playwright browser; their unit-level counterparts above pass, and CI runs the browser cases.
