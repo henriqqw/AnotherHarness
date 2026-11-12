@@ -1,0 +1,41 @@
+- id: agent-default-model
+  name: '@anotherharness/ah-agent-default-model'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-pro
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js ahHomePath('sessions')
+    compression: !!js 'process.env.AH_SNAPSHOT === undefined ? ''zstd'' : ''none'''
+
+- id: agent-instructions
+  name: '@anotherharness/ah-agent-instructions'
+  config:
+    maxBytes: 65536
+
+- id: tools
+  name: '@anotherharness/ah-tools'
+  config:
+    mode: native
+
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+  config:
+    personaPrefix: |
+      You are a coding assistant powered by the {{model}} model.
+
+      Verify your work by running the code or tests. Keep answers brief and factual.
+
+- insert:
+    - id: cordis-host-runner
+      name: '@anotherharness/ah-cordis-host-runner'
+      config:
+        clientInspectTimeoutMs: 100
+    - id: cordis-inspect-providers
+      name: '@anotherharness/ah-tool-cordis/host'
+    - id: tool-cordis
+      name: '@anotherharness/ah-tool-cordis'
+    - id: client-inspect-liveness-fixture
+      name: ./client-fixture.mjs

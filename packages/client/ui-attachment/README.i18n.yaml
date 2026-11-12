@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-attachment/README.md
+/:
+  en: 414cbe20f39f7a82
+  zh: f56ebf03129a29b8
+/anotherharness-ah-client-ui-attachment:
+  en: f5dbc511638a6e28
+  zh: e1ab38277e7e178a
+/anotherharness-ah-client-ui-attachment/summary:
+  en: f36aa7a85597dd66
+  zh: f7e87849791fe89a
+/anotherharness-ah-client-ui-attachment/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-attachment/use-this-package:
+  en: 5bb771efca7a3029
+  zh: 7e0ba6635e64d9e1
+/anotherharness-ah-client-ui-attachment/use-this-package/draft-attachments:
+  en: a77c8ec48e219aec
+  zh: 756d4fe881403006
+/anotherharness-ah-client-ui-attachment/use-this-package/message-images-and-the-lightbox:
+  en: 8b3d7729152d8060
+  zh: 815f932ccc9653f5
+/anotherharness-ah-client-ui-attachment/use-this-package/drop-overlay:
+  en: 836a62c8f73366ac
+  zh: 35da7836eaf68a67
+/anotherharness-ah-client-ui-attachment/understand-the-implementation:
+  en: 415bd2b09bb84b6b
+  zh: 2e49a39fb3957b4f
+/anotherharness-ah-client-ui-attachment/further-exploration:
+  en: 407074b89cbd4196
+  zh: 8f08407c3b201021
+/anotherharness-ah-client-ui-attachment/model-experience:
+  en: 25566605d7b38667
+  zh: 927d3ea272893296
+/anotherharness-ah-client-ui-attachment/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-attachment/known-limitations-and-deferred-work:
+  en: 9a16cb4f174464cf
+  zh: 3de4b8288a74c594
+/anotherharness-ah-client-ui-attachment/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-08-08-semantic-composer-chain-phases.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/architecture/2026-08-08-semantic-composer-chain-phases.md
+/agent-note-semantic-phases-for-composer-chain-election:
+  en: 1c8f84bd8f648295
+  zh: 63db7ea72f1ba6ab
+/agent-note-semantic-phases-for-composer-chain-election/problem:
+  en: 45193c3a6f3d29bf
+  zh: 7f508649dbe65db5
+/agent-note-semantic-phases-for-composer-chain-election/proposal:
+  en: 70b5d8c0e6f479af
+  zh: b5d4624217172fbf
+/agent-note-semantic-phases-for-composer-chain-election/alternatives-considered:
+  en: 966a5082d8c2fe35
+  zh: 6a384edcdec8495e
+/agent-note-semantic-phases-for-composer-chain-election/acceptance-criteria:
+  en: 7ecfc42bcf0be41a
+  zh: 4efae40db6e6768b
+/agent-note-semantic-phases-for-composer-chain-election/risks:
+  en: 06969296bb3bd8d6
+  zh: f90e5cc35d52c53a

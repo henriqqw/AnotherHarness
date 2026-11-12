@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/util/lazy-require/README.md
+/:
+  en: e5a2fddbf7e87185
+  zh: 6a416161c9fb4a42
+/anotherharness-ah-lazy-require:
+  en: 7200a7810d97dd19
+  zh: 85aca12f8f4209d8
+/anotherharness-ah-lazy-require/summary:
+  en: ec6ff11712d6e046
+  zh: 5bcba236fdddce21
+/anotherharness-ah-lazy-require/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-lazy-require/use-this-package:
+  en: fcc361ec6f3eedb6
+  zh: be2fee303fcdba1a
+/anotherharness-ah-lazy-require/understand-the-implementation:
+  en: 4344e07bfc2f4ea7
+  zh: aa9127a1a2f199d8
+/anotherharness-ah-lazy-require/understand-the-implementation/source-map:
+  en: 483265845e364e38
+  zh: bd45f2adbd18f020
+/anotherharness-ah-lazy-require/further-exploration:
+  en: db416dca7c11ba2c
+  zh: d73ddcd052365ce5
+/anotherharness-ah-lazy-require/model-experience:
+  en: 2e5c9a1971d91c2e
+  zh: f3618c564abc7f1c
+/anotherharness-ah-lazy-require/model-experience/kv-cache-effect:
+  en: 4f0eadf94828e66e
+  zh: 4f8a6ec170ebbfb6
+/anotherharness-ah-lazy-require/known-limitations-and-deferred-work:
+  en: 2a27f7f398a68bf4
+  zh: bea423499191a7aa
+/anotherharness-ah-lazy-require/known-limitations-and-deferred-work/dev-note:
+  en: 0a1253c6f7b5e8b9
+  zh: 9f56528562c7c914

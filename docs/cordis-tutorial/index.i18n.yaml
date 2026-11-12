@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for index.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/cordis-tutorial/index.md
+/cordis-tutorial:
+  en: 7f5b4229f269c776
+  zh: 0185cd7deccb3531
+/cordis-tutorial/setup:
+  en: b88294c900cc5824
+  zh: 96b6f16459f9dfcf
+/cordis-tutorial/chapters:
+  en: 13380472fd64f4c1
+  zh: 5c43161dd2b2bef0
+/cordis-tutorial/typescript-notes:
+  en: 0e5f733439e39898
+  zh: b806acab64675186

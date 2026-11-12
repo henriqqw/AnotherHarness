@@ -1,0 +1,82 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/subagent/subagent-fork-in-process/README.md
+/:
+  en: a4a75d423f70c4de
+  zh: a60816274b877a80
+/anotherharness-ah-subagent-fork-in-process:
+  en: c2778f984d9ee2fe
+  zh: 86a2d7585750a4fc
+/anotherharness-ah-subagent-fork-in-process/summary:
+  en: 1a8c903150b2019f
+  zh: 798b690da05cdf1b
+/anotherharness-ah-subagent-fork-in-process/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-subagent-fork-in-process/use-this-package:
+  en: 66560c047b32e767
+  zh: 071add5ec1060e79
+/anotherharness-ah-subagent-fork-in-process/use-this-package/when-to-choose-it:
+  en: 05090df7cc302c6a
+  zh: bd988019ba062e0a
+/anotherharness-ah-subagent-fork-in-process/use-this-package/seed-boundary:
+  en: f4dfd1ce652f019b
+  zh: 9bb75239491f07cc
+/anotherharness-ah-subagent-fork-in-process/use-this-package/minimal-configuration:
+  en: 85459f7b3d738017
+  zh: 54bc10230a72d115
+/anotherharness-ah-subagent-fork-in-process/use-this-package/what-a-fork-delegation-does:
+  en: 461063deda821a1b
+  zh: 18d2d41d64884f22
+/anotherharness-ah-subagent-fork-in-process/understand-the-implementation:
+  en: 6a0fe4b9cc780aaa
+  zh: 50cd69ceb8296827
+/anotherharness-ah-subagent-fork-in-process/understand-the-implementation/design-concept:
+  en: 49c8725fee5330ed
+  zh: 9050680f2011820a
+/anotherharness-ah-subagent-fork-in-process/understand-the-implementation/source-map:
+  en: f1f45255fd9f71c1
+  zh: 9a3f016b8fe9754a
+/anotherharness-ah-subagent-fork-in-process/understand-the-implementation/run-flow:
+  en: ef063b5c5542e129
+  zh: ba564c6b92453b44
+/anotherharness-ah-subagent-fork-in-process/understand-the-implementation/lifecycle-binding:
+  en: 8dad0155ed1b32d2
+  zh: f4d82d5ede03c4d7
+/anotherharness-ah-subagent-fork-in-process/further-exploration:
+  en: fe194e840f31cdbb
+  zh: 32632d7fcdf5010b
+/anotherharness-ah-subagent-fork-in-process/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-subagent-fork-in-process/model-experience/child-agent-history-and-envelope:
+  en: 91a5bd22001586e9
+  zh: 456e5bf20881a70d
+/anotherharness-ah-subagent-fork-in-process/model-experience/child-agent-history-and-envelope/what-the-model-sees:
+  en: fe88f3e65bb01009
+  zh: 64e05acfe80e81f3
+/anotherharness-ah-subagent-fork-in-process/model-experience/child-agent-history-and-envelope/token-effect:
+  en: db9ae2edb5ee28ce
+  zh: 5a342ffa3e7a7b40
+/anotherharness-ah-subagent-fork-in-process/model-experience/child-agent-history-and-envelope/kv-cache-effect:
+  en: 372cbd10a5174c39
+  zh: 7183b41c7a8a3d1f
+/anotherharness-ah-subagent-fork-in-process/model-experience/parent-tool-result-indirectly:
+  en: 75d061c2151624a7
+  zh: 71e58e020b60ff90
+/anotherharness-ah-subagent-fork-in-process/model-experience/parent-tool-result-indirectly/what-the-model-sees:
+  en: 67aeebafb8ce9616
+  zh: af46c1bde66b114b
+/anotherharness-ah-subagent-fork-in-process/model-experience/parent-tool-result-indirectly/token-effect:
+  en: 8c81bab3c5d6a38a
+  zh: 44c798432a4bfdfb
+/anotherharness-ah-subagent-fork-in-process/model-experience/parent-tool-result-indirectly/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 3d6bc05b9eadfbc2
+/anotherharness-ah-subagent-fork-in-process/known-limitations-and-deferred-work:
+  en: 71eb25e8bcf8f0d7
+  zh: c6a92299e0622e55
+/anotherharness-ah-subagent-fork-in-process/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

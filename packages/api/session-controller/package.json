@@ -1,0 +1,168 @@
+{
+  "name": "@anotherharness/ah-api-session-controller",
+  "description": "Session Remote commands, cold reads, and live control transport",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/api/session-controller"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./remote-events": {
+      "types": "./lib/types/remote-events.d.ts",
+      "default": "./lib/types/remote-events.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./typert": {
+      "types": "./lib/typert.host.d.ts",
+      "default": "./lib/typert.host.js"
+    },
+    "./remote": {
+      "types": "./lib/typert.remote-client.d.ts",
+      "default": "./lib/typert.remote-client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "ah": {
+    "client": {
+      "external": [
+        "@anotherharness/ah-api-gateway/client"
+      ],
+      "inject": [
+        "@anotherharness/ah-api-gateway",
+        "@anotherharness/ah-client-file-upload"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts",
+    "lib/typert.host.js",
+    "lib/typert.host.d.ts",
+    "lib/typert.remote-client.js",
+    "lib/typert.remote-client.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-deque": "workspace:*",
+    "@anotherharness/schemastery": "workspace:~",
+    "mime-types": "^3.0.2",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-default-model": "workspace:*",
+    "@anotherharness/ah-agent-preset-registry": "workspace:*",
+    "@anotherharness/ah-api-gateway": "workspace:*",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-file-upload": "workspace:*",
+    "@anotherharness/ah-commands": "workspace:*",
+    "@anotherharness/ah-credentials": "workspace:*",
+    "@anotherharness/ah-file-reference": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-native-command": "workspace:*",
+    "@anotherharness/ah-scope": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-persistence": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-session-projection-cache": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-session-title": "workspace:*",
+    "@anotherharness/ah-settings": "workspace:*",
+    "@anotherharness/ah-skill": "workspace:*",
+    "@anotherharness/ah-subagent": "workspace:*",
+    "@anotherharness/ah-typert-protocol": "workspace:*",
+    "@anotherharness/ah-typert-registry": "workspace:*",
+    "@anotherharness/ah-util-time": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-workspace": "workspace:*",
+    "@anotherharness/ah-working-directory": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@anotherharness/ah-session-persistence": {
+      "optional": true
+    },
+    "@anotherharness/ah-session-projection-cache": {
+      "optional": true
+    },
+    "@anotherharness/ah-settings": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-default-model": "workspace:*",
+    "@anotherharness/ah-agent-loop": "workspace:*",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*",
+    "@anotherharness/ah-agent-preset-registry": "workspace:*",
+    "@anotherharness/ah-api-gateway": "workspace:*",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-file-upload": "workspace:*",
+    "@anotherharness/ah-client-store": "workspace:*",
+    "@anotherharness/ah-client-test-runtime": "workspace:*",
+    "@anotherharness/ah-commands": "workspace:*",
+    "@anotherharness/ah-credentials": "workspace:*",
+    "@anotherharness/ah-file-reference": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-native-command": "workspace:*",
+    "@anotherharness/ah-permission-presets": "workspace:*",
+    "@anotherharness/ah-remote-mock": "workspace:*",
+    "@anotherharness/ah-scope": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-persistence": "workspace:*",
+    "@anotherharness/ah-session-persistence-jsonl": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-session-projection-cache": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-session-title": "workspace:*",
+    "@anotherharness/ah-settings": "workspace:*",
+    "@anotherharness/ah-skill": "workspace:*",
+    "@anotherharness/ah-storage": "workspace:*",
+    "@anotherharness/ah-storage-domain": "workspace:*",
+    "@anotherharness/ah-storage-json": "workspace:*",
+    "@anotherharness/ah-subagent": "workspace:*",
+    "@anotherharness/ah-typert-protocol": "workspace:*",
+    "@anotherharness/ah-typert-registry": "workspace:*",
+    "@anotherharness/ah-util-crypto": "workspace:*",
+    "@anotherharness/ah-util-time": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-workspace": "workspace:*",
+    "@types/mime-types": "^3.0.1",
+    "@anotherharness/ah-working-directory": "workspace:*"
+  }
+}

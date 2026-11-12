@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/extensions/tool-cordis/README.md
+/:
+  en: 784a82be07311e99
+  zh: 85d917ecc6386ec9
+/anotherharness-ah-tool-cordis:
+  en: b68aab1af0853bdc
+  zh: 402b92a34f075064
+/anotherharness-ah-tool-cordis/summary:
+  en: 245a3cd287214bed
+  zh: 8687666c28a676cf
+/anotherharness-ah-tool-cordis/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 3a2f21ff0dc3420d
+/anotherharness-ah-tool-cordis/use-this-package:
+  en: 2c41c0e29b908305
+  zh: 3d960e5bc808f1e9
+/anotherharness-ah-tool-cordis/understand-the-implementation:
+  en: ff959016d633c6c0
+  zh: d84dfa7e9d73532f
+/anotherharness-ah-tool-cordis/further-exploration:
+  en: 5296d2832d722720
+  zh: af7b932b587d25a2
+/anotherharness-ah-tool-cordis/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-cordis/model-experience/runtime-inspection:
+  en: 72ffb7cae674c31a
+  zh: 85674f298a78592a
+/anotherharness-ah-tool-cordis/model-experience/runtime-inspection/what-the-model-sees:
+  en: d865d953b88209ce
+  zh: 2702c14ba4885995
+/anotherharness-ah-tool-cordis/model-experience/runtime-inspection/token-effect:
+  en: 5d9791798f8ce57f
+  zh: b47984cc13e12cfd
+/anotherharness-ah-tool-cordis/model-experience/runtime-inspection/kv-cache-effect:
+  en: f57a20cd4e76d13c
+  zh: 7b673116422bee87
+/anotherharness-ah-tool-cordis/known-limitations-and-deferred-work:
+  en: dcc2e8ebf21a00bf
+  zh: a43d380a066ef539
+/anotherharness-ah-tool-cordis/known-limitations-and-deferred-work/dev-note:
+  en: 0a1253c6f7b5e8b9
+  zh: 9f56528562c7c914

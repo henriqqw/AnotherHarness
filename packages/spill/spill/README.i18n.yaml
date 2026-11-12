@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/spill/spill/README.md
+/:
+  en: 0ddb7676fe45581a
+  zh: 245f536e58988853
+/anotherharness-ah-spill:
+  en: bed49f3ccd009c11
+  zh: 1493fcf26cb0641e
+/anotherharness-ah-spill/summary:
+  en: fcc6f9d5bf78df22
+  zh: c3d3ca35df8b030e
+/anotherharness-ah-spill/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-spill/use-this-package:
+  en: cf7ae7f28e2bd56d
+  zh: 5d134d6600d575d3
+/anotherharness-ah-spill/use-this-package/when-to-choose-it:
+  en: b16ef40f98105af7
+  zh: 44a4ec686474f3a7
+/anotherharness-ah-spill/use-this-package/smallest-working-composition:
+  en: 6f5ac80b98eaae27
+  zh: 2278dfb2c7c6c9b7
+/anotherharness-ah-spill/use-this-package/saving-text:
+  en: 8a4066d431cf8e21
+  zh: 5bbe4270f50d3eb3
+/anotherharness-ah-spill/use-this-package/ownership-and-boundaries:
+  en: 59d9880807abdbc1
+  zh: a484e95b459e99ed
+/anotherharness-ah-spill/use-this-package/failures-and-recovery:
+  en: 04b076105aa28b30
+  zh: 634b691a66a4b438
+/anotherharness-ah-spill/understand-the-implementation:
+  en: a3364d8193deb7f0
+  zh: 38ca428f37fc7190
+/anotherharness-ah-spill/understand-the-implementation/design-philosophy:
+  en: cb901f8df9bd6c84
+  zh: 98e5c1cdb53ac470
+/anotherharness-ah-spill/understand-the-implementation/source-map:
+  en: c24cc87afcef2824
+  zh: c5138e85650eb20e
+/anotherharness-ah-spill/understand-the-implementation/data-model:
+  en: 7b1480904f62a1a8
+  zh: c51e680012536f2b
+/anotherharness-ah-spill/understand-the-implementation/lifecycle:
+  en: e66fa489470c595c
+  zh: a1870ddc42a846af
+/anotherharness-ah-spill/further-exploration:
+  en: d77e75cd4aafdc0e
+  zh: c2cc0544a802683d
+/anotherharness-ah-spill/model-experience:
+  en: 76d7dd75ff4784d9
+  zh: ef5c2e7a943923b8
+/anotherharness-ah-spill/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: d75d48f485447a74
+/anotherharness-ah-spill/known-limitations-and-deferred-work:
+  en: eeb7f53fb1d76905
+  zh: 5519325032645483
+/anotherharness-ah-spill/known-limitations-and-deferred-work/dev-note:
+  en: a06f45acc8cb962a
+  zh: e314617f8a2309d4
+/anotherharness-ah-spill/known-limitations-and-deferred-work/dev-note/future-executor-spill-file-integration:
+  en: acf1e697702f9e60
+  zh: ebe05c6067efc8f3
+/anotherharness-ah-spill/known-limitations-and-deferred-work/dev-note/future-non-local-backends-and-cleanup:
+  en: bcac8bbd01a1fe2e
+  zh: aba4174b89c12800

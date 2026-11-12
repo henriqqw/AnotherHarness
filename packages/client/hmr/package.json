@@ -1,0 +1,55 @@
+{
+  "name": "@anotherharness/ah-client-hmr",
+  "description": "Web client graph synchronization and rebuilt-bundle reload transport",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/client/hmr"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-client-modules"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-client-modules": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ]
+}

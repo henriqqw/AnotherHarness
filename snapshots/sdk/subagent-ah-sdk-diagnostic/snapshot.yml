@@ -1,0 +1,8 @@
+version: 1
+scenario: subagent-ah-sdk-diagnostic
+profile: sdk
+composition: sdk-ah-sdk-diagnostic
+recording: live
+header:
+  class: sdk-ah-sdk-diagnostic
+  pin: true

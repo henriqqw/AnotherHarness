@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-17-developer-session-changes.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-17-developer-session-changes.md
+/agent-note-developer-messages-for-incremental-session-changes:
+  en: e4c4c7b62bd7b19f
+  zh: b4498bcf777c74c6
+/agent-note-developer-messages-for-incremental-session-changes/problem:
+  en: 4b02ed98a500205c
+  zh: e1a075f6a8251059
+/agent-note-developer-messages-for-incremental-session-changes/decision:
+  en: e0a5484a2809df35
+  zh: 7dd2eb1607cc5b2f
+/agent-note-developer-messages-for-incremental-session-changes/alternatives-considered:
+  en: a9ec42fb650d6cd8
+  zh: c748181c603e675f
+/agent-note-developer-messages-for-incremental-session-changes/consequences:
+  en: 623bb6b1abb0c586
+  zh: f64c35450391fa8d

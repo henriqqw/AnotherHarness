@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for 2026-06-21-bounded-llm-request-recovery.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-06-21-bounded-llm-request-recovery.md
+/agent-note-bounded-recovery-for-transient-llm-request-failures:
+  en: 463bd660239d5c07
+  zh: b3d7c5bf899525f3
+/agent-note-bounded-recovery-for-transient-llm-request-failures/problem:
+  en: 762c1eab86b4e9d8
+  zh: 56269403f793b27a
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision:
+  en: a15c7c13f167e5ac
+  zh: 63bcc2ef60c2f344
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision/preserve-failure-facts-without-embedding-policy:
+  en: 710ffc8965fe98f8
+  zh: c998f7f4f1e4d543
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision/put-retry-policy-on-the-existing-failed-step-extension-point:
+  en: bef06a0b5e831c53
+  zh: 3d520d06b5c13e44
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision/make-one-layer-own-visible-attempts:
+  en: 57dbdd385f48bb3e
+  zh: 5e15463fae4be582
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision/bound-stalled-streams-where-they-can-be-stopped:
+  en: e4ca2fe403c3fa1a
+  zh: bda7b8941df4e2ac
+/agent-note-bounded-recovery-for-transient-llm-request-failures/decision/keep-attempts-separate-in-the-existing-log:
+  en: 8f57db4bfd6e1c22
+  zh: 67ac62217bb68570
+/agent-note-bounded-recovery-for-transient-llm-request-failures/out-of-scope:
+  en: 985720529b56cda2
+  zh: 8a649bfa9cd8d93f
+/agent-note-bounded-recovery-for-transient-llm-request-failures/alternatives-considered:
+  en: 84cb1f564a8ab80a
+  zh: 2ffe90f8c9853470
+/agent-note-bounded-recovery-for-transient-llm-request-failures/verification:
+  en: 2a59b80c067a2217
+  zh: 2c4789e87ba2b96c
+/agent-note-bounded-recovery-for-transient-llm-request-failures/consequences:
+  en: 08659e8606455ada
+  zh: 862080f8df5f28ec
+/agent-note-bounded-recovery-for-transient-llm-request-failures/related:
+  en: 9f7c8caa36141252
+  zh: d4d82f4bb3d759ff

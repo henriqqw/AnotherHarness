@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/web/web/README.md
+/:
+  en: 31868a4f15364a93
+  zh: 86824e1a18e237a7
+/anotherharness-ah-web:
+  en: c55c21d89a6fd89f
+  zh: 43484654dc2c21b9
+/anotherharness-ah-web/summary:
+  en: f97fa41b59a18acb
+  zh: f1609d0c4ae02339
+/anotherharness-ah-web/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-web/use-this-package:
+  en: 6b416077d1d7e89d
+  zh: 9438594e7d69d78f
+/anotherharness-ah-web/use-this-package/when-to-choose-it:
+  en: 4c44e716648dce3d
+  zh: 6a1f3c0a0bf9c111
+/anotherharness-ah-web/use-this-package/minimal-configuration:
+  en: 8dab8ea9c74b4d85
+  zh: ce97903380d8455a
+/anotherharness-ah-web/use-this-package/searching-and-fetching:
+  en: a094e3ac0b4abdfe
+  zh: 3472bf081ea1e82d
+/anotherharness-ah-web/use-this-package/provider-selection:
+  en: a1d16fc8e3d3d7eb
+  zh: d7c91ce0bbd5e0e7
+/anotherharness-ah-web/use-this-package/failures-and-recovery:
+  en: d8d09ed3839f6474
+  zh: 7164d902f333592a
+/anotherharness-ah-web/understand-the-implementation:
+  en: a3364d8193deb7f0
+  zh: d1c4afbf25a7ae4d
+/anotherharness-ah-web/understand-the-implementation/design-philosophy:
+  en: c4d5437cfb1e2157
+  zh: 411b1b398de73426
+/anotherharness-ah-web/understand-the-implementation/source-map:
+  en: fd09f717e9b70e51
+  zh: 22a8ba43b0e0ebe0
+/anotherharness-ah-web/understand-the-implementation/data-model:
+  en: d147c42f5c52d0d3
+  zh: 474273098cd22f49
+/anotherharness-ah-web/understand-the-implementation/selection-flow:
+  en: 07dcd35a0a6369b2
+  zh: 927fe797d9079547
+/anotherharness-ah-web/further-exploration:
+  en: 827b11ead9c5de51
+  zh: ae864abb069c87a3
+/anotherharness-ah-web/model-experience:
+  en: 83eb5b27e820686a
+  zh: 8c62dd8ae8ed62a8
+/anotherharness-ah-web/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: d75d48f485447a74
+/anotherharness-ah-web/known-limitations-and-deferred-work:
+  en: 4f0bf0393eb544d3
+  zh: 9e320f2681a1951e
+/anotherharness-ah-web/known-limitations-and-deferred-work/dev-note:
+  en: 7f775cc79dbce94b
+  zh: 12b8f68f9e7c48ca
+/anotherharness-ah-web/known-limitations-and-deferred-work/dev-note/future-observing-provider-state:
+  en: 855f97574a820579
+  zh: 360ff6cd2ed82904

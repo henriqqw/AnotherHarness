@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-goal/README.md
+/:
+  en: dd1d437b386e4216
+  zh: 4b59a2d565d99a0c
+/anotherharness-ah-client-ui-goal:
+  en: 3e938935bc83845d
+  zh: 9e949522b95ea55f
+/anotherharness-ah-client-ui-goal/summary:
+  en: 615de8980e1b06c3
+  zh: 7fc3284c2bb00f20
+/anotherharness-ah-client-ui-goal/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-goal/use-this-package:
+  en: 4f6e6353d793a0de
+  zh: cde6e470f7dd9057
+/anotherharness-ah-client-ui-goal/use-this-package/the-command-input-bubble:
+  en: 05c5db0eb58dffef
+  zh: 54e7bea0b810b1b8
+/anotherharness-ah-client-ui-goal/use-this-package/failures:
+  en: 097bbdd748dc17e5
+  zh: 867d341d046ba609
+/anotherharness-ah-client-ui-goal/understand-the-implementation:
+  en: ab510274586c2d1d
+  zh: 4f65fc3b8e367e1e
+/anotherharness-ah-client-ui-goal/further-exploration:
+  en: 0b9a8a0ff22b8aaa
+  zh: 2d75967dd19cd8df
+/anotherharness-ah-client-ui-goal/model-experience:
+  en: 53ca3b1f16b1ef44
+  zh: 39254d4076e3723d
+/anotherharness-ah-client-ui-goal/model-experience/kv-cache-effect:
+  en: 68c9a2a057acb6cf
+  zh: baba87876e432666
+/anotherharness-ah-client-ui-goal/known-limitations-and-deferred-work:
+  en: bbb97ea1b94eae0f
+  zh: 8e6b0e0516746dcf
+/anotherharness-ah-client-ui-goal/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

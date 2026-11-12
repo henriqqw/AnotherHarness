@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for maintaining-ah-code-review.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/cookbook/maintaining-ah-code-review.md
+/maintaining-the-ah-code-review-skill:
+  en: e2d3a268ef641874
+  zh: 2ae53b586f4cef35
+/maintaining-the-ah-code-review-skill/what-the-maintainer-receives:
+  en: b9470771edaa382a
+  zh: f238ba225e6ef336
+/maintaining-the-ah-code-review-skill/what-the-operator-does-with-a-candidate-diff:
+  en: 9b818f52e5d41d8a
+  zh: 44e6efe005dcd4ad
+/maintaining-the-ah-code-review-skill/when-a-run-produces-no-candidate:
+  en: feb6d261939d6c19
+  zh: 044d8238cd6537d3
+/maintaining-the-ah-code-review-skill/interruptions-and-handoff:
+  en: 610c59e4558ad6fd
+  zh: e6310bda00b4db24
+/maintaining-the-ah-code-review-skill/where-the-operator-s-private-setup-lives:
+  en: ae06145764738c16
+  zh: d527b944db8c52be

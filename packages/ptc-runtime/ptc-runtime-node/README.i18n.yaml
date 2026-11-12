@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/ptc-runtime/ptc-runtime-node/README.md
+/:
+  en: 0743cf05fedb8321
+  zh: 7ad0cfa1b6b8a46b
+/anotherharness-ah-ptc-runtime-node:
+  en: 438d73226789c262
+  zh: 5f139eea10d81afb
+/anotherharness-ah-ptc-runtime-node/summary:
+  en: 4d6be30d9289a58e
+  zh: b1b2b4d773d32029
+/anotherharness-ah-ptc-runtime-node/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 725b47765ee8f30b
+/anotherharness-ah-ptc-runtime-node/use-this-package:
+  en: 7338b952b0644dd4
+  zh: e1378ee2d421dae3
+/anotherharness-ah-ptc-runtime-node/use-this-package/configuration:
+  en: 7863e7fb66af68c8
+  zh: 4cdf07d101772e17
+/anotherharness-ah-ptc-runtime-node/use-this-package/execution-and-results:
+  en: 6d65b39223ca9f7a
+  zh: 96f96341ecab1317
+/anotherharness-ah-ptc-runtime-node/use-this-package/deadlines-and-cancellation:
+  en: 236debb1ca5bf2eb
+  zh: 99bb9625db7b1aa0
+/anotherharness-ah-ptc-runtime-node/use-this-package/failures:
+  en: 7682e50f9dcfa25c
+  zh: ddcb3502e12be06f
+/anotherharness-ah-ptc-runtime-node/understand-the-implementation:
+  en: 9020b491a39e4bf5
+  zh: bcd1b2b1a3bde7f3
+/anotherharness-ah-ptc-runtime-node/understand-the-implementation/launch-and-control:
+  en: 45527dad94dd9362
+  zh: c1e1179391e89a3f
+/anotherharness-ah-ptc-runtime-node/understand-the-implementation/source-and-built-bootstraps:
+  en: 871adc8d69b07c85
+  zh: 2456b431749e78e0
+/anotherharness-ah-ptc-runtime-node/understand-the-implementation/source-map:
+  en: e4cab2eb3f09e74b
+  zh: 5c10e8c4c0d9e56b
+/anotherharness-ah-ptc-runtime-node/further-exploration:
+  en: 483d361f9f08aee6
+  zh: e5e44886700d8bd3
+/anotherharness-ah-ptc-runtime-node/model-experience:
+  en: 311d32e18651648c
+  zh: 93d4591b93c5c2bc
+/anotherharness-ah-ptc-runtime-node/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: d91e7b78c0619c7e
+/anotherharness-ah-ptc-runtime-node/known-limitations-and-deferred-work:
+  en: 88eac5d4119c11f6
+  zh: ba0861bf07c5e9df
+/anotherharness-ah-ptc-runtime-node/known-limitations-and-deferred-work/dev-note:
+  en: 4ec43f748a77c430
+  zh: 0ac046f39a1684dd

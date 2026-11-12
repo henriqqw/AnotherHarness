@@ -1,0 +1,63 @@
+{
+  "name": "@anotherharness/ah-tool-workflow",
+  "description": "Model-facing workflow tool: run a JavaScript orchestration script over ctx.workflowEngine",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/workflow/tool-workflow"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-jobs": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/ah-workflow": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*",
+    "@anotherharness/ah-jobs": "workspace:*",
+    "@anotherharness/ah-jobs-local": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-subagent": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-tool-jobs": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/ah-workflow": "workspace:*",
+    "@anotherharness/ah-workflow-ptc": "workspace:*"
+  }
+}

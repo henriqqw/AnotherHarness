@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for 2026-09-08-desktop-update-extensions.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/feature/2026-09-08-desktop-update-extensions.md
+/agent-note-deferred-desktop-update-extensions:
+  en: e4372d1b36487dc7
+  zh: 712e394bc5b0f0f7
+/agent-note-deferred-desktop-update-extensions/problem:
+  en: da98b267b01e4829
+  zh: 0ae373bd57094e74
+/agent-note-deferred-desktop-update-extensions/proposal:
+  en: 428d39c6b5128c87
+  zh: c789bd79c7e8bce6
+/agent-note-deferred-desktop-update-extensions/proposal/independent-revisions:
+  en: db6423be61857d18
+  zh: 41221f99c333b0a3
+/agent-note-deferred-desktop-update-extensions/proposal/stable-subscription-and-channel-switching:
+  en: 800826c8a1562fc9
+  zh: fe46ff1e8810c988
+/agent-note-deferred-desktop-update-extensions/proposal/automatic-installation-setting:
+  en: 758d49f0a7dc6707
+  zh: ddb0bfe616eb93bc
+/agent-note-deferred-desktop-update-extensions/proposal/next-launch-installation:
+  en: 56fbd71029ebc108
+  zh: 1672e057166ca28f
+/agent-note-deferred-desktop-update-extensions/proposal/updater-dependency-qualification:
+  en: c1a508d15bbc37e8
+  zh: 63e7648130377fbb
+/agent-note-deferred-desktop-update-extensions/proposal/multiple-pending-versions:
+  en: e6cf3f78703ebd25
+  zh: 63e473e8949df81a
+/agent-note-deferred-desktop-update-extensions/proposal/cache-invalidation-and-revocation:
+  en: 22c2d3aa60611f71
+  zh: 27c6c0128effac56
+/agent-note-deferred-desktop-update-extensions/alternatives-considered:
+  en: 699aca5ea4c3e894
+  zh: 2306f90a6819d711
+/agent-note-deferred-desktop-update-extensions/acceptance-criteria:
+  en: cc1a2d1972f483ce
+  zh: 8f9d654387e76df0
+/agent-note-deferred-desktop-update-extensions/risks:
+  en: 1422bf65f3ea6e3b
+  zh: bc6d7c1a39ffbbf5

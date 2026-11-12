@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/typert/loader/README.md
+/:
+  en: 3fa30a143acc79d7
+  zh: 0c6fe79fba20f26f
+/anotherharness-ah-typert-loader:
+  en: 572217016366e415
+  zh: 2dab3bdf0e73bf83
+/anotherharness-ah-typert-loader/summary:
+  en: 4479beaefca7e107
+  zh: 9845860d90a758e3
+/anotherharness-ah-typert-loader/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-typert-loader/use-this-package:
+  en: a003613350317d98
+  zh: 0a6de1eb58189725
+/anotherharness-ah-typert-loader/use-this-package/minimal-configuration:
+  en: 05f4c8b93af96080
+  zh: 9765572ddb0bf88d
+/anotherharness-ah-typert-loader/use-this-package/what-gets-registered:
+  en: 01318fcba39e9b0f
+  zh: c5f6528a91b335ac
+/anotherharness-ah-typert-loader/use-this-package/observable-behavior-and-failures:
+  en: 01494e9fbd469ec8
+  zh: 3025d870c0f36e2b
+/anotherharness-ah-typert-loader/understand-the-implementation:
+  en: 519c0242ef4d9e21
+  zh: a72967feb0ea1b41
+/anotherharness-ah-typert-loader/understand-the-implementation/design-concept:
+  en: 03fc077e58271e18
+  zh: 20f8fc02008cee5e
+/anotherharness-ah-typert-loader/understand-the-implementation/manifest-validation:
+  en: eb246aef15ea0532
+  zh: 7a4a7bcc788b3ba3
+/anotherharness-ah-typert-loader/understand-the-implementation/caching-and-ownership:
+  en: 38e781e052fdf44e
+  zh: d8f6b4d119bf9856
+/anotherharness-ah-typert-loader/understand-the-implementation/source-map:
+  en: 92aa195f1408a900
+  zh: 1841e39a53de7873
+/anotherharness-ah-typert-loader/further-exploration:
+  en: 1f0bd50018a9bf23
+  zh: f7b57605536020bd
+/anotherharness-ah-typert-loader/model-experience:
+  en: d3555a846d0b19a6
+  zh: eb4815fbd81a3561
+/anotherharness-ah-typert-loader/model-experience/kv-cache-effect:
+  en: f8a0ad3d0fc0eb32
+  zh: 7649a694b279f5f3
+/anotherharness-ah-typert-loader/known-limitations-and-deferred-work:
+  en: a7e281826b58b218
+  zh: b4347c965151a1a9
+/anotherharness-ah-typert-loader/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

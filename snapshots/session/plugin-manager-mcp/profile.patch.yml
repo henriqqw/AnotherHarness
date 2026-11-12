@@ -1,0 +1,9 @@
+- insert:
+    - id: demo
+      name: '@anotherharness/ah-mcp-client'
+      disabled: true
+      config:
+        serverName: demo
+        transport: streamable-http
+        url: !!js process.env.AH_MCP_DEMO_URL
+        failOnStartupError: true

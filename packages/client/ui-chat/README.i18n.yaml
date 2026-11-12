@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-chat/README.md
+/:
+  en: d88f75fc0178ba53
+  zh: 52bc7ae9551ab1cf
+/anotherharness-ah-client-ui-chat:
+  en: e3315f212dd65601
+  zh: 258ad78df79bce47
+/anotherharness-ah-client-ui-chat/summary:
+  en: fba5b2fb8080e2dd
+  zh: 32c337123b7dfbcb
+/anotherharness-ah-client-ui-chat/table-of-contents:
+  en: 41cd21266011d571
+  zh: 3172d1a2acbb27b7
+/anotherharness-ah-client-ui-chat/reference-previews:
+  en: 0a1948349b1fbfd9
+  zh: 56256e4d695e5192
+/anotherharness-ah-client-ui-chat/hidden-chat-rows:
+  en: cbf1f0a2205046a5
+  zh: 2e59d0815351349f
+/anotherharness-ah-client-ui-chat/command-and-failure-rows:
+  en: 2157fcd6b0d100b5
+  zh: 9e865ac3953ebe30
+/anotherharness-ah-client-ui-chat/turn-token-usage:
+  en: 14343dd14e493f4b
+  zh: 7cc7a25d05ea798f
+/anotherharness-ah-client-ui-chat/completed-turn-footer:
+  en: b4cd36e7ab91281e
+  zh: 8ccf412b9dde61d5
+/anotherharness-ah-client-ui-chat/turn-process-folding:
+  en: d24a7feaa23340cd
+  zh: 1011fe2f9093f8ee
+/anotherharness-ah-client-ui-chat/grouped-rendering:
+  en: db1197c543d6ecd1
+  zh: 5ce9f98e61bc8d22
+/anotherharness-ah-client-ui-chat/scroll-ownership:
+  en: 5bcd9284adc0e0a7
+  zh: cf633bb13e2c63b2
+/anotherharness-ah-client-ui-chat/model-experience:
+  en: c17b4dd43a61c569
+  zh: f7414309810c3a08
+/anotherharness-ah-client-ui-chat/model-experience/kv-cache-effect:
+  en: 15a7151ff9268f15
+  zh: 6eae68c718be579b
+/anotherharness-ah-client-ui-chat/known-limitations-and-deferred-work:
+  en: cc6b3474e20b1bad
+  zh: 24152c374b9abd8b
+/anotherharness-ah-client-ui-chat/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

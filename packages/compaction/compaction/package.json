@@ -1,0 +1,52 @@
+{
+  "name": "@anotherharness/ah-compaction",
+  "description": "Abstract compaction service seam (ctx.compaction) for the AnotherHarness",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/compaction/compaction"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./checkpoint": {
+      "types": "./lib/types/checkpoint.d.ts",
+      "default": "./lib/types/checkpoint.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-commands": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-commands": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  }
+}

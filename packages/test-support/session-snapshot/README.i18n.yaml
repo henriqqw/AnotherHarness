@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/test-support/session-snapshot/README.md
+/:
+  en: 35f64a68381efbd0
+  zh: dd2c508ba263d788
+/anotherharness-ah-session-snapshot:
+  en: 9b6819db0a2fa274
+  zh: 86feabfd27a29b08
+/anotherharness-ah-session-snapshot/summary:
+  en: e1f45db294d22e86
+  zh: b0f314245bf1ab43
+/anotherharness-ah-session-snapshot/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-session-snapshot/use-this-package:
+  en: 594ad1f3e6f02054
+  zh: 7ca4f565976704be
+/anotherharness-ah-session-snapshot/use-this-package/writing-a-snapshot-suite:
+  en: d5054714727a8ca9
+  zh: 6dbf73cb3803cd5b
+/anotherharness-ah-session-snapshot/use-this-package/record-replay-and-refresh:
+  en: 2661616dd2e417f3
+  zh: 83a08fbb314f1de3
+/anotherharness-ah-session-snapshot/use-this-package/pinning-request-headers-and-system-prompts:
+  en: 6b11d5111e1a3222
+  zh: de4d3889b1a5ebb4
+/anotherharness-ah-session-snapshot/use-this-package/platform-and-composition-variants:
+  en: 64666ea2894acc4a
+  zh: 0e78df32bcfd3633
+/anotherharness-ah-session-snapshot/use-this-package/what-can-go-wrong:
+  en: 633896effafefaac
+  zh: b6a4da7ad75e40e2
+/anotherharness-ah-session-snapshot/understand-the-implementation:
+  en: 18ff76b440fe40da
+  zh: 4dbf2eb5f9ee98a2
+/anotherharness-ah-session-snapshot/understand-the-implementation/design:
+  en: 8771607f15c4f4e1
+  zh: 7c2cf395f704717c
+/anotherharness-ah-session-snapshot/understand-the-implementation/source-map:
+  en: 1510b3b09c3bd553
+  zh: 1931fba0891f7d65
+/anotherharness-ah-session-snapshot/understand-the-implementation/data-flow:
+  en: a71c8ab2e78798c5
+  zh: 419cebed1c023fbf
+/anotherharness-ah-session-snapshot/further-exploration:
+  en: 853bcaff5e7838ab
+  zh: c436998031e852cd
+/anotherharness-ah-session-snapshot/model-experience:
+  en: 9f12d94ab5e31ade
+  zh: 7c75a17565caca1c
+/anotherharness-ah-session-snapshot/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: f57cc48a1b5cbfa9
+/anotherharness-ah-session-snapshot/known-limitations-and-deferred-work:
+  en: a9914e64bad1a332
+  zh: 4769056dce9af368
+/anotherharness-ah-session-snapshot/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

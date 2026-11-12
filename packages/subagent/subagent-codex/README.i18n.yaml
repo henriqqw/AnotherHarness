@@ -1,0 +1,82 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/subagent/subagent-codex/README.md
+/:
+  en: c0c24742184eba37
+  zh: 2982b61ecfff95ce
+/anotherharness-ah-subagent-codex:
+  en: 78225f7e6f514127
+  zh: b97966bf841d6eae
+/anotherharness-ah-subagent-codex/summary:
+  en: 87778ca74ded414d
+  zh: eb8b6799c2d41d8b
+/anotherharness-ah-subagent-codex/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-subagent-codex/use-this-package:
+  en: 2ac37ff256c2e329
+  zh: 95be2a38e7c3d094
+/anotherharness-ah-subagent-codex/use-this-package/installing-the-bundle:
+  en: 0c3adb8ea20c0480
+  zh: 0c567d1e957abf40
+/anotherharness-ah-subagent-codex/use-this-package/configuration:
+  en: e4e4722f99ba840c
+  zh: 40d2c30a0e927255
+/anotherharness-ah-subagent-codex/use-this-package/exposing-the-tool:
+  en: a36399c7ac98724d
+  zh: d43815e08689da6b
+/anotherharness-ah-subagent-codex/use-this-package/what-you-get:
+  en: 4b271f17f16fb162
+  zh: 154c909023f1366b
+/anotherharness-ah-subagent-codex/use-this-package/failure-and-recovery:
+  en: 4ffe0312c5a8f722
+  zh: 532a1997e9ae825b
+/anotherharness-ah-subagent-codex/understand-the-implementation:
+  en: d283c5564d6697e1
+  zh: 723aa78188880979
+/anotherharness-ah-subagent-codex/understand-the-implementation/design-concept:
+  en: 40315dca80a4e688
+  zh: 6b12db5e1037db98
+/anotherharness-ah-subagent-codex/understand-the-implementation/source-map:
+  en: 36647129f061610f
+  zh: 42947c700d1d9202
+/anotherharness-ah-subagent-codex/understand-the-implementation/run-flow:
+  en: 19b10ff145644564
+  zh: c015d530f1bd227e
+/anotherharness-ah-subagent-codex/further-exploration:
+  en: 612d397159db69db
+  zh: f223e782d86dc2f4
+/anotherharness-ah-subagent-codex/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-subagent-codex/model-experience/child-request:
+  en: 1796fa78833bfc2b
+  zh: d925d4c0d6c46552
+/anotherharness-ah-subagent-codex/model-experience/child-request/what-the-model-sees:
+  en: 7dd70afca1823730
+  zh: 7a07bb554d82c892
+/anotherharness-ah-subagent-codex/model-experience/child-request/token-effect:
+  en: 7812d203a360434a
+  zh: 52c8b9a0cbfe39c3
+/anotherharness-ah-subagent-codex/model-experience/child-request/kv-cache-effect:
+  en: cd1fb7e2382ad2a2
+  zh: 2646d4b03a2e7220
+/anotherharness-ah-subagent-codex/model-experience/parent-scheduling-and-results-indirectly:
+  en: 4c391bb16e3cd380
+  zh: ab3847efe35fa6dc
+/anotherharness-ah-subagent-codex/model-experience/parent-scheduling-and-results-indirectly/what-the-model-sees:
+  en: 0867725b13decae0
+  zh: 6b3282530290467b
+/anotherharness-ah-subagent-codex/model-experience/parent-scheduling-and-results-indirectly/token-effect:
+  en: 0c436fb0897a6eca
+  zh: 7ec0a953d0232af2
+/anotherharness-ah-subagent-codex/model-experience/parent-scheduling-and-results-indirectly/kv-cache-effect:
+  en: 19f1316ea4bb1bb9
+  zh: 181231ddffdc8494
+/anotherharness-ah-subagent-codex/known-limitations-and-deferred-work:
+  en: e4e3e08974e158c1
+  zh: 57aa67fcfd4635e4
+/anotherharness-ah-subagent-codex/known-limitations-and-deferred-work/dev-note:
+  en: cacc98025ed8913e
+  zh: e7673a3087ec0c62

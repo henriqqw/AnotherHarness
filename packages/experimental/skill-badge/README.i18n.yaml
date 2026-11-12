@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/skill-badge/README.md
+/:
+  en: 78a818f0174e96bc
+  zh: 91c8b62b968d7974
+/anotherharness-ah-skill-badge:
+  en: 3909914857ce6688
+  zh: d95738c945027a83
+/anotherharness-ah-skill-badge/summary:
+  en: b67ed0a4eabe5c6a
+  zh: b0e54675e6621ef9
+/anotherharness-ah-skill-badge/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-skill-badge/use-this-package:
+  en: 6f5b4c730e835423
+  zh: b7f2dc7e168b7e8c
+/anotherharness-ah-skill-badge/use-this-package/when-to-choose-it:
+  en: e4b2f42ab0a3a7b7
+  zh: 467dba6360d90c59
+/anotherharness-ah-skill-badge/use-this-package/enable-the-plugin:
+  en: 65a58efeb353315c
+  zh: d489cb611ebebb7c
+/anotherharness-ah-skill-badge/use-this-package/what-the-badge-skill-provides:
+  en: 9e445e57aa92adfe
+  zh: 0eaa4d14c330a961
+/anotherharness-ah-skill-badge/use-this-package/observable-success-and-failures:
+  en: 08050d27b10f385f
+  zh: 2fd2912111fcd1b2
+/anotherharness-ah-skill-badge/understand-the-implementation:
+  en: 63465b0133f30e85
+  zh: 84bebb7c1fe0ceba
+/anotherharness-ah-skill-badge/understand-the-implementation/design-concept:
+  en: 8c13902edbed11b3
+  zh: 9ecbbbdd89742554
+/anotherharness-ah-skill-badge/understand-the-implementation/source-map:
+  en: fefd41223ee938e1
+  zh: 3a9d42f4b42c43af
+/anotherharness-ah-skill-badge/further-exploration:
+  en: 65547bbeaf4337c8
+  zh: ee36a1f23d892df1
+/anotherharness-ah-skill-badge/model-experience:
+  en: c20ca9d437775e4c
+  zh: c03b3269e263f3ce
+/anotherharness-ah-skill-badge/model-experience/kv-cache-effect:
+  en: 5b5bcb4fc0513bef
+  zh: 67a1d939c6a18c2e
+/anotherharness-ah-skill-badge/known-limitations-and-deferred-work:
+  en: 1872c9e06219e7bf
+  zh: d3e086f28c27e1ab
+/anotherharness-ah-skill-badge/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

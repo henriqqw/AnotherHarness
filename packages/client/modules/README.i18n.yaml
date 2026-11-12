@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/modules/README.md
+/:
+  en: 97d39db1617684ea
+  zh: de11ba354583a044
+/anotherharness-ah-client-modules:
+  en: 828c86c3e8877183
+  zh: 8fba3e5d3c0bf1a6
+/anotherharness-ah-client-modules/summary:
+  en: 14e20c2d29468d04
+  zh: c86f3ef50ed05a99
+/anotherharness-ah-client-modules/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-modules/use-this-package:
+  en: 03be156fa8f9ea53
+  zh: 76e74ad42da31d2b
+/anotherharness-ah-client-modules/use-this-package/declaring-a-client-plugin:
+  en: 5c16187679448cc0
+  zh: af0fe7efe32ad688
+/anotherharness-ah-client-modules/use-this-package/what-the-browser-loads:
+  en: 1383d68472b3c057
+  zh: 94dd7d9abbdbccf3
+/anotherharness-ah-client-modules/use-this-package/live-plugin-composition:
+  en: 45740a56e931d094
+  zh: b3362af77c804459
+/anotherharness-ah-client-modules/use-this-package/sharing-modules:
+  en: a473410ac023a6d2
+  zh: 39c5bd5e4bbd2a16
+/anotherharness-ah-client-modules/use-this-package/build-requirements:
+  en: b6a4d3b901c89efe
+  zh: 615b5f3eec41f281
+/anotherharness-ah-client-modules/understand-the-implementation:
+  en: 7ab11d2c2bdc6eaa
+  zh: 54c3c9091cf59711
+/anotherharness-ah-client-modules/understand-the-implementation/design-concept:
+  en: e113875b59504d12
+  zh: 92a2f9c99e3f1f1c
+/anotherharness-ah-client-modules/understand-the-implementation/lazy-cjs-model:
+  en: 6d16b74acb333e3b
+  zh: fcb3a20cc8c39e4a
+/anotherharness-ah-client-modules/understand-the-implementation/incremental-composition:
+  en: 1b54c654b3f7344d
+  zh: c20d3499b51f0b4d
+/anotherharness-ah-client-modules/understand-the-implementation/boot-manifest-injection:
+  en: 253d9f265cd83ed0
+  zh: 9d0f8df84d9d3ac9
+/anotherharness-ah-client-modules/understand-the-implementation/entry-ownership:
+  en: ae59769034d692fa
+  zh: f71914d6f39b033a
+/anotherharness-ah-client-modules/understand-the-implementation/source-map:
+  en: cd8ccd264ba926bd
+  zh: 435509fe0ba23187
+/anotherharness-ah-client-modules/further-exploration:
+  en: 0fbe1e7af6e45134
+  zh: aa4450178a84975b
+/anotherharness-ah-client-modules/model-experience:
+  en: abb2fc0416e1482c
+  zh: 0e8a913d424a0c28
+/anotherharness-ah-client-modules/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-modules/known-limitations-and-deferred-work:
+  en: d0908712f037c479
+  zh: 14034e5df3c34e7f
+/anotherharness-ah-client-modules/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

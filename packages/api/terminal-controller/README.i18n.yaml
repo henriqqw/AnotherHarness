@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/api/terminal-controller/README.md
+/:
+  en: 6a19f6d3fdfe0db2
+  zh: a361afe6b8cd3010
+/anotherharness-ah-api-terminal-controller:
+  en: 45c9a966bb2a3161
+  zh: 20d1f2cc7fb0f8cb
+/anotherharness-ah-api-terminal-controller/summary:
+  en: afcf6f0d2f899ecc
+  zh: e38e2c0830e42ac9
+/anotherharness-ah-api-terminal-controller/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 1fa9a72d1ee045cc
+/anotherharness-ah-api-terminal-controller/use-this-package:
+  en: ad86293ea78f477d
+  zh: d56bbbf1487fa007
+/anotherharness-ah-api-terminal-controller/understand-the-implementation:
+  en: 8579db33e5613fdd
+  zh: e9049e6d75c7766c
+/anotherharness-ah-api-terminal-controller/further-exploration:
+  en: 83d8b089ba9473e1
+  zh: d1e984fb20269c2b
+/anotherharness-ah-api-terminal-controller/model-experience:
+  en: 00a779a559158cc6
+  zh: d7579d5f350cea46
+/anotherharness-ah-api-terminal-controller/model-experience/kv-cache-effect:
+  en: be6f8e99d307c7ac
+  zh: 7dd4dcc0429e766c
+/anotherharness-ah-api-terminal-controller/known-limitations-and-deferred-work:
+  en: 0e7d54b5af756a1e
+  zh: 6f86a50ffc3e5497
+/anotherharness-ah-api-terminal-controller/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 7aeea62eda52b83b

@@ -1,0 +1,25 @@
+# In-history system prompt patch: the route declares `systemPromptUpdate:
+# in-history`, and a fixture section changes the rendered prompt after the
+# first read, so the second step appends a `system/message` after the cached
+# history instead of replacing node 0.
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  config:
+    thinking: enabled
+    reasoningEffort: max
+
+- id: agent-default-model
+  name: '@anotherharness/ah-agent-default-model'
+  config:
+    provider: deepseek-official
+    model: deepseek-flash
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js ahHomePath('sessions')
+    compression: !!js 'process.env.AH_SNAPSHOT === undefined ? ''zstd'' : ''none'''
+
+- insert:
+    - id: in-history-prompt-update
+      name: '../../../packages/test-support/session-snapshot/tests/fixtures/in-history-prompt-update.ts'

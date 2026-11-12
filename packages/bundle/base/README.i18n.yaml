@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/base/README.md
+/:
+  en: c25f3f99eddb0b7d
+  zh: f5b82c7f46c2a86a
+/anotherharness-ah-base:
+  en: b69f86be9f683cb8
+  zh: 82c40116a66dcd55
+/anotherharness-ah-base/summary:
+  en: bdbe034407e1148d
+  zh: cb39826cc45d685f
+/anotherharness-ah-base/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-base/use-this-package:
+  en: 101008df04e8efc4
+  zh: 29cd03dab497c372
+/anotherharness-ah-base/use-this-package/a-minimal-custom-profile:
+  en: e36c91227311479e
+  zh: 281bf70789392c3c
+/anotherharness-ah-base/use-this-package/what-you-get:
+  en: 8677a9f367e8615d
+  zh: a79e3bb0ab5922be
+/anotherharness-ah-base/use-this-package/shell-tools-per-platform:
+  en: 2dce12f82d6ee955
+  zh: d4599eb899a3cd88
+/anotherharness-ah-base/use-this-package/changing-the-defaults:
+  en: 96a55abd5f7007dd
+  zh: d94f020708c38a17
+/anotherharness-ah-base/understand-the-implementation:
+  en: 094cfca8e26a0042
+  zh: de435e3e38420c01
+/anotherharness-ah-base/understand-the-implementation/composition-mechanics:
+  en: fd37bc66e39ac5e7
+  zh: 1a039afb8bf2d517
+/anotherharness-ah-base/understand-the-implementation/platform-gating:
+  en: 8a8152a262798d1e
+  zh: 335099c5b4fb112b
+/anotherharness-ah-base/understand-the-implementation/source-map:
+  en: a8efda71d444155e
+  zh: c8221593709fbb99
+/anotherharness-ah-base/further-exploration:
+  en: 9a37ee35b6da119a
+  zh: 04362c0ec2ae285a
+/anotherharness-ah-base/model-experience:
+  en: f6c4d2609b5f4bb6
+  zh: 869a9565a133fb01
+/anotherharness-ah-base/model-experience/kv-cache-effect:
+  en: e6e907c99df7cd0a
+  zh: f19f2f84a5f95177
+/anotherharness-ah-base/known-limitations-and-deferred-work:
+  en: 8f056a178299dd7e
+  zh: a640efa229e8a58b
+/anotherharness-ah-base/known-limitations-and-deferred-work/dev-note:
+  en: ca037cb236aa841a
+  zh: e06f3899be43b572

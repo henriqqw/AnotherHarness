@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/preset/persona/README.md
+/:
+  en: fca2b93080507b37
+  zh: 0a8c803deedc0731
+/anotherharness-ah-persona:
+  en: ef7ba208828dd90e
+  zh: 57725460efc009b9
+/anotherharness-ah-persona/summary:
+  en: ae343fc8e0d3c6c7
+  zh: ffc5bf426ffcd630
+/anotherharness-ah-persona/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-persona/use-this-package:
+  en: 9b74e4172eaf5fdd
+  zh: ab94a985d1f96523
+/anotherharness-ah-persona/use-this-package/configuration:
+  en: 333d603f2239461f
+  zh: 3b7f54333f8be8ee
+/anotherharness-ah-persona/use-this-package/persona-behavior:
+  en: 60a0513b27aa1204
+  zh: a5604819b059dd86
+/anotherharness-ah-persona/use-this-package/when-to-use-it:
+  en: ca0853ed8102df61
+  zh: eb53994a8c36b7e4
+/anotherharness-ah-persona/understand-the-implementation:
+  en: 42b15ac6321706aa
+  zh: 4ed0861911abaf5d
+/anotherharness-ah-persona/understand-the-implementation/how-the-row-registers:
+  en: 72eeb11ca6e5401e
+  zh: f8b036d1d0444b56
+/anotherharness-ah-persona/understand-the-implementation/why-the-row-is-scope-only:
+  en: f314cb55ea9a46e3
+  zh: 86e0a3aae815b79b
+/anotherharness-ah-persona/understand-the-implementation/source-map:
+  en: 45e09ad507fbe1fb
+  zh: 006ec9c79c1771a7
+/anotherharness-ah-persona/further-exploration:
+  en: 14a15a3eff2a782b
+  zh: 6600c597a45e9e21
+/anotherharness-ah-persona/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-persona/model-experience/the-persona-section:
+  en: 2b53c1d07ef68f24
+  zh: 33a3c17ab56adf57
+/anotherharness-ah-persona/model-experience/the-persona-section/what-the-model-sees:
+  en: 7f01b67034a26a2f
+  zh: 7f65b5eee49e71a4
+/anotherharness-ah-persona/model-experience/the-persona-section/token-effect:
+  en: af8e73cbc540aa5a
+  zh: fa1182678427ab11
+/anotherharness-ah-persona/model-experience/the-persona-section/kv-cache-effect:
+  en: e9f96cf496c544c7
+  zh: b986f1b22d1beb70
+/anotherharness-ah-persona/known-limitations-and-deferred-work:
+  en: dc09a92d00af8e8a
+  zh: 15f0f663ba6dc2cb
+/anotherharness-ah-persona/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

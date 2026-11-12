@@ -1,0 +1,44 @@
+{
+  "name": "@anotherharness/ah-typert-loader",
+  "description": "Loader integration for generated Typert package contributions",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/typert/loader"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-typert-registry": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-app-boot": "workspace:*",
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-typert-registry": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "zod": "^4.4.3"
+  }
+}

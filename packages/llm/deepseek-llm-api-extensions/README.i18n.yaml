@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/llm/deepseek-llm-api-extensions/README.md
+/:
+  en: 8805672f8507e16d
+  zh: 07696ec60f8d86e8
+/anotherharness-ah-deepseek-llm-api-extensions:
+  en: c053b24e03bbc6b2
+  zh: 202dcf286d7dae25
+/anotherharness-ah-deepseek-llm-api-extensions/summary:
+  en: 2cc9c19555fe246d
+  zh: 23e5a3753c966f08
+/anotherharness-ah-deepseek-llm-api-extensions/table-of-contents:
+  en: 6b7f62c318c9aad6
+  zh: 5e22d58884e60c87
+/anotherharness-ah-deepseek-llm-api-extensions/service:
+  en: bc15ff63f7df8502
+  zh: e4aed947c3fd6ba5
+/anotherharness-ah-deepseek-llm-api-extensions/model-experience:
+  en: 31bc19c287b41ca7
+  zh: 57cc659a258c9532
+/anotherharness-ah-deepseek-llm-api-extensions/model-experience/kv-cache-effect:
+  en: 83eb7f1e6ce80b45
+  zh: 516811171411ffca
+/anotherharness-ah-deepseek-llm-api-extensions/known-limitations-and-deferred-work:
+  en: 440169524f1a1323
+  zh: 935424afe40201b7
+/anotherharness-ah-deepseek-llm-api-extensions/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

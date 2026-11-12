@@ -1,0 +1,61 @@
+{
+  "name": "@anotherharness/ah-tool-subagent-control",
+  "description": "Globally named send_message, interrupt_agent, and list_agents tools over ctx.subagents continuations",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/subagent/tool-subagent-control"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./list-agents": {
+      "types": "./lib/types/list-agents.d.ts",
+      "default": "./lib/types/list-agents.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-subagent": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-loop": "workspace:*",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-persistence": "workspace:*",
+    "@anotherharness/ah-session-persistence-jsonl": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-subagent": "workspace:*",
+    "@anotherharness/ah-subagent-fork-in-process": "workspace:*",
+    "@anotherharness/ah-subagent-spawn-in-process": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*"
+  }
+}

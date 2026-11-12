@@ -1,0 +1,65 @@
+# TypeScript SDK snapshot patch for automatic AH SDK failure notices.
+
+- id: skill-filesystem
+  name: '@anotherharness/ah-skill-filesystem'
+  config:
+    includeDefaultRoots: false
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  config:
+    thinking: enabled
+    reasoningEffort: max
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js ahHomePath('sessions')
+    compression: !!js "process.env.AH_SNAPSHOT === undefined ? 'zstd' : 'none'"
+
+- id: session-log-deepseek
+  name: '@anotherharness/ah-session-log-deepseek'
+  config:
+    enabled: true
+
+- insert:
+    - id: subagent-ah-sdk-diagnostic
+      name: '@anotherharness/ah-subagent-ah-sdk'
+      config:
+        providerName: ah-sdk-diagnostic
+        profile: sdk
+        patches:
+          - !!js process.env.AH_TEST_CHILD_PATCH
+        ahHome: !!js ahHomePath('children/first')
+        provider: mock
+        model: mock-echo
+        env:
+          AH_TELEMETRY_DISABLED: '1'
+          AH_TEST_CHILD_FAILURE: '1'
+    - id: tool-subagent-ah-sdk-diagnostic
+      name: '@anotherharness/ah-tool-subagent'
+      config:
+        provider: ah-sdk-diagnostic
+        toolName: subagent_ah_sdk
+        maxDepth: provider-managed
+    - id: subagent-ah-sdk-diagnostic-second
+      name: '@anotherharness/ah-subagent-ah-sdk'
+      config:
+        providerName: ah-sdk-diagnostic-second
+        profile: sdk
+        patches:
+          - !!js process.env.AH_TEST_CHILD_PATCH
+        ahHome: !!js ahHomePath('children/second')
+        provider: mock
+        model: mock-echo
+        env:
+          AH_TELEMETRY_DISABLED: '1'
+          AH_TEST_CHILD_FAILURE: '1'
+    - id: tool-subagent-ah-sdk-diagnostic-second
+      name: '@anotherharness/ah-tool-subagent'
+      config:
+        provider: ah-sdk-diagnostic-second
+        toolName: subagent_ah_sdk_second
+        maxDepth: provider-managed
+    - id: await-external-subagents
+      name: '../../../packages/test-support/session-snapshot/tests/fixtures/subagent-settlement-barrier.ts'

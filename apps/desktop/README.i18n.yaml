@@ -1,0 +1,91 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write apps/desktop/README.md
+/anotherharness-desktop:
+  en: 2e1182ddfd000dc0
+  zh: 2c46c1f5b5570896
+/anotherharness-desktop/terminal-command:
+  en: a224f439ceecfb7d
+  zh: bce12494d8bddd0a
+/anotherharness-desktop/closing-the-window-and-quitting:
+  en: 3f6c3e7b5dfbf87c
+  zh: c1bfd97d6bed7eec
+/anotherharness-desktop/key-technical-decisions:
+  en: 882f6d3795f15f35
+  zh: 79901197c610a4f8
+/anotherharness-desktop/key-technical-decisions/bundled-workspace-dependencies:
+  en: 2810da9e7b67b716
+  zh: eea054410da4dc58
+/anotherharness-desktop/bundled-command-runtime:
+  en: 8d3f1cd522b65082
+  zh: aa95460ad3f6e247
+/anotherharness-desktop/installation-ownership:
+  en: 558fbf2d5196ec72
+  zh: d05e76a1dda95e7d
+/anotherharness-desktop/installation-ownership/runtime-and-plugin-activation:
+  en: 669fa6619b0b4e1f
+  zh: 6cfb712317397107
+/anotherharness-desktop/installation-ownership/host-environment:
+  en: bcb5def6cda6c99d
+  zh: 095ee52a30dc0832
+/anotherharness-desktop/develop:
+  en: b6d54cfe8377a6ea
+  zh: edda815df660b53a
+/anotherharness-desktop/develop/startup-onboarding:
+  en: 79170e8982e6f214
+  zh: f32e5ca0619710b7
+/anotherharness-desktop/develop/welcome-window-appearance:
+  en: 944c6ad3d669a804
+  zh: b4563d2646f409f5
+/anotherharness-desktop/package:
+  en: 4cd8a8da6977928d
+  zh: 9f624855a2edac37
+/anotherharness-desktop/package/release-versions:
+  en: 7eb37616740a8ab2
+  zh: 3a22d69134088b94
+/anotherharness-desktop/package/local-macos-dmg-without-release-signing:
+  en: 65a0cc39b896203b
+  zh: 1ea9b869479f07cb
+/anotherharness-desktop/package/local-official-bundles-from-a-loopback-registry:
+  en: 0fa665a1a8ceae05
+  zh: 82391f987937a616
+/anotherharness-desktop/package/runtime-file-selection:
+  en: 8a9379f8539ad495
+  zh: ee3656d5b9e34e03
+/anotherharness-desktop/package/upload-updates:
+  en: f1a7b8ddd78e1a95
+  zh: 7e31f71fe5338fd8
+/anotherharness-desktop/package/unsigned-windows-test-installer:
+  en: f3c4b4a21bc16774
+  zh: a5b14a34dc79b6eb
+/anotherharness-desktop/package/windows-installer-interface:
+  en: c05a50957cb268e2
+  zh: 536326d09f05ec6f
+/anotherharness-desktop/package/windows-ev-signing:
+  en: e184f87fe9679a7a
+  zh: 94e41d2824c1085b
+/anotherharness-desktop/package/desktop-runtime-preparation:
+  en: 695c17b0c904721a
+  zh: 27af40ec999c7ab8
+/anotherharness-desktop/updates:
+  en: 7bb72954fb8d1570
+  zh: 578c95cfa1c2edae
+/anotherharness-desktop/updates/local-desktop-settings:
+  en: 89ab75999925a675
+  zh: e8a5be8394a8fe40
+/anotherharness-desktop/updates/mandatory-update-policy:
+  en: 11c105ad06e3fdaf
+  zh: 50c6692e0c941c86
+/anotherharness-desktop/updates/local-updater-qualification:
+  en: 39a70f117d9d89d6
+  zh: df8a2b9ddaa3b58e
+/anotherharness-desktop/low-level-development-overrides:
+  en: 9ef7dc734acc3910
+  zh: 61846220fc40de2f
+/anotherharness-desktop/known-limitations:
+  en: f5b84865e92e3f7a
+  zh: 22f6428027117c30
+/anotherharness-desktop/dev-note:
+  en: 1776404a8ab6ce67
+  zh: c8358a07619d20ba

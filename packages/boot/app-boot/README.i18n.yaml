@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/boot/app-boot/README.md
+/:
+  en: 251d83e96a22df66
+  zh: 00f02e47a6cabd26
+/anotherharness-ah-app-boot:
+  en: c2470ff56d93115c
+  zh: a4a6864a7599384e
+/anotherharness-ah-app-boot/summary:
+  en: 53f0a48161163855
+  zh: 76a60a4f58e96b40
+/anotherharness-ah-app-boot/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-app-boot/use-this-package:
+  en: f6fa378225009c8f
+  zh: 324c0e4640bb1358
+/anotherharness-ah-app-boot/use-this-package/when-to-use-it:
+  en: 239110f0d949c538
+  zh: 3ddea9e37840f584
+/anotherharness-ah-app-boot/use-this-package/starting-the-app:
+  en: 4a424cd401556f20
+  zh: 0b34dd18e0db6cea
+/anotherharness-ah-app-boot/use-this-package/profiles:
+  en: 3928b12b8ff3b4a2
+  zh: 2a2e3dfb482ac065
+/anotherharness-ah-app-boot/use-this-package/previewing-the-effective-configuration:
+  en: 646a0ccdd7881ad1
+  zh: e3696acb1573dd7b
+/anotherharness-ah-app-boot/use-this-package/inspecting-plugin-configuration-schemas:
+  en: f4bec9010aaf9a29
+  zh: 96326b55f5d78886
+/anotherharness-ah-app-boot/use-this-package/reading-plugin-display-metadata:
+  en: cc61067d79b381f6
+  zh: 5db91f69f64cd95e
+/anotherharness-ah-app-boot/use-this-package/startup-and-reload-failures:
+  en: ca4b38641bfcb1b9
+  zh: c1ff81258e49b096
+/anotherharness-ah-app-boot/use-this-package/telling-the-agent-where-the-harness-lives:
+  en: 4ec7109b57478226
+  zh: 39153a89037ec8c7
+/anotherharness-ah-app-boot/understand-the-implementation:
+  en: f4a2695cb4c8a570
+  zh: 89837235d2f376cf
+/anotherharness-ah-app-boot/understand-the-implementation/design-notes:
+  en: fcfc3181bbf4c86f
+  zh: ac5d14bd6290e66a
+/anotherharness-ah-app-boot/understand-the-implementation/helper-behavior:
+  en: f7bc3a8dd4b00bdd
+  zh: 30098428aa769ad0
+/anotherharness-ah-app-boot/understand-the-implementation/source-map:
+  en: 3da01827e3354655
+  zh: 06ccfaed83f65a76
+/anotherharness-ah-app-boot/further-exploration:
+  en: d30dec68719a89bd
+  zh: f38a3dcedc8a8833
+/anotherharness-ah-app-boot/model-experience:
+  en: 769777f1cb1a9408
+  zh: f02b2834179df50d
+/anotherharness-ah-app-boot/model-experience/kv-cache-effect:
+  en: c4d49630b68ae896
+  zh: 6f450ec6ba39bb81
+/anotherharness-ah-app-boot/known-limitations-and-deferred-work:
+  en: bf1a49013cad8e9c
+  zh: 41b2b010f8650ec3
+/anotherharness-ah-app-boot/known-limitations-and-deferred-work/dev-note:
+  en: d2f0d68fe29fb750
+  zh: 323d21ee73a9e3f6
+/anotherharness-ah-app-boot/known-limitations-and-deferred-work/dev-note/open-yaml-config-dump-stability:
+  en: 4d6a3a485e10df81
+  zh: 818c575f320fd092

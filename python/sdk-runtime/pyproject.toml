@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "another-harness-runtime-bin"
+version = "0.0.0.dev0"
+description = "Bundled ah CLI runtime for the AnotherHarness Python SDK"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "DeepSeek" }]
+
+[project.urls]
+Homepage = "https://github.com/henriqqw/AnotherHarness"
+Documentation = "https://github.com/henriqqw/AnotherHarness/blob/master/python/sdk-runtime/README.md"
+Issues = "https://github.com/henriqqw/AnotherHarness/issues"
+Source = "https://github.com/henriqqw/AnotherHarness"
+
+[project.scripts]
+ah = "another_harness_runtime:main"
+
+# Include the injected ah executable and sidecars; exclude the dev-only node closure.
+[tool.hatch.build]
+artifacts = [
+  "src/another_harness_runtime/runtime/another-harness-sdk-runtime-*",
+  "src/another_harness_runtime/runtime/another-harness-sdk-runtime-*/**",
+  "src/another_harness_runtime/runtime/linux-*/**",
+  "src/another_harness_runtime/runtime/macos-*/**",
+  "src/another_harness_runtime/runtime/win-*/**",
+]
+exclude = ["src/another_harness_runtime/runtime/node"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/another_harness_runtime"]
+# The release job uses Twine 6.2.0, which accepts core metadata through 2.4.
+core-metadata-version = "2.4"
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+
+[tool.hatch.build.targets.sdist.hooks.custom]

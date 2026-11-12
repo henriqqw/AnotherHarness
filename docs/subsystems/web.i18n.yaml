@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for web.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/web.md
+/web-access:
+  en: 8f22cc31ece8bbef
+  zh: d1aacb01126d2323
+/web-access/why-one-capability-has-two-operations:
+  en: 4738fcea18c9e9ad
+  zh: f37858fc3bced877
+/web-access/search-request-and-result:
+  en: 17320141b257199a
+  zh: 2e84b883964b99ef
+/web-access/fetch-request-and-result:
+  en: b96bcdf42ced9eab
+  zh: aa927e2450238557
+/web-access/provider-availability:
+  en: 84e3d6fdb0b2a1d7
+  zh: 6175a9d011152d3d
+/web-access/fetch-network-policy:
+  en: 261fce9249be8b2b
+  zh: bf6abf77679aca6d
+/web-access/errors:
+  en: 084858201b680676
+  zh: b49cfa490c5cad77
+/web-access/the-service:
+  en: c81fdcdfd6e22861
+  zh: ac906c9148942041

@@ -1,0 +1,76 @@
+# Bilingual-pair consistency record for 2026-06-24-web-capability-seam.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-06-24-web-capability-seam.md
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers:
+  en: 0359008e32b62e8c
+  zh: f4f907f67898eb96
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/problem:
+  en: fb550ecc2d1ac21c
+  zh: 2819ec1a58e39f08
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/decision:
+  en: 4f4bc1d006bf7b5f
+  zh: ef659724e0c1c5a9
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/package-topology:
+  en: 023c1bde2de68fcf
+  zh: 18bcdc9f03f12bc1
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/ctx-web-contract:
+  en: 0c06638728c1fd48
+  zh: bbf9dea3a8b6c3ae
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/provider-availability-and-selection:
+  en: 52f56a4c9ba50689
+  zh: bc3f05093f419f08
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/search-request-and-result-schema:
+  en: 3893954a681ce932
+  zh: 472da1eb9dbceff0
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/fetch-request-and-result-schema:
+  en: 9669a445d1ab4ee2
+  zh: 7d9871dc2c656a05
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/tool-consumer-behavior:
+  en: 4f2d4bccd98a7800
+  zh: d2ff606cc234d828
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/errors:
+  en: 60d71afdc3271ee3
+  zh: 21c4773a0734aa3a
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/testing:
+  en: 6607ea96af315546
+  zh: 45046a136648b9e0
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered:
+  en: 6119e2aff3b6be5a
+  zh: 76136ef5249c23eb
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/let-each-provider-register-its-own-model-facing-tool:
+  en: e0d84a9b1b9c2123
+  zh: 9e116a7b96751563
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/put-provider-dispatch-directly-in-ah-tool-web:
+  en: 48dd2688b1a2ead9
+  zh: b72291045766b7cb
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/split-search-and-fetch-into-two-seams-ah-search-ah-fetch:
+  en: 42a0c4a8e64fec5f
+  zh: d24da5523ae6f80b
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/choose-the-first-registered-provider:
+  en: 1800706ea0f6b90b
+  zh: ced985b7657e2d7f
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/treat-firecrawl-exa-tavily-parallel-extraction-as-fetch:
+  en: fc22e6a8bfaeaa20
+  zh: 64032ea6ab61b836
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/mirror-claude-code-s-url-prompt-webfetch-shape:
+  en: 81b03d2827e4b29a
+  zh: 5907a0bd959f71aa
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/validate-dns-and-then-call-an-ordinary-fetch:
+  en: aa6c1e7e6374a875
+  zh: 045c8af6cd44c3e1
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/block-private-looking-hostname-strings-without-pinning-resolved-addresses:
+  en: 3d906f3056733479
+  zh: d652723eb5372007
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/alternatives-considered/require-per-call-approval-before-public-fetches:
+  en: f8d1fc8e9c9659cf
+  zh: da5792520e35cba0
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/consequences:
+  en: 12fd20ba54818215
+  zh: c1ca000b13666701
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/deferred-work:
+  en: a6738e3d01da851a
+  zh: 13ee73cb5d2c6e08
+/agent-note-web-capability-seam-stable-tools-over-multiple-providers/open-questions:
+  en: 63848c6ef9a6ab44
+  zh: 041b340802091e60

@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-deliverables/README.md
+/:
+  en: 91a4da87e2e078ed
+  zh: 8d489c6cdf208c4d
+/anotherharness-ah-client-ui-deliverables:
+  en: e2c85b9fa96f6b8e
+  zh: af009f85f553010b
+/anotherharness-ah-client-ui-deliverables/summary:
+  en: a17b97d16803f911
+  zh: ad80cf4bcb5a8018
+/anotherharness-ah-client-ui-deliverables/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-deliverables/use-this-package:
+  en: 2a5ea3cd2e81e179
+  zh: 860de89967ee9bd0
+/anotherharness-ah-client-ui-deliverables/use-this-package/explicit-deliveries:
+  en: 5d2c7a933e1daaa9
+  zh: 0cf02e5ee6920cca
+/anotherharness-ah-client-ui-deliverables/use-this-package/the-changed-files-card:
+  en: 4b279e2bddddc083
+  zh: a3135393299c935b
+/anotherharness-ah-client-ui-deliverables/use-this-package/the-review-tab:
+  en: 662ffe1d37ab7d59
+  zh: ca9f61208c7b3d98
+/anotherharness-ah-client-ui-deliverables/use-this-package/inline-code-links:
+  en: ef13aac8ac36a5c3
+  zh: 1e2ae4b3eaf98818
+/anotherharness-ah-client-ui-deliverables/understand-the-implementation:
+  en: 2bfa71eb5addaa3b
+  zh: 263c1cd9cf297187
+/anotherharness-ah-client-ui-deliverables/further-exploration:
+  en: e51a42ba9f030e81
+  zh: 4700ee3cec634cd1
+/anotherharness-ah-client-ui-deliverables/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-client-ui-deliverables/model-experience/clickable-file-reference-guidance:
+  en: eb244aa21a4e5210
+  zh: e3450addfa19cea5
+/anotherharness-ah-client-ui-deliverables/model-experience/clickable-file-reference-guidance/what-the-model-sees:
+  en: 78339e353ae47a53
+  zh: 582efa623a5dfd72
+/anotherharness-ah-client-ui-deliverables/model-experience/clickable-file-reference-guidance/token-effect:
+  en: bf5d9994d8aae5d9
+  zh: 5e57c6a5e0247353
+/anotherharness-ah-client-ui-deliverables/model-experience/clickable-file-reference-guidance/kv-cache-effect:
+  en: 52626a05acc8b320
+  zh: 6a8e62b0d47d5297
+/anotherharness-ah-client-ui-deliverables/known-limitations-and-deferred-work:
+  en: 94861939d97f4bb6
+  zh: 6af94131fceaf52b
+/anotherharness-ah-client-ui-deliverables/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

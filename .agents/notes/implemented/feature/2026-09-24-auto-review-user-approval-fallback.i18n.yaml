@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-24-auto-review-user-approval-fallback.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-09-24-auto-review-user-approval-fallback.md
+/agent-note-auto-review-asks-the-user-after-a-denial:
+  en: 2b967d4079696a43
+  zh: 4da7a7f1e13aa905
+/agent-note-auto-review-asks-the-user-after-a-denial/problem:
+  en: 7ce5c1daf39a027c
+  zh: 46ca571780e96818
+/agent-note-auto-review-asks-the-user-after-a-denial/decision:
+  en: 331c777e7fa0c567
+  zh: b5ca32a15bf51157
+/agent-note-auto-review-asks-the-user-after-a-denial/alternatives-considered:
+  en: 01f71dd10849f925
+  zh: 8b79a7e149a9a60c
+/agent-note-auto-review-asks-the-user-after-a-denial/consequences:
+  en: 822a4241ddf39448
+  zh: dd05997932eed142

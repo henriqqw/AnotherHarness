@@ -1,0 +1,74 @@
+{
+  "name": "@anotherharness/ah-spill-policy",
+  "description": "Token-budgeted tool-result retention with recoverable text and image paths",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/spill/spill-policy"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./notice": {
+      "types": "./lib/types/notice.d.ts",
+      "default": "./lib/types/notice.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-output-retention": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-spill": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-token-meter": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-ptc-runtime-node": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-output-retention": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-spill": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-subprocess-local": "workspace:*",
+    "@anotherharness/ah-sandbox-local": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-token-meter": "workspace:*",
+    "@anotherharness/ah-mcp-client": "workspace:*",
+    "@anotherharness/ah-spill-local": "workspace:*",
+    "@anotherharness/ah-llm-deepseek": "workspace:*",
+    "@anotherharness/ah-ptc-runtime": "workspace:*",
+    "@anotherharness/ah-attachment-local": "workspace:*",
+    "@anotherharness/ah-tool-fs": "workspace:*",
+    "sharp": "^0.35.5",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*"
+  }
+}

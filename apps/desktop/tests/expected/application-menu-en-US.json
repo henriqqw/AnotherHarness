@@ -1,0 +1,24 @@
+[
+  {
+    "label": "Check for Updates…"
+  },
+  {
+    "label": "Manage ah Command…"
+  },
+  {
+    "role": "hide",
+    "label": "Hide AnotherHarness"
+  },
+  {
+    "role": "hideOthers",
+    "label": "Hide Others"
+  },
+  {
+    "role": "unhide",
+    "label": "Show All"
+  },
+  {
+    "role": "quit",
+    "label": "Quit AnotherHarness"
+  }
+]

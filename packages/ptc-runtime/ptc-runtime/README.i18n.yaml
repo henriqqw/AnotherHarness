@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/ptc-runtime/ptc-runtime/README.md
+/:
+  en: 8904d5f5d5251a83
+  zh: 69b48f289b0416f0
+/anotherharness-ah-ptc-runtime:
+  en: c39c3e1094322121
+  zh: 314735216e8e7510
+/anotherharness-ah-ptc-runtime/summary:
+  en: 39aec7c5b22c9edb
+  zh: 38ed65336ec58f04
+/anotherharness-ah-ptc-runtime/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-ptc-runtime/use-this-package:
+  en: 138abedef5dac3c3
+  zh: 70f4639597ae3845
+/anotherharness-ah-ptc-runtime/use-this-package/run-a-program:
+  en: 6f97019cebc2f417
+  zh: c56f18a690dbe814
+/anotherharness-ah-ptc-runtime/use-this-package/choose-a-backend:
+  en: ca23e712401d7a5c
+  zh: 209a6b16c9a101fa
+/anotherharness-ah-ptc-runtime/use-this-package/name-your-bindings-portably:
+  en: 4e46c1672701b8df
+  zh: 0353c5855c9ff6be
+/anotherharness-ah-ptc-runtime/use-this-package/what-can-go-wrong:
+  en: 44f9fdf2c8e2cacc
+  zh: 99dd555a49075f88
+/anotherharness-ah-ptc-runtime/understand-the-implementation:
+  en: 686d570f5e669fa4
+  zh: 2075cf27c30f251a
+/anotherharness-ah-ptc-runtime/understand-the-implementation/design-concept:
+  en: 184d8b51b8ff2b43
+  zh: 9e7d2f6020f3af45
+/anotherharness-ah-ptc-runtime/understand-the-implementation/service-api:
+  en: 296e8ea0480e4f68
+  zh: a6456ac83ceb295f
+/anotherharness-ah-ptc-runtime/understand-the-implementation/vocabulary:
+  en: 855cb8366e3bd293
+  zh: da6d7a0ce51f97fc
+/anotherharness-ah-ptc-runtime/understand-the-implementation/portable-identifiers:
+  en: bc1f10ddbfae5cdd
+  zh: d6299d38f9cde81a
+/anotherharness-ah-ptc-runtime/understand-the-implementation/source-map:
+  en: 85b65ceb9be0c49f
+  zh: 52df7f06d4e49d6e
+/anotherharness-ah-ptc-runtime/further-exploration:
+  en: f272fcfd8e2b82eb
+  zh: 997b3663e89bdfab
+/anotherharness-ah-ptc-runtime/model-experience:
+  en: f5ccf2b2a26de413
+  zh: 239fe4cd3af0da82
+/anotherharness-ah-ptc-runtime/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: 081cebc2e2650f03
+/anotherharness-ah-ptc-runtime/known-limitations-and-deferred-work:
+  en: 7f30f78c5d427667
+  zh: 99d21160016deea2
+/anotherharness-ah-ptc-runtime/known-limitations-and-deferred-work/dev-note:
+  en: d56846da29ad869c
+  zh: 0397151a7e29b8ba
+/anotherharness-ah-ptc-runtime/known-limitations-and-deferred-work/dev-note/future-persistent-kernel-backend:
+  en: cfefaae6ed9705d5
+  zh: 3cca5b1bd92445b0
+/anotherharness-ah-ptc-runtime/known-limitations-and-deferred-work/dev-note/future-container-backend:
+  en: 2b94202842f0556c
+  zh: 5aa0311fa621a018

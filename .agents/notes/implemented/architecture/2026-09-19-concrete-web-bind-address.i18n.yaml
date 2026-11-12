@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-19-concrete-web-bind-address.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-19-concrete-web-bind-address.md
+/agent-note-bind-one-concrete-web-address:
+  en: 77685924669076ec
+  zh: 5e49676cb579114a
+/agent-note-bind-one-concrete-web-address/problem:
+  en: ffc265e61eadc31b
+  zh: fcc70f0a8817914c
+/agent-note-bind-one-concrete-web-address/decision:
+  en: 2e06c562fa722e36
+  zh: ae1f8caf8221c709
+/agent-note-bind-one-concrete-web-address/alternatives-considered:
+  en: 0e4d475347796821
+  zh: e621e606bc5b1045
+/agent-note-bind-one-concrete-web-address/consequences:
+  en: 038d500900802db2
+  zh: f08cb90705c01dee
+/agent-note-bind-one-concrete-web-address/testing:
+  en: 4bb8f4bf4ad943c3
+  zh: 2e24d56d01b52574

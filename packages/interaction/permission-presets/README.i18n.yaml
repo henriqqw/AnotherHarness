@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/interaction/permission-presets/README.md
+/:
+  en: a4e18d5b27337d71
+  zh: 2220eba5dfcdb1f3
+/anotherharness-ah-permission-presets:
+  en: e00e265def033cde
+  zh: 69d20f2fadf60185
+/anotherharness-ah-permission-presets/summary:
+  en: 75a5c477313feb23
+  zh: 9e036411e14edf1b
+/anotherharness-ah-permission-presets/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-permission-presets/use-this-package:
+  en: 0b93409c92e2a769
+  zh: 4b4e10636760bb15
+/anotherharness-ah-permission-presets/use-this-package/configuring-presets:
+  en: 4fa2509e5b050cca
+  zh: 091563a7b339d23f
+/anotherharness-ah-permission-presets/use-this-package/switching-presets:
+  en: ede3169d799a7578
+  zh: cb88e3ade597e486
+/anotherharness-ah-permission-presets/use-this-package/what-users-see:
+  en: 628a5bdd956e206c
+  zh: 172be9a9748d65ce
+/anotherharness-ah-permission-presets/use-this-package/session-defaults:
+  en: 88218998b169a203
+  zh: 7a3646ff0ca28549
+/anotherharness-ah-permission-presets/understand-the-implementation:
+  en: f5c37bc882b3f0d1
+  zh: 8203bea78976aefc
+/anotherharness-ah-permission-presets/understand-the-implementation/source-map:
+  en: 172f5c8af5705ada
+  zh: b424834e38adb25d
+/anotherharness-ah-permission-presets/understand-the-implementation/write-path:
+  en: b24ec2040b52f64f
+  zh: 271534b11558a445
+/anotherharness-ah-permission-presets/understand-the-implementation/read-side-and-custom:
+  en: c9ca792038f44654
+  zh: 83cc2641c800c114
+/anotherharness-ah-permission-presets/understand-the-implementation/session-pinning-and-blank-reuse:
+  en: 893cea88bce22903
+  zh: 2431e19ced670511
+/anotherharness-ah-permission-presets/understand-the-implementation/catalog-projection-and-optional-command:
+  en: 2e79bec74274b054
+  zh: 256526ab1b4b55e9
+/anotherharness-ah-permission-presets/further-exploration:
+  en: 740afb68b4eab0f1
+  zh: 1a0f0824482146f3
+/anotherharness-ah-permission-presets/model-experience:
+  en: 2b6cc175e0193846
+  zh: 57f4262f037f28b3
+/anotherharness-ah-permission-presets/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: ef3368fe16abff21
+/anotherharness-ah-permission-presets/known-limitations-and-deferred-work:
+  en: 8f245d69661be63f
+  zh: d14108248083eaa5
+/anotherharness-ah-permission-presets/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

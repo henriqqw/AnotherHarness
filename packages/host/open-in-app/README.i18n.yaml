@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/host/open-in-app/README.md
+/:
+  en: fbd3cf9953271b10
+  zh: 6efe4d036544d0d2
+/anotherharness-ah-host-open-in-app:
+  en: f6ef625eec13384c
+  zh: ce1396380689e5b2
+/anotherharness-ah-host-open-in-app/summary:
+  en: 6990e2ae8415daeb
+  zh: ddac70c06527b6e7
+/anotherharness-ah-host-open-in-app/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 725b47765ee8f30b
+/anotherharness-ah-host-open-in-app/use-this-package:
+  en: 232e124353bfaa41
+  zh: 5bba1421d989e347
+/anotherharness-ah-host-open-in-app/use-this-package/when-to-choose-it:
+  en: 40372c8683c3dbe8
+  zh: da700c126ba63de1
+/anotherharness-ah-host-open-in-app/use-this-package/minimal-configuration:
+  en: 7f5fec5ce8fa06f1
+  zh: 936cd0f711fbec90
+/anotherharness-ah-host-open-in-app/use-this-package/the-catalog-and-how-it-resolves:
+  en: 7a63acc1bc55aa6f
+  zh: bbe541dbe88b2ba6
+/anotherharness-ah-host-open-in-app/use-this-package/what-to-expect:
+  en: c37fc364a833c07a
+  zh: c192d0306d5576ae
+/anotherharness-ah-host-open-in-app/use-this-package/the-shared-subpath:
+  en: 558e741770080c93
+  zh: 80482d355dc89cae
+/anotherharness-ah-host-open-in-app/understand-the-implementation:
+  en: 9db3dfae655e5f43
+  zh: 832c4abd1b64b185
+/anotherharness-ah-host-open-in-app/further-exploration:
+  en: d6f2f1a243b2a58f
+  zh: ae23402244362bdc
+/anotherharness-ah-host-open-in-app/model-experience:
+  en: f4b8dd6b4e986564
+  zh: 814a768a38e52c03
+/anotherharness-ah-host-open-in-app/model-experience/kv-cache-effect:
+  en: 47f982e326fe77fd
+  zh: c2241315dc0c89c9
+/anotherharness-ah-host-open-in-app/known-limitations-and-deferred-work:
+  en: 6e1cf559c4ce0d56
+  zh: f78c5548bb3d6236
+/anotherharness-ah-host-open-in-app/known-limitations-and-deferred-work/dev-note:
+  en: 1b7b12a6d7d52628
+  zh: 57d096d25b40778e

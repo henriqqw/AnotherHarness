@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/attachment/attachment-local/README.md
+/:
+  en: 57c773a33d6cc509
+  zh: bab1a992dc27e3c7
+/anotherharness-ah-attachment-local:
+  en: beb1c441debf9fe6
+  zh: 0fe4336b87b7b05a
+/anotherharness-ah-attachment-local/summary:
+  en: 1bed2ee23527890c
+  zh: 51a28e61c3e10dcb
+/anotherharness-ah-attachment-local/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-attachment-local/use-this-package:
+  en: 912a19be4b59ff8a
+  zh: 9c14694cf2ebbaf2
+/anotherharness-ah-attachment-local/use-this-package/minimal-configuration:
+  en: 81444543b70161b1
+  zh: 8b13f5466007000f
+/anotherharness-ah-attachment-local/use-this-package/where-your-images-are-stored-and-how-long-they-last:
+  en: 0d0f5ae5024b5fd4
+  zh: d3add5bc6a4e742a
+/anotherharness-ah-attachment-local/use-this-package/what-happens-when-you-attach-an-image:
+  en: 75ba799b1e4edba4
+  zh: 06c5f76200e8da8a
+/anotherharness-ah-attachment-local/use-this-package/what-can-go-wrong:
+  en: 377696b2dc08b170
+  zh: 6b831ef31c93f712
+/anotherharness-ah-attachment-local/understand-the-implementation:
+  en: e44b0aa3e234a0ef
+  zh: b7dd6829478eb7f1
+/anotherharness-ah-attachment-local/understand-the-implementation/design-decisions:
+  en: dcd9857653645420
+  zh: a27259a09f17465d
+/anotherharness-ah-attachment-local/understand-the-implementation/write-and-read-paths:
+  en: 3537bb736266faf9
+  zh: accf0c653c2b77dc
+/anotherharness-ah-attachment-local/understand-the-implementation/source-map:
+  en: 05af85aa85934d01
+  zh: 1c89e80d496dc0a3
+/anotherharness-ah-attachment-local/further-exploration:
+  en: 9bf2fa574f08d20f
+  zh: 2acaa8a2f8e3bf4c
+/anotherharness-ah-attachment-local/model-experience:
+  en: 2e18b3dfbc5af126
+  zh: aaee1745632c561a
+/anotherharness-ah-attachment-local/model-experience/kv-cache-effect:
+  en: 64670486210bdab7
+  zh: 44c988dd6268c1ff
+/anotherharness-ah-attachment-local/known-limitations-and-deferred-work:
+  en: 46a33da5b3740127
+  zh: c3ac244228b81d8f
+/anotherharness-ah-attachment-local/known-limitations-and-deferred-work/dev-note:
+  en: d56846da29ad869c
+  zh: 41e655e01351fd1d
+/anotherharness-ah-attachment-local/known-limitations-and-deferred-work/dev-note/future-retention-and-remote-storage:
+  en: 2e3b25aca28b0376
+  zh: 15987a3cc3d1c507

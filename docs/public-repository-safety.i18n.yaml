@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for public-repository-safety.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/public-repository-safety.md
+/public-repository-safety:
+  en: da9cf22e11543a9a
+  zh: 155445685732dbe6
+/public-repository-safety/never-publish:
+  en: 8dbd6d2b91ab4da6
+  zh: 73578bfbe5c89a89
+/public-repository-safety/required-practice:
+  en: a7496d1907c0fe4b
+  zh: 40c0052b045d16f4
+/public-repository-safety/when-a-secret-leaks:
+  en: 5b7b4729784be11a
+  zh: bdc33974cd331ec7

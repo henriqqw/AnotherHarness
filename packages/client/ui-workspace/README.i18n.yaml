@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-workspace/README.md
+/:
+  en: 407a0666177e5096
+  zh: d2f6df1bce9df3a6
+/anotherharness-ah-client-ui-workspace:
+  en: 6be857a32d731402
+  zh: c08456fbdb506307
+/anotherharness-ah-client-ui-workspace/summary:
+  en: 1a76ace6a18e3ab5
+  zh: b274d1e98e133851
+/anotherharness-ah-client-ui-workspace/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-workspace/use-this-package:
+  en: b164014ee565be16
+  zh: 6a741647932b93e6
+/anotherharness-ah-client-ui-workspace/use-this-package/reordering-and-view-options:
+  en: 8673afc1d72ad077
+  zh: 9fbb83a4029c5d10
+/anotherharness-ah-client-ui-workspace/use-this-package/workspace-hierarchy:
+  en: 5e049b90c55eddb3
+  zh: e06dc8d0d25c013f
+/anotherharness-ah-client-ui-workspace/use-this-package/search:
+  en: 9eab3bfbaf98c987
+  zh: 54e7e141dae5c9e8
+/anotherharness-ah-client-ui-workspace/use-this-package/managing-sessions:
+  en: 7ee627e2b0f44746
+  zh: 12191540a98d859b
+/anotherharness-ah-client-ui-workspace/use-this-package/pending-interactions:
+  en: 9fb88260380bf093
+  zh: 3bace2b96ecd4a82
+/anotherharness-ah-client-ui-workspace/use-this-package/active-schedule-markers:
+  en: 38bbe94e9133a9a3
+  zh: 7112be96b617a5be
+/anotherharness-ah-client-ui-workspace/understand-the-implementation:
+  en: 6de5f0e7ae69f812
+  zh: dd8df7a411485da2
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/the-directory-flow-hole:
+  en: 868904dbfb5713f8
+  zh: 225906bfef7398bf
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/session-row-actions:
+  en: a3b80d0e844d2929
+  zh: 85fe5dfb2968b491
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/session-row-actions/packaged-client-plugin:
+  en: 36934671b80b11ae
+  zh: 8e0aea6162e35e77
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/session-row-actions/dynamic-client-package:
+  en: 4a0f06a6467d5e33
+  zh: 781a4fbeefed068b
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/view-state:
+  en: 83031e7505fc228a
+  zh: 03e17c9428fe29fd
+/anotherharness-ah-client-ui-workspace/understand-the-implementation/hover-cards:
+  en: 34668e3c2e9c77b7
+  zh: c8bb72e29a3f2490
+/anotherharness-ah-client-ui-workspace/further-exploration:
+  en: 95e287dccc0c453d
+  zh: f9766312b866b728
+/anotherharness-ah-client-ui-workspace/model-experience:
+  en: 3120df665299c634
+  zh: 1d9f365d091d0d2a
+/anotherharness-ah-client-ui-workspace/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-workspace/known-limitations-and-deferred-work:
+  en: 00d7b1ddda7390f5
+  zh: 1e5a1055d1be4d1d
+/anotherharness-ah-client-ui-workspace/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-subagent/README.md
+/:
+  en: 65e90d94f6b7cc9b
+  zh: 2d4d6cfbbf8d32b1
+/anotherharness-ah-client-ui-subagent:
+  en: b78f2884097012f3
+  zh: cdc1f54a97da4558
+/anotherharness-ah-client-ui-subagent/summary:
+  en: 6e0bbf514ad3bef7
+  zh: 5a29d88c124d35cc
+/anotherharness-ah-client-ui-subagent/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-subagent/use-this-package:
+  en: 5607d17b49f88462
+  zh: 96aed777ce8b4209
+/anotherharness-ah-client-ui-subagent/use-this-package/browsing-the-tree:
+  en: 3508631091820123
+  zh: ec7da9e5bedb22ba
+/anotherharness-ah-client-ui-subagent/use-this-package/continuing-a-conversation:
+  en: 876e7152c8b9c4a6
+  zh: f89f5e2a812e8451
+/anotherharness-ah-client-ui-subagent/use-this-package/the-reference-source:
+  en: 6a5f91b7dfcefafe
+  zh: 2d11441952cfea53
+/anotherharness-ah-client-ui-subagent/understand-the-implementation:
+  en: 7aa9d15634f2cada
+  zh: 7549ae953b70c9cd
+/anotherharness-ah-client-ui-subagent/understand-the-implementation/catalog-derivation:
+  en: 5531dcc1fb976cff
+  zh: 6fe779f4f1c34266
+/anotherharness-ah-client-ui-subagent/understand-the-implementation/duration-completion-and-tokens:
+  en: b817e9907392f59c
+  zh: e42feb97d572a989
+/anotherharness-ah-client-ui-subagent/understand-the-implementation/composer-election:
+  en: 1c15af4dd7c0b791
+  zh: f789737ab4dd8cb2
+/anotherharness-ah-client-ui-subagent/further-exploration:
+  en: 0bedac8e0cd99727
+  zh: 8ab18e748e344f48
+/anotherharness-ah-client-ui-subagent/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-client-ui-subagent/model-experience/subagent-label-text-in-the-user-prompt:
+  en: 7207881f1c032278
+  zh: 911d6e8b319da21a
+/anotherharness-ah-client-ui-subagent/model-experience/subagent-label-text-in-the-user-prompt/what-the-model-sees:
+  en: 5688696ee061a0e1
+  zh: 7199ef8cb8697960
+/anotherharness-ah-client-ui-subagent/model-experience/subagent-label-text-in-the-user-prompt/token-effect:
+  en: bf3c483598710d54
+  zh: 32742fbb880db1b2
+/anotherharness-ah-client-ui-subagent/model-experience/subagent-label-text-in-the-user-prompt/kv-cache-effect:
+  en: de2762a99572475f
+  zh: 9b41107ad14ebf8a
+/anotherharness-ah-client-ui-subagent/known-limitations-and-deferred-work:
+  en: ee310ff3cd487639
+  zh: 23793aa1c28a23af
+/anotherharness-ah-client-ui-subagent/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

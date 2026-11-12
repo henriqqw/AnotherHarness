@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-09-nontransactional-loader.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/simplification/2026-09-09-nontransactional-loader.md
+/agent-note-keep-loader-mutations-non-transactional:
+  en: 681975e5a6e4d263
+  zh: 6a9a2c345bf37639
+/agent-note-keep-loader-mutations-non-transactional/problem:
+  en: d4ab65a39cf4fd7c
+  zh: 62144be9b4fd7956
+/agent-note-keep-loader-mutations-non-transactional/decision:
+  en: f47a28f8b600e0ba
+  zh: fa2032a8c7a851b1
+/agent-note-keep-loader-mutations-non-transactional/alternatives-considered:
+  en: 72b871064c7ae315
+  zh: a09e5168f8124c4c
+/agent-note-keep-loader-mutations-non-transactional/consequences:
+  en: 395a21d017714c8c
+  zh: 2082e52997fd59c3

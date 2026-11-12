@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/sdk/server/README.md
+/:
+  en: 43d1a4542fbe7b9a
+  zh: 8429a27e8d3ea422
+/anotherharness-ah-sdk-jsonrpc-server:
+  en: a310a2df802e190b
+  zh: 5f3dcccd30f821c1
+/anotherharness-ah-sdk-jsonrpc-server/summary:
+  en: ccf0c4efbd1ad56d
+  zh: 0f805cd4adcd9007
+/anotherharness-ah-sdk-jsonrpc-server/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package:
+  en: ab5b719668e746f2
+  zh: 971c2fdaa9e7d351
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package/wiring:
+  en: 47a33e9397e36e15
+  zh: e6d173820f9ea6e5
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package/configuration:
+  en: b0e9aa71511fc324
+  zh: 1d0bfeec97b7ed29
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package/stdout-is-the-protocol:
+  en: 784b68b5a498f2d5
+  zh: 2c3c5a1490845179
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package/what-sdk-clients-can-do:
+  en: 49ae256b21123510
+  zh: 2e009443376c0b62
+/anotherharness-ah-sdk-jsonrpc-server/use-this-package/shutdown-and-exit:
+  en: 08c3858f53090f39
+  zh: dfae960e11515b06
+/anotherharness-ah-sdk-jsonrpc-server/understand-the-implementation:
+  en: eca39e7027d67d8f
+  zh: dd3f494276322857
+/anotherharness-ah-sdk-jsonrpc-server/understand-the-implementation/design-concept:
+  en: 275fdee2cd8385ca
+  zh: 1d1adeb135a2eefe
+/anotherharness-ah-sdk-jsonrpc-server/understand-the-implementation/source-map:
+  en: 9ef78eca4d95d97c
+  zh: 45ff05f4d6c1cd0b
+/anotherharness-ah-sdk-jsonrpc-server/understand-the-implementation/request-flow:
+  en: 2658804b2f90b135
+  zh: 085aa00c8f0bbbcd
+/anotherharness-ah-sdk-jsonrpc-server/understand-the-implementation/teardown:
+  en: 7e4403a7b1da7ff4
+  zh: ef75ee9411486b90
+/anotherharness-ah-sdk-jsonrpc-server/further-exploration:
+  en: 2b65a279bb52c444
+  zh: d48f542b7d412e9e
+/anotherharness-ah-sdk-jsonrpc-server/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-sdk-jsonrpc-server/model-experience/sdk-user-message:
+  en: 04d1b73cd8e06dfe
+  zh: cd67fbbfdf39f776
+/anotherharness-ah-sdk-jsonrpc-server/model-experience/sdk-user-message/what-the-model-sees:
+  en: 2b5a80ec4b4df11e
+  zh: e459fe77cc14d9b8
+/anotherharness-ah-sdk-jsonrpc-server/model-experience/sdk-user-message/token-effect:
+  en: 372ed851986b76d2
+  zh: 075b94a565275368
+/anotherharness-ah-sdk-jsonrpc-server/model-experience/sdk-user-message/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: f681f89596f500f5
+/anotherharness-ah-sdk-jsonrpc-server/known-limitations-and-deferred-work:
+  en: a6d0b12d02961572
+  zh: 92822e033db55980
+/anotherharness-ah-sdk-jsonrpc-server/known-limitations-and-deferred-work/dev-note:
+  en: 583a835f84c55c33
+  zh: a4377e2c9bea8c4e

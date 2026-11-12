@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/skill/skill/README.md
+/:
+  en: ab82ac4bcc012854
+  zh: 3e2a2326e66f4bc3
+/anotherharness-ah-skill:
+  en: e0d088902f245844
+  zh: 619c0cab6f65f254
+/anotherharness-ah-skill/summary:
+  en: acfd38f26ef50378
+  zh: 3e80fc7970e7f14e
+/anotherharness-ah-skill/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-skill/use-this-package:
+  en: cb13ae81a3e0ae68
+  zh: e709d66f4b6b4dd5
+/anotherharness-ah-skill/use-this-package/when-to-choose-it:
+  en: 21b7aecadef036af
+  zh: 89e0ce7784d68c10
+/anotherharness-ah-skill/use-this-package/mount-and-configure:
+  en: 4f3df2cac7e0cdb9
+  zh: 44a3d2e7b88d6876
+/anotherharness-ah-skill/use-this-package/what-the-registry-gives-you:
+  en: 0cb7936c76a84e45
+  zh: a1fb8572481af54c
+/anotherharness-ah-skill/use-this-package/observable-success-and-failures:
+  en: b7331b6a9c0d5bb2
+  zh: 3ea0785c3a8c7330
+/anotherharness-ah-skill/understand-the-implementation:
+  en: 89be1dad151abb04
+  zh: 9a1915c4d55bb9d2
+/anotherharness-ah-skill/understand-the-implementation/design-concept:
+  en: c0fb1850f00f24b1
+  zh: 226883ab5635435d
+/anotherharness-ah-skill/understand-the-implementation/source-map:
+  en: c7f6f2ecb227c68b
+  zh: b2e924975aec9692
+/anotherharness-ah-skill/understand-the-implementation/catalog-collection:
+  en: 58a9b57dc504b69f
+  zh: 8fe8011247bc3f2b
+/anotherharness-ah-skill/understand-the-implementation/loading-and-staleness:
+  en: e855d39692737103
+  zh: 396aa887a78989ec
+/anotherharness-ah-skill/understand-the-implementation/invalidation:
+  en: d73258316127f5b5
+  zh: ddc6690f88922782
+/anotherharness-ah-skill/further-exploration:
+  en: cd5a3f0ca388960f
+  zh: 5cf508690ba8725b
+/anotherharness-ah-skill/model-experience:
+  en: a9f40afb19387651
+  zh: 160fa28d750a624f
+/anotherharness-ah-skill/model-experience/kv-cache-effect:
+  en: 628a45ff9f6b0e74
+  zh: fda70b0eed2df1d7
+/anotherharness-ah-skill/known-limitations-and-deferred-work:
+  en: c5456e001203fd7a
+  zh: 3cc6fa50700eec13
+/anotherharness-ah-skill/known-limitations-and-deferred-work/dev-note:
+  en: 259ce6914314397d
+  zh: d500b1f988a83999

@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-primitives/README.md
+/:
+  en: e781eca4d70e1a20
+  zh: ec15e3349d73f988
+/anotherharness-ah-client-ui-primitives:
+  en: 92850a17c2727730
+  zh: 1d0556c4ae11847f
+/anotherharness-ah-client-ui-primitives/summary:
+  en: 95cc7863d0081023
+  zh: 224038f80cd694c4
+/anotherharness-ah-client-ui-primitives/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-primitives/use-this-package:
+  en: 7bae72c97d0449f5
+  zh: 4589ecc2b216edc5
+/anotherharness-ah-client-ui-primitives/use-this-package/component-catalog:
+  en: 9f1ca6b45bb0d16d
+  zh: 9035d160fe829438
+/anotherharness-ah-client-ui-primitives/use-this-package/controls-and-icons:
+  en: 8c6d2ae469bc3077
+  zh: 180f307ed378bd51
+/anotherharness-ah-client-ui-primitives/use-this-package/rendering-agent-output:
+  en: 585647dbf45fc1c2
+  zh: d3dc4e399a878cac
+/anotherharness-ah-client-ui-primitives/use-this-package/localizing-copy:
+  en: 4aef65dea11de083
+  zh: abc22cd7c65cdf38
+/anotherharness-ah-client-ui-primitives/understand-the-implementation:
+  en: 35c272d9d874cc32
+  zh: 14451c198bdbd09f
+/anotherharness-ah-client-ui-primitives/understand-the-implementation/source-map:
+  en: 44eb32370cbeafe8
+  zh: 728009c66375c6bb
+/anotherharness-ah-client-ui-primitives/understand-the-implementation/input-modality:
+  en: 5a0f409487c02ade
+  zh: 27b685f7b0a36bec
+/anotherharness-ah-client-ui-primitives/understand-the-implementation/streaming-markdown:
+  en: 8bbfa14c27f3bfd7
+  zh: 88f7548ac3a114e1
+/anotherharness-ah-client-ui-primitives/understand-the-implementation/geometry-and-overflow:
+  en: e283bf2366b43879
+  zh: d089076d7834e853
+/anotherharness-ah-client-ui-primitives/further-exploration:
+  en: 0866fb31065c7b23
+  zh: 24498ef79682b2ca
+/anotherharness-ah-client-ui-primitives/model-experience:
+  en: 3120df665299c634
+  zh: 1d9f365d091d0d2a
+/anotherharness-ah-client-ui-primitives/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-primitives/known-limitations-and-deferred-work:
+  en: 8c24ec400ecc566b
+  zh: c6eaba22807f2326
+/anotherharness-ah-client-ui-primitives/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

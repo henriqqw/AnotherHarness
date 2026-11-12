@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for 2026-09-05-client-resource-model.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-05-client-resource-model.md
+/agent-note-client-resource-model:
+  en: 408c0020d099be5f
+  zh: 9198d8b7ddc6d237
+/agent-note-client-resource-model/problem:
+  en: 22aec3ac5b197342
+  zh: 0cd0b1f8094addb3
+/agent-note-client-resource-model/decision:
+  en: 0c6c23ed34321c58
+  zh: 222ec1ab411f5d8b
+/agent-note-client-resource-model/decision/addresses:
+  en: f9a0557385e2ef0f
+  zh: a93564ec7f28c845
+/agent-note-client-resource-model/decision/the-service:
+  en: f42277e961bb7209
+  zh: 9f3f8a50ad55cf4a
+/agent-note-client-resource-model/decision/the-hook:
+  en: 4f082c4f5a44320a
+  zh: eba5449b7a1fd52e
+/agent-note-client-resource-model/decision/frames:
+  en: 4b829dc3c60f93bd
+  zh: d3b34f52ff49cffb
+/agent-note-client-resource-model/decision/lifecycle:
+  en: 71e49f97ea98dc8b
+  zh: 264f6d0ddcc97768
+/agent-note-client-resource-model/alternatives-considered:
+  en: 595ede109540ff93
+  zh: 818450c6508ab119
+/agent-note-client-resource-model/consequences:
+  en: 3eda54cb5d74ed00
+  zh: ce60b6fef04acb9a
+/agent-note-client-resource-model/testing:
+  en: ca2c610e4f0352ac
+  zh: fbaa69ee8de7e4c1
+/agent-note-client-resource-model/deferred:
+  en: c8b4444aa78d25d1
+  zh: 399fd8dea9a9504b

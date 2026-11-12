@@ -1,0 +1,80 @@
+{
+  "name": "@anotherharness/ah-api-gateway",
+  "description": "Typert Remote Host dispatcher and Client API endpoint",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/api/gateway"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json",
+    "./stream-protocol": {
+      "types": "./lib/types/stream-protocol.d.ts",
+      "default": "./lib/types/stream-protocol.js"
+    }
+  },
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-typert-registry",
+        "@anotherharness/ah-client-connection"
+      ],
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@anotherharness/ah-deque": "workspace:*",
+    "@anotherharness/ah-timeout": "workspace:*",
+    "@anotherharness/schemastery": "workspace:~",
+    "ws": "^8.21.3",
+    "@anotherharness/ah-typert-protocol": "workspace:*"
+  },
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-client-connection": "workspace:*"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-cmdline": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*",
+    "@anotherharness/ah-remote-mock": "workspace:*",
+    "@anotherharness/ah-typert-registry": "workspace:*",
+    "@anotherharness/ah-util-crypto": "workspace:*",
+    "@types/ws": "^8.18.1",
+    "@anotherharness/cordis": "workspace:~",
+    "zod": "^4.4.3"
+  }
+}

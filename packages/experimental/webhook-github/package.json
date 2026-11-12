@@ -1,0 +1,58 @@
+{
+  "name": "@anotherharness/ah-webhook-github",
+  "description": "Signed GitHub HTTP webhook adapter for the AnotherHarness webhook runtime",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/experimental/webhook-github"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json",
+    "./examples/*": "./examples/*"
+  },
+  "files": [
+    "lib/index.js",
+    "examples/github-review/cordis.yml",
+    "examples/github-review/github-ready-review-rule.mjs",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-credentials": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-webhook": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/schemastery": "workspace:~",
+    "@octokit/webhooks": "^14.2.0"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/cordis-plugin-include": "workspace:~",
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-credentials": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-webhook": "workspace:*"
+  }
+}

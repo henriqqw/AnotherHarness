@@ -1,0 +1,32 @@
+import { fileURLToPath } from 'node:url'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from 'vitest/config'
+import { standardDecoratorPlugin, vitestExecArgv } from './shared.ts'
+
+/**
+ * CI performance gate. Node CPU cases use compiled plain-Node workers under
+ * `benchmarks/.ah-build/`; browser cases drive built Client artifacts through
+ * the shared shipped-composition Web scaffold.
+ * Files run one at a time so a measurement never shares the CPU with another
+ * benchmark.
+ */
+export default defineConfig({
+  // Configs live in config/vitest/; every relative path below resolves from the repository root.
+  root: fileURLToPath(new URL('../..', import.meta.url)),
+  plugins: [tsconfigPaths({ projects: ['./tsconfig.base.json'] }), standardDecoratorPlugin()],
+  test: {
+    execArgv: vitestExecArgv,
+    setupFiles: ['./scripts/test-proxy-environment.ts'],
+    // Clears recorded timings before the run and renders benchmarks/.ah-report/report.html after it.
+    globalSetup: ['./benchmarks/support/scaling-report.ts'],
+    include: [
+      'benchmarks/**/*.bench.ts',
+      'benchmarks/**/*.bench.client.ts',
+    ],
+    fileParallelism: false,
+    maxWorkers: 1,
+    testTimeout: 600_000,
+    hookTimeout: 120_000,
+    disableConsoleIntercept: true,
+  },
+})

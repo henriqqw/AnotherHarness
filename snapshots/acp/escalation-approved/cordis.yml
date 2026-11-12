@@ -1,0 +1,85 @@
+# ACP snapshot-record patch over the shipped `acp` profile. The ah
+# launcher owns environment loading, plugin resolution, and process shutdown;
+# stdout remains reserved for ACP JSON-RPC.
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  config:
+    thinking: enabled
+    reasoningEffort: max
+    models:
+      - id: deepseek-v4-flash
+      - id: deepseek-v4-pro
+      - id: deepseek-v4-flash-vision-exp
+        inputModalities: [text, image]
+
+- id: sandbox-policy
+  name: '@anotherharness/ah-sandbox-policy'
+  config:
+    mode: !!js "process.env.AH_PERMISSION_MODE ?? (process.env.AH_SNAPSHOT === undefined ? 'workspace-write' : 'danger-full-access')"
+    workspaceRoot: !!js process.cwd()
+
+- id: approval
+  name: '@anotherharness/ah-user-approval'
+  config:
+    policy: !!js "(process.env.AH_PERMISSION_MODE ?? (process.env.AH_SNAPSHOT === undefined ? 'workspace-write' : 'danger-full-access')) === 'danger-full-access' ? 'never' : 'ask'"
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js process.env.AH_SNAPSHOT_SESSIONS_ROOT ?? ahHomePath('sessions')
+    compression: !!js "process.env.AH_SNAPSHOT === undefined ? 'zstd' : 'none'"
+
+- id: acp
+  name: '@anotherharness/ah-acp'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-flash
+
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+  config:
+    personaPrefix: |
+      You are a coding assistant powered by the {{model}} model. Your bash tool runs under a file sandbox — a `[sandbox: file access denied …]` result is policy, not a command bug.
+
+      Verify your work by running the code or tests. Keep answers brief and factual.
+
+- id: agent-instructions
+  name: '@anotherharness/ah-agent-instructions'
+  config:
+    maxBytes: 65536
+
+- id: tool-subagent
+  name: '@anotherharness/ah-tool-subagent'
+  config:
+    provider: spawn
+    toolName: subagent
+    maxDepth: 1
+
+# Fork preserves the parent model route and inherited conversation.
+- id: tool-subagent-fork
+  name: '@anotherharness/ah-tool-subagent'
+  config:
+    provider: fork
+    toolName: subagent_fork
+    maxDepth: 1
+
+- id: fs-sandbox
+  name: '@anotherharness/ah-fs-sandbox'
+  config:
+    cwd: !!js process.cwd()
+
+- insert:
+    - id: hooks-claude-code
+      name: '@anotherharness/ah-hooks-claude-code'
+      config:
+        configPath: ./hooks.json
+
+    - id: hooks-codex
+      name: '@anotherharness/ah-hooks-codex'
+      config:
+        configPath: ./codex-hooks.json
+
+- id: session-log-deepseek
+  config:
+    enabled: false

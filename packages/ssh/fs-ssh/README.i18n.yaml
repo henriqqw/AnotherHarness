@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/ssh/fs-ssh/README.md
+/:
+  en: 7ee4b79f88be1b77
+  zh: 915152892d037c3c
+/anotherharness-ah-fs-ssh:
+  en: ce35b6d463106b97
+  zh: e5435d2ff771d563
+/anotherharness-ah-fs-ssh/summary:
+  en: 3b33b43ace8c1215
+  zh: 569cd57f208bf373
+/anotherharness-ah-fs-ssh/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 725b47765ee8f30b
+/anotherharness-ah-fs-ssh/use-this-package:
+  en: 8e997805e2b64aa5
+  zh: 7a2ae67c702b6eb7
+/anotherharness-ah-fs-ssh/understand-the-implementation:
+  en: 362b2bf096506da5
+  zh: 648ba13a27c47cc9
+/anotherharness-ah-fs-ssh/further-exploration:
+  en: 9a8199a27686be46
+  zh: ca393498a02e4e22
+/anotherharness-ah-fs-ssh/model-experience:
+  en: f8b078c320d36749
+  zh: 5a0f4d1b72574d72
+/anotherharness-ah-fs-ssh/model-experience/kv-cache-effect:
+  en: 21f304c66e5ba98b
+  zh: 18185d5b164f8216
+/anotherharness-ah-fs-ssh/known-limitations-and-deferred-work:
+  en: 2e75cffd2ab863d6
+  zh: f8fdbabe27082f08
+/anotherharness-ah-fs-ssh/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 8ec3e73528ddb1a6

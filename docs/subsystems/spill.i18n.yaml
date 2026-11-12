@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for spill.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/spill.md
+/spill-storage:
+  en: 12d0bda9042dfd3c
+  zh: 93edda3ebe61cd1e
+/spill-storage/the-save-request:
+  en: 05dd1d013c45ee55
+  zh: e2ba974827f47a54
+/spill-storage/the-result:
+  en: 95f7b007c1adefa6
+  zh: bd1fc1280ef46e41
+/spill-storage/the-service:
+  en: 52e09c6b778b4f55
+  zh: 4ad7e59c031e7cb3

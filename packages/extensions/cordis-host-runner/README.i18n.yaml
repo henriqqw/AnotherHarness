@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/extensions/cordis-host-runner/README.md
+/:
+  en: ac7eacf5f9b1e727
+  zh: 61461cb68f91fcce
+/anotherharness-ah-cordis-host-runner:
+  en: 755c9221b2195f18
+  zh: a03922d28b20172d
+/anotherharness-ah-cordis-host-runner/summary:
+  en: 09a09a04353339e9
+  zh: 3202744f1a4e4b44
+/anotherharness-ah-cordis-host-runner/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-cordis-host-runner/use-this-package:
+  en: bdaba8036acf80c9
+  zh: 2dd8f972c3023a8a
+/anotherharness-ah-cordis-host-runner/use-this-package/minimal-configuration:
+  en: 0b58adbb3263ae17
+  zh: 9066e85b6978664b
+/anotherharness-ah-cordis-host-runner/use-this-package/client-inspection:
+  en: b4a2fe9e7aa9dee7
+  zh: 56f55558809970da
+/anotherharness-ah-cordis-host-runner/use-this-package/what-a-run-does:
+  en: a3c86c081974a710
+  zh: 180e1b7824c070d4
+/anotherharness-ah-cordis-host-runner/use-this-package/what-happens-to-definitions:
+  en: d1a8777f171d22bb
+  zh: 7f6aa4c2680557b1
+/anotherharness-ah-cordis-host-runner/use-this-package/trust-stance:
+  en: 8f1f365c099fa0ef
+  zh: 301ef73420858a7b
+/anotherharness-ah-cordis-host-runner/understand-the-implementation:
+  en: b0a536c0d00cbdb8
+  zh: 08e5d813aa6a612a
+/anotherharness-ah-cordis-host-runner/understand-the-implementation/design-philosophy:
+  en: 2193b1c446b388fc
+  zh: 6173e0e3e2df6812
+/anotherharness-ah-cordis-host-runner/understand-the-implementation/source-map:
+  en: f567eacc1072b96c
+  zh: 7f50499d9740f802
+/anotherharness-ah-cordis-host-runner/understand-the-implementation/how-a-run-flows:
+  en: 1380aa489d3c6848
+  zh: dad7291c7f13d278
+/anotherharness-ah-cordis-host-runner/further-exploration:
+  en: e09702779c16b5fb
+  zh: 1156d8b8ff74290e
+/anotherharness-ah-cordis-host-runner/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-cordis-host-runner/model-experience/run-outcomes-refusals-and-diagnostics-relayed-to-the-owning-session:
+  en: f53130bb645f50df
+  zh: 603361c566527789
+/anotherharness-ah-cordis-host-runner/model-experience/run-outcomes-refusals-and-diagnostics-relayed-to-the-owning-session/what-the-model-sees:
+  en: 743dbef78fa3a8ad
+  zh: 2aa4e404e908cf22
+/anotherharness-ah-cordis-host-runner/model-experience/run-outcomes-refusals-and-diagnostics-relayed-to-the-owning-session/token-effect:
+  en: c7ef63dd8179a97e
+  zh: e66545088d00956a
+/anotherharness-ah-cordis-host-runner/model-experience/run-outcomes-refusals-and-diagnostics-relayed-to-the-owning-session/kv-cache-effect:
+  en: bbc4338c3035757a
+  zh: f51f4848786d5606
+/anotherharness-ah-cordis-host-runner/known-limitations-and-deferred-work:
+  en: 1f10688ae249a077
+  zh: ab2ff597e1769b81
+/anotherharness-ah-cordis-host-runner/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

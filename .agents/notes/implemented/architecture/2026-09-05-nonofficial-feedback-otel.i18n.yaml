@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-05-nonofficial-feedback-otel.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-05-nonofficial-feedback-otel.md
+/agent-note-explicit-feedback-only-upload-through-opentelemetry:
+  en: a1341170a027a1f8
+  zh: b2ef003c14210307
+/agent-note-explicit-feedback-only-upload-through-opentelemetry/problem:
+  en: 7849f56f36e297e8
+  zh: b98da01a1fd5d974
+/agent-note-explicit-feedback-only-upload-through-opentelemetry/decision:
+  en: 32dcf880e34c01e6
+  zh: 818032938441cb0c
+/agent-note-explicit-feedback-only-upload-through-opentelemetry/alternatives-considered:
+  en: bb3f8f04fea2f495
+  zh: a86af420795765c1
+/agent-note-explicit-feedback-only-upload-through-opentelemetry/consequences:
+  en: 7daf3ebf1bfd2124
+  zh: f2cec93e3069a973

@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for cli-help.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/cli-help.md
+/:
+  en: d11ca88bdc409249
+  zh: d11ca88bdc409249
+/ah-cli-help:
+  en: 9e769cfee5b99403
+  zh: d7aabcb687493322
+/ah-cli-help/contents:
+  en: 80c529b50589144c
+  zh: 47aca2b0b4e309c7
+/ah-cli-help/ah:
+  en: 0d0ca344058451f4
+  zh: fc82dfd48d79623b
+/ah-cli-help/ah-plugin:
+  en: 0b0ccfea45e8671d
+  zh: 14ef32dafbbe2764
+/ah-cli-help/ah-acp:
+  en: fdbd23c5d4996adf
+  zh: 251c3d7722aa7187
+/ah-cli-help/ah-headless:
+  en: fd3fb293a3740a44
+  zh: cf569b5159cfff8b
+/ah-cli-help/ah-sdk:
+  en: 7772bc8d50172940
+  zh: ede7ddbd0ba8ff00
+/ah-cli-help/ah-sdk-minimal:
+  en: 772e98d591073c8b
+  zh: f488b4e22b7ecfe6
+/ah-cli-help/ah-web:
+  en: a6f73c582115e229
+  zh: c4b01561c5459f34

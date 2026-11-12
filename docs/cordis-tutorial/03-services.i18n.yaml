@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 03-services.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/cordis-tutorial/03-services.md
+/3-services:
+  en: a5bdf2175403ef5d
+  zh: 9172ef530228d68d
+/3-services/provide-a-service:
+  en: b23c2a3e810106fe
+  zh: 9f415521f60695fb
+/3-services/consume-a-service-with-inject:
+  en: a6bd9b063fd5187c
+  zh: c0e302dc075e29ec
+/3-services/dependencies-are-tracked-after-load:
+  en: fa89840628c71da2
+  zh: 609dc76305dc028a
+/3-services/optional-dependencies:
+  en: f765739ab1e2061a
+  zh: 71ddc054022b66a9
+/3-services/naming:
+  en: c59b461733cc3607
+  zh: eeaae1a88b8e9152

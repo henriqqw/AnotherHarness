@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/skill/tool-workspace-dependencies/README.md
+/:
+  en: e562521af5095c9b
+  zh: f879f7db6ee3c2b9
+/anotherharness-ah-tool-workspace-dependencies:
+  en: eb53608d8b211ced
+  zh: 71e6cd875994dd3d
+/anotherharness-ah-tool-workspace-dependencies/summary:
+  en: 564382de2022c781
+  zh: 22657ad5d2c8efd2
+/anotherharness-ah-tool-workspace-dependencies/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 43ad67236ccda19a
+/anotherharness-ah-tool-workspace-dependencies/use-this-package:
+  en: ae7efb6ea408d4fc
+  zh: e826d82fb3c51c69
+/anotherharness-ah-tool-workspace-dependencies/use-this-package/minimal-configuration:
+  en: 97b1f99b4e9c2569
+  zh: bf6c6ce74073413f
+/anotherharness-ah-tool-workspace-dependencies/use-this-package/payload-layout:
+  en: 74d2baf2826fa615
+  zh: a7046dc618ce1ccd
+/anotherharness-ah-tool-workspace-dependencies/use-this-package/build-a-carrier-payload:
+  en: 282fed3f0ed16af7
+  zh: 48c27a6340888fed
+/anotherharness-ah-tool-workspace-dependencies/understand-the-implementation:
+  en: 0121e57a754cb26f
+  zh: 2933fc0415da013d
+/anotherharness-ah-tool-workspace-dependencies/further-exploration:
+  en: 9a26e65e514f3913
+  zh: a704e879ff3f6723
+/anotherharness-ah-tool-workspace-dependencies/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-schema:
+  en: e4c7376d4f29dbd5
+  zh: 6b7a9eaf69c9ea53
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-schema/what-the-model-sees:
+  en: 83b5b27fab0b8093
+  zh: 9f30f277bb66fa9e
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-schema/token-effect:
+  en: 615cce9c7fcb746d
+  zh: 6b9f58e263a38d61
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-schema/kv-cache-effect:
+  en: 4ee92571a5f8a71a
+  zh: 6fa2a5b21b9f0150
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-result:
+  en: f8ffc2b983f05ffc
+  zh: 8573891441963be4
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-result/what-the-model-sees:
+  en: c25c9db51e7d06da
+  zh: a4cdcd37bd501503
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-result/token-effect:
+  en: 0efada793d1e65b1
+  zh: 3eed908f43174b88
+/anotherharness-ah-tool-workspace-dependencies/model-experience/tool-result/kv-cache-effect:
+  en: 42325f307b6c259d
+  zh: d53a45f1c00ba16f
+/anotherharness-ah-tool-workspace-dependencies/known-limitations-and-deferred-work:
+  en: 8aeacc5404854231
+  zh: 43d970fa23ac2473
+/anotherharness-ah-tool-workspace-dependencies/known-limitations-and-deferred-work/dev-note:
+  en: f57d5fcd5b2e8a44
+  zh: b210a0dce56f2e8a

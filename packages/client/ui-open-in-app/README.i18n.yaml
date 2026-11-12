@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-open-in-app/README.md
+/:
+  en: be11314755d8f4f9
+  zh: dd75b03074eea543
+/anotherharness-ah-client-ui-open-in-app:
+  en: 04b559eac8708e91
+  zh: 8f6972623bddf03f
+/anotherharness-ah-client-ui-open-in-app/summary:
+  en: deabda84e41d6715
+  zh: 9d2c69e9874841dd
+/anotherharness-ah-client-ui-open-in-app/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 725b47765ee8f30b
+/anotherharness-ah-client-ui-open-in-app/use-this-package:
+  en: 76dd1f192d0fb38d
+  zh: 9263708ca481e376
+/anotherharness-ah-client-ui-open-in-app/use-this-package/what-to-expect:
+  en: f9462b3a0dd1a9e9
+  zh: 0653a0b6f5304d9b
+/anotherharness-ah-client-ui-open-in-app/understand-the-implementation:
+  en: dfade1aecf43f496
+  zh: 2bc898e5761e7a7b
+/anotherharness-ah-client-ui-open-in-app/further-exploration:
+  en: b054ef814d5b1172
+  zh: 891fc782c67498a0
+/anotherharness-ah-client-ui-open-in-app/model-experience:
+  en: 5f9e6e0fb0438628
+  zh: fc9a81185ea6cb14
+/anotherharness-ah-client-ui-open-in-app/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: c2241315dc0c89c9
+/anotherharness-ah-client-ui-open-in-app/known-limitations-and-deferred-work:
+  en: dc31003df600820d
+  zh: 72068e3329e29af1
+/anotherharness-ah-client-ui-open-in-app/known-limitations-and-deferred-work/dev-note:
+  en: 84f92568fc74adf1
+  zh: 286b47e6b5b1a556

@@ -1,0 +1,36 @@
+# Minimal tool-pwsh composition: real app boot path, real pwsh executor, real
+# foreground + background tool calls; driven by the package's loader.spec.ts.
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+
+- id: fs
+  name: '@anotherharness/ah-fs-local'
+
+- id: session-projections
+  name: '@anotherharness/ah-session-projection'
+
+- id: working-directory
+  name: '@anotherharness/ah-working-directory'
+
+- id: tools
+  name: '@anotherharness/ah-tools'
+
+- id: subprocess
+  name: '@anotherharness/ah-subprocess-local'
+
+- id: bash
+  name: '@anotherharness/ah-pwsh-local'
+  config:
+    graceMs: 200
+
+- id: shell-env
+  name: '@anotherharness/ah-shell-env'
+
+- id: tasks
+  name: '@anotherharness/ah-jobs-local'
+
+- id: tool-jobs
+  name: '@anotherharness/ah-tool-jobs'
+
+- id: tool-pwsh
+  name: '@anotherharness/ah-tool-pwsh'

@@ -1,0 +1,91 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/llm/llm-deepseek/README.md
+/:
+  en: c6924d7c0d7c82ff
+  zh: 95fbf06db428f532
+/anotherharness-ah-llm-deepseek:
+  en: e98a99f01f77bc98
+  zh: 163c5fdb968e563e
+/anotherharness-ah-llm-deepseek/summary:
+  en: fc1488b309bf51f8
+  zh: 067904dff2ca6142
+/anotherharness-ah-llm-deepseek/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-llm-deepseek/use-this-package:
+  en: c5a89ab6fda03970
+  zh: 3756139210878e2a
+/anotherharness-ah-llm-deepseek/use-this-package/when-to-choose-it:
+  en: 615059bb28380530
+  zh: 2d63e21dc9d9f881
+/anotherharness-ah-llm-deepseek/use-this-package/minimal-configuration:
+  en: 51bbbc3d7856381f
+  zh: df2f57badb9be203
+/anotherharness-ah-llm-deepseek/use-this-package/endpoint-and-wire-format:
+  en: fce88d2ebad6296c
+  zh: 0c351f26b472d521
+/anotherharness-ah-llm-deepseek/use-this-package/account-credentials:
+  en: cbd72b4cac50cdfb
+  zh: d68c09bca98cbec5
+/anotherharness-ah-llm-deepseek/use-this-package/streaming-with-thinking-and-images:
+  en: 81bf213499f015ba
+  zh: e9107ef322213e56
+/anotherharness-ah-llm-deepseek/use-this-package/dynamic-configuration:
+  en: 49290fc5647136b4
+  zh: 96fa9ce0f9e83c13
+/anotherharness-ah-llm-deepseek/use-this-package/provider-specific-request-fields:
+  en: 432078a2dcb9c6f3
+  zh: 4dc4f5533ad09d0c
+/anotherharness-ah-llm-deepseek/use-this-package/failures-and-recovery:
+  en: 38c87defd40d6855
+  zh: d01a06a8da3fa99b
+/anotherharness-ah-llm-deepseek/understand-the-implementation:
+  en: 1598ac8a8bb9b6bf
+  zh: fdd089c5ae7722cd
+/anotherharness-ah-llm-deepseek/understand-the-implementation/design-philosophy:
+  en: 829203c4c282dc46
+  zh: e05dada4a1420a95
+/anotherharness-ah-llm-deepseek/understand-the-implementation/source-map:
+  en: dc2d2409ad8c41cc
+  zh: 51fc4ad65dab6378
+/anotherharness-ah-llm-deepseek/understand-the-implementation/wire-flow:
+  en: 9477d8af3d762450
+  zh: 52a2967518509f94
+/anotherharness-ah-llm-deepseek/further-exploration:
+  en: 031d2cd18ff239cc
+  zh: 2929fbc41233295b
+/anotherharness-ah-llm-deepseek/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-request:
+  en: 1dc50052999253c6
+  zh: 7abf968fc18bffcd
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-request/what-the-model-sees:
+  en: 14110610860656e8
+  zh: 995e28d6931ebe4e
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-request/token-effect:
+  en: 34b8cfd430567e6f
+  zh: 85f2a656d1a7ab5c
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-request/kv-cache-effect:
+  en: 87ac92776176ee15
+  zh: bb49edf3a68dda07
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-response:
+  en: 957d6665495e5ca5
+  zh: 0aa72b2c2dc07167
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-response/what-the-model-sees:
+  en: 36a3d0297d6ca209
+  zh: bfc68b8300f61593
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-response/token-effect:
+  en: 533309d1f93b89de
+  zh: 4cc0b86f05c9be53
+/anotherharness-ah-llm-deepseek/model-experience/deepseek-response/kv-cache-effect:
+  en: ddfbea043596878d
+  zh: 4fbf5864a684c053
+/anotherharness-ah-llm-deepseek/known-limitations-and-deferred-work:
+  en: b47267149be76d05
+  zh: 4c5d4151de21496c
+/anotherharness-ah-llm-deepseek/known-limitations-and-deferred-work/dev-note:
+  en: 2211a6c50a69971c
+  zh: 4aa18438fd46b8a4

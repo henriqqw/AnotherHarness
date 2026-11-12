@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/typert/generator/README.md
+/:
+  en: 3fe330c4d51197ec
+  zh: 5874f3bcd419dbbc
+/anotherharness-ah-typert-generator:
+  en: db8188d37860b50e
+  zh: c7dbd79925295d3c
+/anotherharness-ah-typert-generator/summary:
+  en: cee2ed9ad51c080e
+  zh: 60ebebd6ac1f0bf5
+/anotherharness-ah-typert-generator/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-typert-generator/use-this-package:
+  en: 949dec3bb987644a
+  zh: 0ed333a6067465dc
+/anotherharness-ah-typert-generator/use-this-package/publishing-typert-artifacts-from-a-package:
+  en: 38a37171de63aac6
+  zh: 3ae8b8f525811dfc
+/anotherharness-ah-typert-generator/use-this-package/analyzing-a-workspace-statically:
+  en: 4ea0e4977cefa39d
+  zh: 41bdb6047bc79524
+/anotherharness-ah-typert-generator/use-this-package/running-generation-inside-a-tsdown-build:
+  en: cc3f7d23739380f6
+  zh: 864d15088f581271
+/anotherharness-ah-typert-generator/understand-the-implementation:
+  en: b90762df7a978580
+  zh: 123ab225a2b5df2a
+/anotherharness-ah-typert-generator/understand-the-implementation/design-concept:
+  en: 0a515742229bf442
+  zh: dfd2c5eddd943af9
+/anotherharness-ah-typert-generator/understand-the-implementation/source-map:
+  en: 783dec50106bcabb
+  zh: 2627f55ce69a1a2c
+/anotherharness-ah-typert-generator/understand-the-implementation/analysis-and-faces:
+  en: 1755a78cb21a7407
+  zh: f641ba9e5b7df398
+/anotherharness-ah-typert-generator/understand-the-implementation/emission-and-publication-contract:
+  en: eb1b3c4a737da79d
+  zh: 3a13440691b930de
+/anotherharness-ah-typert-generator/understand-the-implementation/catalog-projection:
+  en: e85b521a1e01ab2c
+  zh: 4416dca569de0f61
+/anotherharness-ah-typert-generator/further-exploration:
+  en: 2ab8162096111880
+  zh: 8466c39dd3b2d998
+/anotherharness-ah-typert-generator/model-experience:
+  en: e6641e8b5e5f42ca
+  zh: 2fdc0d3fde7e9216
+/anotherharness-ah-typert-generator/model-experience/kv-cache-effect:
+  en: 09310605f7d136d4
+  zh: 3535ec7eba83b90f
+/anotherharness-ah-typert-generator/known-limitations-and-deferred-work:
+  en: f3b1002133fe8736
+  zh: e8d5fecd10db5e3a
+/anotherharness-ah-typert-generator/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

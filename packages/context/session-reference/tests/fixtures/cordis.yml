@@ -1,0 +1,19 @@
+- name: '@anotherharness/ah-session'
+- name: '@anotherharness/ah-system-prompt'
+- name: '@anotherharness/ah-tools'
+- name: '@anotherharness/ah-fs-local'
+- name: '@anotherharness/ah-session-projection'
+- name: '@anotherharness/ah-working-directory'
+- name: '@anotherharness/ah-tool-fs'
+- name: '@anotherharness/ah-session-query-sqlite'
+  config:
+    path: ':memory:'
+    openAt: never
+- name: '@anotherharness/ah-session-reference'
+  config:
+    maxReferenceBytes: 360
+- name: './source-session.ts'
+- name: '@anotherharness/ah-spill-local'
+  config:
+    root: '{{spillRoot}}'
+    cleanupPeriodDays: 0

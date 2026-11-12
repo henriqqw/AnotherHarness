@@ -1,0 +1,32 @@
+{
+  "name": "@anotherharness/ah-attachment",
+  "description": "Durable immutable attachment storage seam for the AnotherHarness",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/attachment/attachment"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": { "types": "./lib/types/index.d.ts", "default": "./lib/index.js" },
+    "./types": { "types": "./lib/types/types.d.ts", "default": "./lib/types/types.js" },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib/index.js", "lib/types/**/*.js", "lib/types/**/*.d.ts"],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  }
+}

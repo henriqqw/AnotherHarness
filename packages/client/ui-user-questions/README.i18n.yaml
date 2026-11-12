@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-user-questions/README.md
+/:
+  en: 0ad74a777e1c1b94
+  zh: 1b22a8992d41e11b
+/anotherharness-ah-client-ui-user-questions:
+  en: d6a4f06555d50c3e
+  zh: aab8b8d71f693aab
+/anotherharness-ah-client-ui-user-questions/summary:
+  en: 1aa6291852d48a08
+  zh: 414eed268fb2cf1f
+/anotherharness-ah-client-ui-user-questions/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-user-questions/use-this-package:
+  en: 8d3815c19858ac85
+  zh: 94fc905fa202d334
+/anotherharness-ah-client-ui-user-questions/use-this-package/answering:
+  en: cc19c065d0aeac1e
+  zh: 91c8cbe08b438e7f
+/anotherharness-ah-client-ui-user-questions/use-this-package/reading-a-settled-question-back:
+  en: 10975f68ff9c6fcc
+  zh: 92246aadc363f0eb
+/anotherharness-ah-client-ui-user-questions/use-this-package/the-plan-review-card:
+  en: f66844ef75cab4da
+  zh: 41a17e28d4693c9a
+/anotherharness-ah-client-ui-user-questions/use-this-package/failure-and-recovery:
+  en: 3509678f4d183834
+  zh: 625542b79e434eb5
+/anotherharness-ah-client-ui-user-questions/understand-the-implementation:
+  en: 77e1b2585acdf67b
+  zh: d433ec185c6b8f57
+/anotherharness-ah-client-ui-user-questions/understand-the-implementation/reopening-a-panel:
+  en: b196bf407a6ded67
+  zh: e7df31c1585f8f85
+/anotherharness-ah-client-ui-user-questions/understand-the-implementation/intent-surface-election:
+  en: 126a889edbc42edd
+  zh: 7e08968cd61d42a2
+/anotherharness-ah-client-ui-user-questions/understand-the-implementation/copy-and-locale:
+  en: 7bd479b07cbcfc2e
+  zh: 077093126d6dd385
+/anotherharness-ah-client-ui-user-questions/further-exploration:
+  en: fa8a0b0d940aa50e
+  zh: 5844c430efaddda9
+/anotherharness-ah-client-ui-user-questions/model-experience:
+  en: a7e7cfe1ad79e0fe
+  zh: d3015dfdab0f9aae
+/anotherharness-ah-client-ui-user-questions/model-experience/kv-cache-effect:
+  en: e71eb4785c55a542
+  zh: 543ad0c45c278076
+/anotherharness-ah-client-ui-user-questions/known-limitations-and-deferred-work:
+  en: d61767a407077aaf
+  zh: 891e7bffa61f3017
+/anotherharness-ah-client-ui-user-questions/known-limitations-and-deferred-work/dev-note:
+  en: 4ff0c667c1b130df
+  zh: 3f42eaff797dc46d

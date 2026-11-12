@@ -1,0 +1,164 @@
+# Per-launch SDK customization: retain only persistent Bash and the string
+# editor as model-facing tools, with process-local providers and an explicit
+# danger-full-access / never-ask policy.
+
+- insert:
+    - id: tool-str-replace-editor
+      name: '@anotherharness/ah-tool-str-replace-editor'
+      config:
+        maxOutputChars: 16000
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  config:
+    apiKeyEnv: DEEPSEEK_API_KEY
+    streamIdleTimeoutMs: 172800000
+    models:
+      - id: !!js process.env.AH_MODEL ?? 'deepseek-v4-flash'
+        contextWindow: !!js Number(process.env.AH_CONTEXT_WINDOW ?? 1000000)
+
+- id: sandbox-policy
+  name: '@anotherharness/ah-sandbox-policy'
+  config:
+    mode: danger-full-access
+    workspaceRoot: !!js process.cwd()
+
+- id: approval
+  name: '@anotherharness/ah-user-approval'
+  config:
+    policy: never
+
+- id: permission
+  name: '@anotherharness/ah-permission-presets'
+  disabled: true
+
+- id: bash-sandbox
+  name: '@anotherharness/ah-bash-sandbox'
+  disabled: true
+
+- id: pwsh-sandbox
+  name: '@anotherharness/ah-pwsh-sandbox'
+  disabled: true
+
+- id: fs-sandbox
+  name: '@anotherharness/ah-fs-sandbox'
+  disabled: true
+
+- id: tool-bash
+  name: '@anotherharness/ah-tool-bash'
+  disabled: true
+
+- id: tool-pwsh
+  name: '@anotherharness/ah-tool-pwsh'
+  disabled: true
+
+- id: agent-instructions
+  name: '@anotherharness/ah-agent-instructions'
+  disabled: true
+
+- id: skill
+  name: '@anotherharness/ah-skill'
+  disabled: true
+
+- id: skill-filesystem
+  name: '@anotherharness/ah-skill-filesystem'
+  disabled: true
+
+- id: tool-skill
+  name: '@anotherharness/ah-tool-skill'
+  disabled: true
+
+- id: tool-jobs
+  name: '@anotherharness/ah-tool-jobs'
+  disabled: true
+
+- id: tool-fs
+  name: '@anotherharness/ah-tool-fs'
+  disabled: true
+
+- id: tool-fs-search
+  name: '@anotherharness/ah-tool-fs-search'
+  disabled: true
+
+- id: tool-subagent-control
+  name: '@anotherharness/ah-tool-subagent-control'
+  disabled: true
+
+- id: tool-subagent-list-agents
+  name: '@anotherharness/ah-tool-subagent-control/list-agents'
+  disabled: true
+
+- id: tool-subagent
+  name: '@anotherharness/ah-tool-subagent'
+  disabled: true
+
+- id: tool-subagent-fork
+  name: '@anotherharness/ah-tool-subagent'
+  disabled: true
+
+- id: tool-workflow
+  name: '@anotherharness/ah-tool-workflow'
+  disabled: true
+
+- id: tool-todo
+  name: '@anotherharness/ah-tool-todo'
+  disabled: true
+
+- id: tool-goal
+  name: '@anotherharness/ah-tool-goal'
+  disabled: true
+
+- id: tool-web
+  name: '@anotherharness/ah-tool-web'
+  disabled: true
+
+- id: plan-mode
+  name: '@anotherharness/ah-plan-mode'
+  disabled: true
+
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+  config:
+    includeHarnessIdentity: false
+    personaPrefix: !!js process.env.AH_SYSTEM_PROMPT ?? 'You are a helpful software engineer assistant.'
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js ahHomePath('sessions')
+    compression: none
+
+- insert:
+    - id: bash-local
+      name: '@anotherharness/ah-bash-local'
+
+    - id: fs-local
+      name: '@anotherharness/ah-fs-local'
+      config:
+        cwd: !!js process.cwd()
+
+    - id: terminal
+      name: '@anotherharness/ah-terminal'
+
+    - id: terminal-bash
+      name: '@anotherharness/ah-terminal-bash'
+      config:
+        timeoutMs: 300000
+
+    - id: persistent-bash
+      name: '@anotherharness/ah-tool-bash-persistent'
+      config:
+        timeoutMs: 300000
+        description: |-
+          Run commands in a bash shell
+          * When invoking this tool, the contents of the "command" parameter does NOT need to be XML-escaped.
+          * You don't have access to the internet via this tool.
+          * You do have access to a mirror of common linux and python packages via apt and pip.
+          * State is persistent across command calls and discussions with the user.
+          * To inspect a particular line range of a file, e.g. lines 10-25, try 'sed -n 10,25p /path/to/the/file'.
+          * Please avoid commands that may produce a very large amount of output.
+          * Please run long lived commands in the background, e.g. 'sleep 10 &' or start a server in the background.
+
+- id: session-log-deepseek
+  config:
+    enabled: false

@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/api/session-controller/README.md
+/:
+  en: 82789442228fc62a
+  zh: f1d511ad838187de
+/session-controller:
+  en: ba9bb9b7cae1f930
+  zh: c5f24f56ea93665b
+/session-controller/summary:
+  en: daab1ac919c914db
+  zh: e2cf1d8ad9178645
+/session-controller/table-of-contents:
+  en: 1fdf707322fb6996
+  zh: 0204f7e9d4aa3cce
+/session-controller/use-this-package:
+  en: ab065a7d95c3e7cc
+  zh: 8c30b89f8da5e3a3
+/session-controller/client-references:
+  en: 0eaff70f4790f89d
+  zh: 56a1fc3224b83267
+/session-controller/session-media-references:
+  en: 266ab2b1e2fec542
+  zh: b3450ae28a1e0baf
+/session-controller/configuration:
+  en: cfe446580d48b23a
+  zh: c127da966b01ecd6
+/session-controller/model-experience:
+  en: 30b917bf822bb4df
+  zh: b0b023b5b526c317
+/session-controller/model-experience/kv-cache-effect:
+  en: 22fc0c9dbedd3bb6
+  zh: fad040ca55fd0e0a
+/session-controller/known-limitations-and-deferred-work:
+  en: 5db0f9f69a8be926
+  zh: 6ba1cc4a3850fcbc
+/session-controller/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

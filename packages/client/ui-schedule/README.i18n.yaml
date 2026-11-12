@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-schedule/README.md
+/:
+  en: 265778d19fe0dd76
+  zh: 78b0a191a4bd4e4e
+/anotherharness-ah-client-ui-schedule:
+  en: 609ea8a23c4f95e2
+  zh: ddaef1409430239b
+/anotherharness-ah-client-ui-schedule/summary:
+  en: 8dfc371c14bb4415
+  zh: 9b3545c1a7468a7a
+/anotherharness-ah-client-ui-schedule/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 405b30feaf48c087
+/anotherharness-ah-client-ui-schedule/use-this-package:
+  en: a5b8f21b9fec5776
+  zh: bb1c008bf15e2e17
+/anotherharness-ah-client-ui-schedule/use-this-package/time-zone-data-source:
+  en: b5be806544872f8f
+  zh: 1211d2a7ccf920ab
+/anotherharness-ah-client-ui-schedule/understand-the-implementation:
+  en: 7ed87766a7a7f425
+  zh: 190c3189321d10e2
+/anotherharness-ah-client-ui-schedule/further-exploration:
+  en: 8eee232f11c7085f
+  zh: 78f9c0717e431f9f
+/anotherharness-ah-client-ui-schedule/model-experience:
+  en: a8838aba5fd29fd8
+  zh: b9f67d82c81dd030
+/anotherharness-ah-client-ui-schedule/model-experience/kv-cache-effect:
+  en: 4b81350950285d47
+  zh: 6dc3d5cf7ca8a622
+/anotherharness-ah-client-ui-schedule/known-limitations-and-deferred-work:
+  en: 2e5bb4e23ed0a41a
+  zh: 51deba1593d11dd3
+/anotherharness-ah-client-ui-schedule/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: a4b126f9a4eaca6f

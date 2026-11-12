@@ -1,0 +1,100 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/context/agent-instructions/README.md
+/:
+  en: 3e005f834284c249
+  zh: d51d06d0ea2c30ca
+/anotherharness-ah-agent-instructions:
+  en: df1144f653662eb5
+  zh: 4d347b4a96a7ee47
+/anotherharness-ah-agent-instructions/summary:
+  en: ced83848dec4d6d3
+  zh: a632b43fb1d7f5de
+/anotherharness-ah-agent-instructions/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-agent-instructions/use-this-package:
+  en: 8d66d4ee8e63282d
+  zh: 0e4d0a2c1c0a3e4d
+/anotherharness-ah-agent-instructions/use-this-package/what-the-agent-gets:
+  en: 3aa7e664ea05030a
+  zh: e66dbd49dc41bfcf
+/anotherharness-ah-agent-instructions/use-this-package/configuration:
+  en: c21ea9462b139657
+  zh: 3eea59a27fae2296
+/anotherharness-ah-agent-instructions/use-this-package/observing-the-budget:
+  en: 9797082b1e69b72c
+  zh: d26c00b1b90fe4ea
+/anotherharness-ah-agent-instructions/understand-the-implementation:
+  en: 724df7ff6d1d9fea
+  zh: 91fb1013eb9178ec
+/anotherharness-ah-agent-instructions/understand-the-implementation/design-concept:
+  en: 4708b51bf8fe86f7
+  zh: 869fc4b1f78383ee
+/anotherharness-ah-agent-instructions/understand-the-implementation/source-map:
+  en: cb4c1f929ef5a835
+  zh: 3f0fcb7f568a0a5c
+/anotherharness-ah-agent-instructions/understand-the-implementation/main-flow:
+  en: d881b9055f823929
+  zh: 87b25f0bf8e204e9
+/anotherharness-ah-agent-instructions/understand-the-implementation/invariants:
+  en: 7f6e9b5356da91fd
+  zh: 7b99f255d23d982e
+/anotherharness-ah-agent-instructions/further-exploration:
+  en: cea5de4b8a4c95da
+  zh: 1b7be97a097f12f8
+/anotherharness-ah-agent-instructions/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-agent-instructions/model-experience/baseline-context:
+  en: 41690f63ce8a7e6a
+  zh: 6cff922d5afef38f
+/anotherharness-ah-agent-instructions/model-experience/baseline-context/what-the-model-sees:
+  en: 41ad1efcf640edf2
+  zh: 3d06e265788fc2b7
+/anotherharness-ah-agent-instructions/model-experience/baseline-context/what-the-model-sees/baseline-instruction-template:
+  en: 0ced1c177da6d120
+  zh: 6c61efb987e227fe
+/anotherharness-ah-agent-instructions/model-experience/baseline-context/token-effect:
+  en: e7c0cc34065a1113
+  zh: a973ba9fac7a918d
+/anotherharness-ah-agent-instructions/model-experience/baseline-context/kv-cache-effect:
+  en: c611902b9f369d86
+  zh: d7da1dbe6c1ac7f1
+/anotherharness-ah-agent-instructions/model-experience/newly-discovered-scope-context:
+  en: bbf8f11dbb279b78
+  zh: eb537ade3fa1e573
+/anotherharness-ah-agent-instructions/model-experience/newly-discovered-scope-context/what-the-model-sees:
+  en: d806c4e1f67d7e94
+  zh: 46f1d1d149197f70
+/anotherharness-ah-agent-instructions/model-experience/newly-discovered-scope-context/what-the-model-sees/additional-instruction-template:
+  en: 50655306b787c8c6
+  zh: bcdc631a35f9de91
+/anotherharness-ah-agent-instructions/model-experience/newly-discovered-scope-context/token-effect:
+  en: 793319101bb39edf
+  zh: f05af12ab9574a4d
+/anotherharness-ah-agent-instructions/model-experience/newly-discovered-scope-context/kv-cache-effect:
+  en: 2fbf2175168e8244
+  zh: f681f89596f500f5
+/anotherharness-ah-agent-instructions/model-experience/changed-or-removed-instruction-context:
+  en: b668990682ea0069
+  zh: 6468918ca6b31a45
+/anotherharness-ah-agent-instructions/model-experience/changed-or-removed-instruction-context/what-the-model-sees:
+  en: 16afe8870b4de832
+  zh: f0cdf8ea51ec148a
+/anotherharness-ah-agent-instructions/model-experience/changed-or-removed-instruction-context/what-the-model-sees/removal-notice:
+  en: c78113708e7d7665
+  zh: b10dcce1569febae
+/anotherharness-ah-agent-instructions/model-experience/changed-or-removed-instruction-context/token-effect:
+  en: 436f2fb373e7822d
+  zh: 0a3173b4398530bd
+/anotherharness-ah-agent-instructions/model-experience/changed-or-removed-instruction-context/kv-cache-effect:
+  en: 2fbf2175168e8244
+  zh: f681f89596f500f5
+/anotherharness-ah-agent-instructions/known-limitations-and-deferred-work:
+  en: 9b50e4414fac4a79
+  zh: 5957bfd23f79b336
+/anotherharness-ah-agent-instructions/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-sidebar-browser/README.md
+/:
+  en: aceaa4f1e64f54b1
+  zh: 0f43a543e01f0778
+/anotherharness-ah-client-ui-sidebar-browser:
+  en: 2d4e4d7ebbf361c6
+  zh: 06e564f0f9975447
+/anotherharness-ah-client-ui-sidebar-browser/summary:
+  en: 6da22559ff372e95
+  zh: 8ad8f2b4ed655878
+/anotherharness-ah-client-ui-sidebar-browser/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: de4a2a92773d135e
+/anotherharness-ah-client-ui-sidebar-browser/use-this-package:
+  en: b696053fbf7c92e6
+  zh: 36cbc555fc7501e7
+/anotherharness-ah-client-ui-sidebar-browser/use-this-package/when-to-choose-it:
+  en: 02554e580ab49ff1
+  zh: 422b1e22525764bf
+/anotherharness-ah-client-ui-sidebar-browser/use-this-package/minimal-configuration:
+  en: 7c9e0283394cefcc
+  zh: 738072106ceccc9e
+/anotherharness-ah-client-ui-sidebar-browser/understand-the-implementation:
+  en: 42b15ac6321706aa
+  zh: e15901d8462ec7c7
+/anotherharness-ah-client-ui-sidebar-browser/understand-the-implementation/protocol-policy:
+  en: aa1490d27f2ec0b7
+  zh: 2d790b95ba8ef9f7
+/anotherharness-ah-client-ui-sidebar-browser/understand-the-implementation/iframe-carrier:
+  en: 59a9f1bd8bd40d83
+  zh: c5115fb6f009e717
+/anotherharness-ah-client-ui-sidebar-browser/understand-the-implementation/controller:
+  en: 6ddc24ffe34846cd
+  zh: aa81157d18f850cd
+/anotherharness-ah-client-ui-sidebar-browser/further-exploration:
+  en: 9da9932bedddf7df
+  zh: 650854ef67adcb4b
+/anotherharness-ah-client-ui-sidebar-browser/model-experience:
+  en: 69e711858e7d9ebc
+  zh: d84610491e69a35b
+/anotherharness-ah-client-ui-sidebar-browser/model-experience/kv-cache-effect:
+  en: e17a5fd3d5405745
+  zh: db957a16dddce770
+/anotherharness-ah-client-ui-sidebar-browser/known-limitations-and-deferred-work:
+  en: 307604babbe74f38
+  zh: 7d7a5aa4b99964d0
+/anotherharness-ah-client-ui-sidebar-browser/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

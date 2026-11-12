@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/sdk-minimal/README.md
+/:
+  en: 7cbc0e332890851f
+  zh: 07c71026d8e1bb15
+/anotherharness-ah-sdk-minimal:
+  en: b8e34455e583b0ff
+  zh: 7b71a2836e9a17eb
+/anotherharness-ah-sdk-minimal/summary:
+  en: 2085a25513b67327
+  zh: a213dbd2b1e6d665
+/anotherharness-ah-sdk-minimal/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-sdk-minimal/use-this-package:
+  en: 79e593ee1d59d2cb
+  zh: d882158995ef87eb
+/anotherharness-ah-sdk-minimal/understand-the-implementation:
+  en: c9a21a1c36bc86e6
+  zh: 4277bd685a9c7711
+/anotherharness-ah-sdk-minimal/understand-the-implementation/source-map:
+  en: 3784c554e96ab004
+  zh: 0a05d4fe1e26b3b1
+/anotherharness-ah-sdk-minimal/further-exploration:
+  en: f661c2b856e5223e
+  zh: bfde29f8e1fd5a6c
+/anotherharness-ah-sdk-minimal/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-sdk-minimal/model-experience/minimal-coding-agent-composition:
+  en: bd87e16b0c6e0506
+  zh: c8ee5e3b4578754e
+/anotherharness-ah-sdk-minimal/model-experience/minimal-coding-agent-composition/what-the-model-sees:
+  en: 443323a5a7443403
+  zh: decc6993b0e6b4ac
+/anotherharness-ah-sdk-minimal/model-experience/minimal-coding-agent-composition/token-effect:
+  en: 5df298b2c9f95d27
+  zh: def93cd59b5ca843
+/anotherharness-ah-sdk-minimal/model-experience/minimal-coding-agent-composition/kv-cache-effect:
+  en: 904ae09b5fdb87c1
+  zh: de6fcaaa12bd9733
+/anotherharness-ah-sdk-minimal/known-limitations-and-deferred-work:
+  en: 231aea182510c65b
+  zh: 745256e7caf10b54
+/anotherharness-ah-sdk-minimal/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

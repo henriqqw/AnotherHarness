@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-directory-picker-browse/README.md
+/:
+  en: 5f823b578f5be33d
+  zh: 5e12bb5290b0286b
+/anotherharness-ah-client-ui-directory-picker-browse:
+  en: 936febd091925f51
+  zh: 927f9f58407e8245
+/anotherharness-ah-client-ui-directory-picker-browse/summary:
+  en: c55d06709158f78f
+  zh: 074299c5bbda6991
+/anotherharness-ah-client-ui-directory-picker-browse/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-directory-picker-browse/use-this-package:
+  en: f8055592eb9613e6
+  zh: c6f742387f34ae2c
+/anotherharness-ah-client-ui-directory-picker-browse/use-this-package/navigating-and-creating:
+  en: 18e10884b02f288f
+  zh: 06debd0a4a88bdac
+/anotherharness-ah-client-ui-directory-picker-browse/understand-the-implementation:
+  en: fb217b7d152731db
+  zh: 9ee3c0a9f15a5a29
+/anotherharness-ah-client-ui-directory-picker-browse/further-exploration:
+  en: 46b6e6f5548d4f0b
+  zh: a8d7177ebe7c25df
+/anotherharness-ah-client-ui-directory-picker-browse/model-experience:
+  en: 3bcc2b54b66f366e
+  zh: 489716ece3a4ef2a
+/anotherharness-ah-client-ui-directory-picker-browse/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: f57cc48a1b5cbfa9
+/anotherharness-ah-client-ui-directory-picker-browse/known-limitations-and-deferred-work:
+  en: 20e381071e1644e2
+  zh: 9260bcb09a52dd8c
+/anotherharness-ah-client-ui-directory-picker-browse/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

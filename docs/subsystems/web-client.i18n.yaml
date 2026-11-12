@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for web-client.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/web-client.md
+/web-client-architecture:
+  en: 3ccb6fb834245d2f
+  zh: 589bf7af73cca823
+/web-client-architecture/layers-and-ownership:
+  en: c0454bca818f86ee
+  zh: 427582150fd3b976
+/web-client-architecture/browser-boot:
+  en: f9279fae20571e6c
+  zh: 59e2adbbcb27a072
+/web-client-architecture/remote-communication:
+  en: 339c40bfd3695883
+  zh: 04c6ae232f4b5f37
+/web-client-architecture/client-models:
+  en: 13be17c2a2790ae9
+  zh: f5af715d0ae222be
+/web-client-architecture/client-models/sessions:
+  en: b0f28a8bc2918b78
+  zh: 747b8b6bf843f7b7
+/web-client-architecture/client-models/workspaces:
+  en: 03d6070b3d9becd7
+  zh: 473c1610dab421f7
+/web-client-architecture/conversation-and-presentation:
+  en: fd9c8477792a82b6
+  zh: 53407441e556ed5b
+/web-client-architecture/data-paths:
+  en: e346c05e03fc3f00
+  zh: a15b366b47c9bd62
+/web-client-architecture/reconnection:
+  en: 478f461e261b1ca5
+  zh: 626791d04656faee
+/web-client-architecture/package-boundaries:
+  en: d9565c51deefe6a3
+  zh: a1ca993b65aeafa9

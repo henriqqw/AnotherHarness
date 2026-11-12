@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-renderer/README.md
+/:
+  en: 684652de6c42ac6f
+  zh: a4cb7eac011ae9b6
+/anotherharness-ah-client-ui-renderer:
+  en: c33b675977964333
+  zh: abb8e65d0d1bf4d0
+/anotherharness-ah-client-ui-renderer/summary:
+  en: f85de207cc7faebb
+  zh: 7cd9483675b9c4f8
+/anotherharness-ah-client-ui-renderer/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-renderer/use-this-package:
+  en: fcbb75ac81eaf9db
+  zh: bc5d4bab43d09503
+/anotherharness-ah-client-ui-renderer/use-this-package/what-mounting-does:
+  en: 1d5350799ce072d0
+  zh: 942e543fdab51818
+/anotherharness-ah-client-ui-renderer/use-this-package/for-business-plugins:
+  en: 15a2bfee2c0bd051
+  zh: 0c5b336fc5afbbc6
+/anotherharness-ah-client-ui-renderer/understand-the-implementation:
+  en: 0de0a8ad857b93f6
+  zh: 98a0fae2d6606a7d
+/anotherharness-ah-client-ui-renderer/understand-the-implementation/activation-and-mount:
+  en: e5e76890ad5695dc
+  zh: 5cae613b43a83043
+/anotherharness-ah-client-ui-renderer/understand-the-implementation/slot-bindings:
+  en: 6ab26cf5744a23d4
+  zh: 84a531322a724a84
+/anotherharness-ah-client-ui-renderer/understand-the-implementation/identity:
+  en: 2a349d500ead79cb
+  zh: ac49c8b1d73dcd6c
+/anotherharness-ah-client-ui-renderer/further-exploration:
+  en: 29f298abdf5c66ef
+  zh: 1a4d936d9cddb794
+/anotherharness-ah-client-ui-renderer/model-experience:
+  en: ca4e29db08d34e6d
+  zh: de6ec680414b1d54
+/anotherharness-ah-client-ui-renderer/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-renderer/known-limitations-and-deferred-work:
+  en: 5ebaf02736035a44
+  zh: 3c04f28da7ec6c40
+/anotherharness-ah-client-ui-renderer/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

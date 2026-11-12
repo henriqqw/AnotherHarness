@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/lsp/README.md
+/:
+  en: de26a0afcbda2fda
+  zh: a4f20046396ddfd7
+/lsp-language-server-code-navigation:
+  en: 315c7c3c1fa35b39
+  zh: 21e5a8e5bbc2fec8
+/lsp-language-server-code-navigation/summary:
+  en: c519cb73d4fb82c8
+  zh: cae489e30b74c832
+/lsp-language-server-code-navigation/table-of-contents:
+  en: 1eb35b015a6c423f
+  zh: a8a3dceee2c9e943
+/lsp-language-server-code-navigation/packages:
+  en: 483a6da61ec2fe35
+  zh: e1b9ecfa0ca5e208
+/lsp-language-server-code-navigation/related-documentation:
+  en: 1dd7bbb7b6750be4
+  zh: 93d13cb4d592c807
+/lsp-language-server-code-navigation/dev-note:
+  en: 5de1d6304e00c58f
+  zh: 8d8225361cfa29e5

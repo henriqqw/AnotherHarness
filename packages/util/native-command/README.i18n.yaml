@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/util/native-command/README.md
+/:
+  en: 3e0acbcc586810bb
+  zh: 688d34f126d1450e
+/anotherharness-ah-native-command:
+  en: f4ba50b313f367a1
+  zh: bbe79795215a17e6
+/anotherharness-ah-native-command/summary:
+  en: 10df7ebfdbe2035b
+  zh: e1bb2a70687f8454
+/anotherharness-ah-native-command/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-native-command/use-this-package:
+  en: aba695cba233905f
+  zh: c6359da30eb8e372
+/anotherharness-ah-native-command/use-this-package/running-a-command:
+  en: 6dbc6c9bf6db34be
+  zh: 9ab16a86ca5abcc2
+/anotherharness-ah-native-command/use-this-package/injecting-the-command-boundary:
+  en: 987bed629737b59d
+  zh: 258e30f813b0edcb
+/anotherharness-ah-native-command/use-this-package/opening-a-host-path:
+  en: b4ec677605b12ff8
+  zh: f35256957eea141a
+/anotherharness-ah-native-command/understand-the-implementation:
+  en: 78e86818bea36f9f
+  zh: 71dc1ad3e4cbe9f1
+/anotherharness-ah-native-command/understand-the-implementation/source-map:
+  en: fe54b68049be8239
+  zh: 3766e0954df12917
+/anotherharness-ah-native-command/understand-the-implementation/what-execfile-gives-the-runner:
+  en: ce6180ce8209db94
+  zh: 30000a1a073110e8
+/anotherharness-ah-native-command/further-exploration:
+  en: a7c3099c0015dbd9
+  zh: 28e3fd6925ce141c
+/anotherharness-ah-native-command/model-experience:
+  en: d478457568b9517e
+  zh: 0460368e7567a13f
+/anotherharness-ah-native-command/model-experience/kv-cache-effect:
+  en: 296c060e95197cc5
+  zh: b9d3fdf11b5ebe1e
+/anotherharness-ah-native-command/known-limitations-and-deferred-work:
+  en: d3af15e86d679b8e
+  zh: ee5aa3c8cbd9d2db
+/anotherharness-ah-native-command/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

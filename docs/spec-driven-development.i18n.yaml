@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for spec-driven-development.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/spec-driven-development.md
+/spec-driven-development:
+  en: 02d20c5a6fef4cc7
+  zh: 0de49d3df3451518
+/spec-driven-development/workflow:
+  en: 78fe2b1e2db84506
+  zh: 04fc0c011538dba1
+/spec-driven-development/spec-rules:
+  en: b43896d9008e9dfa
+  zh: 39e307643d3bdae3
+/spec-driven-development/relationship-to-agent-notes:
+  en: 47d8db3a73e53397
+  zh: 6dbb4f530dffa340

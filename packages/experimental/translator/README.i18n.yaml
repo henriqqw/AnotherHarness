@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/translator/README.md
+/:
+  en: f55d62d235c3a1f3
+  zh: 62063508c0ba87ad
+/anotherharness-ah-experimental-translator:
+  en: 27f17ed527528d59
+  zh: e4aaea6a03e28f00
+/anotherharness-ah-experimental-translator/summary:
+  en: dbfd4283d49cc598
+  zh: 1717743620294ec6
+/anotherharness-ah-experimental-translator/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 91dd6a6ee0635d20
+/anotherharness-ah-experimental-translator/use-this-package:
+  en: db1384fd04ce620b
+  zh: bd2cf7c17dd111c2
+/anotherharness-ah-experimental-translator/understand-the-implementation:
+  en: 8fa99924e5a2993e
+  zh: 269b0e9546109251
+/anotherharness-ah-experimental-translator/further-exploration:
+  en: e7fd7a29f363a896
+  zh: 2ec8035f8e2ffe02
+/anotherharness-ah-experimental-translator/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-experimental-translator/model-experience/auxiliary-flash-translation-system-prompt:
+  en: 75b37930051f9b46
+  zh: e79f28804416b939
+/anotherharness-ah-experimental-translator/model-experience/auxiliary-flash-translation-system-prompt/what-the-model-sees:
+  en: 8e7fa23dc157c1ea
+  zh: 3d483952fed2b2cd
+/anotherharness-ah-experimental-translator/model-experience/auxiliary-flash-translation-system-prompt/what-the-model-sees/fixed-translation-instruction:
+  en: cd064594a1c325af
+  zh: 736f9213f65c0b78
+/anotherharness-ah-experimental-translator/model-experience/auxiliary-flash-translation-system-prompt/token-effect:
+  en: 5d7b4e99ba5c776e
+  zh: 7e14e2679ec6aff3
+/anotherharness-ah-experimental-translator/model-experience/auxiliary-flash-translation-system-prompt/kv-cache-effect:
+  en: e6120b67c2543395
+  zh: af321d4edf9212fe
+/anotherharness-ah-experimental-translator/known-limitations-and-deferred-work:
+  en: 2c00a5295af60b8f
+  zh: b235aa5343c72a71
+/anotherharness-ah-experimental-translator/known-limitations-and-deferred-work/dev-note:
+  en: 2a10d48cc71fe30e
+  zh: a41eaf346d23e7db

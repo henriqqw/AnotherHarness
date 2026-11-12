@@ -1,0 +1,88 @@
+# Minimal keyless composition: real app, bash, and search tool; replayed model.
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  disabled: true
+
+- insert:
+    - id: llm-replay
+      name: '@anotherharness/ah-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-pro
+
+- id: subprocess
+  name: '@anotherharness/ah-subprocess-local'
+
+- id: agent-default-model
+  name: '@anotherharness/ah-agent-default-model'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-pro
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js ahHomePath('sessions')
+    compression: none
+
+- id: agent-instructions
+  name: '@anotherharness/ah-agent-instructions'
+  disabled: true
+
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+  config:
+    personaPrefix: You are a concise snapshot agent.
+
+- id: tool-jobs
+  name: '@anotherharness/ah-tool-jobs'
+  disabled: true
+
+- id: goal
+  name: '@anotherharness/ah-goal'
+  disabled: true
+
+- id: goal-round-driver
+  name: '@anotherharness/ah-goal-round-driver'
+  disabled: true
+
+- id: command-goal
+  name: '@anotherharness/ah-command-goal'
+  disabled: true
+
+- id: tool-goal
+  name: '@anotherharness/ah-tool-goal'
+  disabled: true
+
+- id: skill
+  name: '@anotherharness/ah-skill'
+  disabled: true
+
+- id: skill-filesystem
+  name: '@anotherharness/ah-skill-filesystem'
+  disabled: true
+
+- id: tool-skill
+  name: '@anotherharness/ah-tool-skill'
+  disabled: true
+
+- id: tool-fs-search
+  name: '@anotherharness/ah-tool-fs-search'
+  config:
+    sampleOverCapGlobResults: true
+    globMaxResults: 4
+
+- id: spill-local
+  name: '@anotherharness/ah-spill-local'
+  config:
+    root: !!js process.env.AH_SNAPSHOT_SPILL_ROOT ?? './.spill'
+
+- insert:
+    - id: snapshot-spill-locators
+      name: ../../../scripts/snapshot-spill-locators.ts
+      config:
+        root: !!js process.env.AH_SNAPSHOT_SPILL_ROOT
+        locatorRoot: !!js process.env.AH_SNAPSHOT_SPILL_LOCATOR_ROOT

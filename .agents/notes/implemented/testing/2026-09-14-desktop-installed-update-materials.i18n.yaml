@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-09-14-desktop-installed-update-materials.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/testing/2026-09-14-desktop-installed-update-materials.md
+/agent-note-isolate-installed-update-materials-from-releases-and-user-data:
+  en: a94cec568a4daf25
+  zh: 075ded2abfe866c8
+/agent-note-isolate-installed-update-materials-from-releases-and-user-data/problem:
+  en: 8d63b992ff6d3161
+  zh: 86d333255a5400d3
+/agent-note-isolate-installed-update-materials-from-releases-and-user-data/decision:
+  en: 0c6d3dcf2477ecad
+  zh: 7bdfc180b0a062e8
+/agent-note-isolate-installed-update-materials-from-releases-and-user-data/alternatives-considered:
+  en: c608f186cc94a9d3
+  zh: 39750c8347e8bece
+/agent-note-isolate-installed-update-materials-from-releases-and-user-data/consequences:
+  en: 9803ab1e0e74271e
+  zh: 5863947eea2a5ad9

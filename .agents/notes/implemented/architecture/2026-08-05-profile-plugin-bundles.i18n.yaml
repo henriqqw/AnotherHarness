@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-08-05-profile-plugin-bundles.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-08-05-profile-plugin-bundles.md
+/agent-note-profile-plugin-bundles-replace-the-fixed-surface-overlays:
+  en: a8d58f466a3d1c7c
+  zh: 5160b71372332dd9
+/agent-note-profile-plugin-bundles-replace-the-fixed-surface-overlays/problem:
+  en: 802572fe358f7e47
+  zh: 0747e7794717ed8f
+/agent-note-profile-plugin-bundles-replace-the-fixed-surface-overlays/decision:
+  en: 3953cf670e4e1756
+  zh: 19a97a240f441c90
+/agent-note-profile-plugin-bundles-replace-the-fixed-surface-overlays/alternatives-considered:
+  en: eb2ccc199ed86e5a
+  zh: dcf748a956fab3aa
+/agent-note-profile-plugin-bundles-replace-the-fixed-surface-overlays/consequences:
+  en: 5794031f4e5c9c21
+  zh: 7a5ea5caf13e6f76

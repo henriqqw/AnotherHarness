@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-24-preset-scoped-time-context.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-24-preset-scoped-time-context.md
+/agent-note-preset-scoped-time-context:
+  en: c8c271c005545283
+  zh: a8c9b820aa1a511d
+/agent-note-preset-scoped-time-context/problem:
+  en: 6b0d2bf60e97809f
+  zh: 8a32ad297b908ebb
+/agent-note-preset-scoped-time-context/decision:
+  en: f0fde46b74ad6a08
+  zh: a77d0c77616a4b23
+/agent-note-preset-scoped-time-context/alternatives-considered:
+  en: d052120b8b02213e
+  zh: ff54c83f8bbe98a6
+/agent-note-preset-scoped-time-context/consequences:
+  en: 3d92e8f922a8d812
+  zh: 78078ba2c38f6727
+/agent-note-preset-scoped-time-context/testing:
+  en: c29722f8a8034ea0
+  zh: df2031d6f9fab513

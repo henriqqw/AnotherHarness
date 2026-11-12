@@ -1,0 +1,8 @@
+- insert:
+    - id: experimental-inspector
+      name: '@anotherharness/ah-experimental-inspector'
+      disabled: false
+      config:
+        captureFetch: true
+    - id: session-inspector
+      name: '@anotherharness/ah-experimental-session-inspector'

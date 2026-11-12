@@ -1,0 +1,69 @@
+{
+  "name": "@anotherharness/ah-client-ui-attachment",
+  "description": "Dynamic attachment presentation plugin for conversation input, message-image, and trajectory image slots",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/client/ui-attachment"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-client-ui-chat",
+        "@anotherharness/ah-client-ui-conversation",
+        "@anotherharness/ah-client-ui-renderer",
+        "@anotherharness/ah-client-ui-trajectory",
+        "@anotherharness/ah-client-ui-tool"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.0",
+    "@anotherharness/ah-client-ui-chat": "workspace:*",
+    "@anotherharness/ah-client-ui-conversation": "workspace:*",
+    "@anotherharness/ah-client-ui-trajectory": "workspace:*",
+    "@anotherharness/ah-client-ui-renderer": "workspace:*",
+    "@anotherharness/ah-client-ui-primitives": "workspace:*",
+    "@anotherharness/ah-client-ui-slots": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-client-ui-tool": "workspace:*",
+    "clsx": "^2.0.0"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~"
+  }
+}

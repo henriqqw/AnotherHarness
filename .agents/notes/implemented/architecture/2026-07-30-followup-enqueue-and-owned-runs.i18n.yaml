@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-07-30-followup-enqueue-and-owned-runs.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-07-30-followup-enqueue-and-owned-runs.md
+/agent-note-follow-up-enqueue-and-owned-run-boundaries:
+  en: edc231be2cf505f8
+  zh: 7455fa14ba8d5a62
+/agent-note-follow-up-enqueue-and-owned-run-boundaries/problem:
+  en: 6fc97f295106c36e
+  zh: 3b5411732742a556
+/agent-note-follow-up-enqueue-and-owned-run-boundaries/decision:
+  en: 9d68149d8090d355
+  zh: d3efa8ac850603bf
+/agent-note-follow-up-enqueue-and-owned-run-boundaries/alternatives-considered:
+  en: 70a57101ffa08e81
+  zh: 36c3539ee9c759af
+/agent-note-follow-up-enqueue-and-owned-run-boundaries/verification:
+  en: 4c65688fc0bc1f6c
+  zh: 04f1fd160e38a69d
+/agent-note-follow-up-enqueue-and-owned-run-boundaries/consequences:
+  en: 0db0a434c84f5a17
+  zh: b8912621ab167093

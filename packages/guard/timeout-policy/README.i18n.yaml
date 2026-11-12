@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/guard/timeout-policy/README.md
+/:
+  en: 7020f47046dc8148
+  zh: 191dea4c788f374b
+/anotherharness-ah-tool-call-timeout-policy:
+  en: 8093526b804c5df7
+  zh: 9be1acdf8277332a
+/anotherharness-ah-tool-call-timeout-policy/summary:
+  en: 089d00038af710a3
+  zh: e86f717e63c2a9fe
+/anotherharness-ah-tool-call-timeout-policy/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-tool-call-timeout-policy/use-this-package:
+  en: 5e1600398ce68253
+  zh: 668921b5b89a22b8
+/anotherharness-ah-tool-call-timeout-policy/use-this-package/when-to-choose-it:
+  en: 2c6495054dfaf09c
+  zh: 7f2d65c3202d75f3
+/anotherharness-ah-tool-call-timeout-policy/use-this-package/setting-it-up:
+  en: 1cbc507b67cbc968
+  zh: 88d84f3900b8042b
+/anotherharness-ah-tool-call-timeout-policy/use-this-package/what-you-get:
+  en: 339ff1d6001f3def
+  zh: c3e378abc7c58fa4
+/anotherharness-ah-tool-call-timeout-policy/understand-the-implementation:
+  en: 9bdd0f9388915825
+  zh: c101ec504869d187
+/anotherharness-ah-tool-call-timeout-policy/understand-the-implementation/design-philosophy:
+  en: 4c6b6fac2b750a93
+  zh: d97ab35d96203b53
+/anotherharness-ah-tool-call-timeout-policy/understand-the-implementation/how-a-deadline-is-armed-and-mapped:
+  en: 4c2f31d760d5ad4b
+  zh: 42e5c42675c32dcc
+/anotherharness-ah-tool-call-timeout-policy/understand-the-implementation/composing-with-other-wrappers:
+  en: 09fba7333cf511f6
+  zh: 965c60634d370287
+/anotherharness-ah-tool-call-timeout-policy/understand-the-implementation/source-map:
+  en: 1fa5646d5e9d18eb
+  zh: d09dfc46cbc654f4
+/anotherharness-ah-tool-call-timeout-policy/further-exploration:
+  en: 1b9f889a92d773ed
+  zh: 00c7b0b7a8b6dbc1
+/anotherharness-ah-tool-call-timeout-policy/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-call-timeout-policy/model-experience/conditional-tool-result:
+  en: 7877631ca859b191
+  zh: fb6f2aa33f70b82c
+/anotherharness-ah-tool-call-timeout-policy/model-experience/conditional-tool-result/what-the-model-sees:
+  en: 1fd9832261036f56
+  zh: 245b04969f3bc26d
+/anotherharness-ah-tool-call-timeout-policy/model-experience/conditional-tool-result/token-effect:
+  en: 063d0485b8631d04
+  zh: 13c1a680cfa9f02b
+/anotherharness-ah-tool-call-timeout-policy/model-experience/conditional-tool-result/kv-cache-effect:
+  en: 2fbf2175168e8244
+  zh: f681f89596f500f5
+/anotherharness-ah-tool-call-timeout-policy/known-limitations-and-deferred-work:
+  en: 8b51b07b2fc6d1bc
+  zh: f65e3760a6ea5f2f
+/anotherharness-ah-tool-call-timeout-policy/known-limitations-and-deferred-work/dev-note:
+  en: 6c215c9cfda158a6
+  zh: 61c5e5d82893b72b

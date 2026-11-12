@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for glossary.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/glossary.md
+/glossary:
+  en: 5936ac3b2f768fc4
+  zh: 1d454d46796c5a51
+/glossary/capability-seam:
+  en: 430100e183008d08
+  zh: d796dacb4524b493
+/glossary/agent-scope:
+  en: 893655aaaa6a9db4
+  zh: 48b699fd15fa7ba6
+/glossary/goal:
+  en: c64d9e91d54c6315
+  zh: a2918c9d276af8a1
+/glossary/human-command:
+  en: f2d8be4ff9e3aa8e
+  zh: 6916a7bb09688457
+/glossary/loop-hierarchy:
+  en: 343a7cb31b8191c2
+  zh: 6831415a7fe1726a
+/glossary/ralph:
+  en: 5059f8a377980b9d
+  zh: 39bf11c10e5c0a84

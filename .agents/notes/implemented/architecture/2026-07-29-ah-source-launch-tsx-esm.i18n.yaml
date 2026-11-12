@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-07-29-ah-source-launch-tsx-esm.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-07-29-ah-source-launch-tsx-esm.md
+/agent-note-ah-source-launch-through-the-tsx-esm-hook:
+  en: 010c108658c96280
+  zh: afc3ec06661e4319
+/agent-note-ah-source-launch-through-the-tsx-esm-hook/problem:
+  en: 68385f7e47d3ac1f
+  zh: 285ca290832e2939
+/agent-note-ah-source-launch-through-the-tsx-esm-hook/decision:
+  en: 511a01454724df4f
+  zh: d03a1fe2fc3c1e8f
+/agent-note-ah-source-launch-through-the-tsx-esm-hook/alternatives-considered:
+  en: c6eec3d899a61df1
+  zh: 128edd753d49c0da
+/agent-note-ah-source-launch-through-the-tsx-esm-hook/consequences:
+  en: 7c8eb105520ccae3
+  zh: 9dc85ecda408de5a

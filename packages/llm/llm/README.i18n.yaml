@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/llm/llm/README.md
+/:
+  en: 860509fb08c860f4
+  zh: b2c4448e8afc1f12
+/anotherharness-ah-llm:
+  en: bfad5c8ae6bf6169
+  zh: da399efc7912f3a4
+/anotherharness-ah-llm/summary:
+  en: f7118694e2031e5c
+  zh: a0b8271923250cc8
+/anotherharness-ah-llm/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-llm/use-this-package:
+  en: 33738e61ce410ac0
+  zh: 363760460f4d4bed
+/anotherharness-ah-llm/use-this-package/when-to-choose-it:
+  en: fc583d9123d20a15
+  zh: 6284adaca9953096
+/anotherharness-ah-llm/use-this-package/minimal-composition:
+  en: 9d481d19dc52e404
+  zh: aa09cf4462e93ba6
+/anotherharness-ah-llm/use-this-package/what-you-can-do:
+  en: b45d7a414141734e
+  zh: a641c8ea3827cee6
+/anotherharness-ah-llm/use-this-package/failures-and-recovery:
+  en: 2bf26bc79a6867f2
+  zh: 0f60626783ce21d4
+/anotherharness-ah-llm/understand-the-implementation:
+  en: 9630d7e26193a512
+  zh: 94222c2a487c4b8c
+/anotherharness-ah-llm/understand-the-implementation/design-philosophy:
+  en: 12d0444c18a397c7
+  zh: 9d4a5468b4bb7fcd
+/anotherharness-ah-llm/understand-the-implementation/source-map:
+  en: ae1618577f4e8364
+  zh: a6e8ab1563c08dfb
+/anotherharness-ah-llm/understand-the-implementation/main-flow:
+  en: 2bd87ba979a5071d
+  zh: 2e5304b03382c563
+/anotherharness-ah-llm/understand-the-implementation/invariants:
+  en: 0163a050239248e5
+  zh: 885c95bedcbe2ff4
+/anotherharness-ah-llm/further-exploration:
+  en: 59b261d8c8c85afb
+  zh: f17dda002c4295a1
+/anotherharness-ah-llm/model-experience:
+  en: fa5677003ad6bc0a
+  zh: ba33cfc860d9c37c
+/anotherharness-ah-llm/model-experience/kv-cache-effect:
+  en: a81634136baef72f
+  zh: b92dda883986b0e1
+/anotherharness-ah-llm/known-limitations-and-deferred-work:
+  en: e349677f0daf0f2c
+  zh: 3af626de5b76bea2
+/anotherharness-ah-llm/known-limitations-and-deferred-work/dev-note:
+  en: ecbc333b88e14d88
+  zh: 77c725d92efd8646
+/anotherharness-ah-llm/known-limitations-and-deferred-work/dev-note/open-items:
+  en: 9f8d061af7c7ed19
+  zh: 266c35aadc29f1a6

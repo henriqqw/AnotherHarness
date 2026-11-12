@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/identity/anonymous-user-id/README.md
+/:
+  en: c515895831e237da
+  zh: 34da7fc7898352e2
+/anotherharness-ah-anonymous-user-id:
+  en: 4f4a5aa481a841dd
+  zh: 2ed405a2ab1bbde5
+/anotherharness-ah-anonymous-user-id/summary:
+  en: 660e452e8877528d
+  zh: aea68a58770919f2
+/anotherharness-ah-anonymous-user-id/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-anonymous-user-id/use-this-package:
+  en: 4437fa00c42fcfb1
+  zh: 040a6688deda82d5
+/anotherharness-ah-anonymous-user-id/use-this-package/what-the-id-does-for-you:
+  en: 0351023392240e82
+  zh: f03267ed0aa06bf2
+/anotherharness-ah-anonymous-user-id/use-this-package/observing-and-resetting-the-id:
+  en: ef137832210aeb9a
+  zh: 35ddbabaea872662
+/anotherharness-ah-anonymous-user-id/use-this-package/using-it-in-your-own-package:
+  en: 4318cb0c4a2b41ed
+  zh: 6dfae5dc73bcb232
+/anotherharness-ah-anonymous-user-id/understand-the-implementation:
+  en: 16370ef642feec6a
+  zh: a546774827234300
+/anotherharness-ah-anonymous-user-id/understand-the-implementation/design-philosophy:
+  en: d7c0a68199976734
+  zh: f78f4ef1d11bde94
+/anotherharness-ah-anonymous-user-id/understand-the-implementation/source-map:
+  en: b816e46019ff3b61
+  zh: a3c7be6ca0683c03
+/anotherharness-ah-anonymous-user-id/understand-the-implementation/the-api:
+  en: 23acd1995e7dfa39
+  zh: 18b13b5351458aab
+/anotherharness-ah-anonymous-user-id/understand-the-implementation/storage-contract:
+  en: 7a5ab3467012c0c2
+  zh: 4b297e0fba2fe78b
+/anotherharness-ah-anonymous-user-id/further-exploration:
+  en: 7f296166ee2e9750
+  zh: a8c8e2c15cfc45cb
+/anotherharness-ah-anonymous-user-id/model-experience:
+  en: 6d953a2296ccc992
+  zh: dea7f2642a39d9b5
+/anotherharness-ah-anonymous-user-id/model-experience/kv-cache-effect:
+  en: d34ef1e86eb2635d
+  zh: 0d88f82c5f062249
+/anotherharness-ah-anonymous-user-id/known-limitations-and-deferred-work:
+  en: f00bcb1620628b16
+  zh: 261490256061cd3c
+/anotherharness-ah-anonymous-user-id/known-limitations-and-deferred-work/dev-note:
+  en: 124d523659df72f1
+  zh: 50c25ecb9268109f
+/anotherharness-ah-anonymous-user-id/known-limitations-and-deferred-work/dev-note/open-file-format-evolution:
+  en: 42a6aabaa8d88937
+  zh: 26581bc5f900c9ce

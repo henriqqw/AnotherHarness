@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/sandbox/sandbox-local/README.md
+/:
+  en: f172767891b86bf4
+  zh: e66e1cc8c96cc259
+/anotherharness-ah-sandbox-local:
+  en: 8cdbad631fb985dd
+  zh: 483c908b65656637
+/anotherharness-ah-sandbox-local/summary:
+  en: 12f03b437b7b03bf
+  zh: 83d57060564eb3c6
+/anotherharness-ah-sandbox-local/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-sandbox-local/use-this-package:
+  en: 3759ad594d0a27fb
+  zh: 722010d952b9f87f
+/anotherharness-ah-sandbox-local/use-this-package/when-to-choose-it:
+  en: 722ad601000b13c7
+  zh: d2723f3743fe160b
+/anotherharness-ah-sandbox-local/use-this-package/minimal-configuration:
+  en: 874eca3f1511e2ae
+  zh: fd4978a120bc39b7
+/anotherharness-ah-sandbox-local/use-this-package/confined-execution-and-enforcement:
+  en: 7282c9ec77fd6f01
+  zh: 10e385a9489105e3
+/anotherharness-ah-sandbox-local/use-this-package/failures-and-recovery:
+  en: 3808edb37dde5761
+  zh: a8fef8a4fd33e364
+/anotherharness-ah-sandbox-local/understand-the-implementation:
+  en: 15db6ec303151ccc
+  zh: 91f62c1f64192f92
+/anotherharness-ah-sandbox-local/understand-the-implementation/runner-selection:
+  en: f0c44248c2ca6acc
+  zh: 554e9f706671d222
+/anotherharness-ah-sandbox-local/understand-the-implementation/platform-profiles:
+  en: 59ec21a55f7a6445
+  zh: 9d2defdc9b5cc5c9
+/anotherharness-ah-sandbox-local/understand-the-implementation/denial-and-runner-failure-dialects:
+  en: 62adfc9229c656cc
+  zh: 11b1534b6d61e5de
+/anotherharness-ah-sandbox-local/understand-the-implementation/source-map:
+  en: 215bb6bac514b8b4
+  zh: 41e7777eea10a480
+/anotherharness-ah-sandbox-local/further-exploration:
+  en: ccfaf114522a6577
+  zh: e465a911c1a11bc1
+/anotherharness-ah-sandbox-local/model-experience:
+  en: a1263f993ac20cbf
+  zh: cb6d09f5b6554184
+/anotherharness-ah-sandbox-local/model-experience/kv-cache-effect:
+  en: e290ccc9b3c92c08
+  zh: 469589ac12cdadab
+/anotherharness-ah-sandbox-local/known-limitations-and-deferred-work:
+  en: b2a6a72e340bc620
+  zh: 9d9b2894850a131d
+/anotherharness-ah-sandbox-local/known-limitations-and-deferred-work/dev-note:
+  en: cc273320f6a1beaf
+  zh: 5c57a312ddc50651
+/anotherharness-ah-sandbox-local/known-limitations-and-deferred-work/dev-note/future-environment-coherent-groups:
+  en: 30806aba33067e06
+  zh: 5c417e89d32a8eac

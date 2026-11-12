@@ -1,0 +1,78 @@
+{
+  "name": "@anotherharness/ah-client-ui-message-feedback",
+  "description": "The Web feedback surface: per-message Like/Dislike in the assistant-message action strip and the feedback dialog behind both ratings and /feedback, backed by the messageFeedback and sessionFeedback Host Remotes",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/client/ui-message-feedback"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-api-remotes",
+        "@anotherharness/ah-client-locale",
+        "@anotherharness/ah-client-ui-conversation",
+        "@anotherharness/ah-client-ui-renderer",
+        "@anotherharness/ah-client-ui-commands"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-api-remotes": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-locale": "workspace:*",
+    "@anotherharness/ah-client-test-runtime": "workspace:*",
+    "@anotherharness/ah-client-ui-conversation": "workspace:*",
+    "@anotherharness/ah-client-ui-primitives": "workspace:*",
+    "@anotherharness/ah-client-ui-renderer": "workspace:*",
+    "@anotherharness/ah-client-ui-slots": "workspace:*",
+    "@anotherharness/ah-message-feedback": "workspace:*",
+    "@anotherharness/ah-remote-mock": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-typert-protocol": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "~18.3.1",
+    "@types/react-dom": "~18.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@anotherharness/ah-client-ui-chat": "workspace:*",
+    "@anotherharness/ah-client-ui-session": "workspace:*",
+    "@anotherharness/ah-client-ui-commands": "workspace:*",
+    "@anotherharness/ah-command-feedback": "workspace:*",
+    "@anotherharness/ah-client-store": "workspace:*"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ]
+}

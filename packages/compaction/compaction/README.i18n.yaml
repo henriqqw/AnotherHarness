@@ -1,0 +1,85 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/compaction/compaction/README.md
+/:
+  en: 5c47c9629036f119
+  zh: 7730d7468a38b38d
+/anotherharness-ah-compaction:
+  en: 9480e22344b9b0f7
+  zh: d5a522d6e015af08
+/anotherharness-ah-compaction/summary:
+  en: 2109751adc94f75b
+  zh: 149ea31013fbaaff
+/anotherharness-ah-compaction/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-compaction/use-this-package:
+  en: 7d1dad97626dbd2e
+  zh: 075fef4e1844ad12
+/anotherharness-ah-compaction/use-this-package/when-to-choose-it:
+  en: 4729c31cbdf2cbfb
+  zh: d9474b420023e4d8
+/anotherharness-ah-compaction/use-this-package/what-condensation-looks-like:
+  en: 0abbee3a3b929a90
+  zh: 334736dffe93488d
+/anotherharness-ah-compaction/use-this-package/turning-condensation-on:
+  en: 76c694eb60231bbe
+  zh: 106bf8ed98b6d9b8
+/anotherharness-ah-compaction/use-this-package/implementing-a-backend:
+  en: d9d8e7e9571bddbf
+  zh: e3d90f2f1e676764
+/anotherharness-ah-compaction/use-this-package/recognizing-condensed-history:
+  en: 35502487f2850f05
+  zh: 333d2b86cc1d6eb0
+/anotherharness-ah-compaction/understand-the-implementation:
+  en: 321c3dc665ea03ff
+  zh: f0fa408cde7b0454
+/anotherharness-ah-compaction/understand-the-implementation/design-philosophy:
+  en: 582d727317512879
+  zh: bc2bb96643315c55
+/anotherharness-ah-compaction/understand-the-implementation/service-api:
+  en: edb2a6d704082e69
+  zh: 0b228572bdd33a74
+/anotherharness-ah-compaction/understand-the-implementation/manual-failure-taxonomy:
+  en: f27c8acc239da665
+  zh: d4451409bb9cf597
+/anotherharness-ah-compaction/understand-the-implementation/tool-pairing-boundaries:
+  en: 15dad68a04d6c86b
+  zh: 3b95acf1b7e503bf
+/anotherharness-ah-compaction/understand-the-implementation/the-surface-contract:
+  en: b10677a48723479e
+  zh: 8b04b647dc98aa8e
+/anotherharness-ah-compaction/understand-the-implementation/source-map:
+  en: 076448ecc9911baf
+  zh: 1b671f96fb217d5e
+/anotherharness-ah-compaction/understand-the-implementation/locking-and-serialization:
+  en: 68caa51bed28bada
+  zh: 3f8261f9dcba95ed
+/anotherharness-ah-compaction/understand-the-implementation/events:
+  en: 22d55c928d69dca3
+  zh: ea6374938eab0d2e
+/anotherharness-ah-compaction/further-exploration:
+  en: 8c2e61794df6ce00
+  zh: 0584fb07d17fc918
+/anotherharness-ah-compaction/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-compaction/model-experience/conversation-history-when-a-backend-is-invoked:
+  en: 94de97ed1e85db85
+  zh: c8e37d8050609e63
+/anotherharness-ah-compaction/model-experience/conversation-history-when-a-backend-is-invoked/what-the-model-sees:
+  en: 3c4875a13da17814
+  zh: 9b257950a9e2c7c1
+/anotherharness-ah-compaction/model-experience/conversation-history-when-a-backend-is-invoked/token-effect:
+  en: be91f4a4bbb9338b
+  zh: 2b5de31d4d7caff1
+/anotherharness-ah-compaction/model-experience/conversation-history-when-a-backend-is-invoked/kv-cache-effect:
+  en: 40ba838a2309c44a
+  zh: c609fc1587a0d666
+/anotherharness-ah-compaction/known-limitations-and-deferred-work:
+  en: fee9ba06d3e5f35c
+  zh: 2bb5241e2447d15d
+/anotherharness-ah-compaction/known-limitations-and-deferred-work/dev-note:
+  en: 270e23ae6414aff0
+  zh: c6d219b8a547dbca

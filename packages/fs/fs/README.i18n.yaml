@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/fs/fs/README.md
+/:
+  en: a94eb1470c498a2c
+  zh: cdd5faa0a8fcb562
+/anotherharness-ah-fs:
+  en: ce35dc9922abf421
+  zh: e9bbb3d5463fcf47
+/anotherharness-ah-fs/summary:
+  en: cf75c5aafa8a2383
+  zh: 57258036ec51f961
+/anotherharness-ah-fs/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-fs/use-this-package:
+  en: a4880603cc007b67
+  zh: 028206e3c0e75511
+/anotherharness-ah-fs/use-this-package/choosing-and-mounting-a-backend:
+  en: 4820bfae488eb8e0
+  zh: 6f76048bbb41d47b
+/anotherharness-ah-fs/use-this-package/what-the-service-lets-you-do:
+  en: 48aa680bb26e99c7
+  zh: 4f9b6e47292c233e
+/anotherharness-ah-fs/understand-the-implementation:
+  en: 7e13d669ecc96d59
+  zh: b5fe7ae65812d926
+/anotherharness-ah-fs/understand-the-implementation/design-philosophy:
+  en: 80fe77a0da1069a9
+  zh: 32a9041ccbc66ef9
+/anotherharness-ah-fs/understand-the-implementation/source-map:
+  en: 9507d7d9259fc89e
+  zh: aa500435e02e6de3
+/anotherharness-ah-fs/understand-the-implementation/how-a-call-flows:
+  en: 6ce9e67b0f5653e5
+  zh: 6d974a760352417f
+/anotherharness-ah-fs/understand-the-implementation/the-fs-policy-events:
+  en: 626dbfba699cf128
+  zh: eb3593e5e5d90b74
+/anotherharness-ah-fs/understand-the-implementation/invariants:
+  en: 15b98bc9800b6eae
+  zh: 434d9dd05fa1a332
+/anotherharness-ah-fs/further-exploration:
+  en: 59c0d06ae994c524
+  zh: 2284c8e61cbbe6dd
+/anotherharness-ah-fs/model-experience:
+  en: 255184e8e0e4b2bc
+  zh: 18fbddb65d38a990
+/anotherharness-ah-fs/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: 0857e9b4dd363e0a
+/anotherharness-ah-fs/known-limitations-and-deferred-work:
+  en: b9c834bb059a59ab
+  zh: f987556473a1faad
+/anotherharness-ah-fs/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

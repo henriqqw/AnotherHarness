@@ -1,0 +1,85 @@
+{
+  "name": "@anotherharness/ah-ssh",
+  "description": "Shared OpenSSH connection and versioned POSIX remote helper",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/ssh/ssh"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json",
+    "./helper": {
+      "types": "./lib/types/helper-entry.d.ts",
+      "default": "./lib/helper.js"
+    },
+    "./protocol": {
+      "types": "./lib/types/protocol.d.ts",
+      "default": "./lib/protocol.js"
+    },
+    "./schemas": {
+      "types": "./lib/types/schemas.d.ts",
+      "default": "./lib/schemas.js"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/helper.js",
+    "lib/protocol.js",
+    "lib/schemas.js",
+    "lib/protocol-*.js",
+    "lib/schemas-*.js",
+    "lib/stream-security-*.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-fs-sandbox": "workspace:*",
+    "@anotherharness/ah-subprocess": "workspace:*",
+    "@anotherharness/ah-subprocess-local": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-local": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-fs-sandbox": "workspace:*",
+    "@anotherharness/ah-subprocess": "workspace:*",
+    "@anotherharness/ah-subprocess-local": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-local": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-ptc-runtime-node": "workspace:*",
+    "@anotherharness/ah-fs-ssh": "workspace:*",
+    "@anotherharness/ah-subprocess-ssh": "workspace:*",
+    "@anotherharness/ah-sandbox-ssh": "workspace:*",
+    "@anotherharness/ah-lsp": "workspace:*",
+    "@anotherharness/ah-lsp-stdio": "workspace:*",
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*"
+  }
+}

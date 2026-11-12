@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/feedback/message-feedback/README.md
+/:
+  en: f3648275facc4888
+  zh: 110c0e8aedf63e4e
+/anotherharness-ah-message-feedback:
+  en: 6167cbec62fe233f
+  zh: ad8b88e5f618c0de
+/anotherharness-ah-message-feedback/summary:
+  en: 07fec1cc63536ffb
+  zh: 530c8f20786c7af6
+/anotherharness-ah-message-feedback/table-of-contents:
+  en: 122f0d41696980b1
+  zh: 528864635b577290
+/anotherharness-ah-message-feedback/use-this-package:
+  en: 7a8c9309bd83a138
+  zh: 18e62b804bb079cc
+/anotherharness-ah-message-feedback/use-this-package/configuration:
+  en: bb3542f57ad35cb1
+  zh: bcab9cb2f6fea143
+/anotherharness-ah-message-feedback/use-this-package/reading-and-changing-feedback:
+  en: fed12d93b538866d
+  zh: 4b45e81d9e5a8260
+/anotherharness-ah-message-feedback/understand-the-implementation:
+  en: ee4615a04fa6503d
+  zh: ee2c5fb2204a43cf
+/anotherharness-ah-message-feedback/understand-the-implementation/canonical-log-and-durability:
+  en: 73ddbcf524f213a1
+  zh: 050f1a72c7f56fd6
+/anotherharness-ah-message-feedback/understand-the-implementation/source-map:
+  en: a6d36a567a01b3a1
+  zh: b687f223ee342392
+/anotherharness-ah-message-feedback/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-message-feedback/model-experience/message-feedback:
+  en: 73eacb58a40342f6
+  zh: 1ee3049173128f61
+/anotherharness-ah-message-feedback/model-experience/message-feedback/what-the-model-sees:
+  en: 3928187c2f20ec0f
+  zh: fd5273ee1a885bde
+/anotherharness-ah-message-feedback/model-experience/message-feedback/token-effect:
+  en: 5ff6c3ac5017b3ef
+  zh: 4ccd5af39b37dd1c
+/anotherharness-ah-message-feedback/model-experience/message-feedback/kv-cache-effect:
+  en: 2bdd13dcb4078358
+  zh: 591328cf1a061fca
+/anotherharness-ah-message-feedback/known-limitations-and-deferred-work:
+  en: e1b66d235f4244cc
+  zh: 915fbc05fc582409
+/anotherharness-ah-message-feedback/known-limitations-and-deferred-work/dev-note:
+  en: 3c3ce6ed67282e05
+  zh: 213816553e3581b4

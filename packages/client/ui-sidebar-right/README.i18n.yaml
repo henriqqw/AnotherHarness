@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-sidebar-right/README.md
+/:
+  en: 7002fb76969b62b9
+  zh: b6223001e032332d
+/anotherharness-ah-client-ui-sidebar-right:
+  en: 4f0c9d2c29c82978
+  zh: bed93db7cc772f5f
+/anotherharness-ah-client-ui-sidebar-right/summary:
+  en: 8aafe5400014fdac
+  zh: b2d7d0e8dc4f1291
+/anotherharness-ah-client-ui-sidebar-right/table-of-contents:
+  en: ff17f27d8c5557d1
+  zh: 6efe4b3d4902a441
+/anotherharness-ah-client-ui-sidebar-right/what-lives-here-and-what-does-not:
+  en: 0ad0a96add7e5531
+  zh: b92d9b810f3b3de3
+/anotherharness-ah-client-ui-sidebar-right/presentations:
+  en: fd8b6ac1475aa061
+  zh: 4a28d04c9c910c7e
+/anotherharness-ah-client-ui-sidebar-right/the-expand-button:
+  en: 2614d3f179290606
+  zh: 88c08ee260ba57b7
+/anotherharness-ah-client-ui-sidebar-right/state:
+  en: b3b6090f3092ec89
+  zh: 1c8679c9ae8a8d16
+/anotherharness-ah-client-ui-sidebar-right/extension-seats:
+  en: 173cdf72f846d0ff
+  zh: d063bc1fe4a17e37
+/anotherharness-ah-client-ui-sidebar-right/ctx-sidebarright:
+  en: 8c4eaf59c736f314
+  zh: c177d0c915ebc2f4
+/anotherharness-ah-client-ui-sidebar-right/the-tab-domain:
+  en: 709b0b9967c21493
+  zh: e22222dd2fd882b8
+/anotherharness-ah-client-ui-sidebar-right/the-guide:
+  en: 601f9f6635babc4d
+  zh: e345004fe30a65b9
+/anotherharness-ah-client-ui-sidebar-right/copy:
+  en: 4315a1c03ca5fef3
+  zh: c09a09f1d9b99107
+/anotherharness-ah-client-ui-sidebar-right/model-experience:
+  en: 3120df665299c634
+  zh: 242f3d68e8267e55
+/anotherharness-ah-client-ui-sidebar-right/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: f57cc48a1b5cbfa9
+/anotherharness-ah-client-ui-sidebar-right/known-limitations-and-deferred-work:
+  en: 76a763b4dd71babd
+  zh: fdc966dd427a82fb
+/anotherharness-ah-client-ui-sidebar-right/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

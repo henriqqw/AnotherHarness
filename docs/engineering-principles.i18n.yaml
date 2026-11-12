@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for engineering-principles.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/engineering-principles.md
+/engineering-principles:
+  en: a946195674d61ddd
+  zh: 75e59aa1c490fff9
+/engineering-principles/solid-in-a-plugin-architecture:
+  en: c1e71c96edecc574
+  zh: d09ed5893852938b
+/engineering-principles/layering:
+  en: ff25c76afc47ed45
+  zh: 8a4e563df740325e
+/engineering-principles/clean-code:
+  en: f14341189c70c890
+  zh: 33f0be8f7a03655a
+/engineering-principles/tests-as-specification:
+  en: 37e4d28d4c625e2a
+  zh: 5c03572850399dd3
+/engineering-principles/scalability:
+  en: dc142fd938c42fcd
+  zh: 618f9ad655a0e432

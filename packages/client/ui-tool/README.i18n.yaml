@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-tool/README.md
+/:
+  en: 9d62fe896266dbb8
+  zh: d4445516a35e9315
+/anotherharness-ah-client-ui-tool:
+  en: 4705e4188dabe70f
+  zh: a4ab89ccd059af01
+/anotherharness-ah-client-ui-tool/summary:
+  en: 839356c54472cad5
+  zh: 346efc31830d2add
+/anotherharness-ah-client-ui-tool/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-tool/use-this-package:
+  en: 3b9b719ca4e4cc62
+  zh: a14b63a16476d684
+/anotherharness-ah-client-ui-tool/use-this-package/registering-a-business-tool-view:
+  en: 2e3c306b13d3bc25
+  zh: 77127f01763b3976
+/anotherharness-ah-client-ui-tool/use-this-package/built-in-views:
+  en: 4d885fc693b497f4
+  zh: 2f68d9ea92f2ebd6
+/anotherharness-ah-client-ui-tool/understand-the-implementation:
+  en: 00bc7b0c84edc603
+  zh: 1cfcf5b435248a91
+/anotherharness-ah-client-ui-tool/understand-the-implementation/rendering-contract:
+  en: 46aa6371dc957bbf
+  zh: 42232e075cea2d69
+/anotherharness-ah-client-ui-tool/understand-the-implementation/cards:
+  en: 61a6b2c2071f69e4
+  zh: becc8e8a3f06ef3c
+/anotherharness-ah-client-ui-tool/understand-the-implementation/declared-optional-capabilities:
+  en: c1926deb4e5f3734
+  zh: c5845f465b94a459
+/anotherharness-ah-client-ui-tool/further-exploration:
+  en: 6cfddf26652b2083
+  zh: acedc5d4894ac684
+/anotherharness-ah-client-ui-tool/model-experience:
+  en: 1e5e72dd269855d5
+  zh: 81a4756d460e3af9
+/anotherharness-ah-client-ui-tool/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-tool/known-limitations-and-deferred-work:
+  en: 49f7008105e804df
+  zh: e773f101126b01b4
+/anotherharness-ah-client-ui-tool/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

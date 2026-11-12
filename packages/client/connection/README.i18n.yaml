@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/connection/README.md
+/:
+  en: 13b131457d03a224
+  zh: 6dedd0706d5ffc0a
+/anotherharness-ah-client-connection:
+  en: 64bf19e046a6afef
+  zh: 2bdfbec005f3a835
+/anotherharness-ah-client-connection/summary:
+  en: a83b5e9fd1968062
+  zh: ac68628e185a4bff
+/anotherharness-ah-client-connection/table-of-contents:
+  en: 18792bf2fb4f8030
+  zh: 84c63acc7e0099ae
+/anotherharness-ah-client-connection/use-this-package:
+  en: 608b3c35c8ca3ef4
+  zh: 570421f2478ae574
+/anotherharness-ah-client-connection/browser-authentication-and-request-trust:
+  en: 407566fcd868b5b2
+  zh: 9000043b309a2b88
+/anotherharness-ah-client-connection/connection-generation:
+  en: 015b09b49489b8d7
+  zh: 6039d17920f6521f
+/anotherharness-ah-client-connection/model-experience:
+  en: 88bbc33fe9ae9df8
+  zh: bfbab6d51b4abd40
+/anotherharness-ah-client-connection/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-connection/known-limitations-and-deferred-work:
+  en: f07abaa4baf75119
+  zh: ad87e445e9a095f5
+/anotherharness-ah-client-connection/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

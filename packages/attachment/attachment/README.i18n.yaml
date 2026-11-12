@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/attachment/attachment/README.md
+/:
+  en: c8448ea82a8ce005
+  zh: 24444a57de8c007c
+/anotherharness-ah-attachment:
+  en: 8ae7f434af65c5d9
+  zh: 00ae2a43a0dd0fd4
+/anotherharness-ah-attachment/summary:
+  en: c0e61e55b5c712dd
+  zh: 68b567d6c24fda41
+/anotherharness-ah-attachment/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-attachment/use-this-package:
+  en: 0fcdae4864ce05c6
+  zh: 035260159457482c
+/anotherharness-ah-attachment/use-this-package/attach-images-to-a-prompt:
+  en: b440422892839de9
+  zh: 0290b366b5a4ef88
+/anotherharness-ah-attachment/use-this-package/attach-any-other-file-to-a-prompt:
+  en: d5019c6ae76c0bcf
+  zh: b7aeaf7e6920ff10
+/anotherharness-ah-attachment/use-this-package/pass-attachments-to-commands:
+  en: 8a0fa64e84aa4450
+  zh: ed2ac44ef20250d4
+/anotherharness-ah-attachment/use-this-package/reuse-images-across-the-session:
+  en: c99e4e088be92c4f
+  zh: 34997ecb9a420d08
+/anotherharness-ah-attachment/use-this-package/what-can-go-wrong:
+  en: b35e2f7f17269ae1
+  zh: 57cf0ef9fee6c7e1
+/anotherharness-ah-attachment/understand-the-implementation:
+  en: 25d9c7d6c0899d23
+  zh: ad8380d14810ff1c
+/anotherharness-ah-attachment/understand-the-implementation/design-decisions:
+  en: 1dc9bc363087ef81
+  zh: 7dee74723b9a632a
+/anotherharness-ah-attachment/understand-the-implementation/service-operations:
+  en: 4a35cdba790c3b8b
+  zh: 08d4a18bbad4b182
+/anotherharness-ah-attachment/understand-the-implementation/source-map:
+  en: 4fb4c96184c38169
+  zh: 015b06e4bfff4fcd
+/anotherharness-ah-attachment/further-exploration:
+  en: a3257d823df16acd
+  zh: 721a05d815b458c8
+/anotherharness-ah-attachment/model-experience:
+  en: 3a9fc2cc8896a2db
+  zh: 256ffa52315cb597
+/anotherharness-ah-attachment/model-experience/kv-cache-effect:
+  en: 2fcaf6d01d42da7c
+  zh: 81e61690b955dd18
+/anotherharness-ah-attachment/known-limitations-and-deferred-work:
+  en: d1ee04ac73471377
+  zh: 1abf40510951d5c2
+/anotherharness-ah-attachment/known-limitations-and-deferred-work/dev-note:
+  en: d56846da29ad869c
+  zh: 41e655e01351fd1d
+/anotherharness-ah-attachment/known-limitations-and-deferred-work/dev-note/future-reference-aware-garbage-collection:
+  en: 20c22bbf4263d41e
+  zh: f85699e18a0e5f43
+/anotherharness-ah-attachment/known-limitations-and-deferred-work/dev-note/future-audio-video-and-assistant-side-output:
+  en: 85353325b14af5a8
+  zh: c03fb041c2daee7e

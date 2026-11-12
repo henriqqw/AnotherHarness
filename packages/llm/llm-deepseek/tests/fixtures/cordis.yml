@@ -1,0 +1,24 @@
+- name: '@anotherharness/ah-llm'
+- name: '@anotherharness/ah-session'
+- name: '@anotherharness/ah-session-projection'
+- name: '@anotherharness/ah-system-prompt'
+- name: '@anotherharness/ah-tools'
+- name: '@anotherharness/ah-agent'
+- name: '@anotherharness/ah-agent-loop'
+  config:
+    agents: []
+- name: '@anotherharness/ah-credentials-local'
+  config:
+    path: {{credentials}}
+    watch: false
+- name: '@anotherharness/ah-llm-deepseek-api-key'
+  config:
+    apiKeyEnv: DEEPSEEK_API_KEY
+    baseURL: {{endpoint}}
+    thinking: enabled
+    reasoningEffort: high
+    maxTokens: 256000
+    streamIdleTimeoutMs: 300000
+- name: '@anotherharness/ah-llm-deepseek-account'
+  config:
+    baseURL: {{endpoint}}

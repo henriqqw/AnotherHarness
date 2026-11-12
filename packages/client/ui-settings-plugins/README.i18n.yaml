@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-settings-plugins/README.md
+/:
+  en: 09c54aa5f4a67361
+  zh: ad49efdc089d26b2
+/anotherharness-ah-client-ui-settings-plugins:
+  en: 58c73551174e2f8b
+  zh: 0c4e480653bbdc4d
+/anotherharness-ah-client-ui-settings-plugins/summary:
+  en: d9b27f1dd9713b4f
+  zh: 3ec674429179ae7d
+/anotherharness-ah-client-ui-settings-plugins/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-settings-plugins/use-this-package:
+  en: 49a1366c02de7150
+  zh: ed6e0ce9715330b7
+/anotherharness-ah-client-ui-settings-plugins/understand-the-implementation:
+  en: c5cfef002b32c7c1
+  zh: 0249b45a28c16b61
+/anotherharness-ah-client-ui-settings-plugins/further-exploration:
+  en: 5006d2b594c91a3d
+  zh: d31cef20e9fd8902
+/anotherharness-ah-client-ui-settings-plugins/model-experience:
+  en: 6b7c6f82ab6c8435
+  zh: 4517689c899abcbe
+/anotherharness-ah-client-ui-settings-plugins/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: 6e1c9a8fdde89577
+/anotherharness-ah-client-ui-settings-plugins/known-limitations-and-deferred-work:
+  en: 4950e959be39bc0c
+  zh: 8f0703f3304d9336
+/anotherharness-ah-client-ui-settings-plugins/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

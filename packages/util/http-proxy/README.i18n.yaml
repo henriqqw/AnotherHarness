@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/util/http-proxy/README.md
+/:
+  en: 117b4d191f773a9c
+  zh: 0b9e150f6cd23b04
+/anotherharness-ah-http-proxy:
+  en: d61167bc80b16d2e
+  zh: 195a97d8040099ea
+/anotherharness-ah-http-proxy/summary:
+  en: c3b1b32ab36f5f97
+  zh: 143b744ab361f0d4
+/anotherharness-ah-http-proxy/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-http-proxy/use-this-package:
+  en: a93d9ae820fc567a
+  zh: 5ef9c1797d45979d
+/anotherharness-ah-http-proxy/use-this-package/writing-a-new-outbound-call:
+  en: 782b24f91ee8ce71
+  zh: af4b75a0d5a98fdc
+/anotherharness-ah-http-proxy/use-this-package/what-the-policy-reads:
+  en: 7f01f397464a38ae
+  zh: f0d33491cbd25b91
+/anotherharness-ah-http-proxy/use-this-package/failures:
+  en: 4248bc9a662680ed
+  zh: 4150ade9f1aa9287
+/anotherharness-ah-http-proxy/understand-the-implementation:
+  en: ee4615a04fa6503d
+  zh: ee2c5fb2204a43cf
+/anotherharness-ah-http-proxy/understand-the-implementation/design-philosophy:
+  en: 6e23361c4c5724b0
+  zh: 704daf8de1a86655
+/anotherharness-ah-http-proxy/understand-the-implementation/source-map:
+  en: a099f88dd0c7d394
+  zh: 7325b7ea973bce13
+/anotherharness-ah-http-proxy/understand-the-implementation/bypass-matching:
+  en: e9ad6c2e8ee2fc21
+  zh: c10de6995cf594bc
+/anotherharness-ah-http-proxy/further-exploration:
+  en: 507155943d58eb21
+  zh: e38f3738ada79c40
+/anotherharness-ah-http-proxy/model-experience:
+  en: e0af6a1073934d5a
+  zh: d8bf9c77b54ed5ae
+/anotherharness-ah-http-proxy/model-experience/kv-cache-effect:
+  en: 7f12ca92e7722f98
+  zh: 97fa75de6a3f6a3f
+/anotherharness-ah-http-proxy/known-limitations-and-deferred-work:
+  en: 5159c9d98076710c
+  zh: 5f2eb4953457f761
+/anotherharness-ah-http-proxy/known-limitations-and-deferred-work/dev-note:
+  en: 8f915ac6f4fc1525
+  zh: 29b06e0aae5a30ec

@@ -1,0 +1,88 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/todo/tool-todo/README.md
+/:
+  en: 574de7e80ceac173
+  zh: b035406eb0554ddd
+/anotherharness-ah-tool-todo:
+  en: fe6d3222e7318575
+  zh: 042a592fe074cae3
+/anotherharness-ah-tool-todo/summary:
+  en: 1eaf6c34082005ec
+  zh: eca6224ca0d0fc8e
+/anotherharness-ah-tool-todo/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-tool-todo/use-this-package:
+  en: d10c650faab8695d
+  zh: 6018b5a53501d88b
+/anotherharness-ah-tool-todo/use-this-package/when-to-choose-it:
+  en: c964ee10289fcd21
+  zh: 4c1e68220906eb06
+/anotherharness-ah-tool-todo/use-this-package/minimal-configuration:
+  en: e4a037945497b6ff
+  zh: 802edfdd1dcd80b5
+/anotherharness-ah-tool-todo/use-this-package/what-each-call-does:
+  en: 415a6775984f539d
+  zh: 04e6f16e7c81b8ba
+/anotherharness-ah-tool-todo/use-this-package/single-owner:
+  en: f051cbd97dab2436
+  zh: 18976a8affed8cab
+/anotherharness-ah-tool-todo/understand-the-implementation:
+  en: 8d94a7381bca3fa9
+  zh: f4bd2866fff6fa8d
+/anotherharness-ah-tool-todo/understand-the-implementation/design-philosophy:
+  en: e9cf462797eaf9f2
+  zh: 02d9a7fce90936c3
+/anotherharness-ah-tool-todo/understand-the-implementation/source-map:
+  en: 51328ad8c7fcbfd0
+  zh: 2614ec42b61ff3ef
+/anotherharness-ah-tool-todo/understand-the-implementation/export-shape:
+  en: 21c705101a87bd3d
+  zh: e079a7c272df2364
+/anotherharness-ah-tool-todo/understand-the-implementation/session-projection:
+  en: 6ebf5b0790087355
+  zh: 6321f9f9e16c5cb8
+/anotherharness-ah-tool-todo/understand-the-implementation/call-mechanics:
+  en: d55f6a32b05ed686
+  zh: c815f930a2acebda
+/anotherharness-ah-tool-todo/further-exploration:
+  en: 7450388c107d974c
+  zh: 0dbe456e43b9841f
+/anotherharness-ah-tool-todo/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-todo/model-experience/tool-schema:
+  en: e4c7376d4f29dbd5
+  zh: 6b7a9eaf69c9ea53
+/anotherharness-ah-tool-todo/model-experience/tool-schema/what-the-model-sees:
+  en: 0f7f62090d4f9099
+  zh: fb19b3cbb62148d8
+/anotherharness-ah-tool-todo/model-experience/tool-schema/token-effect:
+  en: a0a8f5ec3db0f500
+  zh: eac37a524c6e777e
+/anotherharness-ah-tool-todo/model-experience/tool-schema/kv-cache-effect:
+  en: b385b04c94496e5b
+  zh: 3a361ac90ef5f037
+/anotherharness-ah-tool-todo/model-experience/tool-call-history-and-result:
+  en: 9717b983b6a857e3
+  zh: 611a2dadf7c0c706
+/anotherharness-ah-tool-todo/model-experience/tool-call-history-and-result/what-the-model-sees:
+  en: 05644654d1bce8c6
+  zh: ea2a42470fbb2ee1
+/anotherharness-ah-tool-todo/model-experience/tool-call-history-and-result/token-effect:
+  en: 7763a0e875faf53d
+  zh: fe33c3973215dc53
+/anotherharness-ah-tool-todo/model-experience/tool-call-history-and-result/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: a5411047e008a0c1
+/anotherharness-ah-tool-todo/known-limitations-and-deferred-work:
+  en: 71e2aed21b2545c3
+  zh: 775300a3618a861a
+/anotherharness-ah-tool-todo/known-limitations-and-deferred-work/dev-note:
+  en: ac1d08360a93382b
+  zh: 703a65fbcc38edc7
+/anotherharness-ah-tool-todo/known-limitations-and-deferred-work/dev-note/future-cross-agent-and-shared-lists:
+  en: 071b9c5be71f799f
+  zh: dee15fe922a3ab95

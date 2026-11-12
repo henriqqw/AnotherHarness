@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/webworker-runtime/README.md
+/:
+  en: 9a7ee334bf98bb3d
+  zh: 0a78ada4049c27fe
+/anotherharness-ah-experimental-webworker-runtime:
+  en: 8bce37c02c9f4717
+  zh: ecf32f97cb86230d
+/anotherharness-ah-experimental-webworker-runtime/summary:
+  en: f6039f179e873816
+  zh: f06e8a5924ed50d8
+/anotherharness-ah-experimental-webworker-runtime/table-of-contents:
+  en: 4e53164159b5ce41
+  zh: 89582dc0294d0776
+/anotherharness-ah-experimental-webworker-runtime/use-this-package:
+  en: 53bf6d851fa15d68
+  zh: 193a66e41d48b433
+/anotherharness-ah-experimental-webworker-runtime/model-experience:
+  en: 61fce9b4c7dc96e6
+  zh: dc2d931063a38327
+/anotherharness-ah-experimental-webworker-runtime/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: 64715dc7e6d02f71
+/anotherharness-ah-experimental-webworker-runtime/known-limitations-and-deferred-work:
+  en: 403c4bb20424350d
+  zh: 407e0fbb92d98080
+/anotherharness-ah-experimental-webworker-runtime/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for 2026-08-05-agent-teams.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-08-05-agent-teams.md
+/agent-note-durable-agent-teams-over-continuable-children:
+  en: 8ae935bda9fdca8f
+  zh: ade9817c7596e9d0
+/agent-note-durable-agent-teams-over-continuable-children/problem:
+  en: bab62798c2dc07b4
+  zh: fe42c5abf9127d37
+/agent-note-durable-agent-teams-over-continuable-children/decision:
+  en: fa9904843cef9423
+  zh: 8aebe0e70c5916dc
+/agent-note-durable-agent-teams-over-continuable-children/profile-delegation:
+  en: f7a7d55f0f1b4fca
+  zh: 8b75b9ff0912e16a
+/agent-note-durable-agent-teams-over-continuable-children/team-identity:
+  en: 83e446c928a20c47
+  zh: b0a2bd24419dd815
+/agent-note-durable-agent-teams-over-continuable-children/provisioning-and-recovery:
+  en: 4345ac9a6ac7ad04
+  zh: 1d19ecbb128a75a3
+/agent-note-durable-agent-teams-over-continuable-children/mailbox-and-task-transactions:
+  en: d7214bda2cf4eb69
+  zh: 040291bdd6039139
+/agent-note-durable-agent-teams-over-continuable-children/shared-checkout-boundary:
+  en: bf98fbcd054c8b4f
+  zh: 3535c3c09f883001
+/agent-note-durable-agent-teams-over-continuable-children/web-projection:
+  en: e6348054f024725b
+  zh: 8740636e99940308
+/agent-note-durable-agent-teams-over-continuable-children/alternatives-considered:
+  en: 8cb2fd8839f5f8b7
+  zh: e302ca03e569de65
+/agent-note-durable-agent-teams-over-continuable-children/testing:
+  en: cc2cc4dac1893228
+  zh: 8e11d01d01b63ab0
+/agent-note-durable-agent-teams-over-continuable-children/consequences:
+  en: da9cd22b1185a793
+  zh: e20d7ef9226f237f

@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/shell/pwsh-sandbox/README.md
+/:
+  en: d42333572a114759
+  zh: 7de2bc8a30baf573
+/anotherharness-ah-pwsh-sandbox:
+  en: 0d8608e8912644e6
+  zh: f8a0f17bed3c25b4
+/anotherharness-ah-pwsh-sandbox/summary:
+  en: 8f885cb80ce78005
+  zh: 82a32d22a4b285a7
+/anotherharness-ah-pwsh-sandbox/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-pwsh-sandbox/use-this-package:
+  en: fd5ad00f9f1d444b
+  zh: a35c70dd7ef716c3
+/anotherharness-ah-pwsh-sandbox/use-this-package/when-to-choose-it:
+  en: 8a43fa466bcf6fc7
+  zh: 28d2381299d1e592
+/anotherharness-ah-pwsh-sandbox/use-this-package/modes-and-file-effects:
+  en: a097100674539423
+  zh: 6c25043f90650113
+/anotherharness-ah-pwsh-sandbox/use-this-package/minimal-configuration:
+  en: 1b28b00784fd7f2d
+  zh: b5de06ceac03e327
+/anotherharness-ah-pwsh-sandbox/use-this-package/denials-and-escalation:
+  en: b3deb62991a7388a
+  zh: 2b500e1912f95f28
+/anotherharness-ah-pwsh-sandbox/use-this-package/failures-and-recovery:
+  en: 0d5b6818c3dad919
+  zh: e1d21581d66efb78
+/anotherharness-ah-pwsh-sandbox/understand-the-implementation:
+  en: 05e2abe4a25886fd
+  zh: 3f7f1326dc3c1d3f
+/anotherharness-ah-pwsh-sandbox/understand-the-implementation/design-concept:
+  en: eda3691717e88e38
+  zh: 32c2161eca67b3d2
+/anotherharness-ah-pwsh-sandbox/understand-the-implementation/source-map:
+  en: e7af8c5552806441
+  zh: 2ad6a90d828bbd73
+/anotherharness-ah-pwsh-sandbox/understand-the-implementation/main-flow:
+  en: 93f0842800cb0e52
+  zh: cfde2946230560ee
+/anotherharness-ah-pwsh-sandbox/understand-the-implementation/invariants:
+  en: 56b6b8d45b5fc463
+  zh: fe1a53e4ad514bc6
+/anotherharness-ah-pwsh-sandbox/further-exploration:
+  en: 374f08ac45e367c4
+  zh: caa3899c0dcf223f
+/anotherharness-ah-pwsh-sandbox/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-pwsh-sandbox/model-experience/confinement-works-denial-surfaces-as-command-failure:
+  en: 2348d676f74cc6fc
+  zh: 845691fedce1e35c
+/anotherharness-ah-pwsh-sandbox/model-experience/confinement-works-denial-surfaces-as-command-failure/what-the-model-sees:
+  en: 0faadadd5c52f3d2
+  zh: 28eec841864921d2
+/anotherharness-ah-pwsh-sandbox/model-experience/confinement-works-denial-surfaces-as-command-failure/token-effect:
+  en: 7a9e4f861d7ede15
+  zh: da79315a26df214b
+/anotherharness-ah-pwsh-sandbox/model-experience/confinement-works-denial-surfaces-as-command-failure/kv-cache-effect:
+  en: 796af37d6f6add68
+  zh: 7975ff2a21c1b4f3
+/anotherharness-ah-pwsh-sandbox/known-limitations-and-deferred-work:
+  en: 63c47894cda163b7
+  zh: 0ad6706182024584
+/anotherharness-ah-pwsh-sandbox/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

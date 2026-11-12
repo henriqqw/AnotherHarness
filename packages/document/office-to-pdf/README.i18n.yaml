@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/document/office-to-pdf/README.md
+/:
+  en: c3e6e5964cf9df7d
+  zh: a3874301c5f7745f
+/anotherharness-ah-office-to-pdf:
+  en: 2e57d42dd460b4c2
+  zh: b211dd6cfd453e4f
+/anotherharness-ah-office-to-pdf/summary:
+  en: 5df2262ee89a5601
+  zh: c999e9e5574ee169
+/anotherharness-ah-office-to-pdf/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: a134331a31395608
+/anotherharness-ah-office-to-pdf/use-this-package:
+  en: f54c0de69fac4b69
+  zh: ea5c3e5f9309c386
+/anotherharness-ah-office-to-pdf/understand-the-implementation:
+  en: 7365ecf20a1ce0d9
+  zh: 98a66de0eb89451e
+/anotherharness-ah-office-to-pdf/further-exploration:
+  en: 10851afbd9943c44
+  zh: 5121d850b20e065e
+/anotherharness-ah-office-to-pdf/model-experience:
+  en: b03ae5780f8495eb
+  zh: 2a5428663141e3db
+/anotherharness-ah-office-to-pdf/model-experience/kv-cache-effect:
+  en: e77332dfb6691852
+  zh: 2d7ce43f908b35ef
+/anotherharness-ah-office-to-pdf/known-limitations-and-deferred-work:
+  en: 6cd56e2c8255ffd9
+  zh: 75891a4136f929e0
+/anotherharness-ah-office-to-pdf/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 8ec3e73528ddb1a6

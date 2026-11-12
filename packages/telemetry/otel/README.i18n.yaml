@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/telemetry/otel/README.md
+/:
+  en: 49f35d8bc0fe3689
+  zh: ef2fd903cca7d129
+/anotherharness-ah-otel:
+  en: 694c8b928c9c7f85
+  zh: 2db22f50641eb9bc
+/anotherharness-ah-otel/summary:
+  en: e32c122f34c04593
+  zh: bea48183ab438454
+/anotherharness-ah-otel/table-of-contents:
+  en: 23386452a66b2fbd
+  zh: 55b2121ae6059425
+/anotherharness-ah-otel/use-this-package:
+  en: 5ef2b19f965731c9
+  zh: 75f5c98a4e3b421a
+/anotherharness-ah-otel/understand-the-implementation:
+  en: db3709ac9594b0de
+  zh: 8e5c84967d1eafbb
+/anotherharness-ah-otel/further-exploration:
+  en: 01ca2ad70e32fa85
+  zh: db04ea41f10e82d2
+/anotherharness-ah-otel/model-experience:
+  en: 5b364b9451ced69f
+  zh: 025feb91ef96bdb8
+/anotherharness-ah-otel/model-experience/kv-cache-effect:
+  en: 8be9251f0d5256ed
+  zh: d46143a02855c8bc
+/anotherharness-ah-otel/known-limitations-and-deferred-work:
+  en: 5c3e29312d45ee52
+  zh: b148e3a6decc0f7d
+/anotherharness-ah-otel/known-limitations-and-deferred-work/dev-note:
+  en: 0a1253c6f7b5e8b9
+  zh: 9f56528562c7c914

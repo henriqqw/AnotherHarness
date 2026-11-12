@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/lsp/lsp-stdio/README.md
+/:
+  en: c9eac4288ae5293a
+  zh: fb718ad3c2da3e49
+/anotherharness-ah-lsp-stdio:
+  en: f509bf2b436ecb13
+  zh: 3cecdef3cf214866
+/anotherharness-ah-lsp-stdio/summary:
+  en: 01b7b6b090c21561
+  zh: 34dac6dcc9ff9c23
+/anotherharness-ah-lsp-stdio/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-lsp-stdio/use-this-package:
+  en: 4f3871896432f37b
+  zh: a497b0f3ddb2a740
+/anotherharness-ah-lsp-stdio/use-this-package/minimal-configuration:
+  en: b2f821f47cace9fe
+  zh: 2097caf18d7ce878
+/anotherharness-ah-lsp-stdio/use-this-package/what-a-query-does:
+  en: 41363baf8fdba020
+  zh: d1a6193b1aa813ba
+/anotherharness-ah-lsp-stdio/use-this-package/observable-success-and-failures:
+  en: 57f3a82c014af107
+  zh: 770fc617c1ab0eab
+/anotherharness-ah-lsp-stdio/use-this-package/security-boundary:
+  en: f1f7fef771bcaa6d
+  zh: f11dcf771a6fecfc
+/anotherharness-ah-lsp-stdio/understand-the-implementation:
+  en: 8a5efa64f5b12f88
+  zh: 451548c05c045c22
+/anotherharness-ah-lsp-stdio/understand-the-implementation/design-philosophy:
+  en: 7e5e63f993a287f2
+  zh: a5a01b22551e5d46
+/anotherharness-ah-lsp-stdio/understand-the-implementation/source-map:
+  en: 601baa446f830c66
+  zh: 8aaebaaae7081c82
+/anotherharness-ah-lsp-stdio/understand-the-implementation/protocol-behavior:
+  en: 0f9bac88ad9448b8
+  zh: f5d3a2e61a596003
+/anotherharness-ah-lsp-stdio/further-exploration:
+  en: 94459c558e124644
+  zh: 845924a9be723207
+/anotherharness-ah-lsp-stdio/model-experience:
+  en: 406cb1227552556d
+  zh: c2ce6351eb2285b4
+/anotherharness-ah-lsp-stdio/model-experience/kv-cache-effect:
+  en: 829d77713b5fed5c
+  zh: 0ce500537689a0cf
+/anotherharness-ah-lsp-stdio/known-limitations-and-deferred-work:
+  en: dc4fc5797b3b2d38
+  zh: f04e4159ce280218
+/anotherharness-ah-lsp-stdio/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

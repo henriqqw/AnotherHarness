@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/hook-protocol/README.md
+/:
+  en: 7cfe3761eedff848
+  zh: 80b0bed5743d0924
+/anotherharness-ah-hook-protocol:
+  en: dd086bab9632b65d
+  zh: d7fb27ddbf7834c4
+/anotherharness-ah-hook-protocol/summary:
+  en: 34333c5499de5108
+  zh: 6a085c900fd39152
+/anotherharness-ah-hook-protocol/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-hook-protocol/use-this-package:
+  en: 328419a6dd105f81
+  zh: 627611aaeb412896
+/anotherharness-ah-hook-protocol/use-this-package/when-to-choose-it:
+  en: ed0afe7352f7b72a
+  zh: 27242e5e53a3178e
+/anotherharness-ah-hook-protocol/use-this-package/what-a-hook-can-do:
+  en: 043f54b3a5b518a7
+  zh: a4115083a9b1cef1
+/anotherharness-ah-hook-protocol/use-this-package/what-you-see-when-hooks-run:
+  en: ba2d6ed1db063f53
+  zh: ab1b8d72dccd2ff1
+/anotherharness-ah-hook-protocol/understand-the-implementation:
+  en: 08b3960150e9c5e2
+  zh: 6bb2f236d697de01
+/anotherharness-ah-hook-protocol/understand-the-implementation/processing-pipeline:
+  en: 5a0ae14e7b72e056
+  zh: d734a5e16cde6803
+/anotherharness-ah-hook-protocol/understand-the-implementation/hook-session-events:
+  en: a3a56419de3357ca
+  zh: 36caf81851e88a85
+/anotherharness-ah-hook-protocol/understand-the-implementation/design-philosophy:
+  en: 28f1d8ee946c96bd
+  zh: cdae5b6a2ec1590c
+/anotherharness-ah-hook-protocol/understand-the-implementation/source-map:
+  en: 0d8956a6d8608ee0
+  zh: 9f554284c4c0a36e
+/anotherharness-ah-hook-protocol/further-exploration:
+  en: 67e30ea568e62411
+  zh: 2eca13bb10e6ce96
+/anotherharness-ah-hook-protocol/model-experience:
+  en: 7bd614f76df87636
+  zh: 919154ed1d1dd7d9
+/anotherharness-ah-hook-protocol/model-experience/kv-cache-effect:
+  en: e290ccc9b3c92c08
+  zh: cb3c8823f41e7afe
+/anotherharness-ah-hook-protocol/known-limitations-and-deferred-work:
+  en: 221ff46dda86a9fd
+  zh: f5bb731a6461037a
+/anotherharness-ah-hook-protocol/known-limitations-and-deferred-work/dev-note:
+  en: ac1d08360a93382b
+  zh: 6c58749bae9a6e65
+/anotherharness-ah-hook-protocol/known-limitations-and-deferred-work/dev-note/future-run-level-halt:
+  en: bfb3db50de22c1d0
+  zh: 2a979359b0edbbe7

@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-slots/README.md
+/:
+  en: 13dc4aa511f32c9e
+  zh: a7da0ebc24d59f51
+/anotherharness-ah-client-ui-slots:
+  en: c61644cc64a49b7e
+  zh: ccec590624390548
+/anotherharness-ah-client-ui-slots/summary:
+  en: 25f2dc718bc0812c
+  zh: 3941e07cb9b609ba
+/anotherharness-ah-client-ui-slots/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-slots/use-this-package:
+  en: 05691d44a0c6c48f
+  zh: 434033d5761297f3
+/anotherharness-ah-client-ui-slots/use-this-package/reusable-component-factories:
+  en: 301de67bf2779ae6
+  zh: 6e9d405ee1063d53
+/anotherharness-ah-client-ui-slots/use-this-package/the-five-framework-props-shares:
+  en: 45e2933a5e084956
+  zh: 938deedaf489f892
+/anotherharness-ah-client-ui-slots/use-this-package/store-seats:
+  en: 0d1c2948112841ec
+  zh: fc5a998cea485024
+/anotherharness-ah-client-ui-slots/use-this-package/declaration-discipline:
+  en: 8a41014931ffccd5
+  zh: 615f93335a682b01
+/anotherharness-ah-client-ui-slots/understand-the-implementation:
+  en: 983e6c0e71105f65
+  zh: 75af8d36dd8223fd
+/anotherharness-ah-client-ui-slots/understand-the-implementation/registration-and-routing:
+  en: 0638aaadacadb6f1
+  zh: cb6324ef5c9e1ade
+/anotherharness-ah-client-ui-slots/understand-the-implementation/the-renderer-contract:
+  en: 2b6058e98fb1efe7
+  zh: f32e37c8381809b9
+/anotherharness-ah-client-ui-slots/further-exploration:
+  en: 4765ca658ce34993
+  zh: 3c8b672a9ffde829
+/anotherharness-ah-client-ui-slots/model-experience:
+  en: 3120df665299c634
+  zh: 67bb5e1fe59dae19
+/anotherharness-ah-client-ui-slots/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-slots/known-limitations-and-deferred-work:
+  en: 093b1c5076ddfd6d
+  zh: 3069c423115492fe
+/anotherharness-ah-client-ui-slots/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/boot/plugin-manager/README.md
+/:
+  en: 65283627208ef4c9
+  zh: aa3f833ec24bb65a
+/anotherharness-ah-plugin-manager:
+  en: 0599e5b636e97c42
+  zh: a77b83ff8373df97
+/anotherharness-ah-plugin-manager/summary:
+  en: d6afcaa1594efcdb
+  zh: 459cb6ac0dcb2d46
+/anotherharness-ah-plugin-manager/table-of-contents:
+  en: 87679c51aa3693f5
+  zh: 11684a48a5806afb
+/anotherharness-ah-plugin-manager/use-this-package:
+  en: 73e596e1d6c0a3cc
+  zh: ff10a2d220c07dcf
+/anotherharness-ah-plugin-manager/use-this-package/version-compatibility-and-exemptions:
+  en: 813aa0a4a2023346
+  zh: 3bd167b9e6fb02e6
+/anotherharness-ah-plugin-manager/use-this-package/configuration:
+  en: 418a9378f57f03c6
+  zh: b26c84739e2ae244
+/anotherharness-ah-plugin-manager/understand-the-implementation:
+  en: 172a0b75b35c3a27
+  zh: 2f78ed138fcab99e
+/anotherharness-ah-plugin-manager/further-exploration:
+  en: 619e13bae0fd034c
+  zh: d48b9eabbebf250d
+/anotherharness-ah-plugin-manager/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-plugin-manager/model-experience/management-tool:
+  en: 1815ec6ce56c80d4
+  zh: 2d7ac75d3b25eb6b
+/anotherharness-ah-plugin-manager/model-experience/management-tool/what-the-model-sees:
+  en: b423bd1e7f707a70
+  zh: 1e604660105675dd
+/anotherharness-ah-plugin-manager/model-experience/management-tool/token-effect:
+  en: bc70208bd361dbcd
+  zh: bb651d6066066c6c
+/anotherharness-ah-plugin-manager/model-experience/management-tool/kv-cache-effect:
+  en: c29f60be7f3edc1a
+  zh: d9b9388b96ef95cc
+/anotherharness-ah-plugin-manager/known-limitations-and-deferred-work:
+  en: ee58d02c9fab58f7
+  zh: 8c89c27da3ab22e4
+/anotherharness-ah-plugin-manager/known-limitations-and-deferred-work/failure-behavior:
+  en: c0ebe879a40e8a93
+  zh: 98907bbdc9a6a66b
+/anotherharness-ah-plugin-manager/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

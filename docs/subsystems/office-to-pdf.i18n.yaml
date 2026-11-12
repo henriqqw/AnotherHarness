@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for office-to-pdf.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/office-to-pdf.md
+/office-to-pdf:
+  en: 109bbb742e37aec1
+  zh: 5a24f098931f26c3
+/office-to-pdf/ownership:
+  en: 83cc02c316697683
+  zh: 6be12a76e4f4db05
+/office-to-pdf/requests-and-results:
+  en: f16ec37599ef5c28
+  zh: 22721548aa2e947d
+/office-to-pdf/preview-reads:
+  en: c37759519995c520
+  zh: c050f2593eb6c67e
+/office-to-pdf/engine-selection-and-limits:
+  en: 7914178b7789c68b
+  zh: ccff462b77ac9e42

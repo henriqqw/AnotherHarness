@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for ui-radius.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/ui-radius.md
+/ah-unified-corner-radius-standard:
+  en: b201b0968a928625
+  zh: 4fb76204f6423499
+/ah-unified-corner-radius-standard/summary:
+  en: ab36ac04ae9ed872
+  zh: a33f56d0fb162081
+/ah-unified-corner-radius-standard/table-of-contents:
+  en: aad65e4a8399adbb
+  zh: e76b80d421b17992
+/ah-unified-corner-radius-standard/scope-and-authority:
+  en: 29510c3f538241b6
+  zh: 8031b9294c11f51f
+/ah-unified-corner-radius-standard/select-the-radius:
+  en: 06ddd6bf9ef1e48c
+  zh: 4c42d0c9266a00e8
+/ah-unified-corner-radius-standard/reuse-tokens-and-preserve-deliberate-shapes:
+  en: 4a22b7f316dbcb73
+  zh: cf26725fc01f6a70
+/ah-unified-corner-radius-standard/nested-geometry-and-hover:
+  en: 3920921700d8ad1c
+  zh: fc99da8a5e905a27
+/ah-unified-corner-radius-standard/settings-card-materials:
+  en: 85e7e63183df06d1
+  zh: 1da2b44083d7ebe2
+/ah-unified-corner-radius-standard/apply-and-verify:
+  en: 2f6f10e45b27c19b
+  zh: 9eb5fd964c643be6

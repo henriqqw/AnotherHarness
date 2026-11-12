@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-workflow-run/README.md
+/:
+  en: 061e7affb33c6c05
+  zh: 61268c78cc2716d3
+/anotherharness-ah-client-ui-workflow-run:
+  en: be5556e1cfe91a3f
+  zh: aabd341e4cb26097
+/anotherharness-ah-client-ui-workflow-run/summary:
+  en: 19a1538674613a15
+  zh: 6b96778d0f68ed1a
+/anotherharness-ah-client-ui-workflow-run/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-workflow-run/use-this-package:
+  en: 6c1b2fa8470337d6
+  zh: 0d56bca99449aab5
+/anotherharness-ah-client-ui-workflow-run/use-this-package/navigating-the-node:
+  en: 9f223e9f1e5f84d6
+  zh: f9416f079efc7c83
+/anotherharness-ah-client-ui-workflow-run/use-this-package/state-and-completion:
+  en: de2dbff7df2294ed
+  zh: 97a03787caf02e2b
+/anotherharness-ah-client-ui-workflow-run/understand-the-implementation:
+  en: d41b996f3fb6727b
+  zh: 6b40fdf1db894fff
+/anotherharness-ah-client-ui-workflow-run/understand-the-implementation/disclosure-choices:
+  en: adf86d983c51865e
+  zh: 014a4644d55be111
+/anotherharness-ah-client-ui-workflow-run/understand-the-implementation/composition:
+  en: 364d3c38e5f02149
+  zh: ca5dbee6ac27e141
+/anotherharness-ah-client-ui-workflow-run/further-exploration:
+  en: 26956535339b3ecc
+  zh: 93985bdd46a291ba
+/anotherharness-ah-client-ui-workflow-run/model-experience:
+  en: 62a75f801964a0bb
+  zh: a247663753a52ae9
+/anotherharness-ah-client-ui-workflow-run/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-workflow-run/known-limitations-and-deferred-work:
+  en: e28f70fa9b10bf96
+  zh: c3533e0d36c5f853
+/anotherharness-ah-client-ui-workflow-run/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

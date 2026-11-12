@@ -1,0 +1,93 @@
+{
+  "name": "@anotherharness/ah-client-ui-deliverables",
+  "description": "Changed-files card with per-file comparison tabs, delivery cards, and clickable final-response file references for Web",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/client/ui-deliverables"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "ah": {
+    "client": {
+      "inject": [
+        "@anotherharness/ah-api-remotes",
+        "@anotherharness/ah-client-connection",
+        "@anotherharness/ah-client-locale",
+        "@anotherharness/ah-client-ui-chat",
+        "@anotherharness/ah-client-ui-conversation",
+        "@anotherharness/ah-client-ui-renderer",
+        "@anotherharness/ah-client-ui-sidebar-right",
+        "@anotherharness/ah-client-ui-tool",
+        "@anotherharness/ah-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "bundle": "tsdown",
+    "watch": "tsdown --watch"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-api-remotes": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-locale": "workspace:*",
+    "@anotherharness/ah-client-store": "workspace:*",
+    "@anotherharness/ah-client-test-runtime": "workspace:*",
+    "@anotherharness/ah-client-ui-chat": "workspace:*",
+    "@anotherharness/ah-client-ui-conversation": "workspace:*",
+    "@anotherharness/ah-client-ui-dockkit": "workspace:*",
+    "@anotherharness/ah-client-ui-renderer": "workspace:*",
+    "@anotherharness/ah-client-ui-sidebar-right": "workspace:*",
+    "@anotherharness/ah-client-ui-slots": "workspace:*",
+    "@types/react": "~18.3.1",
+    "@anotherharness/cordis": "workspace:~",
+    "react": "^18.2.0",
+    "@anotherharness/ah-client-ui-primitives": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-client-ui-tool": "workspace:*",
+    "@anotherharness/ah-tool-present": "workspace:*",
+    "@anotherharness/ah-workspace-changes": "workspace:*",
+    "@anotherharness/ah-api-session-controller": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-api-workspace-files": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-client-ui-settings": "workspace:*"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "dependencies": {
+    "@anotherharness/ah-typert-protocol": "workspace:*"
+  }
+}

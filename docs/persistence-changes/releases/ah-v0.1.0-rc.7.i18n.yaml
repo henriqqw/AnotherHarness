@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for ah-v0.1.0-rc.7.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/persistence-changes/releases/ah-v0.1.0-rc.7.md
+/:
+  en: c8a388539aff8ce4
+  zh: e6d7b641dea3c534
+/persistence-release-ah-v0-1-0-rc-7:
+  en: 91c5bf8dc9dc577f
+  zh: 496f036dbfaedd91
+/persistence-release-ah-v0-1-0-rc-7/summary:
+  en: b9a148bb0637a5e8
+  zh: 41e3d6d3f22535ac
+/persistence-release-ah-v0-1-0-rc-7/table-of-contents:
+  en: 0ff4a6f3c6af323f
+  zh: f5c7bd70cc1585c7
+/persistence-release-ah-v0-1-0-rc-7/release-evidence:
+  en: 964a44945b9f36ac
+  zh: b59bf6d6b21398e2
+/persistence-release-ah-v0-1-0-rc-7/declaration:
+  en: af9cea43334ee692
+  zh: c6c8bd0d6a17718a
+/persistence-release-ah-v0-1-0-rc-7/structural-changes:
+  en: 1a08248deb5e841c
+  zh: b5dd3c2ac161a100
+/persistence-release-ah-v0-1-0-rc-7/verification:
+  en: 8ccca317964523b1
+  zh: 2c8b3e70a3320778
+/persistence-release-ah-v0-1-0-rc-7/dev-note:
+  en: b75c8458928b72b9
+  zh: 003ba4e17b4b5269

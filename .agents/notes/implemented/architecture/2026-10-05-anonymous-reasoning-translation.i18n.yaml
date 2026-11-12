@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for 2026-10-05-anonymous-reasoning-translation.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-10-05-anonymous-reasoning-translation.md
+/agent-note-anonymous-translation-remains-separate-from-model-history:
+  en: 4403ad3a329fc525
+  zh: d79a5b8366252768
+/agent-note-anonymous-translation-remains-separate-from-model-history/problem:
+  en: 5e10347fa87f98b5
+  zh: cf3569631af8d66f
+/agent-note-anonymous-translation-remains-separate-from-model-history/decision:
+  en: 0aa76c805c733214
+  zh: 502ad48cba1817d0
+/agent-note-anonymous-translation-remains-separate-from-model-history/alternatives-considered:
+  en: 083d50f8564b0378
+  zh: 50af332e64ad06f3
+/agent-note-anonymous-translation-remains-separate-from-model-history/consequences:
+  en: 5805fcb46e8e3729
+  zh: 4a60e2a860a2cc24

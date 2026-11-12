@@ -1,0 +1,76 @@
+# Bilingual-pair consistency record for 2026-08-02-typert-remote-method-calls.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-08-02-typert-remote-method-calls.md
+/agent-note-typert-gateway-targeted-method-calls:
+  en: 572b2db15551ff40
+  zh: ccedcb874d9de5cb
+/agent-note-typert-gateway-targeted-method-calls/problem:
+  en: 14a83a0440499136
+  zh: 15587f8e821c5a17
+/agent-note-typert-gateway-targeted-method-calls/decision:
+  en: f98d5110f7a982df
+  zh: c7e24f367ed44897
+/agent-note-typert-gateway-targeted-method-calls/components-and-cordis-services:
+  en: 207c3208a641a7f2
+  zh: 2d35c1a58af67a4d
+/agent-note-typert-gateway-targeted-method-calls/business-declarations:
+  en: 836866fab1e1e724
+  zh: a6fa91f0be5550e0
+/agent-note-typert-gateway-targeted-method-calls/decorators-and-the-explicit-gateway-facet:
+  en: d00c9e986e24d8f8
+  zh: 1e444d86a976514e
+/agent-note-typert-gateway-targeted-method-calls/lookup-and-remote-scope-registration:
+  en: 9f7448898cf5cadc
+  zh: 419573c589ed6f7d
+/agent-note-typert-gateway-targeted-method-calls/invocationdescriptor:
+  en: bd8dbcc0668593ef
+  zh: 9cfdd322c1f4ab06
+/agent-note-typert-gateway-targeted-method-calls/typert-runtime-registry:
+  en: 14ad652e20e699ca
+  zh: 9272bc04a35e3c6a
+/agent-note-typert-gateway-targeted-method-calls/canonical-types-symbols-and-zod:
+  en: d450b6f47de20996
+  zh: 33b529ac70e3f22e
+/agent-note-typert-gateway-targeted-method-calls/three-artifact-kinds-and-two-typescript-programs:
+  en: 6ea4bddcf35a834d
+  zh: 4af474c6818b1cf0
+/agent-note-typert-gateway-targeted-method-calls/the-remote-package-entry:
+  en: cf4218418738996e
+  zh: 3f5cb61e4edee8c4
+/agent-note-typert-gateway-targeted-method-calls/strict-consumer-api-types:
+  en: 6910fbe8faca4972
+  zh: 294f6d80be50e3ac
+/agent-note-typert-gateway-targeted-method-calls/client-typert-and-the-api-gateway-client-face:
+  en: f43476e3834133bf
+  zh: de3d4e87a99b2f8c
+/agent-note-typert-gateway-targeted-method-calls/cross-environment-isomorphism-constraints:
+  en: 5d14e1b7afc53efb
+  zh: e2f4b5814083738f
+/agent-note-typert-gateway-targeted-method-calls/src-and-lib-operating-modes:
+  en: 1e366dcfab74831b
+  zh: 14199f25f20a9352
+/agent-note-typert-gateway-targeted-method-calls/host-gateway-resolution:
+  en: 88a95d7ab4621caf
+  zh: 89b63fb6440fca79
+/agent-note-typert-gateway-targeted-method-calls/the-shared-api-call-chain:
+  en: 17179af94f4c2a69
+  zh: 98ab72087791ee29
+/agent-note-typert-gateway-targeted-method-calls/connection-and-protocol-boundaries:
+  en: e8f9d48c42e27fb6
+  zh: 445bc192d67c71f1
+/agent-note-typert-gateway-targeted-method-calls/package-boundaries:
+  en: 9add58257d9b68b5
+  zh: 6ec9a25e6d558f81
+/agent-note-typert-gateway-targeted-method-calls/shipped-scope-and-deferred-work:
+  en: 41de2b751da8270c
+  zh: 499647a2246503b7
+/agent-note-typert-gateway-targeted-method-calls/alternatives-considered:
+  en: 0d68c499b7780f4f
+  zh: bdd1e57232b996e2
+/agent-note-typert-gateway-targeted-method-calls/verification:
+  en: 6c6a9c0768a6b9b0
+  zh: f82717e416887d7f
+/agent-note-typert-gateway-targeted-method-calls/consequences:
+  en: abab48251550f584
+  zh: 2568c46d78dbefdf

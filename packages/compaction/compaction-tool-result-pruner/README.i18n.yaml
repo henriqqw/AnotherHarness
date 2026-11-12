@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/compaction/compaction-tool-result-pruner/README.md
+/:
+  en: 9ed7a84c51988fdb
+  zh: 4df60a349c2be7dc
+/anotherharness-ah-compaction-tool-result-pruner:
+  en: 031c81f9904b7fcb
+  zh: 2f36e8782e620b96
+/anotherharness-ah-compaction-tool-result-pruner/summary:
+  en: f8fd53f4aa38e307
+  zh: c9995908e61dfcad
+/anotherharness-ah-compaction-tool-result-pruner/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-compaction-tool-result-pruner/use-this-package:
+  en: 3f6c4b34a62e195a
+  zh: bda901fe23026902
+/anotherharness-ah-compaction-tool-result-pruner/use-this-package/smallest-working-composition:
+  en: 55eadf840a54d2f8
+  zh: cc6bf82f58058c7b
+/anotherharness-ah-compaction-tool-result-pruner/use-this-package/what-gets-trimmed:
+  en: a5cb5c94edcd91e3
+  zh: ed95adc91d11bbda
+/anotherharness-ah-compaction-tool-result-pruner/use-this-package/setting-the-size-limits:
+  en: 13f5521dff7fa7e1
+  zh: f6b97c4ac669bfc4
+/anotherharness-ah-compaction-tool-result-pruner/use-this-package/when-trimming-runs:
+  en: 9baa15049a932a71
+  zh: 5c193789e20f4f9e
+/anotherharness-ah-compaction-tool-result-pruner/understand-the-implementation:
+  en: 57aaa53880042873
+  zh: 667f54624411c37d
+/anotherharness-ah-compaction-tool-result-pruner/understand-the-implementation/design-philosophy:
+  en: 5adff8207c6294e0
+  zh: ccba42d804989abb
+/anotherharness-ah-compaction-tool-result-pruner/understand-the-implementation/pruning-mechanics:
+  en: 9813749e4f016897
+  zh: f2b2b5d6e5e8977a
+/anotherharness-ah-compaction-tool-result-pruner/understand-the-implementation/source-map:
+  en: 4544e91902960a0e
+  zh: 0b07cb7e3d96267b
+/anotherharness-ah-compaction-tool-result-pruner/further-exploration:
+  en: 4e7e9058f97ed2a8
+  zh: ef1f9535993041f9
+/anotherharness-ah-compaction-tool-result-pruner/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-compaction-tool-result-pruner/model-experience/pruned-tool-result:
+  en: 0b0dfb7ec1bf906f
+  zh: 68f70bde796751cd
+/anotherharness-ah-compaction-tool-result-pruner/model-experience/pruned-tool-result/what-the-model-sees:
+  en: 8514b5a6586bd65d
+  zh: 2a0648bea6cb81b6
+/anotherharness-ah-compaction-tool-result-pruner/model-experience/pruned-tool-result/token-effect:
+  en: 1b11d405468e8d5d
+  zh: 06dc9aef281c776d
+/anotherharness-ah-compaction-tool-result-pruner/model-experience/pruned-tool-result/kv-cache-effect:
+  en: aac7de507412ba39
+  zh: bdd8f391ad9c9a81
+/anotherharness-ah-compaction-tool-result-pruner/known-limitations-and-deferred-work:
+  en: 2a7be98dc032e9bc
+  zh: d6710b1130722d12
+/anotherharness-ah-compaction-tool-result-pruner/known-limitations-and-deferred-work/dev-note:
+  en: 19120c19286532da
+  zh: 49187f1e83b31007

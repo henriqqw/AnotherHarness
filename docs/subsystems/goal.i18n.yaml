@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for goal.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/goal.md
+/same-session-goals:
+  en: 7bf78160a1b8d100
+  zh: b88f8e7b89fc51e5
+/same-session-goals/identity-and-lifecycle:
+  en: 785edd861732ccd2
+  zh: 76be8f0872791bd9
+/same-session-goals/durable-changes:
+  en: c23e38f00f1d8a55
+  zh: 69c53f7e3ee505e1
+/same-session-goals/requests-and-notifications:
+  en: 2148e6a388284de0
+  zh: 6293130430f483c3
+/same-session-goals/service-behavior:
+  en: ade91d12ffdc3096
+  zh: b5814da3c1400937

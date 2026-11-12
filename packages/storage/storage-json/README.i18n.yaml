@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/storage/storage-json/README.md
+/:
+  en: 322dcc67eb62e0eb
+  zh: 456d6b3d2514c508
+/anotherharness-ah-storage-json:
+  en: bdf2a221fefc83d6
+  zh: 85356d6b002f2866
+/anotherharness-ah-storage-json/summary:
+  en: aaecb4550a9c89f3
+  zh: 918c8c44c3e9625f
+/anotherharness-ah-storage-json/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-storage-json/use-this-package:
+  en: 87ddc847b7024cac
+  zh: 6e97d0f216587d5b
+/anotherharness-ah-storage-json/use-this-package/when-to-choose-it:
+  en: 28ebb528cbe13f31
+  zh: 7e3744e9d080d2bb
+/anotherharness-ah-storage-json/use-this-package/configuration:
+  en: f593dcf7adb5fa17
+  zh: 8d689b064ac40597
+/anotherharness-ah-storage-json/use-this-package/observable-behavior:
+  en: 44e1279b83c7d086
+  zh: b7b920b737e9bfe0
+/anotherharness-ah-storage-json/understand-the-implementation:
+  en: b7d222309b3e5438
+  zh: 807c7314ee341d94
+/anotherharness-ah-storage-json/understand-the-implementation/design-concept:
+  en: a5a4e3cf05597661
+  zh: 539ad4b4045ff572
+/anotherharness-ah-storage-json/understand-the-implementation/file-formats:
+  en: b3de0a697db4f916
+  zh: 56b26f7823392bd5
+/anotherharness-ah-storage-json/understand-the-implementation/source-map:
+  en: 77af81b16be4613e
+  zh: 29cb5047fa82d12a
+/anotherharness-ah-storage-json/further-exploration:
+  en: 28af269374ca8811
+  zh: 17e962184fa5ac99
+/anotherharness-ah-storage-json/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-storage-json/model-experience/stored-domain-records:
+  en: c5d5ffaf6b114f3e
+  zh: 97db23b0b14ff1c0
+/anotherharness-ah-storage-json/model-experience/stored-domain-records/what-the-model-sees:
+  en: d0798e9e30583b55
+  zh: 968f7f595b4bf1ff
+/anotherharness-ah-storage-json/model-experience/stored-domain-records/token-effect:
+  en: 592ed887c69e5c46
+  zh: cb9be9de6e38db55
+/anotherharness-ah-storage-json/model-experience/stored-domain-records/kv-cache-effect:
+  en: c13c59d13a5f1651
+  zh: 5aab838ae3ff5324
+/anotherharness-ah-storage-json/known-limitations-and-deferred-work:
+  en: 76b327dc0d93f6ac
+  zh: f40530debdcd1fb7
+/anotherharness-ah-storage-json/known-limitations-and-deferred-work/dev-note:
+  en: dd40dd4cb9109aea
+  zh: 3fd79d2242eccadb

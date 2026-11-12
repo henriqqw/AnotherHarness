@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-reference/README.md
+/:
+  en: 891fa9f998222b74
+  zh: 5eed64a6df09c534
+/anotherharness-ah-client-ui-reference:
+  en: 2f51a09f44dcaa28
+  zh: e1032e7fb27e0b96
+/anotherharness-ah-client-ui-reference/summary:
+  en: 34112cb3cf53beec
+  zh: cee9b2c539d3cb09
+/anotherharness-ah-client-ui-reference/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-reference/use-this-package:
+  en: 779a9a534eaad38b
+  zh: 3dd159a2c35702d6
+/anotherharness-ah-client-ui-reference/use-this-package/what-a-pick-inserts:
+  en: c902c1e246f12be6
+  zh: e8a695f4f4cde66e
+/anotherharness-ah-client-ui-reference/use-this-package/failure-behavior:
+  en: 228ee6f4b81d96a7
+  zh: e1c960c3f5b25317
+/anotherharness-ah-client-ui-reference/understand-the-implementation:
+  en: dbfe93987c800112
+  zh: 200d477cc8cd8a1a
+/anotherharness-ah-client-ui-reference/understand-the-implementation/candidate-flow:
+  en: 6c77da1e946f72e1
+  zh: b7b8e1e1d4f5a102
+/anotherharness-ah-client-ui-reference/understand-the-implementation/serialization:
+  en: cb3d15809b4b9291
+  zh: 26dbad403755a3ce
+/anotherharness-ah-client-ui-reference/further-exploration:
+  en: 9011bebc673e09a1
+  zh: f3f4b6696c40de7f
+/anotherharness-ah-client-ui-reference/model-experience:
+  en: f7fa58a80d82d63a
+  zh: 8235157cbbbd18cf
+/anotherharness-ah-client-ui-reference/model-experience/kv-cache-effect:
+  en: ff23f8026f7c6050
+  zh: 6b0841800076bcd2
+/anotherharness-ah-client-ui-reference/known-limitations-and-deferred-work:
+  en: e79991a25b11e342
+  zh: 15064e8374c8e63d
+/anotherharness-ah-client-ui-reference/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

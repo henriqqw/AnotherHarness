@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/lsp/lsp/README.md
+/:
+  en: 1a8099ab9b557ff7
+  zh: 7054b2eab0e1fda8
+/anotherharness-ah-lsp:
+  en: 855bb35643b1a56c
+  zh: 8737f7e9fd31ffd0
+/anotherharness-ah-lsp/summary:
+  en: 05808a4be6ef8144
+  zh: f45b9ae3652e8068
+/anotherharness-ah-lsp/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-lsp/use-this-package:
+  en: 39ddcc57203b5a43
+  zh: ee46b6bb58434337
+/anotherharness-ah-lsp/use-this-package/when-to-choose-it:
+  en: 104953d3732e7d81
+  zh: 54acd5d4742bd728
+/anotherharness-ah-lsp/use-this-package/composing-a-navigation-stack:
+  en: dd888cbcbb0ac336
+  zh: 6adbb619ebdf3af8
+/anotherharness-ah-lsp/use-this-package/the-four-operations:
+  en: 201a9b2f8dfb13eb
+  zh: c9041adde15602c1
+/anotherharness-ah-lsp/use-this-package/failures-and-recovery:
+  en: eeeff6f68bba6807
+  zh: a83372441c505bb6
+/anotherharness-ah-lsp/understand-the-implementation:
+  en: 1e0acac55fc6c314
+  zh: fe4ebe8a86dc480f
+/anotherharness-ah-lsp/understand-the-implementation/design-philosophy:
+  en: bd5ec8e108d44884
+  zh: 5675f0244f9dc8c4
+/anotherharness-ah-lsp/understand-the-implementation/source-map:
+  en: 052a99d148619000
+  zh: 76624984e9bdbdd2
+/anotherharness-ah-lsp/understand-the-implementation/registration-and-selection-lifecycle:
+  en: 549e97f436b1570c
+  zh: df0436c58dd31175
+/anotherharness-ah-lsp/further-exploration:
+  en: 452a35023b626e53
+  zh: 858b333221de0b54
+/anotherharness-ah-lsp/model-experience:
+  en: 8c40ec4f4d503644
+  zh: 7004984dda14877e
+/anotherharness-ah-lsp/model-experience/kv-cache-effect:
+  en: 829d77713b5fed5c
+  zh: 0ce500537689a0cf
+/anotherharness-ah-lsp/known-limitations-and-deferred-work:
+  en: e7ba99257e4da9e6
+  zh: e384e82d4c707af1
+/anotherharness-ah-lsp/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

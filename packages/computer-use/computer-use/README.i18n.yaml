@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/computer-use/computer-use/README.md
+/:
+  en: 5c5d7b5f1329ac1b
+  zh: b68d332df957109f
+/anotherharness-ah-computer-use:
+  en: 3442776fe70f5dae
+  zh: b7b653d29aa67f05
+/anotherharness-ah-computer-use/summary:
+  en: 4de047849e68701f
+  zh: 90a32c0e279b4b05
+/anotherharness-ah-computer-use/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 405b30feaf48c087
+/anotherharness-ah-computer-use/use-this-package:
+  en: 654d342d7059070c
+  zh: 9f942b806558e996
+/anotherharness-ah-computer-use/understand-the-implementation:
+  en: 181679887837591a
+  zh: cc2e96766ce0aa63
+/anotherharness-ah-computer-use/further-exploration:
+  en: 8b0753f61c89c80a
+  zh: 628e596ff4001a07
+/anotherharness-ah-computer-use/model-experience:
+  en: 8780c250dfaefaaa
+  zh: 1c4b3598a131fb65
+/anotherharness-ah-computer-use/model-experience/kv-cache-effect:
+  en: 0cc866a67a19d08b
+  zh: e1c3bb5ee2fed596
+/anotherharness-ah-computer-use/known-limitations-and-deferred-work:
+  en: e05aaee6295a84c7
+  zh: 12df3e629a5b1c05
+/anotherharness-ah-computer-use/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 6c5f9788c6536776

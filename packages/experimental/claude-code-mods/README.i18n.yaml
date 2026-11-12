@@ -1,0 +1,85 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/claude-code-mods/README.md
+/:
+  en: 58c5b5eea14165b6
+  zh: 3ed709329366a195
+/anotherharness-ah-experimental-claude-code-mods:
+  en: 7decb63b4edbcb8a
+  zh: 9152a63c6615dbc2
+/anotherharness-ah-experimental-claude-code-mods/summary:
+  en: 6a7299f521226aab
+  zh: 05dc20bd8b2bcb53
+/anotherharness-ah-experimental-claude-code-mods/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-experimental-claude-code-mods/use-this-package:
+  en: 10bdb8b3ae2c9211
+  zh: f787312bb774e9b6
+/anotherharness-ah-experimental-claude-code-mods/use-this-package/which-events-your-mod-receives:
+  en: d2d735b07524c08a
+  zh: 6b90dc578d61ab22
+/anotherharness-ah-experimental-claude-code-mods/use-this-package/the-band-above-the-prompt:
+  en: 2b04be6b58e61a74
+  zh: f4854198d8999d11
+/anotherharness-ah-experimental-claude-code-mods/use-this-package/which-members-your-mod-can-call:
+  en: bf4f9f971aeb1d17
+  zh: 83804163ca9039d5
+/anotherharness-ah-experimental-claude-code-mods/use-this-package/test-a-mod:
+  en: 2510f9bfc0dc9690
+  zh: 2e90365989bb6f0b
+/anotherharness-ah-experimental-claude-code-mods/understand-the-implementation:
+  en: 42b15ac6321706aa
+  zh: cfcb757213648bd9
+/anotherharness-ah-experimental-claude-code-mods/understand-the-implementation/loading:
+  en: 7b48e62da7d73a85
+  zh: a7f8e46cecb726cf
+/anotherharness-ah-experimental-claude-code-mods/understand-the-implementation/the-chain:
+  en: 5330d8f5a6c9b992
+  zh: 8f6d167642a1c263
+/anotherharness-ah-experimental-claude-code-mods/understand-the-implementation/mapping-onto-the-harness:
+  en: 955ed36f58b0a5c4
+  zh: 65b2f0ddc1154be4
+/anotherharness-ah-experimental-claude-code-mods/understand-the-implementation/source-map:
+  en: a141066b146cef7c
+  zh: fe91851f05c008c4
+/anotherharness-ah-experimental-claude-code-mods/further-exploration:
+  en: b3905d96b68a90ad
+  zh: 30438393988230bd
+/anotherharness-ah-experimental-claude-code-mods/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-experimental-claude-code-mods/model-experience/prompt-context-and-submitted-prompts:
+  en: 2e9d6b50a26a5e10
+  zh: d884e62e639cad69
+/anotherharness-ah-experimental-claude-code-mods/model-experience/prompt-context-and-submitted-prompts/what-the-model-sees:
+  en: 6a1d174d923e84f2
+  zh: a27f777d11741880
+/anotherharness-ah-experimental-claude-code-mods/model-experience/prompt-context-and-submitted-prompts/what-the-model-sees/framing-of-a-prompt-a-mod-submits:
+  en: f521d5aba5ab7027
+  zh: 5aa721441103f9a7
+/anotherharness-ah-experimental-claude-code-mods/model-experience/prompt-context-and-submitted-prompts/token-effect:
+  en: 04a7869d92d45eb8
+  zh: 8ddbd20f844dba65
+/anotherharness-ah-experimental-claude-code-mods/model-experience/prompt-context-and-submitted-prompts/kv-cache-effect:
+  en: 75b19101cbd036ff
+  zh: 193106a75b280c73
+/anotherharness-ah-experimental-claude-code-mods/model-experience/tool-outcomes-a-mod-decides:
+  en: fe8166c6d3eb962a
+  zh: 5f8fe74778a78166
+/anotherharness-ah-experimental-claude-code-mods/model-experience/tool-outcomes-a-mod-decides/what-the-model-sees:
+  en: 5b4aa2a1ec36106b
+  zh: c28c286f2a04d716
+/anotherharness-ah-experimental-claude-code-mods/model-experience/tool-outcomes-a-mod-decides/token-effect:
+  en: cbf27f737c6254e6
+  zh: 333cbb22f97f8955
+/anotherharness-ah-experimental-claude-code-mods/model-experience/tool-outcomes-a-mod-decides/kv-cache-effect:
+  en: ca31263f47f654d9
+  zh: 17d55e6641705627
+/anotherharness-ah-experimental-claude-code-mods/known-limitations-and-deferred-work:
+  en: e40cec81a3554cd7
+  zh: f326d20760ac2e7f
+/anotherharness-ah-experimental-claude-code-mods/known-limitations-and-deferred-work/dev-note:
+  en: 4d1e26f4cc9c3c1c
+  zh: d80209b56c56b11c

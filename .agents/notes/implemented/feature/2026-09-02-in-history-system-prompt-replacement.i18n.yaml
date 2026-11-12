@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for 2026-09-02-in-history-system-prompt-replacement.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-09-02-in-history-system-prompt-replacement.md
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes:
+  en: 28fdf1e3d6e53625
+  zh: 0b44563b652ff1b4
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/problem:
+  en: 179f0c4c6eed419f
+  zh: 8197140a315f8ae8
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/decision:
+  en: 03d2a06eb12014c9
+  zh: 95d45b307264e2d3
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/decision/capability:
+  en: 7b65ff771e7de4e3
+  zh: c33041b37bb3b684
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/decision/the-decision-rule:
+  en: 554d01427ebebee1
+  zh: 664c9bf0a9337a04
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/decision/presentation-and-accounting:
+  en: b7d648eea38e43e4
+  zh: cc6a7b7053560f14
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/decision/compaction:
+  en: c21a3e7a773860e5
+  zh: 566669e245ccdbaf
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/alternatives-considered:
+  en: f3dec242b2550529
+  zh: 0397fa07cc1806bb
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/consequences:
+  en: beda064bcd194a2a
+  zh: 8a3bb81d5edcd60a
+/agent-note-in-history-system-prompt-replacement-for-cache-stable-prompt-changes/testing:
+  en: 7223d3249696682f
+  zh: 7e9259921e9c6259

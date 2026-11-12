@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-settings-models/README.md
+/:
+  en: 75ee36015ab7a0c6
+  zh: 3cd6787c4b0e4832
+/anotherharness-ah-client-ui-settings-models:
+  en: b23f58b3a8d1b86b
+  zh: 294ad96974566f50
+/anotherharness-ah-client-ui-settings-models/summary:
+  en: 139edacc40240d2f
+  zh: 5ab2146ae3282b31
+/anotherharness-ah-client-ui-settings-models/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-settings-models/use-this-package:
+  en: b772a58001f747f9
+  zh: 78697bc691e86178
+/anotherharness-ah-client-ui-settings-models/use-this-package/api-keys:
+  en: c2f2a5c06ef20d5b
+  zh: 49a7eb0b66b4ed53
+/anotherharness-ah-client-ui-settings-models/use-this-package/editing-a-provider:
+  en: ec0ba62a4e7185b4
+  zh: 37d1e1e7a3817d12
+/anotherharness-ah-client-ui-settings-models/use-this-package/adding-and-deleting-providers:
+  en: 9d533c65c82cd4a4
+  zh: 0a5da334e127c035
+/anotherharness-ah-client-ui-settings-models/use-this-package/first-run-dialogs:
+  en: 589397a35f82244e
+  zh: 342fbceee2c173a2
+/anotherharness-ah-client-ui-settings-models/use-this-package/extension-slots:
+  en: 65e9d8822b67b6c2
+  zh: 7e83be9defda28ee
+/anotherharness-ah-client-ui-settings-models/understand-the-implementation:
+  en: a87afbec5e339b36
+  zh: 6348c81af7e650e1
+/anotherharness-ah-client-ui-settings-models/understand-the-implementation/validation:
+  en: 26814b073804d04a
+  zh: a33d7252dddd7d55
+/anotherharness-ah-client-ui-settings-models/understand-the-implementation/concurrency-and-credentials:
+  en: 6e04c00818f014cd
+  zh: 2d57f8d8944e67ed
+/anotherharness-ah-client-ui-settings-models/understand-the-implementation/onboarding-coordinator:
+  en: 46dea666dffe8813
+  zh: 6f56fdc365fa3642
+/anotherharness-ah-client-ui-settings-models/further-exploration:
+  en: ffcc53a12f757070
+  zh: 8aec3062c4f5bcda
+/anotherharness-ah-client-ui-settings-models/model-experience:
+  en: 3120df665299c634
+  zh: 1d9f365d091d0d2a
+/anotherharness-ah-client-ui-settings-models/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: 9779c98fff4c949a
+/anotherharness-ah-client-ui-settings-models/known-limitations-and-deferred-work:
+  en: cc69c9934bf22302
+  zh: 4ea896f4b54aa203
+/anotherharness-ah-client-ui-settings-models/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

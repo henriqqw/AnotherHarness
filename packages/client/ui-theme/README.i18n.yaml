@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-theme/README.md
+/:
+  en: 296d7a1d1ef7b6c7
+  zh: 170d0c7a4086e144
+/anotherharness-ah-client-ui-theme:
+  en: d92c48166f8f2fac
+  zh: 6752619865bbae05
+/anotherharness-ah-client-ui-theme/summary:
+  en: 4464de7ad664b314
+  zh: 04e9acddb216d6ce
+/anotherharness-ah-client-ui-theme/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-theme/use-this-package:
+  en: 219aaf8d2eadee85
+  zh: f3bc1a5cfb3bfee5
+/anotherharness-ah-client-ui-theme/use-this-package/appearance-and-font-size:
+  en: 5232d0517dfff80b
+  zh: 72abb7a9c4fa3ebb
+/anotherharness-ah-client-ui-theme/use-this-package/fonts:
+  en: b45d5b48ca799c3a
+  zh: af65514b3759204f
+/anotherharness-ah-client-ui-theme/use-this-package/registering-a-theme:
+  en: 2cd32ccaba33b3e9
+  zh: 53ea78d19929ea02
+/anotherharness-ah-client-ui-theme/use-this-package/pre-plugin-palette:
+  en: 76ea7ea667e4b73a
+  zh: 1900a48a8bf04050
+/anotherharness-ah-client-ui-theme/understand-the-implementation:
+  en: 1b30b6589fb55707
+  zh: 852b80dfac1011c7
+/anotherharness-ah-client-ui-theme/understand-the-implementation/stylesheets:
+  en: 7b8b051bcca836dd
+  zh: c65f19f1070d149e
+/anotherharness-ah-client-ui-theme/understand-the-implementation/scrollbar-rebinding:
+  en: 8ad7102ba635b1dc
+  zh: d303fca522ba2266
+/anotherharness-ah-client-ui-theme/understand-the-implementation/preference-persistence:
+  en: a14b697963a87bc6
+  zh: 209d036b0f8c8416
+/anotherharness-ah-client-ui-theme/further-exploration:
+  en: 3c2e46d624abd2de
+  zh: 1ed0d5a11b2fb616
+/anotherharness-ah-client-ui-theme/model-experience:
+  en: 3120df665299c634
+  zh: 1d9f365d091d0d2a
+/anotherharness-ah-client-ui-theme/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-theme/known-limitations-and-deferred-work:
+  en: 0d328dbced31a041
+  zh: 2951de356ba6bb82
+/anotherharness-ah-client-ui-theme/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-14-web-document-relative-app-routes.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-14-web-document-relative-app-routes.md
+/agent-note-web-app-owned-routes-are-document-relative:
+  en: 4aef47a6171e0ce0
+  zh: 80ac067735415b16
+/agent-note-web-app-owned-routes-are-document-relative/problem:
+  en: 2b218b4c924a9b18
+  zh: 4f7c6510d48fb6ce
+/agent-note-web-app-owned-routes-are-document-relative/decision:
+  en: fad904c8f53854aa
+  zh: d759b3d885a4c32f
+/agent-note-web-app-owned-routes-are-document-relative/alternatives-considered:
+  en: 14cd7d83f28ef818
+  zh: 5a429ab09dae43e5
+/agent-note-web-app-owned-routes-are-document-relative/consequences:
+  en: e3601f867e8c1825
+  zh: 5c7ba5acb63a98a3
+/agent-note-web-app-owned-routes-are-document-relative/testing:
+  en: 3845fc2e126b858c
+  zh: 5a63b358be90e565

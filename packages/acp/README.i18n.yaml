@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/acp/README.md
+/:
+  en: 911abc3a94d688a1
+  zh: 1d7f8c7aa14c5767
+/acp-agent-client-protocol-automation:
+  en: cfce0f68b212db83
+  zh: fe19c5440a8a9225
+/acp-agent-client-protocol-automation/summary:
+  en: ca3736ae07383143
+  zh: 29fe346ade6df366
+/acp-agent-client-protocol-automation/table-of-contents:
+  en: 1eb35b015a6c423f
+  zh: a8a3dceee2c9e943
+/acp-agent-client-protocol-automation/packages:
+  en: 1f945cef76a798ae
+  zh: 67ddb8bb6b21390e
+/acp-agent-client-protocol-automation/related-documentation:
+  en: 3770ef3ed8187e25
+  zh: 1c8504b1836bbd6b
+/acp-agent-client-protocol-automation/dev-note:
+  en: b75c8458928b72b9
+  zh: 003ba4e17b4b5269

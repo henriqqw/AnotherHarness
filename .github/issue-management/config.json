@@ -1,0 +1,19 @@
+{
+  "organization": "another-harness",
+  "repository": "another-harness",
+  "projectNumber": 1,
+  "projectTitle": "AH Issue Management",
+  "lifecycleActor": "ah-issue-management",
+  "priorityField": "Priority",
+  "startDateField": "Start Date",
+  "projectTimeZone": "Asia/Shanghai",
+  "statuses": [
+    "Inbox",
+    "Backlog",
+    "Ready",
+    "In progress",
+    "In review",
+    "Done",
+    "No action"
+  ]
+}

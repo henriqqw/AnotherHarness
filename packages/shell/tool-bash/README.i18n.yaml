@@ -1,0 +1,127 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/shell/tool-bash/README.md
+/:
+  en: aa0f6a31440050d2
+  zh: 388fc575115b9a4f
+/anotherharness-ah-tool-bash:
+  en: 6b93db6e56c3cec5
+  zh: c5d458d9754a3e80
+/anotherharness-ah-tool-bash/summary:
+  en: 7e69fe4d85823bb5
+  zh: 28f0ec8cd59c98fe
+/anotherharness-ah-tool-bash/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-tool-bash/use-this-package:
+  en: e34fb085b3fec091
+  zh: ec2241bfb9f529fd
+/anotherharness-ah-tool-bash/use-this-package/minimal-configuration:
+  en: 2c44c5b95b8b742a
+  zh: 114fb782bc98216d
+/anotherharness-ah-tool-bash/use-this-package/running-a-command:
+  en: 7610fa7c373e339a
+  zh: e3001ca072f53734
+/anotherharness-ah-tool-bash/use-this-package/running-long-commands-in-the-background:
+  en: 583d852e8cc46a84
+  zh: f17e5567665476d2
+/anotherharness-ah-tool-bash/use-this-package/foreground-commands-as-jobs:
+  en: 5eef538028ca60d6
+  zh: dc1c8ec24c81d2ca
+/anotherharness-ah-tool-bash/use-this-package/sandboxed-execution-and-escalation:
+  en: 6c838d9f47e9461a
+  zh: 733eb07e2a414919
+/anotherharness-ah-tool-bash/use-this-package/what-can-go-wrong:
+  en: 3d7e7934b2823e46
+  zh: acc064d0a4f9b83b
+/anotherharness-ah-tool-bash/understand-the-implementation:
+  en: 165313776a851b51
+  zh: 828f48807036aff0
+/anotherharness-ah-tool-bash/understand-the-implementation/design-philosophy:
+  en: b63b14f07a85b45f
+  zh: 2ea8219dbecf2e62
+/anotherharness-ah-tool-bash/understand-the-implementation/source-map:
+  en: 0547d68864628d08
+  zh: 5adb79f945b17a0d
+/anotherharness-ah-tool-bash/understand-the-implementation/request-resolution:
+  en: 56dae7757fab0a79
+  zh: 7930235dc0490c73
+/anotherharness-ah-tool-bash/understand-the-implementation/rendering-story:
+  en: d62569260279749a
+  zh: f74f9a59ce66ae89
+/anotherharness-ah-tool-bash/further-exploration:
+  en: 08cf6fbd8a4e54ac
+  zh: 16e49032bb571b52
+/anotherharness-ah-tool-bash/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-bash/model-experience/system-prompt:
+  en: cf78b9dd5596495f
+  zh: bd44560f8c2435e8
+/anotherharness-ah-tool-bash/model-experience/system-prompt/what-the-model-sees:
+  en: f8173d0103e0c6b6
+  zh: ed8b92539ee74156
+/anotherharness-ah-tool-bash/model-experience/system-prompt/what-the-model-sees/bash-guidance:
+  en: 2d65d6ca9b82df1d
+  zh: 016a14eee33eba62
+/anotherharness-ah-tool-bash/model-experience/system-prompt/token-effect:
+  en: a38d59e3e6d8a1c9
+  zh: 96d60abecd38307b
+/anotherharness-ah-tool-bash/model-experience/system-prompt/kv-cache-effect:
+  en: 06f29b209347522f
+  zh: 4dd39a5a3b738c59
+/anotherharness-ah-tool-bash/model-experience/tool-schemas:
+  en: 3039bc5e7a796b21
+  zh: 6b7a9eaf69c9ea53
+/anotherharness-ah-tool-bash/model-experience/tool-schemas/what-the-model-sees:
+  en: d985092b46fa6e44
+  zh: f724274938ffbc4f
+/anotherharness-ah-tool-bash/model-experience/tool-schemas/token-effect:
+  en: cdbd4262314e6856
+  zh: e8c12c0cf5492386
+/anotherharness-ah-tool-bash/model-experience/tool-schemas/kv-cache-effect:
+  en: 8b821a8b34948af9
+  zh: 858244c080bfc5cb
+/anotherharness-ah-tool-bash/model-experience/foreground-result:
+  en: d83f1f25a3719c54
+  zh: 445ca808e28dc936
+/anotherharness-ah-tool-bash/model-experience/foreground-result/what-the-model-sees:
+  en: 5caadc8b09272bcf
+  zh: cb04776f6a3dca00
+/anotherharness-ah-tool-bash/model-experience/foreground-result/token-effect:
+  en: b2018adbda15b8a7
+  zh: 79521073a45c7f80
+/anotherharness-ah-tool-bash/model-experience/foreground-result/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 31911b4f3506d6c8
+/anotherharness-ah-tool-bash/model-experience/background-job-context-and-results:
+  en: 38ce70c1818a5694
+  zh: ed3ad10f12ed1b8e
+/anotherharness-ah-tool-bash/model-experience/background-job-context-and-results/what-the-model-sees:
+  en: 101af8daaf081dc8
+  zh: f720a4750f55fb88
+/anotherharness-ah-tool-bash/model-experience/background-job-context-and-results/token-effect:
+  en: 3a0d2d43640158d6
+  zh: 45ae711aedaa1d41
+/anotherharness-ah-tool-bash/model-experience/background-job-context-and-results/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 31911b4f3506d6c8
+/anotherharness-ah-tool-bash/model-experience/tool-errors:
+  en: 2d4f2c8605eccab3
+  zh: 67f1f0218f73c6bf
+/anotherharness-ah-tool-bash/model-experience/tool-errors/what-the-model-sees:
+  en: 6a189907cb38063a
+  zh: 6f05650a3bfd94a3
+/anotherharness-ah-tool-bash/model-experience/tool-errors/token-effect:
+  en: a3a78ef476ec5e56
+  zh: dd2c8ad0f69e8ff1
+/anotherharness-ah-tool-bash/model-experience/tool-errors/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 31911b4f3506d6c8
+/anotherharness-ah-tool-bash/known-limitations-and-deferred-work:
+  en: 78261406468e07fe
+  zh: e75eac343b0eb74e
+/anotherharness-ah-tool-bash/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

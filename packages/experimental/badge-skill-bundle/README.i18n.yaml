@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/badge-skill-bundle/README.md
+/:
+  en: cfc1ea3ffb7ca96f
+  zh: 3d594cf37851dd2c
+/anotherharness-ah-experimental-badge-skill-bundle:
+  en: 7069671c751acc98
+  zh: bb450ce3ea681df9
+/anotherharness-ah-experimental-badge-skill-bundle/summary:
+  en: 04a0f0870c6f74b8
+  zh: edfed50c5069eb41
+/anotherharness-ah-experimental-badge-skill-bundle/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 988e839059414d27
+/anotherharness-ah-experimental-badge-skill-bundle/use-this-package:
+  en: d600c1e7f7b6cb33
+  zh: ce8cf5d352548bc9
+/anotherharness-ah-experimental-badge-skill-bundle/understand-the-implementation:
+  en: 5dbc249064fb5b59
+  zh: 4a064916fa7d568e
+/anotherharness-ah-experimental-badge-skill-bundle/further-exploration:
+  en: a62a0af9b03879c4
+  zh: 244ff6deb33cbaf4
+/anotherharness-ah-experimental-badge-skill-bundle/model-experience:
+  en: 6586823eaff88c3c
+  zh: e2b449cd8d30083b
+/anotherharness-ah-experimental-badge-skill-bundle/model-experience/kv-cache-effect:
+  en: 1b2209bbbf869b1a
+  zh: 5b9de62271343e4e
+/anotherharness-ah-experimental-badge-skill-bundle/known-limitations-and-deferred-work:
+  en: 6c6e181ad900ece5
+  zh: 4d6063075f1ee8a6
+/anotherharness-ah-experimental-badge-skill-bundle/known-limitations-and-deferred-work/dev-note:
+  en: 279d01435256cd2a
+  zh: 83780964e5de2f54

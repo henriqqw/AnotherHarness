@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for session.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/session.md
+/sessions:
+  en: e0a207d7a1018b4d
+  zh: 95d1f16228fcb0a9
+/sessions/sessioneventmap-the-event-vocabulary:
+  en: 413a2b18298d67ae
+  zh: 24744b336a5f8b0f
+/sessions/sessioneventmap-the-event-vocabulary/the-request-header-event-request-header:
+  en: abf5870ec2470962
+  zh: 97557951a14962d5
+/sessions/sessioneventmap-the-event-vocabulary/the-route-capacity-event-request-context:
+  en: dbb2950b12c5b414
+  zh: b05018419c662278
+/sessions/sessionevent-t-one-log-entry:
+  en: 622d333d9d903795
+  zh: fdc9ee663330f01e
+/sessions/surface-types:
+  en: 377310bb7ae5024f
+  zh: 0b29de2df70d1b5c
+/sessions/surface-types/surfaceeventtype-the-message-producing-subset-of-event-types:
+  en: 2f1b6a16a4ee7cc1
+  zh: 7f16b568c4aa940f
+/sessions/surface-types/surfaceop-how-an-event-entered-the-surface:
+  en: 8fcc967516a13692
+  zh: d3978d3b8d02c566
+/sessions/surface-types/surfaceintent-the-parameter-to-session-append:
+  en: cd7da7e9f8c9d7fc
+  zh: d2843feb3f8ed748
+/sessions/surface-types/plugin-owned-message-projections:
+  en: 61e240a51207c8e7
+  zh: 8fd4c49b4abbe8f3
+/sessions/surface-types/sessionsurface-the-live-readonly-surface-projection:
+  en: 350259099d8d60c9
+  zh: 7b25db461748c04e
+/sessions/surface-types/surfacefoldreplacement-and-surfacefoldresult-a-complete-surface-replay:
+  en: 13820e0611b2e141
+  zh: 2aafb1e5e3dc42f6
+/sessions/session-public-api:
+  en: 04e9982948d9560d
+  zh: 221961cadebc6fb1
+/sessions/derived-history-derivemessages-and-deriveeventmessage:
+  en: 45d1a9ee6d610ac5
+  zh: 79c061252fde4ceb
+/sessions/live-session-fork-api:
+  en: 5312fcccab6a91bb
+  zh: dce2c611bdb528ce
+/sessions/why-a-turn-ended-turnendreasonmap:
+  en: 50c0158dd6ac62d7
+  zh: 7be2232106d7f965
+/sessions/execution-enclosure-and-standalone-events:
+  en: 4507c0e7d82da8a3
+  zh: de787a50f797d644
+/sessions/the-end-seed-boundary-session-end-seed:
+  en: 63b4059793255ca3
+  zh: 6bc7891c320249f4
+/sessions/plugin-contributed-log-only-events:
+  en: 30f71550ebd1c678
+  zh: cc25bd93405dd867
+/sessions/plugin-contributed-log-only-events/plugin-records:
+  en: 0e8f569db754133b
+  zh: 41e8abf1f16911d2
+/sessions/durability-contract:
+  en: 7e64dc3d8f030a74
+  zh: bdf0ebb3f49973c8
+/sessions/remote-catalog-and-workspace-opening:
+  en: dd27307e0d7c893c
+  zh: b77d2a749b7b641c

@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/llm/plugin-package-inventory-deepseek/README.md
+/:
+  en: e10b56fe6b85f93b
+  zh: 7e5d4b03db35a436
+/anotherharness-ah-plugin-package-inventory-deepseek:
+  en: 51b5efc246ba818b
+  zh: e2c05c9c4365da56
+/anotherharness-ah-plugin-package-inventory-deepseek/summary:
+  en: db3fdfa9a4c885db
+  zh: ac61430cde4bea4c
+/anotherharness-ah-plugin-package-inventory-deepseek/table-of-contents:
+  en: 13227fb47b30946f
+  zh: 97fe1dca5445d22a
+/anotherharness-ah-plugin-package-inventory-deepseek/configuration:
+  en: 6388af1f75fbe8dd
+  zh: c47ebfe44c435c60
+/anotherharness-ah-plugin-package-inventory-deepseek/collection:
+  en: 6396094f07858e01
+  zh: d429445e201b4867
+/anotherharness-ah-plugin-package-inventory-deepseek/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-plugin-package-inventory-deepseek/model-experience/package-inventory-metadata:
+  en: 8404d42a8da26f33
+  zh: b02b147c99b2d7eb
+/anotherharness-ah-plugin-package-inventory-deepseek/model-experience/package-inventory-metadata/what-the-model-sees:
+  en: 899acd37423a8d20
+  zh: e173df966c3e820b
+/anotherharness-ah-plugin-package-inventory-deepseek/model-experience/package-inventory-metadata/token-effect:
+  en: 0f65cf393a8ea010
+  zh: ed89ff386373899d
+/anotherharness-ah-plugin-package-inventory-deepseek/model-experience/package-inventory-metadata/kv-cache-effect:
+  en: 6dc3e97d0281180a
+  zh: 7abe4d4b128ef32d
+/anotherharness-ah-plugin-package-inventory-deepseek/known-limitations-and-deferred-work:
+  en: cf2f28daf83bb4a8
+  zh: 3e18c67cea5e0ece
+/anotherharness-ah-plugin-package-inventory-deepseek/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

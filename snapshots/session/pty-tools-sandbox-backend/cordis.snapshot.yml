@@ -1,0 +1,26 @@
+# Keyless replay counterpart to pty.cordis.yml.
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  disabled: true
+
+- insert:
+    - id: pty
+      name: '@anotherharness/ah-terminal'
+    - id: pty-snapshot-backend
+      name: './pty-snapshot-backend.mjs'
+    - id: tool-terminal
+      name: '@anotherharness/ah-tool-terminal'
+      config:
+        maxResultBytes: 64
+    - id: llm-replay
+      name: '@anotherharness/ah-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-flash
+              - id: deepseek-v4-pro
+
+- id: plugin-package-inventory-deepseek
+  disabled: true

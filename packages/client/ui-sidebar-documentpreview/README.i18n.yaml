@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-sidebar-documentpreview/README.md
+/:
+  en: ef50065f5ff17aa1
+  zh: ee5d2b7986739fca
+/anotherharness-ah-client-ui-sidebar-documentpreview:
+  en: 1329d850bf27e25b
+  zh: 9576bd35757794bb
+/anotherharness-ah-client-ui-sidebar-documentpreview/summary:
+  en: a74c16667d0baada
+  zh: 4fd709ff9f98b84f
+/anotherharness-ah-client-ui-sidebar-documentpreview/table-of-contents:
+  en: 0dd8c3a22e28aacf
+  zh: c27c11bf4b5cceba
+/anotherharness-ah-client-ui-sidebar-documentpreview/what-it-registers:
+  en: 4a779d957139a659
+  zh: 09b91f6dc5c922cc
+/anotherharness-ah-client-ui-sidebar-documentpreview/addresses:
+  en: f497807cb8172a7f
+  zh: d461c4412b6464f1
+/anotherharness-ah-client-ui-sidebar-documentpreview/how-it-reads:
+  en: ebeb5b0aa7898f9d
+  zh: 8ad200ff08b32a4a
+/anotherharness-ah-client-ui-sidebar-documentpreview/excel-preview:
+  en: 4428cdeb452c87b6
+  zh: 92f1979acfecae57
+/anotherharness-ah-client-ui-sidebar-documentpreview/office-preview:
+  en: 92cb205ff0b084d8
+  zh: 85473e32168b91f9
+/anotherharness-ah-client-ui-sidebar-documentpreview/navigation:
+  en: 5cd81a7b3cdc83bd
+  zh: 4cdd1b7ede497925
+/anotherharness-ah-client-ui-sidebar-documentpreview/model-experience:
+  en: ca1deb99d0e44755
+  zh: f285fc56cee669ec
+/anotherharness-ah-client-ui-sidebar-documentpreview/model-experience/kv-cache-effect:
+  en: 7edb4c0bb5f13847
+  zh: ae5d0bbebe4aa563
+/anotherharness-ah-client-ui-sidebar-documentpreview/known-limitations-and-deferred-work:
+  en: c0fea1143fd40964
+  zh: f90bee4e988a0b8e
+/anotherharness-ah-client-ui-sidebar-documentpreview/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/goal/goal/README.md
+/:
+  en: 6509c63744950c59
+  zh: b7d4e056e0591155
+/anotherharness-ah-goal:
+  en: 501595c1747ca702
+  zh: 2c8941dd229c6589
+/anotherharness-ah-goal/summary:
+  en: 86e2c006db597e09
+  zh: c45519887065cd0a
+/anotherharness-ah-goal/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-goal/use-this-package:
+  en: 039c20f1ff7b06eb
+  zh: afb4647144dc1323
+/anotherharness-ah-goal/use-this-package/when-to-use-it:
+  en: 44fbecf68641514a
+  zh: afa1720f5128cf1b
+/anotherharness-ah-goal/use-this-package/set-up-the-service:
+  en: 5ae26ae4ee47f874
+  zh: d9cac6c22be5e17b
+/anotherharness-ah-goal/use-this-package/session-projection:
+  en: 9f91c478488f37d8
+  zh: 11b2e62ab5d82bae
+/anotherharness-ah-goal/use-this-package/drive-the-lifecycle:
+  en: 622890ced87a44e9
+  zh: 6ba1f3f872400452
+/anotherharness-ah-goal/use-this-package/what-survives-and-what-does-not:
+  en: e5cd2097500a9027
+  zh: 3ecae388f839c944
+/anotherharness-ah-goal/use-this-package/observing-a-goal:
+  en: 3074e4c76de81d22
+  zh: 10134afe344dafb3
+/anotherharness-ah-goal/understand-the-implementation:
+  en: 592af7e68423bd1c
+  zh: 9b1f08393db1b14e
+/anotherharness-ah-goal/understand-the-implementation/design:
+  en: 6f19e891ffc79754
+  zh: 9599e3b142f1e6b5
+/anotherharness-ah-goal/understand-the-implementation/source-map:
+  en: aef62dff93f32796
+  zh: dba79da0466218a7
+/anotherharness-ah-goal/understand-the-implementation/events-and-attribution:
+  en: 502cf61dba8b22ca
+  zh: 2b6f672bb2ac84ba
+/anotherharness-ah-goal/further-exploration:
+  en: 276812fe24ae4063
+  zh: 5a7dc53721b79180
+/anotherharness-ah-goal/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-goal/model-experience/goal-state-mutations:
+  en: 6e6274de7991ef9e
+  zh: be2048ca18b3cbab
+/anotherharness-ah-goal/model-experience/goal-state-mutations/what-the-model-sees:
+  en: 7f3f6cf3e85ca188
+  zh: 758596ce93635eab
+/anotherharness-ah-goal/model-experience/goal-state-mutations/token-effect:
+  en: 5c3d2b320679252b
+  zh: 67156a0cec8c8e60
+/anotherharness-ah-goal/model-experience/goal-state-mutations/kv-cache-effect:
+  en: 5fcc49f70cf6604d
+  zh: 39a3ba8fcdfba009
+/anotherharness-ah-goal/known-limitations-and-deferred-work:
+  en: cc312a1845c5250f
+  zh: 065ba75131ec24ca
+/anotherharness-ah-goal/known-limitations-and-deferred-work/dev-note:
+  en: 0b672d0c3b09cd5d
+  zh: 8f5d79353a6e5d63

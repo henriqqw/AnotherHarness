@@ -1,0 +1,137 @@
+{
+  "name": "@anotherharness/ah-subagent",
+  "description": "Abstract subagent seam (ctx.subagents): named-provider registry for delegating to child agents",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/subagent/subagent"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./internal": {
+      "types": "./lib/types/internal.d.ts",
+      "default": "./lib/types/internal.js"
+    },
+    "./client": {
+      "types": "./lib/types/client.d.ts",
+      "default": "./lib/types/client.js"
+    },
+    "./typert": {
+      "types": "./lib/typert.host.d.ts",
+      "default": "./lib/typert.host.js"
+    },
+    "./remote": {
+      "types": "./lib/typert.remote-client.d.ts",
+      "default": "./lib/typert.remote-client.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.js",
+    "lib/types/**/*.d.ts",
+    "lib/typert.host.js",
+    "lib/typert.host.d.ts",
+    "lib/typert.remote-client.js",
+    "lib/typert.remote-client.d.ts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-chunked-list": "workspace:*",
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/schemastery": "workspace:~",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-preset-registry": "workspace:*",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-scope": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-persistence": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/ah-typert-protocol": "workspace:*",
+    "@anotherharness/ah-user-approval": "workspace:*",
+    "@anotherharness/ah-util-time": "workspace:*",
+    "@anotherharness/ah-permission-presets": "workspace:*",
+    "@anotherharness/ah-workspace": "workspace:*",
+    "@anotherharness/ah-working-directory": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@anotherharness/ah-agent-preset-registry": {
+      "optional": true
+    },
+    "@anotherharness/ah-permission-presets": {
+      "optional": true
+    },
+    "@anotherharness/ah-sandbox": {
+      "optional": true
+    },
+    "@anotherharness/ah-sandbox-policy": {
+      "optional": true
+    },
+    "@anotherharness/ah-session-persistence": {
+      "optional": true
+    },
+    "@anotherharness/ah-session-projection": {
+      "optional": true
+    },
+    "@anotherharness/ah-session-query": {
+      "optional": true
+    },
+    "@anotherharness/ah-workspace": {
+      "optional": true
+    },
+    "@anotherharness/ah-user-approval": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-preset-registry": "workspace:*",
+    "@anotherharness/ah-attachment": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-scope": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-session-persistence": "workspace:*",
+    "@anotherharness/ah-session-projection": "workspace:*",
+    "@anotherharness/ah-session-query": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/ah-typert-protocol": "workspace:*",
+    "@anotherharness/ah-user-approval": "workspace:*",
+    "@anotherharness/ah-util-time": "workspace:*",
+    "@anotherharness/ah-permission-presets": "workspace:*",
+    "@anotherharness/ah-workspace": "workspace:*",
+    "@anotherharness/cordis-plugin-include": "workspace:~",
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-agent-loop": "workspace:*",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*",
+    "@anotherharness/ah-fs-sandbox": "workspace:*",
+    "@anotherharness/ah-tool-fs": "workspace:*",
+    "@anotherharness/ah-session-persistence-jsonl": "workspace:*",
+    "@anotherharness/ah-working-directory": "workspace:*"
+  }
+}

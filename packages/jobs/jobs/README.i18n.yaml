@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/jobs/jobs/README.md
+/:
+  en: 4055a3bc920e4ac2
+  zh: 3bc99f3b5bc2fd71
+/anotherharness-ah-jobs:
+  en: 6d8846009eed2f6c
+  zh: 4286a0c5a9f3414c
+/anotherharness-ah-jobs/summary:
+  en: c724b590885a85c4
+  zh: 251f3c994dfc14e5
+/anotherharness-ah-jobs/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-jobs/use-this-package:
+  en: 38f6696f97e091b7
+  zh: da602eff017482ae
+/anotherharness-ah-jobs/use-this-package/what-a-background-job-gives-you:
+  en: 83ba578e5c5578f1
+  zh: 57ef6b8a00080381
+/anotherharness-ah-jobs/use-this-package/the-ownership-boundary:
+  en: 873494750b38dae5
+  zh: 2e6142ab889f7a8b
+/anotherharness-ah-jobs/use-this-package/starting-background-work-needs-a-controller:
+  en: cd9dc84f57006064
+  zh: b01bcdd11fb04643
+/anotherharness-ah-jobs/use-this-package/smallest-working-composition:
+  en: 20bf956c23c26645
+  zh: 978da19cbbc4cc58
+/anotherharness-ah-jobs/use-this-package/what-can-go-wrong:
+  en: fcfee3f72ea703ac
+  zh: 80299901bd44783b
+/anotherharness-ah-jobs/understand-the-implementation:
+  en: 7e13d669ecc96d59
+  zh: b5fe7ae65812d926
+/anotherharness-ah-jobs/understand-the-implementation/design-philosophy:
+  en: 65a4f20a1e307171
+  zh: d163240b43ffa328
+/anotherharness-ah-jobs/understand-the-implementation/source-map:
+  en: d48098f76de74fa9
+  zh: e69cb8e7f316ce95
+/anotherharness-ah-jobs/understand-the-implementation/service-operations:
+  en: dc486eb5257d68b8
+  zh: 16a1940f0c970b75
+/anotherharness-ah-jobs/further-exploration:
+  en: 039014782bb2712f
+  zh: 6ce21398fa35a484
+/anotherharness-ah-jobs/model-experience:
+  en: efb58cac0fc08163
+  zh: 838791f77fd79917
+/anotherharness-ah-jobs/model-experience/kv-cache-effect:
+  en: e290ccc9b3c92c08
+  zh: d75d48f485447a74
+/anotherharness-ah-jobs/known-limitations-and-deferred-work:
+  en: bf4e5e0bd25d579e
+  zh: ed995c02012f0c72
+/anotherharness-ah-jobs/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

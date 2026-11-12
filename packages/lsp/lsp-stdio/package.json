@@ -1,0 +1,55 @@
+{
+  "name": "@anotherharness/ah-lsp-stdio",
+  "description": "Generic stdio language-server provider for the AnotherHarness LSP capability seam (ctx.lsp) — spawns configured servers, translates JSON-RPC, and serves transient-open goToDefinition/findReferences/goToImplementation/hover queries in the host filesystem namespace",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/lsp/lsp-stdio"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-lsp": "workspace:*",
+    "@anotherharness/ah-subprocess": "workspace:*",
+    "@anotherharness/ah-timeout": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/ah-util-values": "workspace:*",
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-brand": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-lsp": "workspace:*",
+    "@anotherharness/ah-subprocess": "workspace:*",
+    "@anotherharness/ah-subprocess-local": "workspace:*",
+    "@anotherharness/ah-timeout": "workspace:*",
+    "typescript": "^6.0.3",
+    "typescript-language-server": "^5.0.0"
+  }
+}

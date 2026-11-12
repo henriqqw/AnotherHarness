@@ -1,0 +1,73 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/web-app/README.md
+/:
+  en: b348915d6117dbe9
+  zh: e84be54d36822b2f
+/anotherharness-ah-web-app:
+  en: 6c90552a3c60539c
+  zh: 65b24356f69f9809
+/anotherharness-ah-web-app/summary:
+  en: 0251f0131af5309d
+  zh: 01890e47d0372add
+/anotherharness-ah-web-app/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-web-app/use-this-package:
+  en: 3bd37b85139d2fa7
+  zh: ba86c807eb83866e
+/anotherharness-ah-web-app/use-this-package/starting-the-web-gui:
+  en: a212a9bb2e50fd25
+  zh: c6c07a205e5a0d1c
+/anotherharness-ah-web-app/use-this-package/configuration:
+  en: de93397fe095b104
+  zh: 4ca8a8339546f665
+/anotherharness-ah-web-app/use-this-package/listening-trust-and-public-deployments:
+  en: 913ac494fb2ed262
+  zh: 40ce0dcefd3b2c4f
+/anotherharness-ah-web-app/use-this-package/running-over-ssh:
+  en: 10a49be196094ae1
+  zh: 4344a335443f590a
+/anotherharness-ah-web-app/use-this-package/per-session-agent-setup:
+  en: 2cc47a6581ad96dd
+  zh: c3eb4a4c7bdd6b75
+/anotherharness-ah-web-app/understand-the-implementation:
+  en: 3a8e5e34855b79c0
+  zh: 6e9b0fc1393dc777
+/anotherharness-ah-web-app/understand-the-implementation/patch-semantics:
+  en: a0d1e6a58b11ed30
+  zh: efb3a8e85b284172
+/anotherharness-ah-web-app/understand-the-implementation/advertised-application-url:
+  en: 4673cb0a996bbfde
+  zh: 9b9e9a48d3508059
+/anotherharness-ah-web-app/understand-the-implementation/readiness:
+  en: 973128fd346869df
+  zh: 54e6792f9f82a192
+/anotherharness-ah-web-app/understand-the-implementation/source-map:
+  en: c4fcb750ca22c412
+  zh: 53372990b4a49cb3
+/anotherharness-ah-web-app/further-exploration:
+  en: 6651085911db0445
+  zh: a8554e241bfaa764
+/anotherharness-ah-web-app/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-web-app/model-experience/harness-source-and-web-surface-context:
+  en: e6febc53efe0f51d
+  zh: 9177816a8678d65d
+/anotherharness-ah-web-app/model-experience/harness-source-and-web-surface-context/what-the-model-sees:
+  en: e1690a444d3bacc3
+  zh: ccf49fad98b001ff
+/anotherharness-ah-web-app/model-experience/harness-source-and-web-surface-context/token-effect:
+  en: 908fc84d6849a830
+  zh: 56fe5e418bab60ba
+/anotherharness-ah-web-app/model-experience/harness-source-and-web-surface-context/kv-cache-effect:
+  en: 1d7d87f54b20b563
+  zh: d150a51615d278e8
+/anotherharness-ah-web-app/known-limitations-and-deferred-work:
+  en: fd9b39010da4196a
+  zh: 7da09e4ec8d6c6b7
+/anotherharness-ah-web-app/known-limitations-and-deferred-work/dev-note:
+  en: 3f81b4f3beb74a0d
+  zh: 2e377ca40822d093

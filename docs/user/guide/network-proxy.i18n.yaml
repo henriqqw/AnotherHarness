@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for network-proxy.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/network-proxy.md
+/run-ah-behind-a-network-proxy:
+  en: feddbd4ed71e0fc2
+  zh: c915d99b812a2416
+/run-ah-behind-a-network-proxy/export-the-variables:
+  en: ffd16d50b14b461b
+  zh: e303a2b59c67a75c
+/run-ah-behind-a-network-proxy/why-your-browser-is-proxied-but-your-terminal-is-not:
+  en: 29f5dd85f6b81005
+  zh: 4ffb956959008663
+/run-ah-behind-a-network-proxy/choose-what-stays-direct:
+  en: 6509e22dd00ce059
+  zh: 164708fa043147eb
+/run-ah-behind-a-network-proxy/limits-worth-knowing:
+  en: 186fd1f46b5089a7
+  zh: 9541ec336ce0c36a
+/run-ah-behind-a-network-proxy/what-stays-direct:
+  en: 5bcb02d1f30901cb
+  zh: f34b660bd3f5cefc
+/run-ah-behind-a-network-proxy/check-that-it-worked:
+  en: 5627b58407457036
+  zh: d18b6765d0bcfe82

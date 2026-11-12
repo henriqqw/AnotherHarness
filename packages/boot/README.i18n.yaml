@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/boot/README.md
+/:
+  en: 33b5977a01de3e28
+  zh: ca80faea99ea9ee6
+/boot-shared-app-bin-boot-glue:
+  en: bb9956848f69e758
+  zh: 825e21f4c2ebae57
+/boot-shared-app-bin-boot-glue/summary:
+  en: 444512f85b296a2c
+  zh: a30cddc443061060
+/boot-shared-app-bin-boot-glue/table-of-contents:
+  en: 09848f4d056e4fc1
+  zh: 8df6139cff0288f6
+/boot-shared-app-bin-boot-glue/packages:
+  en: 297e9b6931ac384f
+  zh: a8518e3a7cc0c635
+/boot-shared-app-bin-boot-glue/related-documentation:
+  en: 1cc87fe17d4a060b
+  zh: 70af714c3d9c98f6
+/boot-shared-app-bin-boot-glue/dev-note:
+  en: b75c8458928b72b9
+  zh: 003ba4e17b4b5269

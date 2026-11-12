@@ -1,0 +1,64 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/headless/README.md
+/:
+  en: 00c69dc2c4508274
+  zh: b10ffc867afd71bb
+/anotherharness-ah-headless:
+  en: f801704cb013d1cb
+  zh: aa68c50edf99161d
+/anotherharness-ah-headless/summary:
+  en: 4ae75cf3f4dd2c34
+  zh: d130b5a4ee8f6ab5
+/anotherharness-ah-headless/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-headless/use-this-package:
+  en: 4447012f4c84100d
+  zh: faf579ae9f04c096
+/anotherharness-ah-headless/use-this-package/running-a-one-shot-task:
+  en: 530d0629a9047589
+  zh: a0207c51d4deb418
+/anotherharness-ah-headless/use-this-package/choosing-the-session-identity:
+  en: dbaa2fac63910a4c
+  zh: 4fd5c17815ca444b
+/anotherharness-ah-headless/use-this-package/machine-readable-output:
+  en: 8ebe3e1f6dbc96cf
+  zh: 6261a9e3f9b9b49f
+/anotherharness-ah-headless/use-this-package/when-to-use-it:
+  en: e3dd531b7b895ad7
+  zh: 7254f24c1a30b092
+/anotherharness-ah-headless/use-this-package/help-and-task-errors:
+  en: 9c498c853bd10e95
+  zh: d67d2bf2257706d6
+/anotherharness-ah-headless/understand-the-implementation:
+  en: be1b73a6d0ee3902
+  zh: bdba099685d68b27
+/anotherharness-ah-headless/understand-the-implementation/run-flow:
+  en: e03b4c5cf19dd45b
+  zh: 914fe32c26aab04b
+/anotherharness-ah-headless/understand-the-implementation/patch-surface-over-base:
+  en: 70c8b9b7afa10d79
+  zh: e37d51cf0cd59dd9
+/anotherharness-ah-headless/understand-the-implementation/exit-mapping:
+  en: 1f4be3cbf728fd97
+  zh: 698f5bfe916c7b9e
+/anotherharness-ah-headless/understand-the-implementation/source-map:
+  en: 47b2913515836d05
+  zh: bf76e0595396e2cb
+/anotherharness-ah-headless/further-exploration:
+  en: 4c48c45ef11e4604
+  zh: 9c0318b9a1131c67
+/anotherharness-ah-headless/model-experience:
+  en: c5a0991833f64dd7
+  zh: 46f9feb255778f11
+/anotherharness-ah-headless/model-experience/kv-cache-effect:
+  en: 0b0f74b412c7c6d8
+  zh: 6e8f918d0c4bf342
+/anotherharness-ah-headless/known-limitations-and-deferred-work:
+  en: ff94d80528e30aea
+  zh: 4bc05853a47fe636
+/anotherharness-ah-headless/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

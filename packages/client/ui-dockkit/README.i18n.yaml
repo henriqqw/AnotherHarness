@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-dockkit/README.md
+/:
+  en: 1aad309e94a497a3
+  zh: 0532009187eedb7a
+/anotherharness-ah-client-ui-dockkit:
+  en: 276c390c29448d78
+  zh: c4540db7db7f2b97
+/anotherharness-ah-client-ui-dockkit/summary:
+  en: 3ee4584a73215ef4
+  zh: 051170a6d0993fa5
+/anotherharness-ah-client-ui-dockkit/table-of-contents:
+  en: 42038fdc402b9c2a
+  zh: 99890f8f908624ce
+/anotherharness-ah-client-ui-dockkit/the-two-layers:
+  en: ea872ff2c2089037
+  zh: b3ec3a218eacd5c8
+/anotherharness-ah-client-ui-dockkit/embedding-it:
+  en: 47b9852393643b6a
+  zh: ce5f2ab60eec9564
+/anotherharness-ah-client-ui-dockkit/interaction-rules-worth-keeping:
+  en: 7e5c1e9a9f9f244f
+  zh: 7e3a8fcef86bc7dd
+/anotherharness-ah-client-ui-dockkit/build-shape:
+  en: 21216ba5798d7f5f
+  zh: ac505fdcd5c114d4
+/anotherharness-ah-client-ui-dockkit/model-experience:
+  en: cdebb91645623401
+  zh: fe262db316714fa8
+/anotherharness-ah-client-ui-dockkit/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: f57cc48a1b5cbfa9
+/anotherharness-ah-client-ui-dockkit/known-limitations-and-deferred-work:
+  en: 4323810ca5a87e6c
+  zh: 3a24af2ea4467ab7
+/anotherharness-ah-client-ui-dockkit/known-limitations-and-deferred-work/dev-note:
+  en: 9e6798ea7623abd0
+  zh: 4be1e5aaa288d431

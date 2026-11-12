@@ -1,0 +1,54 @@
+{
+  "name": "@anotherharness/ah-host-directory-picker-auto",
+  "description": "Adaptive chooser of the directory-picker seam: resolves the host situation at boot and mounts the native or browse backend for the AnotherHarness web GUI host",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/host/directory-picker-auto"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-ui-directory-picker-browse": "workspace:*",
+    "@anotherharness/ah-client-ui-directory-picker-native": "workspace:*",
+    "@anotherharness/ah-host-directory-picker-browse": "workspace:*",
+    "@anotherharness/ah-host-directory-picker-native": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/cordis-plugin-include": "workspace:~",
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-client-ui-directory-picker-browse": "workspace:*",
+    "@anotherharness/ah-client-ui-directory-picker-native": "workspace:*",
+    "@anotherharness/ah-host-directory-picker": "workspace:*",
+    "@anotherharness/ah-host-directory-picker-browse": "workspace:*",
+    "@anotherharness/ah-host-directory-picker-native": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*"
+  },
+  "dependencies": {
+    "@anotherharness/ah-launch-environment": "workspace:*"
+  }
+}

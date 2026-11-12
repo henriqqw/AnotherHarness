@@ -1,0 +1,52 @@
+# Replay-only patch layered after `cordis.yml`: replace the network adapter
+# with recorded JSONL, pin the recorded top-level model, and keep persistence
+# raw for fixture harvesting.
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  disabled: true
+
+- id: acp
+  name: '@anotherharness/ah-acp'
+  config:
+    provider: deepseek-official
+    model: deepseek-v4-flash
+
+- id: session-persistence-jsonl
+  name: '@anotherharness/ah-session-persistence-jsonl'
+  config:
+    root: !!js process.env.AH_SNAPSHOT_SESSIONS_ROOT ?? ahHomePath('sessions')
+    compression: none
+
+- id: sandbox
+  name: '@anotherharness/ah-sandbox-local'
+  config:
+    runnerCommand:
+      - bash
+      - -c
+      - while [ "$1" != "--" ]; do shift; done; shift; exec "$@"
+      - passthrough-runner
+    runnerFailureSignatures:
+      - 'passthrough-runner: profile rejected'
+
+- insert:
+    - id: llm-replay
+      name: '@anotherharness/ah-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-flash
+              - id: deepseek-v4-pro
+
+    - id: subagent-settlement-marker
+      name: './subagent-settlement-marker.ts'
+
+- insert:
+    - id: snapshot-shell-path
+      name: ../../../scripts/snapshot-shell-path.ts
+      config:
+        command: "printf 'escalated\\n' > /tmp/ah-escalated.txt && cat /tmp/ah-escalated.txt && rm /tmp/ah-escalated.txt"
+        recordedPath: /tmp/ah-escalated.txt
+        livePath: !!js process.env.AH_SNAPSHOT_SPILL_ROOT + '/ah-escalated.txt'

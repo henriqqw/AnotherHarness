@@ -1,0 +1,20 @@
+# Keyless TypeScript SDK replay patch over the live profile patch.
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  disabled: true
+
+- insert:
+    - id: llm-replay
+      name: '@anotherharness/ah-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-flash
+
+- id: session-log-deepseek
+  name: '@anotherharness/ah-session-log-deepseek'
+  config:
+    enabled: true

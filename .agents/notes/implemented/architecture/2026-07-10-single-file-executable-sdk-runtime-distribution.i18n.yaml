@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for 2026-07-10-single-file-executable-sdk-runtime-distribution.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-07-10-single-file-executable-sdk-runtime-distribution.md
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe:
+  en: 11c521be78d755b5
+  zh: f1962bf560946154
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/problem:
+  en: e76a373751b33cc7
+  zh: 002589a3ba02d60a
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision:
+  en: a15c7c13f167e5ac
+  zh: 63bcc2ef60c2f344
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/packaging-route-yao-pkg-pkg-s-sea-mode:
+  en: ad79eace49a93818
+  zh: 0bafb18887a4131b
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/the-serving-interface-is-a-plugin-inside-the-ah-application:
+  en: 4ba765c2b11d1560
+  zh: 72848666b3788b91
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/plugin-resolution-the-vfs-holds-a-real-package-tree-the-closure-manifest-is-the-deploy-root:
+  en: 6d0235fc79d90965
+  zh: 155bd07ff3dca6c8
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/build-pipeline-and-artifacts:
+  en: d117fc7452821137
+  zh: a72d16cb1960c7eb
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/python-sdk-distribution-two-carriers-exe-for-production-node-for-development:
+  en: 88ccd1b3449c6777
+  zh: b3a91ef4f8e0864e
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/decision/naming-lineage:
+  en: f0e09b993faefa51
+  zh: 2dabbcfc6718dcfb
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/packaged-workflow-and-code-execution:
+  en: 97efb71f762f3b8c
+  zh: bc6e61a7c26297f3
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/testing:
+  en: 4c32bdbc89934c26
+  zh: 5886591cc694e782
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/alternatives-considered:
+  en: 50d965ca81a401ba
+  zh: 0c6296245b97b9ac
+/agent-note-single-file-executable-sdk-runtime-distribution-single-exe/consequences:
+  en: 601a72b3a7a91fe4
+  zh: 5baaa866e789923e

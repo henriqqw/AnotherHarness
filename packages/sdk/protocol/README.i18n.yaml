@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/sdk/protocol/README.md
+/:
+  en: f7e65364dfe462b8
+  zh: 20d2b8f84f10f681
+/anotherharness-ah-sdk-protocol:
+  en: 195e9507166e9a85
+  zh: 3eb9e0e0fd85b2f4
+/anotherharness-ah-sdk-protocol/summary:
+  en: 4c8eb938a9eb9047
+  zh: d1adacadb5e31772
+/anotherharness-ah-sdk-protocol/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-sdk-protocol/use-this-package:
+  en: c4ca91b51aab452a
+  zh: 1c77b1deaeb34931
+/anotherharness-ah-sdk-protocol/use-this-package/framing-and-transport:
+  en: be53c71505c0d1b4
+  zh: 6210dee577715539
+/anotherharness-ah-sdk-protocol/use-this-package/the-sdk-methods:
+  en: 0c7bea342e6a851c
+  zh: de38cf6fe1f4ae76
+/anotherharness-ah-sdk-protocol/use-this-package/payload-semantics:
+  en: 1e05fa28b34feea9
+  zh: 174607a135dd1c58
+/anotherharness-ah-sdk-protocol/understand-the-implementation:
+  en: a11b136d8296deda
+  zh: 85081da5be53c9e1
+/anotherharness-ah-sdk-protocol/understand-the-implementation/design-concept:
+  en: bc4b8dfc36ed4565
+  zh: 6a707eff1a4bbf2f
+/anotherharness-ah-sdk-protocol/understand-the-implementation/source-map:
+  en: b62c1e92501ebc93
+  zh: d1ac1a11653e97ed
+/anotherharness-ah-sdk-protocol/understand-the-implementation/frame-dispatch:
+  en: eaf7d095810481c8
+  zh: 92767f908500be5e
+/anotherharness-ah-sdk-protocol/further-exploration:
+  en: c24e2a046bf786c7
+  zh: a3a180b44a01b26c
+/anotherharness-ah-sdk-protocol/model-experience:
+  en: 1c3205c59385b059
+  zh: 9198a341567beca0
+/anotherharness-ah-sdk-protocol/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: 696d26adaf4eda6d
+/anotherharness-ah-sdk-protocol/known-limitations-and-deferred-work:
+  en: dc64f5569dbd917a
+  zh: 1d32eea28991ad7a
+/anotherharness-ah-sdk-protocol/known-limitations-and-deferred-work/dev-note:
+  en: 951fa06249790ac1
+  zh: da66e7f53df3ab00

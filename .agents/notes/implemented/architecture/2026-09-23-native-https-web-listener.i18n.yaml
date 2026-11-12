@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-23-native-https-web-listener.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-23-native-https-web-listener.md
+/agent-note-native-https-on-the-web-listener:
+  en: d000758c5e59b2d9
+  zh: 451c581e331c1548
+/agent-note-native-https-on-the-web-listener/problem:
+  en: 685a00e6f84f642d
+  zh: 404e463f56ec5a1f
+/agent-note-native-https-on-the-web-listener/decision:
+  en: ef602f6b25245e02
+  zh: eff557a786bff4ba
+/agent-note-native-https-on-the-web-listener/alternatives-considered:
+  en: 44c051936dd2529e
+  zh: 7588669ec4c302ef
+/agent-note-native-https-on-the-web-listener/consequences:
+  en: fbd4ec8a3618c3db
+  zh: 3b83560080fbe38f
+/agent-note-native-https-on-the-web-listener/testing:
+  en: f92f7ec224dba94d
+  zh: 0f0e0304c834f0af

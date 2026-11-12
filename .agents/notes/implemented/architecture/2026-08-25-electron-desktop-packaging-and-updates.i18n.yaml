@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for 2026-08-25-electron-desktop-packaging-and-updates.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-08-25-electron-desktop-packaging-and-updates.md
+/agent-note-package-and-update-the-electron-desktop-application:
+  en: 4d51d71655ad09c8
+  zh: 885aa862accc533c
+/agent-note-package-and-update-the-electron-desktop-application/problem:
+  en: 51dc69cba480ea90
+  zh: 5cf342e53cae19b5
+/agent-note-package-and-update-the-electron-desktop-application/decision:
+  en: c7badc2894880b32
+  zh: 5a617dd397b7029b
+/agent-note-package-and-update-the-electron-desktop-application/ownership:
+  en: 8edbf0113797c120
+  zh: 4b38186237b7704d
+/agent-note-package-and-update-the-electron-desktop-application/filesystem-layout:
+  en: 8a4595bcd9ad1f59
+  zh: d99bdfdf41eede15
+/agent-note-package-and-update-the-electron-desktop-application/installation-and-resolution:
+  en: ec7e37da3178d2fd
+  zh: 48b815816743a36f
+/agent-note-package-and-update-the-electron-desktop-application/updates-and-recovery:
+  en: 4be4a7c735ef30dc
+  zh: f668e6578f0a6274
+/agent-note-package-and-update-the-electron-desktop-application/security-and-release-policy:
+  en: fcad2462cfb70a37
+  zh: f4d1d20c0f1408be
+/agent-note-package-and-update-the-electron-desktop-application/implementation:
+  en: b48404822b04f9bd
+  zh: 950da65e4df8d3c6
+/agent-note-package-and-update-the-electron-desktop-application/alternatives-considered:
+  en: 232eeb0a2d501bc6
+  zh: 94a8c75f13f62e34
+/agent-note-package-and-update-the-electron-desktop-application/consequences:
+  en: 50078a5f5677153a
+  zh: 3dc8082617be0ae0
+/agent-note-package-and-update-the-electron-desktop-application/review-decisions:
+  en: b10b74e6b6567d35
+  zh: 7c60e96e08887f03
+/agent-note-package-and-update-the-electron-desktop-application/risks:
+  en: 08e9697cb89abb8a
+  zh: df3e9faca54fc671
+/agent-note-package-and-update-the-electron-desktop-application/related-proposals:
+  en: 7fe267f469d781ac
+  zh: ebbac19c791a1679

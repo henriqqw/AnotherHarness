@@ -1,0 +1,142 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/fs/tool-fs/README.md
+/:
+  en: 52b93805befe8077
+  zh: 9786e662303f0e2f
+/anotherharness-ah-tool-fs:
+  en: 6b75d608cc1bb824
+  zh: 281ec0e7dba5351b
+/anotherharness-ah-tool-fs/summary:
+  en: c796d634d814248e
+  zh: b619fe446a0ec1db
+/anotherharness-ah-tool-fs/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-tool-fs/use-this-package:
+  en: c7da73c9e2691ea1
+  zh: 0eba82c1c3553ab9
+/anotherharness-ah-tool-fs/use-this-package/minimal-composition:
+  en: eb21d89a3ecbd2d4
+  zh: f05ccbb1e7515f32
+/anotherharness-ah-tool-fs/use-this-package/the-tools:
+  en: 29a1d47e9677f2a3
+  zh: 0ae3c794cc7c54db
+/anotherharness-ah-tool-fs/use-this-package/configuration:
+  en: 79b2897acf84a1b3
+  zh: 58a173d6d6ef6c1a
+/anotherharness-ah-tool-fs/use-this-package/policy-and-sandbox-behavior:
+  en: 53d4ac2db089ef39
+  zh: 214ea051ed56f500
+/anotherharness-ah-tool-fs/use-this-package/failures-and-recovery:
+  en: 962b09e21305a04b
+  zh: 382d2b8cce217569
+/anotherharness-ah-tool-fs/understand-the-implementation:
+  en: e30f7038c28e93f8
+  zh: a3868dbd90367b13
+/anotherharness-ah-tool-fs/understand-the-implementation/design-concept:
+  en: 454b5291db9ba847
+  zh: 9fe7081dfb416c93
+/anotherharness-ah-tool-fs/understand-the-implementation/source-map:
+  en: ec1517d657fbce14
+  zh: be0038b88f7b68fc
+/anotherharness-ah-tool-fs/understand-the-implementation/per-tool-flow:
+  en: d741e01be9fddb76
+  zh: 7aa1d7ca719a4aac
+/anotherharness-ah-tool-fs/understand-the-implementation/observation-and-concurrency:
+  en: 665d437dc35bf05f
+  zh: 8004334d6a3246b4
+/anotherharness-ah-tool-fs/further-exploration:
+  en: f0fbf1d93cde7bf1
+  zh: 50041ef8c7312215
+/anotherharness-ah-tool-fs/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-fs/model-experience/system-prompt:
+  en: cf78b9dd5596495f
+  zh: bd44560f8c2435e8
+/anotherharness-ah-tool-fs/model-experience/system-prompt/what-the-model-sees:
+  en: b09ee4be5e522c29
+  zh: ffd30b57d7fc96e8
+/anotherharness-ah-tool-fs/model-experience/system-prompt/what-the-model-sees/read-guidance:
+  en: f8961df3f3a6a671
+  zh: 85c7bd418b40b089
+/anotherharness-ah-tool-fs/model-experience/system-prompt/what-the-model-sees/write-guidance:
+  en: 7e34af48c583f210
+  zh: e39ad6823689c665
+/anotherharness-ah-tool-fs/model-experience/system-prompt/what-the-model-sees/edit-guidance:
+  en: 28f07502a411303b
+  zh: 437897dc99fc4360
+/anotherharness-ah-tool-fs/model-experience/system-prompt/token-effect:
+  en: 7a44cabe439a879a
+  zh: 1adf9bf3de7658b6
+/anotherharness-ah-tool-fs/model-experience/system-prompt/kv-cache-effect:
+  en: 4f1b5639f91405a8
+  zh: f90ffe077a2e52a3
+/anotherharness-ah-tool-fs/model-experience/tool-schemas:
+  en: 3039bc5e7a796b21
+  zh: 6b7a9eaf69c9ea53
+/anotherharness-ah-tool-fs/model-experience/tool-schemas/what-the-model-sees:
+  en: 0c9a2920d5508c7a
+  zh: e18f1bc103247902
+/anotherharness-ah-tool-fs/model-experience/tool-schemas/token-effect:
+  en: 68517f7d65ef7e9d
+  zh: 544a4b81e8ea16c0
+/anotherharness-ah-tool-fs/model-experience/tool-schemas/kv-cache-effect:
+  en: 1e6d3da20012762d
+  zh: 482f8bc569b8b490
+/anotherharness-ah-tool-fs/model-experience/read-result:
+  en: ebd38733c0490428
+  zh: b45101c325efe784
+/anotherharness-ah-tool-fs/model-experience/read-result/what-the-model-sees:
+  en: 8f7a10746df88c03
+  zh: d4fab398b14db940
+/anotherharness-ah-tool-fs/model-experience/read-result/token-effect:
+  en: 4269b4368622ec2f
+  zh: f4df80c1fb6972f1
+/anotherharness-ah-tool-fs/model-experience/read-result/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 3d6bc05b9eadfbc2
+/anotherharness-ah-tool-fs/model-experience/image-read-result:
+  en: 9dac44e6d0b9d8de
+  zh: 7bc4dc1c5df39eaf
+/anotherharness-ah-tool-fs/model-experience/image-read-result/what-the-model-sees:
+  en: 9b5070a15f565c20
+  zh: 96043df8c0ae7f76
+/anotherharness-ah-tool-fs/model-experience/image-read-result/token-effect:
+  en: 68bd5255f1c9ca48
+  zh: 0474213531c1aae3
+/anotherharness-ah-tool-fs/model-experience/image-read-result/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 48e202e396bc5fcc
+/anotherharness-ah-tool-fs/model-experience/write-and-edit-results:
+  en: 1b3b6cfa3605d0b4
+  zh: 78e37c2aa4f76d54
+/anotherharness-ah-tool-fs/model-experience/write-and-edit-results/what-the-model-sees:
+  en: 816b07ebfddab5f8
+  zh: 0e80580a5902c7ed
+/anotherharness-ah-tool-fs/model-experience/write-and-edit-results/token-effect:
+  en: fb4d0b17a99f49cf
+  zh: 17460a2a5d72f6cc
+/anotherharness-ah-tool-fs/model-experience/write-and-edit-results/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 3d6bc05b9eadfbc2
+/anotherharness-ah-tool-fs/model-experience/tool-errors:
+  en: 2d4f2c8605eccab3
+  zh: 67f1f0218f73c6bf
+/anotherharness-ah-tool-fs/model-experience/tool-errors/what-the-model-sees:
+  en: 4e8fac7bac8ced61
+  zh: 7ba921dbcddc9f97
+/anotherharness-ah-tool-fs/model-experience/tool-errors/token-effect:
+  en: 681cadd5be7b8ac1
+  zh: 65e483f62fb819d9
+/anotherharness-ah-tool-fs/model-experience/tool-errors/kv-cache-effect:
+  en: f5d5f97a153f7c70
+  zh: 3d6bc05b9eadfbc2
+/anotherharness-ah-tool-fs/known-limitations-and-deferred-work:
+  en: 3b9c94a1882c7371
+  zh: efb40ddbbb3af273
+/anotherharness-ah-tool-fs/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

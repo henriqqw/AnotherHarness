@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-24-preset-scoped-schedule-tools.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-24-preset-scoped-schedule-tools.md
+/agent-note-preset-scoped-schedule-tools:
+  en: 88f4feba8a70b08b
+  zh: fa3ca04cd29aca32
+/agent-note-preset-scoped-schedule-tools/problem:
+  en: b3463cb1fff4162e
+  zh: 29a75105d1468bcb
+/agent-note-preset-scoped-schedule-tools/decision:
+  en: 3b7c922fee1eed95
+  zh: 9db0bb15d39939d5
+/agent-note-preset-scoped-schedule-tools/alternatives-considered:
+  en: 5cfe619038339caa
+  zh: c2d2651d304d867c
+/agent-note-preset-scoped-schedule-tools/consequences:
+  en: d6ce8ee0695aba12
+  zh: eeaeae9d4280e8ea
+/agent-note-preset-scoped-schedule-tools/testing:
+  en: 1c5f34cf30a24fd7
+  zh: 6f7a372de52d0ecd

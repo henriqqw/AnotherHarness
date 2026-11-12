@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/context/file-reference/README.md
+/:
+  en: 21c486a1839068f4
+  zh: 0333ad7c4f984794
+/anotherharness-ah-file-reference:
+  en: 1dcf2e72d6cb9468
+  zh: 17511e5a5aef251a
+/anotherharness-ah-file-reference/summary:
+  en: ade22cff57639947
+  zh: e328917ef4f611e8
+/anotherharness-ah-file-reference/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-file-reference/use-this-package:
+  en: e37b5d4bf0020063
+  zh: 2eb37494ea43228f
+/anotherharness-ah-file-reference/use-this-package/mention-grammar:
+  en: efbe0e9233f402a4
+  zh: e3ec7c6ae2335a41
+/anotherharness-ah-file-reference/use-this-package/getting-candidates:
+  en: 4dc2d6289f532225
+  zh: af06ce75299f23e5
+/anotherharness-ah-file-reference/use-this-package/pairing-with-a-provider:
+  en: 4e76887bcf092ace
+  zh: c62cb33f1b707102
+/anotherharness-ah-file-reference/understand-the-implementation:
+  en: 92049fb7a6c345c3
+  zh: 86efc4d17127f97f
+/anotherharness-ah-file-reference/understand-the-implementation/design-concept:
+  en: 89458e873d73fd6c
+  zh: 202c08417911c534
+/anotherharness-ah-file-reference/understand-the-implementation/source-map:
+  en: 7ca26c752fab5c46
+  zh: 961bc4283792155d
+/anotherharness-ah-file-reference/understand-the-implementation/main-flow:
+  en: fd65f309c940de96
+  zh: c1517e592d646d6c
+/anotherharness-ah-file-reference/further-exploration:
+  en: d1ffd9dd1fa7529f
+  zh: f9969e2ddf481b75
+/anotherharness-ah-file-reference/model-experience:
+  en: ab69d93c10a1572c
+  zh: b63720b1e6182805
+/anotherharness-ah-file-reference/model-experience/kv-cache-effect:
+  en: 0aba47b2a2828b78
+  zh: 83a1af441dac3074
+/anotherharness-ah-file-reference/known-limitations-and-deferred-work:
+  en: cc83a00bd7d4ccc9
+  zh: 130ba16bb567db5a
+/anotherharness-ah-file-reference/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

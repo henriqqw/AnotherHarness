@@ -1,0 +1,40 @@
+{
+  "name": "@anotherharness/ah-web",
+  "description": "Abstract web access capability seam (ctx.web) for the AnotherHarness — search/fetch provider registry, registration-order-independent selection, request/result vocabulary, and the WebError taxonomy",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/web/web"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./src/*": "./src/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@anotherharness/ah-desktop-host",
+  "description": "Private Node-mode host process for the Electron desktop application",
+  "version": "0.2.1-alpha.2",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "lib/cli.js"
+  ],
+  "dependencies": {
+    "koffi": "^3.1.0",
+    "@deepseek-ai/libreoffice-kit": "^0.1.5",
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah": "workspace:*",
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-app-boot": "workspace:*",
+    "@anotherharness/ah-client-connection": "workspace:*",
+    "@anotherharness/ah-host-webserver": "workspace:*",
+    "@anotherharness/ah-home-paths": "workspace:*",
+    "@anotherharness/ah-jobs": "workspace:*",
+    "@anotherharness/ah-schedule": "workspace:*",
+    "@anotherharness/ah-tool-workspace-dependencies": "workspace:*",
+    "@anotherharness/ah-skill-office": "workspace:*",
+    "@anotherharness/ah-deepseek-account": "workspace:*",
+    "@anotherharness/ah-workspace": "workspace:*"
+  },
+  "devDependencies": {
+    "@anotherharness/cordis-plugin-loader": "workspace:~",
+    "@anotherharness/cordis-plugin-include": "workspace:~",
+    "@anotherharness/ah-skill": "workspace:*"
+  }
+}

@@ -1,0 +1,85 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/workspace/workspace/README.md
+/:
+  en: d112c03aefc9a73d
+  zh: e2ea3f0a9c814a23
+/anotherharness-ah-workspace:
+  en: 7039f55ed5149cd1
+  zh: 935af6b90f880301
+/anotherharness-ah-workspace/summary:
+  en: 58d66b238882b849
+  zh: a427930afd293c6b
+/anotherharness-ah-workspace/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-workspace/use-this-package:
+  en: 37d744451570942e
+  zh: 7f8200725a1cca54
+/anotherharness-ah-workspace/use-this-package/when-to-use-it:
+  en: f24dd905d5bcac3e
+  zh: 16b91b99fdaf5add
+/anotherharness-ah-workspace/use-this-package/setting-up:
+  en: f4611634be527eb0
+  zh: 89d35d640a2c1cc4
+/anotherharness-ah-workspace/use-this-package/creating-and-ordering-projects:
+  en: a092fc7b0db9c299
+  zh: 6d7ed93e34237773
+/anotherharness-ah-workspace/use-this-package/first-use-workspace:
+  en: 5334553569134780
+  zh: 720594cc8fba56e6
+/anotherharness-ah-workspace/use-this-package/grouping-sessions-under-a-project:
+  en: 510be21d012de28c
+  zh: fdcb05447d6ba93c
+/anotherharness-ah-workspace/use-this-package/hiding-and-restoring-sessions-and-removing-projects:
+  en: 7b298aa5c48501d4
+  zh: 8ffeec728c1c13fe
+/anotherharness-ah-workspace/understand-the-implementation:
+  en: 447ced401b3b14a8
+  zh: 3ce2105605223945
+/anotherharness-ah-workspace/understand-the-implementation/design-philosophy:
+  en: e8ff536e19566447
+  zh: 53ba4c15f10c1549
+/anotherharness-ah-workspace/understand-the-implementation/api-behavior:
+  en: 69327adb9ea52680
+  zh: fa32eea5019c7abb
+/anotherharness-ah-workspace/understand-the-implementation/source-map:
+  en: 6899c50041c3d1ef
+  zh: ea70fda89cc50465
+/anotherharness-ah-workspace/understand-the-implementation/durable-shape:
+  en: 056a266f4a15b29d
+  zh: e1589f5750662887
+/anotherharness-ah-workspace/understand-the-implementation/lifecycle:
+  en: e41db10d48acbf9a
+  zh: 457d329fe37ba33c
+/anotherharness-ah-workspace/understand-the-implementation/failure-and-recovery:
+  en: 8b53b9369bea6f67
+  zh: 612fd3439a23e035
+/anotherharness-ah-workspace/further-exploration:
+  en: 1d10221640a7c0c5
+  zh: e0ea8e5cb8642b03
+/anotherharness-ah-workspace/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-workspace/model-experience/workspace-records-and-session-accounts:
+  en: c5c7dfdfe3cea27f
+  zh: 6e75bd1afacba4c4
+/anotherharness-ah-workspace/model-experience/workspace-records-and-session-accounts/what-the-model-sees:
+  en: ab7deb3130db939e
+  zh: b717a7fc60146cd3
+/anotherharness-ah-workspace/model-experience/workspace-records-and-session-accounts/token-effect:
+  en: 5b83ac7ce1ea1346
+  zh: dc56664cd257ab8e
+/anotherharness-ah-workspace/model-experience/workspace-records-and-session-accounts/kv-cache-effect:
+  en: 524afbded27fb06b
+  zh: 9dcf8539495e9c68
+/anotherharness-ah-workspace/known-limitations-and-deferred-work:
+  en: 85694227357bbd7c
+  zh: 16ad935226c51022
+/anotherharness-ah-workspace/known-limitations-and-deferred-work/dev-note:
+  en: ac1d08360a93382b
+  zh: 6c58749bae9a6e65
+/anotherharness-ah-workspace/known-limitations-and-deferred-work/dev-note/open-the-create-path-title-title-parameter:
+  en: 65867b2bb7aba416
+  zh: 38547efe92828640

@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for compaction.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/compaction.md
+/compaction:
+  en: 1254447fd3d5472d
+  zh: 034c54b33b69b942
+/compaction/the-compaction-session-events:
+  en: 0db537ad03369cc4
+  zh: e81184b74e242566
+/compaction/image-offload:
+  en: cb953290f59ebbb6
+  zh: 7273d4283a32fe15
+/compaction/compactionresult:
+  en: 9dde333b53c14f24
+  zh: 8959aafefc55f9a4
+/compaction/the-service:
+  en: 889ec2f384bcba0c
+  zh: e677e81d2a1f6184
+/compaction/tool-result-pruning-outcomes:
+  en: 27091b0a3d454575
+  zh: e22431e27e1349f2

@@ -1,0 +1,18 @@
+# SDK-profile patch for the deterministic diagnostic child runtime.
+
+- id: llm-deepseek
+  name: '@anotherharness/ah-llm-deepseek-api-key'
+  disabled: true
+
+- id: agent-instructions
+  name: '@anotherharness/ah-agent-instructions'
+  disabled: true
+
+- id: system-prompt
+  name: '@anotherharness/ah-system-prompt'
+  config:
+    personaPrefix: 'Return the scripted AH SDK failure.'
+
+- insert:
+    - id: child-mock-llm
+      name: '../../../packages/subagent/subagent-ah-sdk/tests/fixtures/loader/child-mock-llm.ts'

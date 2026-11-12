@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/shell/shell-env/README.md
+/:
+  en: 6da7812e9ebc978e
+  zh: 8a306cf1270ccbd2
+/anotherharness-ah-shell-env:
+  en: 752f65ace32d9552
+  zh: f24f820d7ad09912
+/anotherharness-ah-shell-env/summary:
+  en: de8847b4101d8953
+  zh: 92e691d74a460990
+/anotherharness-ah-shell-env/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-shell-env/use-this-package:
+  en: 2e9bfa196d168cbf
+  zh: 0269c2921e7ae63a
+/anotherharness-ah-shell-env/use-this-package/what-every-shell-call-receives:
+  en: 9c8bc0dd47c51fe3
+  zh: 77b100eb71223ec0
+/anotherharness-ah-shell-env/use-this-package/adding-your-own-environment-facts:
+  en: 382417342366e70f
+  zh: 4b3a459947d52027
+/anotherharness-ah-shell-env/use-this-package/choosing-the-harness-home:
+  en: 569c997529f250f3
+  zh: a302d2eeeb0101fa
+/anotherharness-ah-shell-env/use-this-package/what-can-go-wrong:
+  en: 1a226d514eabbbd1
+  zh: 7eb67f6ea2eff9dc
+/anotherharness-ah-shell-env/understand-the-implementation:
+  en: f782557ca8da3138
+  zh: e8f0082b9692cacc
+/anotherharness-ah-shell-env/understand-the-implementation/design-philosophy:
+  en: 93268bd592a24a13
+  zh: f52be09b3d73c18b
+/anotherharness-ah-shell-env/understand-the-implementation/source-map:
+  en: 72eba3bfadcfa581
+  zh: dcd83e02a1910f27
+/anotherharness-ah-shell-env/understand-the-implementation/collection:
+  en: 6f57c3b00c615baf
+  zh: 684030f0660fb2ce
+/anotherharness-ah-shell-env/further-exploration:
+  en: 9fd89b832d74cbcb
+  zh: 1abafea47c95621e
+/anotherharness-ah-shell-env/model-experience:
+  en: c6b2b8dac05d785a
+  zh: 723db56d7abfd3bb
+/anotherharness-ah-shell-env/model-experience/kv-cache-effect:
+  en: e95e649f0410fa75
+  zh: b3d64877420b4c0d
+/anotherharness-ah-shell-env/known-limitations-and-deferred-work:
+  en: 71035525dbbf6723
+  zh: eaf46257af3cb1c8
+/anotherharness-ah-shell-env/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

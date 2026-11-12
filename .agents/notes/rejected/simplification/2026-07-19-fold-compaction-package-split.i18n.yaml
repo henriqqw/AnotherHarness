@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-07-19-fold-compaction-package-split.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/rejected/simplification/2026-07-19-fold-compaction-package-split.md
+/agent-note-fold-the-single-compaction-backend-into-its-service-package:
+  en: 2fb52ad150274386
+  zh: e818bfc7f60c83c4
+/agent-note-fold-the-single-compaction-backend-into-its-service-package/problem:
+  en: 8064d67ae59e8cd0
+  zh: 2832469f65bcb861
+/agent-note-fold-the-single-compaction-backend-into-its-service-package/proposal:
+  en: 0c6b0b4549a0c297
+  zh: 088d1bd3faea4c2f
+/agent-note-fold-the-single-compaction-backend-into-its-service-package/alternatives-considered:
+  en: 0c7f4bd4b7745c96
+  zh: 9bf5a98dd485dbbd
+/agent-note-fold-the-single-compaction-backend-into-its-service-package/acceptance-criteria:
+  en: 231ac53d8ff2c6f0
+  zh: 62f9a20c8481e6f6
+/agent-note-fold-the-single-compaction-backend-into-its-service-package/risks:
+  en: d843b63dc504d20d
+  zh: ec9e1460c2535f65

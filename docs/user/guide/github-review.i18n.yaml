@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for github-review.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/user/guide/github-review.md
+/create-review-sessions-from-github-webhooks:
+  en: 2a2f9a1638c18fba
+  zh: 2ce868445d48621c
+/create-review-sessions-from-github-webhooks/prerequisites:
+  en: 8b565d2bbbc49d22
+  zh: 95d02f2cc027d834
+/create-review-sessions-from-github-webhooks/start-ah:
+  en: b0ed5c6edf6c401a
+  zh: c4b936294e17e8b2
+/create-review-sessions-from-github-webhooks/expose-the-dedicated-endpoint:
+  en: f18a2969b3082da9
+  zh: 87d3d0e58d25a62f
+/create-review-sessions-from-github-webhooks/rule-behavior:
+  en: 0aa6189cb7d44735
+  zh: 47d24ae218e340fb
+/create-review-sessions-from-github-webhooks/programmatic-extensions:
+  en: d448fc3e440a0ec6
+  zh: 18568898933ef054
+/create-review-sessions-from-github-webhooks/delivery-semantics:
+  en: 8d098eeb5a62a4ba
+  zh: cfc7f2759ebf129d

@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/skill/skill-filesystem/README.md
+/:
+  en: ef9fab89ad1a57aa
+  zh: 6d434e8a3dae16ca
+/anotherharness-ah-skill-filesystem:
+  en: e98a3ad4fcf8997a
+  zh: 519b9b75e195d41b
+/anotherharness-ah-skill-filesystem/summary:
+  en: 9a35e0cceda33695
+  zh: 8c5625e8d6892634
+/anotherharness-ah-skill-filesystem/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-skill-filesystem/use-this-package:
+  en: 2fcfbaea3c62a766
+  zh: 27c917ba822329e5
+/anotherharness-ah-skill-filesystem/use-this-package/when-to-choose-it:
+  en: 012a123601c7d8f2
+  zh: 0e13f5e0d2e4ea7a
+/anotherharness-ah-skill-filesystem/use-this-package/skill-format:
+  en: 78ac4e731c6a24c1
+  zh: e8c33db4aa0cc527
+/anotherharness-ah-skill-filesystem/use-this-package/roots-and-priority:
+  en: 5583b580b5564b20
+  zh: cce24fd6034538a8
+/anotherharness-ah-skill-filesystem/use-this-package/mount-and-configure:
+  en: 004bc67c048d301b
+  zh: 47a2914ecaf33ed4
+/anotherharness-ah-skill-filesystem/use-this-package/change-detection:
+  en: 77acbd43e89b6043
+  zh: 8169bbbc55f3f114
+/anotherharness-ah-skill-filesystem/use-this-package/observable-success-and-failures:
+  en: 272693c35012ffb5
+  zh: bbbe788b11ef567f
+/anotherharness-ah-skill-filesystem/understand-the-implementation:
+  en: a95eb63f5a570c79
+  zh: cd964a36cf8a3715
+/anotherharness-ah-skill-filesystem/understand-the-implementation/design-concept:
+  en: 8529fb4c1989d5fc
+  zh: 115372aaa959dc6c
+/anotherharness-ah-skill-filesystem/understand-the-implementation/source-map:
+  en: f9d3b4bdedb897a6
+  zh: 962f7638d30741fd
+/anotherharness-ah-skill-filesystem/understand-the-implementation/discovery-flow:
+  en: 7e26750408a63587
+  zh: 9eed631a7bdf00ae
+/anotherharness-ah-skill-filesystem/understand-the-implementation/watching-and-invalidation:
+  en: e1f03485692f61a0
+  zh: 7c3ce24eacc3a047
+/anotherharness-ah-skill-filesystem/further-exploration:
+  en: 79e99853c77f5542
+  zh: ae3fbf0ca098e56b
+/anotherharness-ah-skill-filesystem/model-experience:
+  en: 4be008f6dd6bf0d6
+  zh: 8f5f232f60419c5a
+/anotherharness-ah-skill-filesystem/model-experience/kv-cache-effect:
+  en: 14ddbda337682082
+  zh: 2e4dc3c26b45f62c
+/anotherharness-ah-skill-filesystem/known-limitations-and-deferred-work:
+  en: a7f37a7b9e54945d
+  zh: b9d3b15027757301
+/anotherharness-ah-skill-filesystem/known-limitations-and-deferred-work/dev-note:
+  en: 53584bc8292df1f9
+  zh: 921253cd64aa7511

@@ -1,0 +1,21 @@
+# Exercise the model-facing LSP tool through the shipped Loader entry path.
+# The scenario workspace supplies the deterministic stdio server used by this test composition.
+- insert:
+    - id: lsp
+      name: '@anotherharness/ah-lsp'
+    - id: lsp-stdio
+      name: '@anotherharness/ah-lsp-stdio'
+      config:
+        servers:
+          fixture:
+            command: !!js process.execPath
+            args: ['./lsp-server.mjs']
+            extensionToLanguage:
+              '.ts': typescript
+    - id: tool-lsp
+      name: '@anotherharness/ah-tool-lsp'
+      config:
+        maxLocations: 1
+
+- id: timeout-policy
+  name: '@anotherharness/ah-tool-call-timeout-policy'

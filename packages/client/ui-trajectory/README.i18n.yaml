@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-trajectory/README.md
+/:
+  en: b6aca4bf5c8f4b50
+  zh: 2c80b44d1f4ca645
+/anotherharness-ah-client-ui-trajectory:
+  en: 0ac6c3b9e878662f
+  zh: 636a70b472d8ef0c
+/anotherharness-ah-client-ui-trajectory/summary:
+  en: dc75677138d05dc6
+  zh: 6e11553a5caf4716
+/anotherharness-ah-client-ui-trajectory/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-trajectory/use-this-package:
+  en: 4bd17d05b8385675
+  zh: 5174e27f754f2a03
+/anotherharness-ah-client-ui-trajectory/use-this-package/inspecting-records:
+  en: e4ba2d9cab2fb258
+  zh: 7db041270420b2ba
+/anotherharness-ah-client-ui-trajectory/use-this-package/the-timing-overview:
+  en: 0f4ee2189324ac06
+  zh: 12e76fed22c09bc1
+/anotherharness-ah-client-ui-trajectory/understand-the-implementation:
+  en: 74cc8fc87241da34
+  zh: cd72ff9c0fdd2575
+/anotherharness-ah-client-ui-trajectory/understand-the-implementation/virtual-rows:
+  en: c85e342bc7eee4e6
+  zh: 9feab66ef1755b94
+/anotherharness-ah-client-ui-trajectory/understand-the-implementation/layout:
+  en: b9693a54b800d439
+  zh: cd9b84382ae0b181
+/anotherharness-ah-client-ui-trajectory/further-exploration:
+  en: a162996726768c77
+  zh: 9ac83f74656ba8f0
+/anotherharness-ah-client-ui-trajectory/model-experience:
+  en: 3120df665299c634
+  zh: 1d9f365d091d0d2a
+/anotherharness-ah-client-ui-trajectory/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-trajectory/known-limitations-and-deferred-work:
+  en: d7da620f56eb3c65
+  zh: fb030b68322b94cd
+/anotherharness-ah-client-ui-trajectory/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

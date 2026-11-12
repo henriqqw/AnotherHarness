@@ -1,0 +1,55 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/util/home-paths/README.md
+/:
+  en: 9c5f457bfce350c3
+  zh: 41f6a350ff603d81
+/anotherharness-ah-home-paths:
+  en: f67fc4ade2c51759
+  zh: 70b4c6fd93dce9da
+/anotherharness-ah-home-paths/summary:
+  en: 2cde1cbb228395b7
+  zh: 47a42e92b842a518
+/anotherharness-ah-home-paths/table-of-contents:
+  en: 80b31a934611cb4a
+  zh: 05f3f7f9cb2fd881
+/anotherharness-ah-home-paths/use-this-package:
+  en: 5322022224da2f27
+  zh: d5cba67f4ea3e429
+/anotherharness-ah-home-paths/use-this-package/resolving-the-home:
+  en: d3c6a6c90b92e6ab
+  zh: f14352d9bba1829b
+/anotherharness-ah-home-paths/use-this-package/resolving-the-shared-agents-root:
+  en: 737fa8aed16f670a
+  zh: 315740ef25db4f01
+/anotherharness-ah-home-paths/use-this-package/displaying-a-home:
+  en: 2f70e1317727b0c6
+  zh: ff2d5df3739fee1c
+/anotherharness-ah-home-paths/use-this-package/expanding-user-paths:
+  en: 80bf5dead177c1d8
+  zh: 6faf257afbb9c246
+/anotherharness-ah-home-paths/use-this-package/canonicalizing-watch-paths:
+  en: 55c5d8179de704c5
+  zh: b86395e9605807cd
+/anotherharness-ah-home-paths/understand-the-implementation:
+  en: 3f97bd4606e12d4a
+  zh: 8f09f108141a478e
+/anotherharness-ah-home-paths/understand-the-implementation/source-map:
+  en: 584610e67c4aa386
+  zh: 766f77e35c65193d
+/anotherharness-ah-home-paths/understand-the-implementation/resolution-rules:
+  en: 636b4fd74b02fc94
+  zh: 6f4901529bae0cae
+/anotherharness-ah-home-paths/understand-the-implementation/canonicalization-mechanics:
+  en: a79aecd162317dc2
+  zh: 342f9bae0231c3de
+/anotherharness-ah-home-paths/further-exploration:
+  en: fc700d632ed5f1e4
+  zh: 9634a01f2c7ddbb9
+/anotherharness-ah-home-paths/known-limitations-and-deferred-work:
+  en: aa4aecf31a596da0
+  zh: 22dea997610fae2d
+/anotherharness-ah-home-paths/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

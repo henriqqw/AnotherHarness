@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for 2026-08-24-session-log-snapshot-corpus.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/testing/2026-08-24-session-log-snapshot-corpus.md
+/agent-note-session-log-snapshot-corpus:
+  en: ddc84ba7eb452e8e
+  zh: 09e0bbf3dc0fc0b4
+/agent-note-session-log-snapshot-corpus/problem:
+  en: 8338f7431124fb32
+  zh: ed089a76aa0f77c9
+/agent-note-session-log-snapshot-corpus/decision:
+  en: 3a7f847d31b915fb
+  zh: cb1f97dfd83bc1b2
+/agent-note-session-log-snapshot-corpus/alternatives-considered:
+  en: 76db318c1c2dad2d
+  zh: b868b7c9b29c1e00
+/agent-note-session-log-snapshot-corpus/invariants:
+  en: 3d6a549bb1828c81
+  zh: e35c00ca31d42ef8
+/agent-note-session-log-snapshot-corpus/consequences:
+  en: 3d5810a9518fcb8d
+  zh: 075ad9a226b8b312
+/agent-note-session-log-snapshot-corpus/risks:
+  en: 333b33afa03cf4e1
+  zh: 3b8f3bcdf57cfe8e

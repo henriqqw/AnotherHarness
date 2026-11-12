@@ -1,0 +1,4 @@
+- id: sandbox
+  name: '@anotherharness/ah-sandbox-local'
+- id: skills
+  name: '@anotherharness/ah-skill'

@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for 2026-09-01-v2-embedded-assistant-streams.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/architecture/2026-09-01-v2-embedded-assistant-streams.md
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements:
+  en: 4d44c73f41c5591e
+  zh: ebcb98f7b19f5f75
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/problem:
+  en: 9e95306554ecd1ca
+  zh: 40478697fbc94e33
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/decision:
+  en: 3e4286eb09582202
+  zh: dd3988017ef4101e
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/decision/live-presentation-and-durable-replay:
+  en: d38b5c02cb9cb0a3
+  zh: dff06bc35745bf3d
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/decision/released-v1-to-v2-migration:
+  en: 3fc431fa8a9eab5a
+  zh: 248753ae9e1389bb
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/verification:
+  en: 64b75fcbb0c3f819
+  zh: 6fe01443a7abec72
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/alternatives-considered:
+  en: 74cdc6838df6172e
+  zh: ebca79a08ff3ebe4
+/agent-note-embed-assistant-streams-in-v2-attempt-settlements/consequences:
+  en: fc745b93d5e92f50
+  zh: 4fa418c30e1968b4

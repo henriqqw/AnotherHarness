@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/shell/shell/README.md
+/:
+  en: 4a173bf52227a3b6
+  zh: 76bb85595252765c
+/anotherharness-ah-shell:
+  en: 51ae6c00ba86fc10
+  zh: 645303a2ad6c432c
+/anotherharness-ah-shell/summary:
+  en: bb40932744bc4b80
+  zh: 22e2af1327b2f835
+/anotherharness-ah-shell/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-shell/use-this-package:
+  en: b81fffe9eb713a49
+  zh: ac37478e7f1f7499
+/anotherharness-ah-shell/use-this-package/foreground-commands:
+  en: cf38f6bc0e150602
+  zh: 2ff6cfb0ce48a7b8
+/anotherharness-ah-shell/use-this-package/background-processes:
+  en: 277c543917453017
+  zh: d2c100e37944f151
+/anotherharness-ah-shell/use-this-package/deadlines-and-bounded-waits:
+  en: 719b0708bf3cf1cf
+  zh: 044f53d543960f42
+/anotherharness-ah-shell/use-this-package/requests-and-resolved-specs:
+  en: a7e75f30989be23e
+  zh: c75afeae9ed1428a
+/anotherharness-ah-shell/use-this-package/choosing-and-composing-an-executor:
+  en: 5972cc04d3aefbde
+  zh: dc5c1c0b34c507b4
+/anotherharness-ah-shell/use-this-package/the-shared-exit-status-contract:
+  en: f4125282c1deab36
+  zh: 46b8ee789ae68a9a
+/anotherharness-ah-shell/understand-the-implementation:
+  en: d2192b68c2faf92b
+  zh: 7678a2fd356d8587
+/anotherharness-ah-shell/understand-the-implementation/design-philosophy:
+  en: 66a08f5ae320597a
+  zh: a3535415fc4eb75f
+/anotherharness-ah-shell/understand-the-implementation/source-map:
+  en: 1e9231bae2662059
+  zh: 2bac2b8e8fc08eb9
+/anotherharness-ah-shell/understand-the-implementation/settings-namespace:
+  en: a5b81ecee7fe9938
+  zh: 25fcf060b48e14cf
+/anotherharness-ah-shell/understand-the-implementation/background-lifecycle-and-ownership:
+  en: 63853c610719e1bb
+  zh: 09668e6fd34c9161
+/anotherharness-ah-shell/further-exploration:
+  en: d2dd71b6c59d8ed2
+  zh: 3f199dcf8bec68ad
+/anotherharness-ah-shell/model-experience:
+  en: b97972e2512bac96
+  zh: a0db1cee13236b51
+/anotherharness-ah-shell/model-experience/kv-cache-effect:
+  en: 40294c1c31b74824
+  zh: 788a4799b1d65a8b
+/anotherharness-ah-shell/known-limitations-and-deferred-work:
+  en: f31683dbc5ce5b9c
+  zh: fe88c58c266dde04
+/anotherharness-ah-shell/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3c8bbe93d71a3377

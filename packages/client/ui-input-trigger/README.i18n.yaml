@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-input-trigger/README.md
+/:
+  en: 99c36d8cf52f1a8a
+  zh: 3cc3f1e8c2f42c23
+/anotherharness-ah-client-ui-input-trigger:
+  en: 99f290010637ea98
+  zh: 398f3f73313bb1fb
+/anotherharness-ah-client-ui-input-trigger/summary:
+  en: 2a968a6e0bc65ac4
+  zh: 883f1be84003a5c5
+/anotherharness-ah-client-ui-input-trigger/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-input-trigger/use-this-package:
+  en: c32eed8d234a108d
+  zh: e0d192dca9c6a1f6
+/anotherharness-ah-client-ui-input-trigger/use-this-package/keyboard-and-mouse:
+  en: b198d6256a961f99
+  zh: 292e0bb94c18c9ca
+/anotherharness-ah-client-ui-input-trigger/understand-the-implementation:
+  en: c94bf9c449e6b566
+  zh: dcf398b5d6f449b4
+/anotherharness-ah-client-ui-input-trigger/further-exploration:
+  en: 3007dbc5931b59f7
+  zh: b837b4116cec49cf
+/anotherharness-ah-client-ui-input-trigger/model-experience:
+  en: 5d1596f50088f468
+  zh: 3c72b4f6b1ba27ee
+/anotherharness-ah-client-ui-input-trigger/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-input-trigger/known-limitations-and-deferred-work:
+  en: 560e5df72c0fb698
+  zh: ed6fa149bc90258a
+/anotherharness-ah-client-ui-input-trigger/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

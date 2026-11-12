@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-brand-official/README.md
+/:
+  en: 2c5a654973129f32
+  zh: 782bdbe50079676b
+/anotherharness-ah-client-ui-brand-official:
+  en: 7ceea02538d6d0c3
+  zh: 4c5dfa2e5a7c95c0
+/anotherharness-ah-client-ui-brand-official/summary:
+  en: bb44f88de035e1d3
+  zh: e8c695c2e4980b30
+/anotherharness-ah-client-ui-brand-official/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-brand-official/use-this-package:
+  en: 716dc268f98996db
+  zh: 7372a67ef81a0d5e
+/anotherharness-ah-client-ui-brand-official/use-this-package/choosing-the-profile:
+  en: c4246aff93d1fa56
+  zh: ce2ecbfec0158cc2
+/anotherharness-ah-client-ui-brand-official/use-this-package/replacing-the-brand:
+  en: 6a923aa630d01d65
+  zh: 5df0c24eebd9d0d0
+/anotherharness-ah-client-ui-brand-official/understand-the-implementation:
+  en: 69dbcff5e48ceff3
+  zh: f454ac563f34071b
+/anotherharness-ah-client-ui-brand-official/further-exploration:
+  en: e1bb93c1542916bd
+  zh: 710e26deb2050068
+/anotherharness-ah-client-ui-brand-official/model-experience:
+  en: 618008c7641070e7
+  zh: 7233febb4d92ccfb
+/anotherharness-ah-client-ui-brand-official/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: f57cc48a1b5cbfa9
+/anotherharness-ah-client-ui-brand-official/known-limitations-and-deferred-work:
+  en: e4afb4fb6da22e05
+  zh: 4bd73ac715fcfbec
+/anotherharness-ah-client-ui-brand-official/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

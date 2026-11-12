@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/sandbox/sandbox-windows-acl/README.md
+/:
+  en: 14d3fdd57b94c86f
+  zh: abcd3b4f9dd908fa
+/anotherharness-ah-sandbox-windows-acl:
+  en: e77a0556a011f15c
+  zh: 32245150ea7db949
+/anotherharness-ah-sandbox-windows-acl/summary:
+  en: ea61b2f516ebbe6b
+  zh: 359a118f6b527a7f
+/anotherharness-ah-sandbox-windows-acl/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-sandbox-windows-acl/use-this-package:
+  en: 58b220faa66b2f05
+  zh: dda42e4197d80bfe
+/anotherharness-ah-sandbox-windows-acl/use-this-package/when-to-choose-it:
+  en: 510d0b1ef7db159d
+  zh: dc2cf25b3db14c63
+/anotherharness-ah-sandbox-windows-acl/use-this-package/direct-api:
+  en: 16596607bbccc2a3
+  zh: 30bc370a5281bf0d
+/anotherharness-ah-sandbox-windows-acl/use-this-package/what-confinement-gives-you:
+  en: 289e65bddf20dd79
+  zh: 7ff72ed64c4b4d1c
+/anotherharness-ah-sandbox-windows-acl/use-this-package/failures-and-recovery:
+  en: 3c9eb0a985c1e13b
+  zh: 0a86f7f95b2e2310
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation:
+  en: c2cde86c85c2c619
+  zh: a29a114e591f9d3f
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation/mechanism:
+  en: 5ff15f94e4039dce
+  zh: 764b5cf10c2af33c
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation/modes-and-token-lists:
+  en: 9c8d9af84f9abd99
+  zh: 1c82b355aa5f210f
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation/the-confinement-runner:
+  en: de6ada8752531d23
+  zh: 494e39e36766c3ac
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation/verified-boundaries:
+  en: 79663f978712d9bb
+  zh: f17b636838488a77
+/anotherharness-ah-sandbox-windows-acl/understand-the-implementation/header-verification-and-source-map:
+  en: 72befef4a1a5a54e
+  zh: 02f57cc6669aa17b
+/anotherharness-ah-sandbox-windows-acl/further-exploration:
+  en: ab7db3857b443f00
+  zh: de14bc99681ef191
+/anotherharness-ah-sandbox-windows-acl/model-experience:
+  en: 4fe04b125aec47ea
+  zh: 0cac9cff95838de0
+/anotherharness-ah-sandbox-windows-acl/model-experience/kv-cache-effect:
+  en: 817eb1b7de13872e
+  zh: 06fe175e41e7459b
+/anotherharness-ah-sandbox-windows-acl/known-limitations-and-deferred-work:
+  en: 2d9ef3e9129d658d
+  zh: 58c2a41930aa12ec
+/anotherharness-ah-sandbox-windows-acl/known-limitations-and-deferred-work/dev-note:
+  en: cc273320f6a1beaf
+  zh: 5c57a312ddc50651
+/anotherharness-ah-sandbox-windows-acl/known-limitations-and-deferred-work/dev-note/future-warnings-and-cleanup-surfaces:
+  en: 8872c7b4c8ce1cc7
+  zh: c7fb4eefa013c7b0

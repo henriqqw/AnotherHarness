@@ -1,0 +1,31 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write apps/cli/reference/README.md
+/ah-cli-behavior-reference:
+  en: d125115146969859
+  zh: 442852821da6754b
+/ah-cli-behavior-reference/profile-boot:
+  en: fe21bd54b9fe5fb7
+  zh: 1a121387780b7506
+/ah-cli-behavior-reference/profile-boot/app-arguments:
+  en: 0aeaa2bec889a084
+  zh: d8ce72d185a334f0
+/ah-cli-behavior-reference/profile-boot/config-schema-dump:
+  en: 2380cdda8d9fffc3
+  zh: f8ce273bc9ae23ef
+/ah-cli-behavior-reference/startup-diagnostics:
+  en: 3b36b83811100e3f
+  zh: cd862b63b59ae2e9
+/ah-cli-behavior-reference/plugin-management:
+  en: 221a860a5d92f57a
+  zh: 4ca91b94b4f099e9
+/ah-cli-behavior-reference/web-profile:
+  en: 409201b3a0048f53
+  zh: 4ea87b2e15bb2ac8
+/ah-cli-behavior-reference/shared-deployment-behavior:
+  en: f170183dbd8aded2
+  zh: 1aeae2225e8f0b01
+/ah-cli-behavior-reference/source-execution:
+  en: 37a196b569717556
+  zh: 26b05b3b5e8d936c

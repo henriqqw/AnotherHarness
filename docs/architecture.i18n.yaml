@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for architecture.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/architecture.md
+/anotherharness-architecture:
+  en: 338e695ed3b383ac
+  zh: fdc7b6dfcba92926
+/anotherharness-architecture/cordis:
+  en: ec88b784aa72967b
+  zh: c2f5e5140d3642bf
+/anotherharness-architecture/profiles-and-bundles:
+  en: 8c1c02d54d034309
+  zh: a0d93ef52c14ca9e
+/anotherharness-architecture/application-launch:
+  en: bf4b121b770b9020
+  zh: 50312458414020d6
+/anotherharness-architecture/desktop-application:
+  en: 0061110853b6493b
+  zh: 43b3101fd9684b51
+/anotherharness-architecture/core-packages:
+  en: a1d1c48fc7d9c9c0
+  zh: c9471bb9a0a62cad
+/anotherharness-architecture/events:
+  en: c0d452affc304fbe
+  zh: ca4e5f46dad3ed04
+/anotherharness-architecture/turn-flow:
+  en: e8a6a2f0381f3ce8
+  zh: 0ba7a42e92e228f4
+/anotherharness-architecture/session-log:
+  en: ef310a8cb0cf1114
+  zh: a9de25314018e33f
+/anotherharness-architecture/capability-seams:
+  en: 4718f29c987a416b
+  zh: 8247217f806d0959
+/anotherharness-architecture/where-new-behavior-goes:
+  en: e6259a7055c99774
+  zh: d140cf2ca673c3aa

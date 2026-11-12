@@ -1,0 +1,49 @@
+# Bilingual-pair consistency record for 2026-07-16-persistent-pty-sessions.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-07-16-persistent-pty-sessions.md
+/agent-note-persistent-pty-sessions:
+  en: 11f30e233a2ef9b3
+  zh: ed48b3ea30ed8966
+/agent-note-persistent-pty-sessions/problem:
+  en: e2f663f23061bad2
+  zh: f5b64660827aef25
+/agent-note-persistent-pty-sessions/decision:
+  en: bc23bc69452b1389
+  zh: c2283a8d9c0894a8
+/agent-note-persistent-pty-sessions/decision/package-topology:
+  en: b6b6c040eeccec7b
+  zh: fba75824644a53a3
+/agent-note-persistent-pty-sessions/decision/agent-ownership-and-identity:
+  en: 543e10730a8e22a1
+  zh: 96e0133fa799fd47
+/agent-note-persistent-pty-sessions/decision/security-and-process-boundary:
+  en: f6d3b72c6e5fb59d
+  zh: 9064a1034cae8f17
+/agent-note-persistent-pty-sessions/decision/six-model-facing-tools:
+  en: b6d46cc5cd1b6d6b
+  zh: b20018214524e75b
+/agent-note-persistent-pty-sessions/decision/local-readiness-detection:
+  en: 5d0c1bbc86dc692b
+  zh: 53ff7a870d673e4c
+/agent-note-persistent-pty-sessions/decision/model-visible-output-and-durability:
+  en: 1b504ab41b47216d
+  zh: 8fb3d360b3a4e6a1
+/agent-note-persistent-pty-sessions/decision/process-tree-teardown:
+  en: e96a972845bc3513
+  zh: d76d7dfb80985e9d
+/agent-note-persistent-pty-sessions/decision/composition-and-rollout:
+  en: c3c7eb906192b171
+  zh: 9521c5833bdfad17
+/agent-note-persistent-pty-sessions/decision/deferred-work:
+  en: c0ae6d86dd5c0635
+  zh: 737bd3fda903d5e3
+/agent-note-persistent-pty-sessions/alternatives-considered:
+  en: 306a387318137762
+  zh: a165e8c74cc04393
+/agent-note-persistent-pty-sessions/verification:
+  en: 08cd5f0369ee69e9
+  zh: 3e9b13ba1f8b6bff
+/agent-note-persistent-pty-sessions/consequences:
+  en: 6655f30d33de87b5
+  zh: 9d6e7eab7d1fe58e

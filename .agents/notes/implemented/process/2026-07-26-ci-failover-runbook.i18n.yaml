@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for 2026-07-26-ci-failover-runbook.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/process/2026-07-26-ci-failover-runbook.md
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool:
+  en: eed85970ca64732d
+  zh: 5d5f4a831b72ee91
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/problem:
+  en: d30ca296fc09b21c
+  zh: ea7e214c1f11df69
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/decision:
+  en: 10e1c6aecebdc6bd
+  zh: cce64e72e6bdb656
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/decision/release-rehearsals-share-the-linux-switch:
+  en: 4d7396012b592578
+  zh: a88e4afdb7a3eb68
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/decision/what-the-in-house-pool-is:
+  en: 00d8934ed30e838c
+  zh: bdb5584fbaf27c7d
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/decision/what-the-in-house-pool-is/windows-pool:
+  en: f7e019df89daa36a
+  zh: 32297838db268964
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/decision/switch-any-repository-writer-1-minute-no-merge:
+  en: e3cfbf3e8696a88a
+  zh: 523985efaedff96c
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/capacity-during-failover:
+  en: 22611ed4316adc7c
+  zh: 29acd02b4a07313d
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/capacity-during-failover/switch-back:
+  en: 5ef25e3939da1893
+  zh: c52311d4ad10c069
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/capacity-during-failover/trust-boundary:
+  en: c05bc0ceba304ff0
+  zh: 19ae9a2d70f25d33
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/alternatives-considered:
+  en: e68b70d7caca52f1
+  zh: e6f0be792105a9e6
+/agent-note-ci-failover-runbook-hosted-pools-in-house-pool/consequences:
+  en: d6de79eb73b7a6a2
+  zh: 329d8ed8e3e02f7b

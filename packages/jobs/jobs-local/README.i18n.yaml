@@ -1,0 +1,67 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/jobs/jobs-local/README.md
+/:
+  en: 0abe764a4bc3e3db
+  zh: 280ff3a1c1a8bc5c
+/anotherharness-ah-jobs-local:
+  en: 460444485f18f0b0
+  zh: 096764af6acc46f4
+/anotherharness-ah-jobs-local/summary:
+  en: c4a48f06734db75e
+  zh: 9787336940863e93
+/anotherharness-ah-jobs-local/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-jobs-local/use-this-package:
+  en: b1dc55cc9902703f
+  zh: ab295b2a71735ad4
+/anotherharness-ah-jobs-local/use-this-package/when-to-choose-it:
+  en: 17479310883edc0a
+  zh: f1cea41c704dabe2
+/anotherharness-ah-jobs-local/use-this-package/minimal-configuration:
+  en: 2aea22826a91730a
+  zh: 07620dccfe0648c5
+/anotherharness-ah-jobs-local/use-this-package/what-each-owner-gets:
+  en: 9ab66aa770694092
+  zh: 38de930bcfbc132c
+/anotherharness-ah-jobs-local/use-this-package/lifecycle:
+  en: 91dd372f742dcdb8
+  zh: 58eeee0254d33cd1
+/anotherharness-ah-jobs-local/use-this-package/what-can-go-wrong:
+  en: ff9dbf059fcf3a62
+  zh: 793b54889fa401e2
+/anotherharness-ah-jobs-local/understand-the-implementation:
+  en: f782557ca8da3138
+  zh: e8f0082b9692cacc
+/anotherharness-ah-jobs-local/understand-the-implementation/design-philosophy:
+  en: b92e6e5415553e2e
+  zh: c3e0be579af4c7fb
+/anotherharness-ah-jobs-local/understand-the-implementation/source-map:
+  en: cf99103141ed9f13
+  zh: 3a650aa8c4019156
+/anotherharness-ah-jobs-local/understand-the-implementation/scope-layers:
+  en: 2c53e11a60965985
+  zh: 63adc1628c71e62e
+/anotherharness-ah-jobs-local/understand-the-implementation/admission-and-settlement:
+  en: c5088aa4dcaef69b
+  zh: bb84316b44ad1305
+/anotherharness-ah-jobs-local/understand-the-implementation/teardown:
+  en: 49e8bd5e2c1f6ffd
+  zh: ad3e1aa712fd59b3
+/anotherharness-ah-jobs-local/further-exploration:
+  en: 74042093ea30579d
+  zh: e4642efeb60c9009
+/anotherharness-ah-jobs-local/model-experience:
+  en: 66c48fa40f58c491
+  zh: ca48b0ac82d30959
+/anotherharness-ah-jobs-local/model-experience/kv-cache-effect:
+  en: e290ccc9b3c92c08
+  zh: d75d48f485447a74
+/anotherharness-ah-jobs-local/known-limitations-and-deferred-work:
+  en: 5284107cbd22e3dd
+  zh: 9aa0048908c94e25
+/anotherharness-ah-jobs-local/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

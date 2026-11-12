@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/acp-app/README.md
+/:
+  en: 54af04fe07d4168b
+  zh: e4ceb9a3f653e74b
+/anotherharness-ah-acp-app:
+  en: 484fda19aafd8b7e
+  zh: ee792a20b8775a4f
+/anotherharness-ah-acp-app/summary:
+  en: bfbf75ec45abbe9c
+  zh: 4af9a299be941825
+/anotherharness-ah-acp-app/table-of-contents:
+  en: 636fbd365057be75
+  zh: d12fd8759c7e62e5
+/anotherharness-ah-acp-app/use-this-package:
+  en: 253968fa459a1fe0
+  zh: 419ff64d21b0f8d4
+/anotherharness-ah-acp-app/standard-automation-workflow:
+  en: b51a25fa8a559cc2
+  zh: c2d8579bb788d97c
+/anotherharness-ah-acp-app/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-acp-app/model-experience/acp-coding-agent-persona:
+  en: a7451ee84e5e156a
+  zh: a7451ee84e5e156a
+/anotherharness-ah-acp-app/model-experience/acp-coding-agent-persona/what-the-model-sees:
+  en: 0c02ef20a336514f
+  zh: 3e91e739f8dd4972
+/anotherharness-ah-acp-app/model-experience/acp-coding-agent-persona/token-effect:
+  en: 371d28831239e0a8
+  zh: 0d2678654607b657
+/anotherharness-ah-acp-app/model-experience/acp-coding-agent-persona/kv-cache-effect:
+  en: 8a5d250256381538
+  zh: 0578eaa7f774753e
+/anotherharness-ah-acp-app/known-limitations-and-deferred-work:
+  en: 81be394d11ffa5a6
+  zh: 83be133604e042e6
+/anotherharness-ah-acp-app/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

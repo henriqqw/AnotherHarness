@@ -1,0 +1,56 @@
+{
+  "name": "@anotherharness/ah-tool-str-replace-editor",
+  "description": "Model-facing view, create, literal replace, and line insert tool over the Harness filesystem service",
+  "version": "0.2.1-alpha.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriqqw/AnotherHarness.git",
+    "directory": "packages/fs/tool-str-replace-editor"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/types/**/*.d.ts"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-output-retention": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/cordis": "workspace:~"
+  },
+  "dependencies": {
+    "@anotherharness/schemastery": "workspace:~"
+  },
+  "devDependencies": {
+    "@anotherharness/ah-agent": "workspace:*",
+    "@anotherharness/ah-agent-loop-testkit": "workspace:*",
+    "@anotherharness/ah-fs": "workspace:*",
+    "@anotherharness/ah-fs-local": "workspace:*",
+    "@anotherharness/ah-fs-observation-policy": "workspace:*",
+    "@anotherharness/ah-fs-sandbox": "workspace:*",
+    "@anotherharness/ah-llm": "workspace:*",
+    "@anotherharness/ah-output-retention": "workspace:*",
+    "@anotherharness/ah-sandbox": "workspace:*",
+    "@anotherharness/ah-sandbox-policy": "workspace:*",
+    "@anotherharness/ah-session": "workspace:*",
+    "@anotherharness/ah-system-prompt": "workspace:*",
+    "@anotherharness/ah-tools": "workspace:*",
+    "@anotherharness/cordis": "workspace:~",
+    "@anotherharness/ah-session-projection": "workspace:*"
+  }
+}

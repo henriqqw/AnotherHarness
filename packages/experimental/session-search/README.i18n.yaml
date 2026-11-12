@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/session-search/README.md
+/:
+  en: ac0fb71830f58337
+  zh: 0ece950cf48261a1
+/anotherharness-ah-experimental-session-search:
+  en: b805ed7bcc946c2c
+  zh: a2e60e0b7a05415e
+/anotherharness-ah-experimental-session-search/summary:
+  en: 3461520fc9a6b225
+  zh: aeedca620262e8ae
+/anotherharness-ah-experimental-session-search/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 988e839059414d27
+/anotherharness-ah-experimental-session-search/use-this-package:
+  en: 29e4de34bed1ed2e
+  zh: 539638a62c0a99c3
+/anotherharness-ah-experimental-session-search/understand-the-implementation:
+  en: edfc2111e363bc7c
+  zh: e9659470598547d8
+/anotherharness-ah-experimental-session-search/further-exploration:
+  en: 75e4fb5c68c0e481
+  zh: f9a7270861ec2fdb
+/anotherharness-ah-experimental-session-search/model-experience:
+  en: 1c229a2c1ad57bbc
+  zh: f3f7aabfefe51f85
+/anotherharness-ah-experimental-session-search/model-experience/kv-cache-effect:
+  en: 25f20eda0e696067
+  zh: 378c4a15a5704ba0
+/anotherharness-ah-experimental-session-search/known-limitations-and-deferred-work:
+  en: 5ba4aae8ef1f62d2
+  zh: a7599243880f7482
+/anotherharness-ah-experimental-session-search/known-limitations-and-deferred-work/dev-note:
+  en: 279d01435256cd2a
+  zh: 83780964e5de2f54

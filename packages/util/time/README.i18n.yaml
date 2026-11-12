@@ -1,0 +1,34 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/util/time/README.md
+/:
+  en: 1816778111548561
+  zh: 460c67cc44e59372
+/ah-util-time:
+  en: 930a82a7bff1df8a
+  zh: fb18a9c44a341591
+/ah-util-time/summary:
+  en: f37c9eb6571622ac
+  zh: d782978ff11bd40f
+/ah-util-time/table-of-contents:
+  en: cd2a60a905c978d6
+  zh: cc71d387d0cbd442
+/ah-util-time/use-this-package:
+  en: 1485e3ff508a8960
+  zh: 47ba622434bd2625
+/ah-util-time/api:
+  en: cbb4b726e939fc03
+  zh: e9df4a7487433146
+/ah-util-time/model-experience:
+  en: b749d86ca4333c31
+  zh: 4c81b569764d3358
+/ah-util-time/model-experience/kv-cache-effect:
+  en: f63edbd9621eee70
+  zh: 5e3982508b32b039
+/ah-util-time/known-limitations-and-deferred-work:
+  en: 130db809b9a6db90
+  zh: 5b0b72ada5b131dd
+/ah-util-time/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea

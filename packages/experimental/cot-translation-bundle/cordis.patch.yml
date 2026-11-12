@@ -1,0 +1,8 @@
+- insert:
+    - id: translator
+      name: '@anotherharness/ah-experimental-translator'
+    - id: cot-translation
+      name: '@anotherharness/ah-experimental-client-ui-cot-translation'
+      config:
+        provider: bing
+        targetLanguage: auto

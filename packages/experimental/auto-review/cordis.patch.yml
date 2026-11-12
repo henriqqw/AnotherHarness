@@ -1,0 +1,3 @@
+- insert:
+    - id: auto-review
+      name: '@anotherharness/ah-experimental-auto-review'

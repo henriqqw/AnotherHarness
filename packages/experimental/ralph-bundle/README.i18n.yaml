@@ -1,0 +1,37 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/ralph-bundle/README.md
+/:
+  en: 471abb0843949bd8
+  zh: 57662fb79022166e
+/anotherharness-ah-experimental-ralph-bundle:
+  en: e9be9e841328e9a9
+  zh: 01aa8c31b147bfb7
+/anotherharness-ah-experimental-ralph-bundle/summary:
+  en: 2d0d6090157ea5ec
+  zh: 55c9669c4bf44cb9
+/anotherharness-ah-experimental-ralph-bundle/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 988e839059414d27
+/anotherharness-ah-experimental-ralph-bundle/use-this-package:
+  en: bb91c59b7a474054
+  zh: 2ae97c4106a71c74
+/anotherharness-ah-experimental-ralph-bundle/understand-the-implementation:
+  en: 5974549583dd86a4
+  zh: 1491de55461eed1d
+/anotherharness-ah-experimental-ralph-bundle/further-exploration:
+  en: bb327090bcd09791
+  zh: 85fdd3a1453bb800
+/anotherharness-ah-experimental-ralph-bundle/model-experience:
+  en: 2c73495430791933
+  zh: 60a4f2f756b9ccd3
+/anotherharness-ah-experimental-ralph-bundle/model-experience/kv-cache-effect:
+  en: 25f20eda0e696067
+  zh: 378c4a15a5704ba0
+/anotherharness-ah-experimental-ralph-bundle/known-limitations-and-deferred-work:
+  en: 39918e19422a80c1
+  zh: 71346d112bdea43f
+/anotherharness-ah-experimental-ralph-bundle/known-limitations-and-deferred-work/dev-note:
+  en: 279d01435256cd2a
+  zh: 83780964e5de2f54

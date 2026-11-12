@@ -1,0 +1,70 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/schedule/tool-schedule/README.md
+/:
+  en: 5bcd39034f505033
+  zh: 9bfd85a1ad52bc67
+/anotherharness-ah-tool-schedule:
+  en: e31ce8cfd5c905a9
+  zh: f881d190570a3c2a
+/anotherharness-ah-tool-schedule/summary:
+  en: 6d3c997ccb16f8c7
+  zh: dec00e60b7e25cae
+/anotherharness-ah-tool-schedule/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-tool-schedule/use-this-package:
+  en: a692cac1bda0f1bc
+  zh: 3cc2e4bff8062e4e
+/anotherharness-ah-tool-schedule/use-this-package/when-to-choose-it:
+  en: 8c2992d5aea52fe9
+  zh: dd2099a06d9487b2
+/anotherharness-ah-tool-schedule/use-this-package/the-four-tools:
+  en: f8aae686d0531c29
+  zh: 3cccd1ba81aae48d
+/anotherharness-ah-tool-schedule/use-this-package/minimal-configuration:
+  en: eef3a83c0ffb2931
+  zh: 9b527abfde4c3406
+/anotherharness-ah-tool-schedule/understand-the-implementation:
+  en: 065702b7a82b8fa1
+  zh: 642037baaa2c0f1d
+/anotherharness-ah-tool-schedule/understand-the-implementation/source-map:
+  en: 676c4e0595fcc8dd
+  zh: f02ed861f66e7747
+/anotherharness-ah-tool-schedule/further-exploration:
+  en: 9717b6cb360028b7
+  zh: 0e0a9ce0695d9ceb
+/anotherharness-ah-tool-schedule/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-tool-schedule/model-experience/tool-schemas:
+  en: 3039bc5e7a796b21
+  zh: 6b7a9eaf69c9ea53
+/anotherharness-ah-tool-schedule/model-experience/tool-schemas/what-the-model-sees:
+  en: d247f06f14cf767a
+  zh: 2040dffa140a522c
+/anotherharness-ah-tool-schedule/model-experience/tool-schemas/token-effect:
+  en: 70fb9094859d0804
+  zh: 30726b045484713c
+/anotherharness-ah-tool-schedule/model-experience/tool-schemas/kv-cache-effect:
+  en: 332231fb9f1b8146
+  zh: eace0b2e789d1c0f
+/anotherharness-ah-tool-schedule/model-experience/reminder-results:
+  en: ffeb087f9476fddf
+  zh: 94569d39555d5192
+/anotherharness-ah-tool-schedule/model-experience/reminder-results/what-the-model-sees:
+  en: 68ce690c2d5c2312
+  zh: d3a9fca950518702
+/anotherharness-ah-tool-schedule/model-experience/reminder-results/token-effect:
+  en: a08931b2c5048399
+  zh: 758ea2131adb23e4
+/anotherharness-ah-tool-schedule/model-experience/reminder-results/kv-cache-effect:
+  en: 2fbf2175168e8244
+  zh: 9c4c1964ae59e661
+/anotherharness-ah-tool-schedule/known-limitations-and-deferred-work:
+  en: ccb3a09524ca2d64
+  zh: 6605b25cfd6522ec
+/anotherharness-ah-tool-schedule/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: b2ee0fbaa165910d

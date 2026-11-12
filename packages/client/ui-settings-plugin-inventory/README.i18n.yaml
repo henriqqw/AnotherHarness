@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/client/ui-settings-plugin-inventory/README.md
+/:
+  en: 91a57154ebdcd858
+  zh: 53ba36e935416348
+/anotherharness-ah-client-ui-settings-plugin-inventory:
+  en: fff5b4d1f40f05c7
+  zh: 9c5adc3912cddd2d
+/anotherharness-ah-client-ui-settings-plugin-inventory/summary:
+  en: f52353cf99816eb8
+  zh: e172c1751289882f
+/anotherharness-ah-client-ui-settings-plugin-inventory/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/anotherharness-ah-client-ui-settings-plugin-inventory/use-this-package:
+  en: 67637808e7940157
+  zh: d4d0716ea4d33e4a
+/anotherharness-ah-client-ui-settings-plugin-inventory/use-this-package/reading-a-card:
+  en: 8cf0d68bd1ba54d1
+  zh: 383da511d2e5c873
+/anotherharness-ah-client-ui-settings-plugin-inventory/use-this-package/the-preset-switcher:
+  en: 84e5938329199a22
+  zh: 6f5cfaac56433e8b
+/anotherharness-ah-client-ui-settings-plugin-inventory/use-this-package/retrying-a-failed-read:
+  en: 673c7574e14078be
+  zh: b093e897f0341973
+/anotherharness-ah-client-ui-settings-plugin-inventory/understand-the-implementation:
+  en: cab883d26642c932
+  zh: 54e7321bd781b400
+/anotherharness-ah-client-ui-settings-plugin-inventory/understand-the-implementation/registration:
+  en: e4792880c5916ce0
+  zh: 4c8171a446dd153f
+/anotherharness-ah-client-ui-settings-plugin-inventory/understand-the-implementation/rendering:
+  en: 779146e3d3732803
+  zh: 0dfafa328dfeda75
+/anotherharness-ah-client-ui-settings-plugin-inventory/further-exploration:
+  en: 798eb201e77999fc
+  zh: 9980c68ffb2b4d26
+/anotherharness-ah-client-ui-settings-plugin-inventory/model-experience:
+  en: 69fb187ac2361233
+  zh: d4d3ec4ed3e3d98d
+/anotherharness-ah-client-ui-settings-plugin-inventory/model-experience/kv-cache-effect:
+  en: ca75c51c89c2c9b0
+  zh: de54f3467ef3b9be
+/anotherharness-ah-client-ui-settings-plugin-inventory/known-limitations-and-deferred-work:
+  en: 3d3343d97eb73762
+  zh: 5fc9d1c1f0c4055d
+/anotherharness-ah-client-ui-settings-plugin-inventory/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: 3bb0c20c93f16f98

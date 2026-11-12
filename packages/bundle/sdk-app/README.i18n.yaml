@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/sdk-app/README.md
+/:
+  en: 8148fef9eb6f852e
+  zh: f4419bed153c9760
+/anotherharness-ah-sdk-app:
+  en: 49ed8f68cdaceefa
+  zh: e12f26618331df04
+/anotherharness-ah-sdk-app/summary:
+  en: eafa1ee99665db29
+  zh: 965fbab24cf12532
+/anotherharness-ah-sdk-app/table-of-contents:
+  en: 4e53164159b5ce41
+  zh: 89582dc0294d0776
+/anotherharness-ah-sdk-app/use-this-package:
+  en: 424dbbb8245eb043
+  zh: c5a31585177a3576
+/anotherharness-ah-sdk-app/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/anotherharness-ah-sdk-app/model-experience/sdk-model-context:
+  en: 4f88e647c6df4f42
+  zh: 2bd3e4b0bdfe9412
+/anotherharness-ah-sdk-app/model-experience/sdk-model-context/what-the-model-sees:
+  en: 215433335c6b9a8b
+  zh: 64ab30a109b1f75f
+/anotherharness-ah-sdk-app/model-experience/sdk-model-context/token-effect:
+  en: 92d8ecb761e3ca7b
+  zh: e14c71ee2c31e818
+/anotherharness-ah-sdk-app/model-experience/sdk-model-context/kv-cache-effect:
+  en: 5b0e33295fb90e19
+  zh: 4d48ca75bb677202
+/anotherharness-ah-sdk-app/known-limitations-and-deferred-work:
+  en: 36a239f03536e445
+  zh: fea854475f3c489f
+/anotherharness-ah-sdk-app/known-limitations-and-deferred-work/dev-note:
+  en: e67f633dc6fe7773
+  zh: e88aeb617ffb74ea
