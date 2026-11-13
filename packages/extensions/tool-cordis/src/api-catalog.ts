@@ -3795,6 +3795,13 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         returns: 'the comparison, or undefined once its Session was disposed, when this Host never recorded it, or when no file has that index.',
         throws: ['when a snapshot read fails for a live Session.'],
       },
+      {
+        signature: 'status(cwd: string, signal: AbortSignal): Promise<GitStatus>',
+        description: 'The current working-tree status of the repository enclosing a directory, for source-control decorations. Capped at the plugin\'s `maxFiles`.',
+        parameters: [{ name: 'cwd', description: 'absolute directory, usually a Session working directory.' }, { name: 'signal', description: 'cancels the git commands.' }],
+        returns: 'the status; `repository: false` outside a repository or when git is unavailable.',
+        throws: ['when git fails inside a repository.'],
+      },
     ],
   },
   {
@@ -3916,6 +3923,12 @@ export const SERVICE_API: readonly ServiceApiEntry[] = [
         description: 'Ask the language server about a position in a file: hover text, the definition, or every reference. Refused with `workspace-file/no-language-server` when no server handles the file.',
         parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'path', description: 'absolute path or path relative to the workspace root.' }, { name: 'position', description: 'zero-based line and UTF-16 column.' }, { name: 'operation', description: 'hover, goToDefinition, or findReferences.' }, { name: 'signal', description: 'caller cancellation.' }],
         returns: 'hover text, or the locations found.',
+      },
+      {
+        signature: '@Remote async gitStatus(workspaceFileScope: WorkspaceFileScope, signal: AbortSignal): Promise<WorkspaceGitStatus>',
+        description: 'Report which files in the workspace\'s git repository are modified, added, deleted, untracked, or in conflict, for source-control decorations. Served by the `workspaceChanges` service; without it, or outside a repository, `repository` is false and nothing is listed.',
+        parameters: [{ name: 'workspaceFileScope', description: 'header-derived workspace root for the Session identity on the wire.' }, { name: 'signal', description: 'caller cancellation.' }],
+        returns: 'the changed files by absolute path.',
       },
       {
         signature: '@Remote async stat(workspaceFileScope: WorkspaceFileScope, path: string, signal: AbortSignal): Promise<WorkspaceFileStat>',
@@ -5605,6 +5618,18 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'GenericResultView',
     declaration: 'export interface GenericResultView {\n    card: \'generic\';\n    title?: string;\n    content?: ContentBlock[];\n}',
+  },
+  {
+    name: 'GitFileState',
+    declaration: 'export type GitFileState = \'modified\' | \'added\' | \'deleted\' | \'untracked\' | \'conflicted\';',
+  },
+  {
+    name: 'GitStatus',
+    declaration: 'export interface GitStatus {\n    repository: boolean;\n    entries: GitStatusEntry[];\n    truncated: boolean;\n}',
+  },
+  {
+    name: 'GitStatusEntry',
+    declaration: 'export interface GitStatusEntry {\n    absolutePath: string;\n    state: GitFileState;\n}',
   },
   {
     name: 'GoalActivation',
@@ -8693,6 +8718,14 @@ export const TYPE_API: readonly TypeApiEntry[] = [
   {
     name: 'WorkspaceFollowIncrement',
     declaration: 'export type WorkspaceFollowIncrement = {\n    readonly type: \'upsert\';\n    readonly workspace: WorkspaceView;\n} | {\n    readonly type: \'remove\';\n    readonly workspaceId: WorkspaceId;\n} | {\n    readonly type: \'order\';\n    readonly workspaceIds: readonly WorkspaceId[];\n} | {\n    readonly type: \'archived\';\n    readonly archivedSessionIds: readonly SessionId[];\n} | {\n    readonly type: \'pinned\';\n    readonly pinnedSessionIds: readonly SessionId[];\n};',
+  },
+  {
+    name: 'WorkspaceGitFileState',
+    declaration: 'export type WorkspaceGitFileState = \'modified\' | \'added\' | \'deleted\' | \'untracked\' | \'conflicted\';',
+  },
+  {
+    name: 'WorkspaceGitStatus',
+    declaration: 'export interface WorkspaceGitStatus {\n    readonly repository: boolean;\n    readonly entries: readonly {\n        readonly absolutePath: string;\n        readonly state: WorkspaceGitFileState;\n    }[];\n    readonly truncated: boolean;\n}',
   },
   {
     name: 'WorkspaceInsertBeforeRequest',

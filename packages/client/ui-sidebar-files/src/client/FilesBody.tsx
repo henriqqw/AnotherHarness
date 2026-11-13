@@ -17,15 +17,18 @@ import type {
 } from '@anotherharness/ah-client-ui-slots'
 import {
   FileTypeIcon, IconFolderCloseRegular, IconFolderOpenRegular, IconRefreshOutlineRegular, Tooltip, classifyFileType,
-  IconPauseOutlineRegular, IconPlayOutlineRegular, PathLabel, IconEditOutlineRegular,
+  IconPauseOutlineRegular, IconPlayOutlineRegular, PathLabel, IconEditOutlineRegular, IconBranchOutlineRegular,
 } from '@anotherharness/ah-client-ui-primitives'
 import { fileAddressFor } from '@anotherharness/ah-util-workspace-path'
-import type { WorkspaceDirectoryEntry } from '@anotherharness/ah-api-workspace-files/types'
+import type { WorkspaceDirectoryEntry, WorkspaceGitFileState } from '@anotherharness/ah-api-workspace-files/types'
+import type { SessionId } from '@anotherharness/ah-session/types'
 import { childPath } from './face.ts'
 import type { FilesInjected } from './face.ts'
 import { parentOf as parentOfPath } from './operations.ts'
 import { FileContextMenu, FileDialogView, type ActionTarget, type FileDialog, type FileMenu } from './FileActions.tsx'
 import type { FileOperations } from './operations.ts'
+import { GIT_LETTERS, NO_DECORATIONS, slashPath, type GitDecorations } from './git-status.ts'
+import type { FileReveal } from './reveal.ts'
 import type {} from './locales.ts'
 import type { FilesTabState, createFilesStore } from './store.ts'
 import css from './FilesBody.module.css'
@@ -33,6 +36,16 @@ import css from './FilesBody.module.css'
 /** What the tree's file actions need: the operations, and a way to tell open views an entry moved. */
 export interface FileActionsInjected {
   readonly operations: FileOperations
+  /**
+   * Read source-control decorations for the tree.
+   * @param sessionId - the Session.
+   * @param root - the tree's root.
+   * @param signal - cancellation.
+   * @returns the decorations.
+   */
+  readonly sourceControl: (sessionId: SessionId, root: string, signal: AbortSignal) => Promise<GitDecorations>
+  /** Show a path in the Host's file manager. */
+  readonly reveal: FileReveal
   /**
    * @param sessionId - the Session whose workspace changed.
    * @param from - the entry's file address before the change.
@@ -87,6 +100,8 @@ export function failureLine(t: TranslateNS<'sidebarFiles'>, failure: RemoteFailu
 /** What every level shares: the tab's tree and the two gestures. */
 interface TreeContext {
   readonly state: FilesTabState
+  /** Source-control decorations. */
+  readonly git: GitDecorations
   readonly onToggle: (parent: string, path: string) => void
   readonly onOpen: (path: string) => void
   /** Open the context menu for a row. @param event - the pointer event. @param target - the row. */
@@ -107,7 +122,7 @@ function Entry({ parent, entry, tree }: { parent: string; entry: WorkspaceDirect
           onContextMenu={(event) => { tree.onMenu(event, { path, type: 'directory' }) }}
           onKeyDown={(event) => { tree.onKey(event, { path, type: 'directory' }) }}>
           {expanded ? <IconFolderOpenRegular className={css.icon} /> : <IconFolderCloseRegular className={css.icon} />}
-          <span className={css.name}>{entry.name}</span>
+          <GitName name={entry.name} state={tree.git.folders.get(slashPath(path))} folder t={tree.t} />
         </button>
         {expanded && <ul className={css.level}><Level path={path} tree={tree} /></ul>}
       </li>
@@ -120,7 +135,7 @@ function Entry({ parent, entry, tree }: { parent: string; entry: WorkspaceDirect
           onContextMenu={(event) => { tree.onMenu(event, { path, type: 'file' }) }}
           onKeyDown={(event) => { tree.onKey(event, { path, type: 'file' }) }}>
           <FileTypeIcon kind={classifyFileType(entry.name)} size={16} className={css.fileIcon} />
-          <span className={css.name}>{entry.name}</span>
+          <GitName name={entry.name} state={tree.git.files.get(slashPath(path))} t={tree.t} />
         </button>
       </li>
     )
@@ -131,6 +146,58 @@ function Entry({ parent, entry, tree }: { parent: string; entry: WorkspaceDirect
         <span className={css.name}>{entry.name}</span>
       </span>
     </li>
+  )
+}
+
+/** CSS class for each source-control state. */
+const GIT_CLASS: Readonly<Record<WorkspaceGitFileState, string | undefined>> = {
+  modified: css.gitModified, added: css.gitAdded, untracked: css.gitAdded, deleted: css.gitDeleted, conflicted: css.gitConflicted,
+}
+
+/** A row's name in its source-control color, with the state letter for files and a dot for folders. */
+function GitName({ name, state, folder = false, t }: {
+  readonly name: string
+  readonly state: WorkspaceGitFileState | undefined
+  readonly folder?: boolean
+  readonly t: TranslateNS<'sidebarFiles'>
+}): ReactNode {
+  if (state === undefined) return <span className={css.name}>{name}</span>
+  return <>
+    <span className={clsx(css.name, GIT_CLASS[state])} data-files-git={state}>{name}</span>
+    <span className={clsx(css.gitBadge, GIT_CLASS[state])} title={t(`git.${state}`)}>{folder ? '•' : GIT_LETTERS[state]}</span>
+  </>
+}
+
+/** The flat list of changed files, like VS Code's Source Control view. */
+function ChangesList({ git, root, onOpen, onMenu, t }: {
+  git: GitDecorations
+  root: string
+  onOpen: (path: string) => void
+  onMenu: TreeContext['onMenu']
+  t: TranslateNS<'sidebarFiles'>
+}): ReactNode {
+  if (!git.repository) return <p className={css.note} data-files-changes="none">{t('changes.noRepository')}</p>
+  if (git.changes.length === 0) return <p className={css.note} data-files-changes="empty">{t('changes.empty')}</p>
+  const base = slashPath(root)
+  return (
+    <ul className={css.level} data-files-changes="list">
+      {git.changes.map(({ path, state }) => {
+        const relative = path.slice(base.length + 1)
+        const slash = relative.lastIndexOf('/')
+        return (
+          <li key={path} className={css.item} data-files-change={state}>
+            <button type="button" className={css.row} disabled={state === 'deleted'} onClick={() => { onOpen(path) }}
+              onContextMenu={(event) => { onMenu(event, { path, type: 'file' }) }}>
+              <FileTypeIcon kind={classifyFileType(relative)} size={16} className={css.fileIcon} />
+              <span className={clsx(css.name, GIT_CLASS[state])}>{relative.slice(slash + 1)}</span>
+              {slash > 0 && <span className={css.changeDir}>{relative.slice(0, slash)}</span>}
+              <span className={clsx(css.gitBadge, GIT_CLASS[state])} title={t(`git.${state}`)}>{GIT_LETTERS[state]}</span>
+            </button>
+          </li>
+        )
+      })}
+      {git.truncated && <li className={css.note}>{t('truncated')}</li>}
+    </ul>
   )
 }
 
@@ -162,9 +229,25 @@ function Level({ path, tree }: { path: string; tree: TreeContext }): ReactNode {
 /** The file tree's body: the workspace root and whatever the reader has opened under it. */
 export function FilesBody({
   useTabInfo, sessionId, useSessions, useStore, actions,
-  start, refresh, setAutoRefresh, toggle, t, renderSlot, operations, announceMove,
+  start, refresh, setAutoRefresh, toggle, t, renderSlot, operations, announceMove, sourceControl, reveal,
 }: FilesBodyProps): ReactNode {
   const [menu, setMenu] = useState<FileMenu | undefined>()
+  const [git, setGit] = useState<GitDecorations>(NO_DECORATIONS)
+  const [gitTick, setGitTick] = useState(0)
+  const [showChanges, setShowChanges] = useState(false)
+  const [canReveal, setCanReveal] = useState(false)
+  useEffect(() => {
+    let live = true
+    void reveal.available().then((value) => { if (live) setCanReveal(value) })
+    return () => { live = false }
+  }, [reveal])
+  // Re-read the decorations when the tree changes on disk, when the reader
+  // reloads, and when the window regains focus (an edit made elsewhere).
+  useEffect(() => {
+    const again = (): void => { setGitTick(tick => tick + 1) }
+    globalThis.addEventListener('focus', again)
+    return () => { globalThis.removeEventListener('focus', again) }
+  }, [])
   const [dialog, setDialog] = useState<FileDialog | undefined>()
   const closeMenu = useCallback(() => { setMenu(undefined) }, [])
   const { tab } = useTabInfo()
@@ -172,6 +255,19 @@ export function FilesBody({
   const { signal, actions: tabActions } = tab
   const cwd = useSessions(sessions => sessions.byId[sessionId]?.cwd)
   const state = useStore(store => store.byTab[tab.id])
+  const treeRoot = state?.root
+  const levels = state?.levels
+  useEffect(() => {
+    if (treeRoot === undefined) return
+    const controller = new AbortController()
+    const timer = setTimeout(() => {
+      void sourceControl(sessionId, treeRoot, controller.signal).then((next) => { if (!controller.signal.aborted) setGit(next) })
+    }, 300)
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
+  }, [sourceControl, sessionId, treeRoot, levels, gitTick])
   const bodyRef = useRef<HTMLDivElement>(null)
   const scrollTopRef = useRef(0)
   // Come back where the reader was: loaded levels outlive the body in the
@@ -208,6 +304,7 @@ export function FilesBody({
   if (state === undefined) return null
   const tree: TreeContext = {
     state,
+    git,
     onToggle: (parent, path) => { toggle(tab.id, parent, path, state.expanded, signal) },
     // Every row is under the tree's root, so its address is session-relative.
     onOpen: (path) => { tabActions.openResource(fileAddressFor(sessionId, state.root, path)) },
@@ -236,6 +333,7 @@ export function FilesBody({
   }
   const reload = (): void => {
     refresh(tab.id)
+    setGitTick(tick => tick + 1)
   }
   return (
     <div className={css.root} data-files-state="tree" data-files-root={state.root}>
@@ -273,6 +371,15 @@ export function FilesBody({
             <IconFolderCloseRegular />
           </button>
         </Tooltip>
+        {git.repository && (
+          <Tooltip label={t('changes.toggle')} side="bottom" delayMs={500}>
+            <button type="button" className={clsx(css.tool, css.changesTool)} aria-label={t('changes.toggle')} aria-pressed={showChanges}
+              data-files-changes-toggle onClick={() => { setShowChanges(value => !value) }}>
+              <IconBranchOutlineRegular />
+              {git.changes.length > 0 && <span className={css.changesCount}>{git.changes.length}</span>}
+            </button>
+          </Tooltip>
+        )}
         {renderSlot('sidebar.right.tab.files.actions', {
           absolutePath: state.root,
         })}
@@ -287,9 +394,14 @@ export function FilesBody({
           setMenu({ x: event.clientX, y: event.clientY, target: undefined, directory: state.root })
         }}
       >
-        <ul className={css.level}><Level path={state.root} tree={tree} /></ul>
+        {showChanges
+          ? <ChangesList git={git} root={state.root} onOpen={tree.onOpen} onMenu={tree.onMenu} t={t} />
+          : <ul className={css.level}><Level path={state.root} tree={tree} /></ul>}
       </div>
-      {menu !== undefined && <FileContextMenu menu={menu} onDialog={setDialog} onClose={closeMenu} t={t} />}
+      {menu !== undefined && (
+        <FileContextMenu menu={menu} onDialog={setDialog} onClose={closeMenu} t={t}
+          {...canReveal ? { onReveal: (path: string) => { void reveal.reveal(path) } } : {}} />
+      )}
       {dialog !== undefined && (
         <FileDialogView dialog={dialog} sessionId={sessionId} operations={operations} onDone={finish}
           onClose={() => { setDialog(undefined) }} t={t} />

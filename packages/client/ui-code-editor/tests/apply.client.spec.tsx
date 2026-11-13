@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render } from '@testing-library/react'
 import { Context } from '@anotherharness/cordis'
 import { makeTranslate } from '@anotherharness/ah-client-test-runtime'
-import { apply, CODE_EDITOR_ID, DOCUMENT_TAB_KIND, EDITOR_SUFFIXES, inject } from '../src/client/index.ts'
+import { apply, CODE_EDITOR_ALT_ID, CODE_EDITOR_ID, DOCUMENT_TAB_KIND, EDITOR_SUFFIXES, inject, RENDERED_SUFFIXES } from '../src/client/index.ts'
 import { apply as hostApply } from '../src/index.ts'
 import { ClosePrompt, type ClosePromptInjected } from '../src/client/ClosePrompt.tsx'
 import type { EditorBodyInjected } from '../src/client/EditorBody.tsx'
@@ -65,16 +65,21 @@ async function boot() {
 }
 
 describe('ui-code-editor apply', () => {
-  it('keeps the host entry inert and registers the renderer in the builtin band with its body and the prompt', async () => {
+  it('keeps the host entry inert and registers both renderers with their bodies and the prompt', async () => {
     expect(hostApply).not.toThrow()
     const { registered, previews } = await boot()
-    expect(previews.map(entry => [entry.id, entry.priority, entry.title()])).toEqual([[CODE_EDITOR_ID, 'builtin', 'title']])
+    expect(previews.map(entry => [entry.id, entry.priority, entry.title()])).toEqual([
+      [CODE_EDITOR_ID, 'extension', 'title'], [CODE_EDITOR_ALT_ID, 'builtin', 'title'],
+    ])
     expect(previews[0]?.extensions).toBe(EDITOR_SUFFIXES)
-    for (const suffix of ['ts', 'md', 'csv', 'gitignore']) expect(EDITOR_SUFFIXES).toContain(suffix)
+    expect(previews[1]?.extensions).toBe(RENDERED_SUFFIXES)
+    for (const suffix of ['ts', 'gitignore']) expect(EDITOR_SUFFIXES).toContain(suffix)
+    for (const suffix of RENDERED_SUFFIXES) expect(EDITOR_SUFFIXES).not.toContain(suffix)
     expect(new Set(EDITOR_SUFFIXES).size).toBe(EDITOR_SUFFIXES.length)
     expect(registered.map(entry => [entry.name, entry.key ?? entry.id, entry.component])).toEqual([
       ['shell.overlay', 'codeEditor.close-prompt', ClosePrompt],
       ['sidebar.right.tab.document', CODE_EDITOR_ID, LazyEditorBody],
+      ['sidebar.right.tab.document', CODE_EDITOR_ALT_ID, LazyEditorBody],
     ])
     expect(Object.keys(en)).toEqual(Object.keys(zh))
   })

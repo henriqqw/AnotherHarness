@@ -49,7 +49,7 @@ kind: "package-reference"
 
 每个打开的 `DirectoryNode` 在 Tab 生命周期内持有自己的目标监听；折叠关闭该节点及其不可见后代。祖先恢复期间的展开状态变化会更新存储和待恢复节点，后代恢复时遵循最新展开偏好。自动刷新默认开启；独立开关暂时隐藏，状态、文案、样式与切换逻辑保留。目录读取期间或收尾时收到的变化仍会留待下一次刷新。
 
-文件操作调用 [`workspaceFiles` Remote](../../api/workspace-files/README.zh.md#editing) 上的 `create`、`rename` 和 `deleteEntry`。删除总会确认并写明项目名称；删除文件夹会连同其内容一起删除。新文件会在预览中打开。重命名或删除后，主体会以文件地址发出 `workspace-file/moved(sessionId, from, to)`（删除后 `to` 为 `undefined`），[`ui-code-editor`](../ui-code-editor/README.zh.md) 据此移动草稿和标签页。
+文件操作调用 [`workspaceFiles` Remote](../../api/workspace-files/README.zh.md#editing) 上的 `create`、`rename` 和 `deleteEntry`。**显示文件位置**以 `action: 'reveal'` 调用 `session.openWorkspacePath`，仅在 Host 报告有桌面文件管理器时出现。在 git 仓库中，`workspaceFiles.gitStatus` 会像 VS Code 一样装饰文件树（文件带状态字母和颜色，包含更改的文件夹带圆点），标题栏中的分支按钮可切换为已更改文件的平铺列表；文件树变化、重新加载以及窗口重新获得焦点时会再次读取状态。删除总会确认并写明项目名称；删除文件夹会连同其内容一起删除。新文件会在预览中打开。重命名或删除后，主体会以文件地址发出 `workspace-file/moved(sessionId, from, to)`（删除后 `to` 为 `undefined`），[`ui-code-editor`](../ui-code-editor/README.zh.md) 据此移动草稿和标签页。
 
 <a id="model-experience"></a>
 ## 模型体验
@@ -63,7 +63,8 @@ kind: "package-reference"
 ## 已知限制与暂缓事项
 
 <a id="known-limitations-and-deferred-work"></a>
-- **没有搜索或拖拽。**树在右键菜单和标题栏中提供新建文件、新建文件夹、重命名（F2）和删除，但没有搜索、产物过滤、拖拽或当前文件高亮。
+- **没有搜索或拖拽。**树在右键菜单和标题栏中提供新建文件、新建文件夹、重命名（F2）、删除和显示文件位置，但没有搜索、产物过滤、拖拽或当前文件高亮。
+- **仅显示状态。**源代码管理装饰只显示状态；这里没有暂存、提交或差异视图（审阅标签页显示代理的更改）。
 - **只有一个根。**树以会话工作目录为根；没有办法浏览到它之上，而 Host 本来也拒绝工作区根之外的路径。
 
 <a id="dev-note"></a>

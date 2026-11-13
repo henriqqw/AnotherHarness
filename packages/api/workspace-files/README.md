@@ -68,6 +68,7 @@ These methods serve [`ui-code-editor`](../../client/ui-code-editor/README.md) an
 | `create(path, kind, content?)` | Creates a file (with optional content) or a directory, with missing parents; `workspace-file/exists` when taken. |
 | `rename(from, to)` | Moves a file or directory; `exists` when the target is taken. |
 | `deleteEntry(path, recursive)` | Deletes a file or directory; a non-empty directory needs `recursive`, else `not-empty`. `remove` is a reserved member of the Client namespace service. |
+| `gitStatus()` | Modified, added, deleted, untracked, and conflicted files of the repository enclosing the workspace, by absolute path, served by the [`workspaceChanges`](../../deliverables/workspace-changes/README.md) service; `repository: false` without it or outside a repository. |
 | `navigate(path, position, operation)` | Hover, `goToDefinition`, or `findReferences` through `ctx.lsp`, with zero-based positions and absolute result paths; `workspace-file/no-language-server` when `ctx.lsp` is absent or no provider handles the file. |
 
 ### Configuration

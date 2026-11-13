@@ -30,7 +30,7 @@ The Web UI shows workspace files read-only: the workspace-files service exposes 
 
 ## User-visible behavior
 
-- **Open** — a text file opens read-only in the right-sidebar preview, as today. **Editor** in the preview's viewer menu opens it in the editor, and **Edit** there turns on input; **Open in editor** (or double-click in the Files tree) opens the full-screen editor area, which holds one tab per open file.
+- **Open** — a source or text file opens in the editor, read-only until **Edit**; the previous read-only preview stays in the viewer menu as **Code**, and files with a rendered view keep it as the default; **Open in editor** (or double-click in the Files tree) opens the full-screen editor area, which holds one tab per open file.
 - **Editing** — syntax highlighting for the common languages (TypeScript/JavaScript/JSX, Python, JSON, CSS, HTML, Markdown, YAML, Rust, Go, Java, C/C++, SQL, PHP, XML, shell, Dockerfile, TOML), line numbers, active-line and matching-bracket highlight, auto-closing brackets and quotes, smart indentation, indentation guides, code folding, word wrap toggle, whitespace rendering toggle, and a minimap.
 - **VS Code keys** — multiple cursors (Alt+Click, Ctrl/Cmd+D, Ctrl/Cmd+Alt+Up/Down), column selection (Shift+Alt+drag), move and copy lines (Alt/Shift+Alt+Up/Down), toggle comment (Ctrl/Cmd+/), indent and outdent, go to line (Ctrl+G), search (Ctrl/Cmd+F) and replace (Ctrl/Cmd+H) with case, whole-word, and regex options, select all occurrences (Ctrl/Cmd+Shift+L).
 - **Autocomplete** — suggestions from words in open files, the language's keywords, and built-in snippets; Tab or Enter accepts, Escape dismisses.

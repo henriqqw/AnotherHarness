@@ -1765,6 +1765,9 @@ importers:
       '@anotherharness/ah-util-workspace-path':
         specifier: workspace:*
         version: link:../../util/workspace-path
+      '@anotherharness/ah-workspace-changes':
+        specifier: workspace:*
+        version: link:../../deliverables/workspace-changes
       '@anotherharness/cordis':
         specifier: workspace:~
         version: link:../../../vendor/cordis
@@ -5763,6 +5766,9 @@ importers:
       '@anotherharness/ah-api-remotes':
         specifier: workspace:*
         version: link:../../api/remotes
+      '@anotherharness/ah-api-session-controller':
+        specifier: workspace:*
+        version: link:../../api/session-controller
       '@anotherharness/ah-api-workspace-files':
         specifier: workspace:*
         version: link:../../api/workspace-files

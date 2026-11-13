@@ -1169,6 +1169,10 @@ else process.exit(1);
     let initialReading = false
     try {
       await openFile('pages.ts')
+      // Source files open in the code editor; the paged read belongs to the read-only Code viewer.
+      await expect.poll(() => viewer.innerText()).toBe('Editor')
+      await viewer.click()
+      await page.getByRole('menuitem', { name: 'Code', exact: true }).click()
       await expect.poll(() => waitingForRead).toBe(true)
       const reading = preview.locator('[data-document-loading]')
       await expectDocumentLoading(preview)

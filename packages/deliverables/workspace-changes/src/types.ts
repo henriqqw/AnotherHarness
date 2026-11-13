@@ -1,5 +1,6 @@
 /** Per-turn workspace change summaries, the Session event announcing them, and the Host service serving them with their comparisons. */
 import type { SessionId } from '@anotherharness/ah-session/types'
+import type { GitStatus } from './status.ts'
 
 /** One file changed during a turn, with line counts from git or from the whole-file captures around its file-tool edits. */
 export interface WorkspaceChangedFile {
@@ -94,6 +95,15 @@ export interface WorkspaceChanges {
    * @throws when a snapshot read fails for a live Session.
    */
   diff(sessionId: SessionId, seq: number, index: number, signal: AbortSignal): Promise<WorkspaceFileDiff | undefined>
+  /**
+   * The current working-tree status of the repository enclosing a directory,
+   * for source-control decorations. Capped at the plugin's `maxFiles`.
+   * @param cwd - absolute directory, usually a Session working directory.
+   * @param signal - cancels the git commands.
+   * @returns the status; `repository: false` outside a repository or when git is unavailable.
+   * @throws when git fails inside a repository.
+   */
+  status(cwd: string, signal: AbortSignal): Promise<GitStatus>
 }
 
 declare module '@anotherharness/ah-session/types' {

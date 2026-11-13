@@ -551,6 +551,17 @@ Host Remote file reads and workspace directory observations over the composed fi
 @Remote async navigate( workspaceFileScope: WorkspaceFileScope, path: string, position: WorkspaceNavigationPosition, operation: WorkspaceNavigationOperation, signal: AbortSignal, ): Promise<WorkspaceNavigation>
 
 /**
+ * Report which files in the workspace's git repository are modified,
+ * added, deleted, untracked, or in conflict, for source-control decorations.
+ * Served by the `workspaceChanges` service; without it, or outside a
+ * repository, `repository` is false and nothing is listed.
+ * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+ * @param signal - caller cancellation.
+ * @returns the changed files by absolute path.
+ */
+@Remote async gitStatus(workspaceFileScope: WorkspaceFileScope, signal: AbortSignal): Promise<WorkspaceGitStatus>
+
+/**
  * Report one regular file's identity, version, and size without its content.
  * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
  * @param path - absolute path or path relative to the workspace root; files outside it are allowed.

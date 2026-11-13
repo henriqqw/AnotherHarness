@@ -48,7 +48,8 @@ async function boot() {
       return () => { dictionaries.delete(ns) }
     }),
   }
-  const workspaceFiles = { list: vi.fn() }
+  const gitStatus = vi.fn(() => Promise.resolve({ ok: true, value: { repository: true, truncated: false, entries: [] } }))
+  const workspaceFiles = { list: vi.fn(), gitStatus }
   const sidebar = { commandTarget: vi.fn(), openTabFromTarget: vi.fn() }
   const commands: ShortcutCommand[] = []
   ctx.provide('shortcuts', { register: (command: ShortcutCommand) => {
@@ -59,8 +60,10 @@ async function boot() {
   ctx.provide('sidebarRightTabs', tabs as never)
   ctx.provide('slots', slots as never)
   ctx.provide('locale', locale as never)
-  ctx.provide('remote', { workspaceFiles } as never)
+  const session = { canOpenWorkspacePath: vi.fn(() => Promise.resolve({ ok: true, value: true })), openWorkspacePath: vi.fn() }
+  ctx.provide('remote', { workspaceFiles, session } as never)
   ctx.provide('remote.workspaceFiles', workspaceFiles as never)
+  ctx.provide('remote.session', session as never)
   const fiber = ctx.plugin({ inject: [...inject], apply })
   await fiber.await()
   return { ctx, tabs, registered, dictionaries, fiber, sidebar, commands }
@@ -105,11 +108,13 @@ describe('ui-sidebar-files apply', () => {
     expect(registered[0]?.store).toBeDefined()
     expect(typeof registered[0]?.inject).toBe('function')
     const injected = (registered[0]?.inject as (sessionId: string, actions: unknown) => Record<string, unknown>)('s-1', {})
-    expect(Object.keys(injected)).toEqual(expect.arrayContaining(['start', 'refresh', 'toggle', 'operations', 'announceMove']))
+    expect(Object.keys(injected)).toEqual(expect.arrayContaining(['start', 'refresh', 'toggle', 'operations', 'announceMove', 'sourceControl', 'reveal']))
     const moved = vi.fn()
     ctx.on('workspace-file/moved', moved)
     ;(injected.announceMove as (sessionId: string, from: string, to: string | undefined) => void)('s-1', 'a', undefined)
     expect(moved).toHaveBeenCalledWith('s-1', 'a', undefined)
+    const git = await (injected.sourceControl as (sessionId: string, root: string, signal: AbortSignal) => Promise<{ repository: boolean }>)('s-1', '/w', new AbortController().signal)
+    expect(git.repository).toBe(true)
   })
 
   it('takes every registration back when the plugin is disposed', async () => {

@@ -17,7 +17,7 @@ export interface EditableText {
 }
 
 /** Why bytes cannot be edited as text. */
-export type DecodeRefusal = 'binary' | 'not-utf8'
+export type DecodeRefusal = 'binary' | 'not-utf8' | 'too-large'
 
 const BOM = '﻿'
 

@@ -130,6 +130,15 @@ interface WorkspaceChanges {
    * @throws when a snapshot read fails for a live Session.
    */
   diff(sessionId: SessionId, seq: number, index: number, signal: AbortSignal): Promise<WorkspaceFileDiff | undefined>
+  /**
+   * The current working-tree status of the repository enclosing a directory,
+   * for source-control decorations. Capped at the plugin's `maxFiles`.
+   * @param cwd - absolute directory, usually a Session working directory.
+   * @param signal - cancels the git commands.
+   * @returns the status; `repository: false` outside a repository or when git is unavailable.
+   * @throws when git fails inside a repository.
+   */
+  status(cwd: string, signal: AbortSignal): Promise<GitStatus>
 }
 ```
 
@@ -170,6 +179,16 @@ summary(sessionId: SessionId, seq: number): WorkspaceChangesSummary | undefined
  * @throws when a snapshot read fails for a live Session.
  */
 diff(sessionId: SessionId, seq: number, index: number, signal: AbortSignal): Promise<WorkspaceFileDiff | undefined>
+
+/**
+ * The current working-tree status of the repository enclosing a directory,
+ * for source-control decorations. Capped at the plugin's `maxFiles`.
+ * @param cwd - absolute directory, usually a Session working directory.
+ * @param signal - cancels the git commands.
+ * @returns the status; `repository: false` outside a repository or when git is unavailable.
+ * @throws when git fails inside a repository.
+ */
+status(cwd: string, signal: AbortSignal): Promise<GitStatus>
 ```
 
 Types: [SessionId](core.md)

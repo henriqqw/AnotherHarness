@@ -40,6 +40,8 @@ export interface FileContextMenuProps {
   readonly menu: FileMenu
   readonly onDialog: (dialog: FileDialog) => void
   readonly onClose: () => void
+  /** Show a path in the Host's file manager; absent when the Host has none. @param path - absolute path. */
+  readonly onReveal?: (path: string) => void
   readonly t: TranslateNS<'sidebarFiles'>
 }
 
@@ -47,7 +49,7 @@ export interface FileContextMenuProps {
  * @param props - menu position, target, dialog opener, and copy.
  * @returns the context menu.
  */
-export function FileContextMenu({ menu, onDialog, onClose, t }: FileContextMenuProps): ReactNode {
+export function FileContextMenu({ menu, onDialog, onClose, onReveal, t }: FileContextMenuProps): ReactNode {
   const ref = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     const close = (event: Event): void => {
@@ -73,6 +75,14 @@ export function FileContextMenu({ menu, onDialog, onClose, t }: FileContextMenuP
         onClick={() => { choose({ kind: 'create-file', directory: menu.directory }) }}>{t('action.newFile')}</button>
       <button type="button" role="menuitem" className={css.menuItem}
         onClick={() => { choose({ kind: 'create-folder', directory: menu.directory }) }}>{t('action.newFolder')}</button>
+      {onReveal !== undefined && <>
+        <hr className={css.menuSeparator} />
+        <button type="button" role="menuitem" className={css.menuItem} data-files-reveal
+          onClick={() => {
+            onClose()
+            onReveal(menu.target?.path ?? menu.directory)
+          }}>{t('action.reveal')}</button>
+      </>}
       {menu.target !== undefined && (() => {
         const target = menu.target
         return <>

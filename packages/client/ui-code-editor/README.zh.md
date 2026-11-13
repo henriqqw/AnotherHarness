@@ -9,7 +9,7 @@ kind: "package-reference"
 
 ## 概述
 
-在右侧 Sidebar 中编辑工作区文件。在文件预览的查看器菜单中选择**编辑器**，即可在 CodeMirror 6 编辑器中打开，选择**编辑**之前为只读；保存受编辑器加载时的版本保护，因此用户和代理都不会在不知情时覆盖对方的更改。Sidebar 的标签页和全屏模式就是编辑区域。
+在右侧 Sidebar 中编辑工作区文件。源代码文件在 CodeMirror 6 编辑器中打开，选择**编辑**之前为只读；保存受编辑器加载时的版本保护，因此用户和代理都不会在不知情时覆盖对方的更改。Sidebar 的标签页和全屏模式就是编辑区域。
 
 ## 目录
 
@@ -24,7 +24,7 @@ kind: "package-reference"
 <a id="what-it-registers"></a>
 ## 注册了什么
 
-- **一个文档渲染器**，注册在 [`ctx.documentPreviews`](../ui-sidebar-documentpreview/README.zh.md) 上：`@anotherharness/ah-client-ui-code-editor` 位于 `builtin` 档，覆盖所有高亮语言、渲染格式（Markdown、HTML、CSV、notebook、SVG）和常见文本文件。它在产品自带查看器之后注册，因此只读代码预览和渲染查看器仍是默认，**编辑器**出现在查看器菜单中；没有其他查看器认领的文件（例如 `.gitignore`）在编辑器中打开。渲染器延迟加载：CodeMirror 及其语法在首次打开时随 `client.EditorBody.js` 分块到达。
+- **两个文档渲染器**，注册在 [`ctx.documentPreviews`](../ui-sidebar-documentpreview/README.zh.md) 上：`@anotherharness/ah-client-ui-code-editor` 位于 `extension` 档，用于源代码和文本文件，因此默认打开，只读代码预览作为**代码**留在查看器菜单中；`…/alternative` 位于 `builtin` 档，用于有渲染视图的文件（Markdown、HTML、CSV、notebook、SVG），渲染视图仍为默认，并在旁边提供**编辑器**。超过 1 MiB 的文件会被拒绝，并提示使用**代码**。两者都延迟加载渲染器：CodeMirror 及其语法在首次打开时随 `client.EditorBody.js` 分块到达。
 - **一个关闭守卫**，通过 `ctx.sidebarRight.registerCloseGuard` 作用于 `text` 标签页类型：关闭文件有未保存更改的标签页时，标签页保留并打开“保存 / 不保存 / 取消”对话框，该对话框以 `codeEditor.close-prompt` 注册在 `shell.overlay` 中。
 - **一个监听器**，监听 [`ui-sidebar-files`](../ui-sidebar-files/README.zh.md) 发出的 `workspace-file/moved`：重命名后，草稿移到新地址，标签页在新地址重新打开；删除后，标签页关闭，有未保存更改时先询问。
 - **一个 `beforeunload` 守卫**，在有未保存草稿时生效。
@@ -54,7 +54,6 @@ kind: "package-reference"
 
 <a id="known-limitations-and-deferred-work"></a>
 - **仅限文本。** 二进制文件、非 UTF-8 文本以及超过 `workspace-files.maxEditableBytes` 的文件打开时显示拒绝提示。
-- **定义在默认查看器中打开。** 转到定义会用默认查看器（通常是只读代码预览）打开另一个文件；切换到**编辑器**后才会定位到对应行。
 - **没有语言服务器补全或诊断。** `ctx.lsp` 接缝只提供悬停和导航；补全使用文件中的单词。
 - **视图的覆盖率。** `EditorBody.tsx`、`CompareView.tsx` 和 `file-editor.ts` 需要浏览器布局引擎，因此豁免逐文件覆盖率；它们的逻辑位于已覆盖的模块中。
 

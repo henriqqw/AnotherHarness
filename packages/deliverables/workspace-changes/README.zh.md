@@ -47,6 +47,8 @@ kind: "package-reference"
 
 每个文件携带持久的 `path`——位于工作目录内时为相对路径，否则为绝对路径——以及用于排序和标签的 `display` 路径：相对路径，仓库内位于工作目录之上的文件为 `../` 路径，家目录下的文件为 `~` 路径，其余为绝对路径。文件按 `display` 的码元顺序排序，因此上级路径和绝对路径排在工作目录自身文件之前。`workspace/changes` 事件只携带轮号；`ctx.workspaceChanges.summary(sessionId, seq)` 返回该序号的事件宣告的摘要，Session 已释放或本 Host 进程从未记录时返回 undefined。`ctx.workspaceChanges.diff(sessionId, seq, index, signal)` 对比该下标所列的文件：从两棵快照树或两份副本得出带三行上下文的 hunk；git 报告为二进制或某一侧含 NUL 字节时返回 `binary`；某一侧超过 `maxFileBytes` 时返回 `oversized`。逐行对比运行超过 `diffTimeoutMs` 时退化为一个替换全部行的 hunk，并标记 `coarse`。因此 Host 重启后重新打开的对话，先前轮次既没有卡片也没有对比。
 
+`ctx.workspaceChanges.status(cwd, signal)` 报告 `cwd` 所在仓库当前的工作树状态，用于源代码管理装饰：每个已修改、已添加、已删除、未跟踪或冲突的文件（以 `/` 分隔的绝对路径），来自 `git status --porcelain=v1 -z --no-renames --untracked-files=all`，上限为 `maxFiles`。被忽略的文件不列出。不在任何仓库中的目录，或没有 git 的 Host，报告 `repository: false`。[`workspaceFiles.gitStatus`](../../api/workspace-files/README.zh.md#editing) 将其提供给文件树。
+
 -----
 
 <a id="understand-the-implementation"></a>

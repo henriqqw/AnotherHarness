@@ -73,7 +73,8 @@
     "@anotherharness/ah-sandbox-policy": "workspace:*",
     "@anotherharness/ah-session": "workspace:*",
     "@anotherharness/ah-session-persistence": "workspace:*",
-    "@anotherharness/ah-util-workspace-path": "workspace:*"
+    "@anotherharness/ah-util-workspace-path": "workspace:*",
+    "@anotherharness/ah-workspace-changes": "workspace:*"
   },
   "files": [
     "lib/index.js",

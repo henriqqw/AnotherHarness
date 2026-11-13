@@ -9,7 +9,7 @@ English | [中文](README.zh.md)
 
 ## Summary
 
-Edit workspace files in the right Sidebar. Pick **Editor** in a file preview's viewer menu to open it in a CodeMirror 6 editor, read-only until **Edit**; saves are guarded by the version the editor loaded, so neither the user nor the agent overwrites the other's change unseen. The Sidebar's tabs and fullscreen mode are the editor area.
+Edit workspace files in the right Sidebar. Source files open in a CodeMirror 6 editor, read-only until **Edit**; saves are guarded by the version the editor loaded, so neither the user nor the agent overwrites the other's change unseen. The Sidebar's tabs and fullscreen mode are the editor area.
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ Edit workspace files in the right Sidebar. Pick **Editor** in a file preview's v
 <a id="what-it-registers"></a>
 ## What it registers
 
-- **A document renderer** on [`ctx.documentPreviews`](../ui-sidebar-documentpreview/README.md), `@anotherharness/ah-client-ui-code-editor`, in the `builtin` band for every highlighted language, rendered formats (Markdown, HTML, CSV, notebooks, SVG), and common text files. It registers after the product's viewers, so the read-only code preview and the rendered viewers stay the default and **Editor** appears in the viewer menu; files no other viewer claims, such as `.gitignore`, open in the editor. The renderer loads lazily: CodeMirror and its grammars arrive in the `client.EditorBody.js` chunk on first open.
+- **Two document renderers** on [`ctx.documentPreviews`](../ui-sidebar-documentpreview/README.md): `@anotherharness/ah-client-ui-code-editor` in the `extension` band for source and text files, so it opens by default and the read-only code preview stays in the viewer menu as **Code**; and `…/alternative` in the `builtin` band for files with a rendered view (Markdown, HTML, CSV, notebooks, SVG), where the rendered view stays the default and **Editor** is offered beside it. Files above 1 MiB are refused with a pointer to **Code**. Both load the renderer lazily: CodeMirror and its grammars arrive in the `client.EditorBody.js` chunk on first open.
 - **A close guard** for the `text` tab kind through `ctx.sidebarRight.registerCloseGuard`: closing a tab whose file has unsaved changes keeps the tab and opens the Save / Don't save / Cancel dialog, registered in `shell.overlay` under `codeEditor.close-prompt`.
 - **A listener** for `workspace-file/moved`, emitted by [`ui-sidebar-files`](../ui-sidebar-files/README.md): drafts move to the new address and tabs reopen there after a rename; tabs close after a delete, asking first when they hold unsaved changes.
 - **A `beforeunload` guard** while any draft is unsaved.
@@ -54,7 +54,6 @@ None; editor traffic travels over the Remote and assembles no model request.
 
 <a id="known-limitations-and-deferred-work"></a>
 - **Text only.** Binary files, non-UTF-8 text, and files above `workspace-files.maxEditableBytes` open with a refusal line.
-- **Definitions open in the default viewer.** Go to definition opens another file with its default viewer, usually the read-only code preview; the line is revealed once that file is switched to **Editor**.
 - **No language-server completion or diagnostics.** The `ctx.lsp` seam offers hover and navigation only; completion uses words in the file.
 - **Coverage of the view.** `EditorBody.tsx`, `CompareView.tsx`, and `file-editor.ts` need a browser layout engine and are exempt from per-file coverage; their logic lives in the covered modules.
 

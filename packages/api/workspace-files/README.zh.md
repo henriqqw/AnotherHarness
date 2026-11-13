@@ -68,6 +68,7 @@ kind: "package-reference"
 | `create(path, kind, content?)` | 创建文件（可带内容）或目录，并创建缺失的父目录；路径已被占用时返回 `workspace-file/exists`。 |
 | `rename(from, to)` | 移动文件或目录；目标已被占用时返回 `exists`。 |
 | `deleteEntry(path, recursive)` | 删除文件或目录；非空目录需要 `recursive`，否则返回 `not-empty`。`remove` 是 Client 命名空间服务的保留成员。 |
+| `gitStatus()` | 工作区所在仓库中已修改、已添加、已删除、未跟踪和冲突的文件（绝对路径），由 [`workspaceChanges`](../../deliverables/workspace-changes/README.zh.md) 服务提供；没有该服务或不在仓库中时 `repository: false`。 |
 | `navigate(path, position, operation)` | 通过 `ctx.lsp` 执行悬停、`goToDefinition` 或 `findReferences`，位置从零开始，结果路径为绝对路径；`ctx.lsp` 不存在或没有提供方处理该文件时返回 `workspace-file/no-language-server`。 |
 
 ### 配置

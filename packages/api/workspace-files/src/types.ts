@@ -18,6 +18,19 @@
 // augments its error map rather than defining an unrelated ambient module.
 import type {} from '@anotherharness/ah-typert-protocol'
 
+/** One file's working-tree state, as source-control views letter it (M, A, D, U, C). */
+export type WorkspaceGitFileState = 'modified' | 'added' | 'deleted' | 'untracked' | 'conflicted'
+
+/** The working-tree git status of the repository enclosing the workspace. */
+export interface WorkspaceGitStatus {
+  /** Whether the workspace is inside a git repository (and git is available). */
+  readonly repository: boolean
+  /** Changed files, each by absolute slash-separated path. */
+  readonly entries: readonly { readonly absolutePath: string; readonly state: WorkspaceGitFileState }[]
+  /** True when more files changed than the Host reports. */
+  readonly truncated: boolean
+}
+
 /** The language-server queries the editor offers. */
 export type WorkspaceNavigationOperation = 'hover' | 'goToDefinition' | 'findReferences'
 

@@ -21,6 +21,8 @@ import type { FilesBodyProps } from '../src/client/FilesBody.tsx'
 import { zh } from '../src/client/locales.ts'
 import { createFilesStore } from '../src/client/store.ts'
 import type { FileOperations } from '../src/client/operations.ts'
+import { NO_DECORATIONS, type GitDecorations } from '../src/client/git-status.ts'
+import type { FileReveal } from '../src/client/reveal.ts'
 import { scriptedList } from './scripted-list.client.ts'
 import type { ScriptedList } from './scripted-list.client.ts'
 import type { TabId } from '@anotherharness/ah-client-ui-dockkit'
@@ -57,6 +59,8 @@ export interface Mounted {
   readonly tabActions: MockedTabActions
   readonly operations: { readonly [K in keyof FileOperations]: Mock<FileOperations[K]> }
   readonly announceMove: Mock<(sessionId: string, from: string, to: string | undefined) => void>
+  readonly sourceControl: Mock<(sessionId: string, root: string, signal: AbortSignal) => Promise<GitDecorations>>
+  readonly reveal: { readonly available: Mock<FileReveal['available']>; readonly reveal: Mock<FileReveal['reveal']> }
   /** Render a fresh body over the same store and face, as a tab switch remounts it. */
   readonly remount: () => RenderResult
 }
@@ -83,6 +87,12 @@ function harness(cwd: string | null, refreshShortcut?: ReturnType<FilesBodyProps
     remove: vi.fn<FileOperations['remove']>(() => Promise.resolve({ ok: true })),
   }
   const announceMove = vi.fn<(sessionId: string, from: string, to: string | undefined) => void>()
+  const sourceControl = vi.fn<(sessionId: string, root: string, signal: AbortSignal) => Promise<GitDecorations>>(
+    () => Promise.resolve(NO_DECORATIONS))
+  const reveal = {
+    available: vi.fn<FileReveal['available']>(() => Promise.resolve(false)),
+    reveal: vi.fn<FileReveal['reveal']>(() => Promise.resolve(true)),
+  }
   const sessions = { byId: cwd === null ? {} : { [SESSION]: { cwd } } } as unknown as SessionListState
   const shared = {
     // A page tab's address is the shell's to mint; the body never reads it.
@@ -104,9 +114,11 @@ function harness(cwd: string | null, refreshShortcut?: ReturnType<FilesBodyProps
     ...face,
     operations,
     announceMove,
+    sourceControl,
+    reveal,
     t: makeTranslate(zh),
   }
-  return { instance, script, face, controller, tabActions, operations, announceMove, shared }
+  return { instance, script, face, controller, tabActions, operations, announceMove, sourceControl, reveal, shared }
 }
 
 /**

@@ -74,6 +74,11 @@ it('replays highlighted Python stubs, PowerShell and CSV reads with their docume
         await preview.locator('[data-excel-preview] canvas').first().waitFor()
         await viewer.click()
         await page.getByRole('menuitem', { name: 'Code', exact: true }).click()
+      } else {
+        // Source files open in the code editor; this snapshot covers the read-only highlighted preview.
+        await expect.poll(() => viewer.innerText()).toBe('Editor')
+        await viewer.click()
+        await page.getByRole('menuitem', { name: 'Code', exact: true }).click()
       }
       await expect.poll(() => preview.locator('[data-code-preview] .shiki span[style*="color:"]').count()).toBeGreaterThan(0)
       expect(await preview.getByText(file.previewLang, { exact: true }).count()).toBe(1)

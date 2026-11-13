@@ -19,10 +19,12 @@ import type { FsTarget } from '@anotherharness/ah-fs'
 import { GitRunner } from './git.ts'
 import { TurnRecorder } from './recorder.ts'
 import type { WorkspaceChanges } from './types.ts'
+import { readGitStatus } from './status.ts'
 
 export type {
   WorkspaceChangedFile, WorkspaceChanges, WorkspaceChangesSummary, WorkspaceDiffHunk, WorkspaceFileDiff,
 } from './types.ts'
+export type { GitFileState, GitStatus, GitStatusEntry } from './status.ts'
 
 /** Stable Loader identity. */
 export const name = 'workspace-changes'
@@ -116,6 +118,11 @@ export function apply(ctx: Context, config: Config): void {
   const service: WorkspaceChanges = {
     summary: (sessionId, seq) => byId.get(sessionId)?.summary(seq),
     diff: (sessionId, seq, index, signal) => byId.get(sessionId)?.diff(seq, index, signal) ?? Promise.resolve(undefined),
+    status: async (cwd, signal) => {
+      const git = await gitRunner()
+      if (git === null) return { repository: false, entries: [], truncated: false }
+      return readGitStatus(git, cwd, config.maxFiles, signal)
+    },
   }
   ctx.provide('workspaceChanges', service)
   let runner: Promise<GitRunner | null> | undefined

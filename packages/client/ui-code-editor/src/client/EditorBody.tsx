@@ -240,7 +240,8 @@ export function EditorBody({ resourceAddress, content, wrap, useResource, drafts
 
   if (load.kind === 'loading') return <p className={css.status}>{t('loading')}</p>
   if (load.kind === 'refused') {
-    return <p className={css.status} role="alert">{t(load.reason === 'binary' ? 'refused.binary' : 'refused.notUtf8')}</p>
+    const key = load.reason === 'binary' ? 'refused.binary' : load.reason === 'too-large' ? 'refused.tooLarge' : 'refused.notUtf8'
+    return <p className={css.status} role="alert">{t(key)}</p>
   }
   if (load.kind === 'failed' || draft === undefined) {
     return <p className={css.status} role="alert">{t('refused.read', { message: load.kind === 'failed' ? load.message : '' })}</p>

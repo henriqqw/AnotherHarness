@@ -2,7 +2,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { RemoteError } from '@anotherharness/ah-client-test-runtime'
 import { DraftStore } from '../src/client/drafts.ts'
-import { createEditorFiles, sessionFileOf, type EditorRemote } from '../src/client/files.ts'
+import { createEditorFiles, MAX_EDITABLE_BYTES, sessionFileOf, type EditorRemote } from '../src/client/files.ts'
 
 const A = 'ah-resource://file/session/s-1/src/a.ts'
 const signal = new AbortController().signal
@@ -31,6 +31,8 @@ describe('editor files', () => {
     expect(r.readBytes).toHaveBeenCalledWith('s-1', 'src/a.ts', {}, signal)
     r.readBytes.mockResolvedValueOnce({ ok: true, value: bytes(new Uint8Array([0])) })
     expect(await files.read(A, signal)).toEqual({ kind: 'refused', reason: 'binary' })
+    r.readBytes.mockResolvedValueOnce({ ok: true, value: bytes(new Uint8Array(MAX_EDITABLE_BYTES + 1)) })
+    expect(await files.read(A, signal)).toEqual({ kind: 'refused', reason: 'too-large' })
     r.readBytes.mockResolvedValueOnce({ ok: false, error: new RemoteError('workspace-file/not-found', 'gone', { path: 'src/a.ts' }) })
     expect(await files.read(A, signal)).toEqual({ kind: 'failed', message: 'gone' })
   })

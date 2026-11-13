@@ -1,12 +1,12 @@
 /**
  * Browser half: register the code editor as a document preview renderer.
  *
- * The editor joins the product's own viewers in the `builtin` band and
- * registers after them, so the read-only code preview and the rendered
- * viewers (Markdown, HTML, Spreadsheet) stay the default and the editor is
- * offered as **Editor** in the viewer menu. Files no other viewer claims,
- * such as `.gitignore`, open in the editor. It starts read-only until the
- * user presses Edit. Every import from another client plugin is a type.
+ * Source and text files open in the editor by default (the `extension` band
+ * outranks the read-only code preview, which stays in the viewer menu as
+ * **Code**). Files with a rendered view, such as Markdown, HTML, or CSV, keep
+ * that view as the default and offer the editor beside it. The editor starts
+ * read-only until the user presses Edit. Every import from another client
+ * plugin is a type.
  *
  * The right sidebar's own tabs, splits, and fullscreen mode are the editor
  * area: each open file is a tab. Closing a tab with unsaved changes asks
@@ -49,13 +49,17 @@ export type { MoveEffects, OpenTab } from './follow-moves.ts'
 export type { EditorLanguage } from './languages.ts'
 export type { EditableText, LineEnding } from './text-codec.ts'
 
-/** Identity of the editor renderer. */
+/** Identity of the default editor renderer for source and text files. */
 export const CODE_EDITOR_ID = '@anotherharness/ah-client-ui-code-editor'
+/** Identity of the editor offered beside a rendered view. */
+export const CODE_EDITOR_ALT_ID = '@anotherharness/ah-client-ui-code-editor/alternative'
 
-/** Suffixes the editor is offered for: every highlighted language, rendered formats, and common text files. */
+/** Suffixes whose rendered view stays the default; the editor is offered beside it. */
+export const RENDERED_SUFFIXES: readonly string[] = ['md', 'markdown', 'mdx', 'html', 'htm', 'xhtml', 'csv', 'ipynb', 'svg']
+
+/** Suffixes that open in the editor by default. */
 export const EDITOR_SUFFIXES: readonly string[] = [...new Set([
-  ...CODE_HIGHLIGHT_EXTENSIONS,
-  'md', 'markdown', 'mdx', 'html', 'htm', 'xhtml', 'csv', 'ipynb', 'svg',
+  ...CODE_HIGHLIGHT_EXTENSIONS.filter(suffix => !RENDERED_SUFFIXES.includes(suffix)),
   'txt', 'text', 'gitignore', 'dockerignore', 'editorconfig', 'npmrc', 'nvmrc', 'lock',
 ])]
 
@@ -74,10 +78,13 @@ export function apply(ctx: ClientContext): void {
   const files = createEditorFiles(ctx.remote)
   ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'ui-code-editor: dictionaries')
   const t = ctx.locale.bind(NS)
-  // Same band as the product's viewers and registered after them: ties go to the earlier one.
   ctx.effect(() => ctx.documentPreviews.register({
-    id: CODE_EDITOR_ID, extensions: EDITOR_SUFFIXES, priority: 'builtin', title: () => t('title'), loading: 'renderer', wrap: true,
-  }), 'ui-code-editor: renderer')
+    id: CODE_EDITOR_ID, extensions: EDITOR_SUFFIXES, priority: 'extension', title: () => t('title'), loading: 'renderer', wrap: true,
+  }), 'ui-code-editor: source files')
+  // Same band as the rendered viewers and registered after them: they stay the default.
+  ctx.effect(() => ctx.documentPreviews.register({
+    id: CODE_EDITOR_ALT_ID, extensions: RENDERED_SUFFIXES, priority: 'builtin', title: () => t('title'), loading: 'renderer', wrap: true,
+  }), 'ui-code-editor: rendered files')
   const sidebar = ctx.sidebarRight
   const close = (sessionId: string, tabId: string): void => { sidebar.closeIn(sessionId as SessionId, tabId as TabId) }
   const flow = createCloseFlow(drafts, files, close)
@@ -98,9 +105,11 @@ export function apply(ctx: ClientContext): void {
     sidebar.openResource(target.address)
   }
   const inject = (): EditorBodyInjected => ({ drafts, files, openAt })
-  ctx.effect(() => ctx.slots.inject('sidebar.right.tab.document', () => ctx.slots.register(
-    { name: 'sidebar.right.tab.document', key: CODE_EDITOR_ID, locale: NS, inject }, LazyEditorBody,
-  )), 'ui-code-editor: body')
+  for (const key of [CODE_EDITOR_ID, CODE_EDITOR_ALT_ID]) {
+    ctx.effect(() => ctx.slots.inject('sidebar.right.tab.document', () => ctx.slots.register(
+      { name: 'sidebar.right.tab.document', key, locale: NS, inject }, LazyEditorBody,
+    )), `ui-code-editor: body ${key}`)
+  }
   // Leaving the page with unsaved drafts asks first, like VS Code.
   // Browsers show their own wording; preventDefault alone asks for confirmation.
   const beforeUnload = (event: BeforeUnloadEvent): void => {

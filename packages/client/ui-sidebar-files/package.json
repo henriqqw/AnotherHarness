@@ -32,7 +32,8 @@
         "@anotherharness/ah-client-ui-sidebar-right",
         "@anotherharness/ah-client-ui-session",
         "@anotherharness/ah-api-remotes",
-        "@anotherharness/ah-client-shortcuts"
+        "@anotherharness/ah-client-shortcuts",
+        "@anotherharness/ah-api-session-controller"
       ],
       "platform": "web"
     }
@@ -48,6 +49,7 @@
   "devDependencies": {
     "@anotherharness/cordis": "workspace:~",
     "@anotherharness/ah-api-remotes": "workspace:*",
+    "@anotherharness/ah-api-session-controller": "workspace:*",
     "@anotherharness/ah-api-workspace-files": "workspace:*",
     "@anotherharness/ah-client-locale": "workspace:*",
     "@anotherharness/ah-client-store": "workspace:*",

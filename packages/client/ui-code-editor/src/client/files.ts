@@ -14,6 +14,9 @@ import type { DraftStore, FileDraft } from './drafts.ts'
 import { targetsOf, workspaceRootOf, type EditorTarget } from './navigation.ts'
 import type { WorkspaceNavigationLocation } from '@anotherharness/ah-api-workspace-files/types'
 
+/** Largest file the editor opens, matching the Host's default save cap; larger files stay in the read-only viewers. */
+export const MAX_EDITABLE_BYTES = 1024 * 1024
+
 /** The slice of the Client Remote the editor calls. */
 export interface EditorRemote {
   readonly workspaceFiles: {
@@ -159,6 +162,7 @@ export function createEditorFiles(remote: EditorRemote): EditorFiles {
       const file = sessionFileOf(address)
       const result = await remote.workspaceFiles.readBytes(file.sessionId, file.path, {}, signal)
       if (!result.ok) return { kind: 'failed', message: result.error.message }
+      if (result.value.data.length > MAX_EDITABLE_BYTES) return { kind: 'refused', reason: 'too-large' }
       const decoded = decodeEditable(result.value.data)
       if (typeof decoded === 'string') return { kind: 'refused', reason: decoded }
       return { kind: 'text', text: decoded, version: result.value.version, absolutePath: result.value.absolutePath }

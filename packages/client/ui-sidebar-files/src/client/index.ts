@@ -13,12 +13,15 @@
 import type { ShortcutCommandId } from '@anotherharness/ah-client-shortcuts/client'
 import type { Context as ClientContext } from '@anotherharness/cordis'
 import type {} from '@anotherharness/ah-api-remotes/client'
+import type {} from '@anotherharness/ah-api-session-controller/client'
 import type {} from '@anotherharness/ah-client-ui-renderer/client'
 import type {} from '@anotherharness/ah-client-ui-session/client'
 import type {} from '@anotherharness/ah-client-ui-sidebar-right/client'
 import { FILES_ID, filesDefinition } from './definition.tsx'
 import { createList, createWatch, filesFace } from './face.ts'
 import { createFileOperations } from './operations.ts'
+import { readDecorations } from './git-status.ts'
+import { createFileReveal } from './reveal.ts'
 import type { FileActionsInjected } from './FilesBody.tsx'
 import { FilesBody } from './FilesBody.tsx'
 import { FilesTitle } from './FilesTitle.tsx'
@@ -30,6 +33,8 @@ export type { DirLevel, FilesState, FilesTabState, LevelState } from './store.ts
 export type { FilesInjected, ListWorkspaceDirectory, WorkspaceFilesListRemote } from './face.ts'
 export type { FileActionsInjected, FilesBodyProps } from './FilesBody.tsx'
 export type { FileOperationResult, FileOperations, WorkspaceFilesMutationRemote } from './operations.ts'
+export type { GitDecorations, WorkspaceGitStatusRemote } from './git-status.ts'
+export type { FileReveal, WorkspaceRevealRemote } from './reveal.ts'
 export type { ActionTarget, FileDialog, FileMenu } from './FileActions.tsx'
 
 declare module '@anotherharness/cordis' {
@@ -67,7 +72,7 @@ const NS = 'sidebarFiles'
  * Required browser services: the tab registry, the keyed seat, the Remote
  * carrier and its namespace, and copy.
  */
-export const inject = ['slots', 'locale', 'sidebarRightTabs', 'sidebarRight', 'remote', 'remote.workspaceFiles']
+export const inject = ['slots', 'locale', 'sidebarRightTabs', 'sidebarRight', 'remote', 'remote.workspaceFiles', 'remote.session']
 
 /**
  * Client plugin body: register the type, its dictionaries, its body, and its chip title.
@@ -105,8 +110,10 @@ export function apply(ctx: ClientContext): void {
   const announceMove = (sessionId: string, from: string, to: string | undefined): void => {
     ctx.emit('workspace-file/moved', sessionId, from, to)
   }
+  const reveal = createFileReveal(ctx.remote)
+  const sourceControl: FileActionsInjected['sourceControl'] = (sessionId, root, signal) => readDecorations(ctx.remote, sessionId, root, signal)
   const inject: (...args: Parameters<typeof face>) => ReturnType<typeof face> & FileActionsInjected =
-    (...args) => ({ ...face(...args), operations, announceMove })
+    (...args) => ({ ...face(...args), operations, announceMove, sourceControl, reveal })
   ctx.effect(() => ctx.slots.inject('sidebar.right.pane.tab', () => ctx.slots.register(
     {
       name: 'sidebar.right.pane.tab', key: FILES_ID, locale: NS, store, inject,

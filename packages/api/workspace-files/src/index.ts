@@ -27,6 +27,7 @@ import type { Context } from '@anotherharness/cordis'
 import z from '@anotherharness/schemastery'
 import type {} from '@anotherharness/ah-fs'
 import type { LspLocation, LspQueryResult } from '@anotherharness/ah-lsp'
+import type {} from '@anotherharness/ah-workspace-changes'
 import type { FsDirEntry, FsInfo, FsPathInfo, FsTarget, FsVersion } from '@anotherharness/ah-fs'
 import type { SandboxExecutionPolicy } from '@anotherharness/ah-sandbox'
 import type {} from '@anotherharness/ah-sandbox-policy'
@@ -45,6 +46,7 @@ import type {
   WorkspaceFileStat,
   WorkspaceFileText,
   WorkspaceFileWatchFrame,
+  WorkspaceGitStatus,
   WorkspaceNavigation,
   WorkspaceNavigationLocation,
   WorkspaceNavigationOperation,
@@ -476,6 +478,24 @@ export class WorkspaceFiles extends TypertRemoteService {
     }
     if (result.kind === 'hover') return result.hover === null ? { kind: 'hover' } : { kind: 'hover', contents: result.hover.contents }
     return { kind: 'locations', locations: result.locations.flatMap(locationOf) }
+  }
+
+  /**
+   * Report which files in the workspace's git repository are modified,
+   * added, deleted, untracked, or in conflict, for source-control decorations.
+   * Served by the `workspaceChanges` service; without it, or outside a
+   * repository, `repository` is false and nothing is listed.
+   * @param workspaceFileScope - header-derived workspace root for the Session identity on the wire.
+   * @param signal - caller cancellation.
+   * @returns the changed files by absolute path.
+   */
+  @Remote
+  async gitStatus(workspaceFileScope: WorkspaceFileScope, signal: AbortSignal): Promise<WorkspaceGitStatus> {
+    const changes = this.ctx.get('workspaceChanges')
+    if (changes === undefined) return { repository: false, entries: [], truncated: false }
+    const status = await changes.status(workspaceFileScope.workspaceRoot, signal)
+    const entries = status.entries.map(({ absolutePath, state }) => ({ absolutePath, state }))
+    return { repository: status.repository, entries, truncated: status.truncated }
   }
 
   /**
