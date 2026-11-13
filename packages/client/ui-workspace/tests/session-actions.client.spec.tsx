@@ -409,6 +409,46 @@ describe('SessionDeleteConfirmDialog', () => {
     expect(screen.queryByRole('dialog')).toBeNull()
   })
 
+  function batchDialog(deleteSession: SessionDeleteConfirmInjected['deleteSession'], count: number) {
+    const request = createSnapshotStore<SessionDeleteConfirmRequest | null>(null)
+    const settleSessionDelete = vi.fn(() => { request.set(null) })
+    render(
+      <SessionDeleteConfirmDialog {...overlay} t={t} useDeleteRequest={bindSnapshotSelector(request)}
+        settleSessionDelete={settleSessionDelete} deleteSession={deleteSession} />,
+    )
+    const batch = Array.from({ length: count }, (_, index) => ({ sessionId: sid(`s${index}`), displayTitle: `Session ${index}` }))
+    act(() => { request.set({ ...batch[0]!, batch }) })
+    return { settleSessionDelete }
+  }
+
+  it('asks once for a batch, lists the sessions, and deletes each in order', async () => {
+    const deleteSession = vi.fn(async () => {})
+    const { settleSessionDelete } = batchDialog(deleteSession, 7)
+    const dialog = screen.getByRole('dialog')
+    expect(dialog.getAttribute('aria-label')).toBe(zh['delete.batch.title'].replace('{n}', '7'))
+    expect([...dialog.querySelectorAll('[data-delete-batch] li')].map(item => item.textContent)).toEqual([
+      'Session 0', 'Session 1', 'Session 2', 'Session 3', 'Session 4', zh['delete.batch.more'].replace('{n}', '2'),
+    ])
+    await act(async () => { fireEvent.click(screen.getByRole('button', { name: '永久删除' })) })
+    expect(deleteSession.mock.calls.map(call => String(call.at(0)))).toEqual(['s0', 's1', 's2', 's3', 's4', 's5', 's6'])
+    expect(settleSessionDelete).toHaveBeenCalledOnce()
+  })
+
+  it('keeps the sessions a batch could not delete and says why', async () => {
+    const running = Object.assign(new Error('active'), { name: 'SessionDeleteError', rpcError: { code: 'session/active' } })
+    const deleteSession = vi.fn((sessionId: SessionId) => sessionId === sid('s1') ? Promise.reject(running) : Promise.resolve())
+    const { settleSessionDelete } = batchDialog(deleteSession, 3)
+    await act(async () => { fireEvent.click(screen.getByRole('button', { name: '永久删除' })) })
+    expect(settleSessionDelete).not.toHaveBeenCalled()
+    expect(screen.getByRole('alert').textContent).toBe(zh['delete.batch.failed']
+      .replace('{done}', '2').replace('{total}', '3').replace('{names}', 'Session 1').replace('{reason}', zh['delete.confirm.active']))
+    expect(screen.getByRole('dialog').getAttribute('aria-label')).toBe(zh['delete.batch.title'].replace('{n}', '1'))
+    deleteSession.mockImplementation(() => Promise.resolve())
+    await act(async () => { fireEvent.click(screen.getByRole('button', { name: '永久删除' })) })
+    expect(deleteSession).toHaveBeenLastCalledWith(sid('s1'))
+    expect(settleSessionDelete).toHaveBeenCalledOnce()
+  })
+
   it('names the session, states it cannot be undone, and deletes on confirm (spec session/0001 AC-7)', async () => {
     const pending = Promise.withResolvers<undefined>()
     const deleteSession = vi.fn(() => pending.promise)

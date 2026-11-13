@@ -10,7 +10,7 @@
  * context; this package's own actions are entries like any plugin's. The
  * session and workspace hover cards are suppressed while a menu is open.
  */
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import clsx from 'clsx'
 import type { PropsRenderSlots } from '@anotherharness/ah-client-ui-slots'
@@ -26,6 +26,7 @@ import { abbreviateHomePath } from '@anotherharness/ah-util-workspace-path'
 import type { MenuOpenState, WorkspaceBrowserProps } from '../contract/slots.ts'
 import type { GroupNode, SearchResultNode, SessionNode } from '../tree.ts'
 import css from './Rows.module.css'
+import { SessionSelectionContext } from './selection.ts'
 
 /** The standard locale seat, prop-passed from the browser root. */
 type RowTranslate = WorkspaceBrowserProps['t']
@@ -564,6 +565,8 @@ export function SessionNodeItem({
   const row = node
   const title = displayTitle(node, t)
   const selected = node.id === currentId
+  const selection = useContext(SessionSelectionContext)
+  const chosen = selection?.selected.has(node.id) === true
   const statuses = sessionStatuses(node, t)
   const primaryStatus = statuses[0]
   const showStatus = primaryStatus.state !== 'idle'
@@ -588,14 +591,19 @@ export function SessionNodeItem({
       ref={rowRef}
       data-row-key={`session:${node.id}`}
       className={clsx(
-        css.sessionRow, selected && css.selected, menuOpen && css.menuOpen,
+        css.sessionRow, selected && css.selected, chosen && css.chosen, menuOpen && css.menuOpen,
         row.archived && css.archived,
         drag?.marker === 'before' && css.dropBefore, drag?.marker === 'after' && css.dropAfter,
       )}
       role="treeitem"
-      aria-selected={selected}
+      aria-selected={selected || chosen}
       aria-description={row.archived ? t('toast.archivedNotOpenable') : undefined}
-      onClick={() => { onOpen(node.id) }}
+      data-session-chosen={chosen || undefined}
+      onClick={(event) => {
+        // Shift and Ctrl/Cmd choose rows for batch actions; a placeholder row has nothing to act on.
+        if (!row.blank && selection?.click(node.id, event) === true) return
+        onOpen(node.id)
+      }}
       onPointerEnter={marquee.enter}
       onPointerLeave={marquee.leave}
       draggable={draggable}

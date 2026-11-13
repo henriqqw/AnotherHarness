@@ -10,6 +10,7 @@ import type {
   DeleteSessionInjected, SessionDeleteConfirmInjected, SessionDeleteConfirmProps, SessionDeleteConfirmRequest,
   SessionMenuItemProps,
 } from '../contract/slots.ts'
+import type { SessionId } from '@anotherharness/ah-session/types'
 import browserCss from '../rows/WorkspaceBrowser.module.css'
 
 /**
@@ -71,9 +72,26 @@ function DeleteConfirmForm({ request, deleteSession, onSettle, t }: {
     if (deleting) return
     onSettle()
   }
+  const batch = request.batch ?? []
+  const [remaining, setRemaining] = useState(batch)
   const confirm = () => {
     setDeleting(true)
     setError(null)
+    if (batch.length > 1) {
+      void deleteAll(remaining, deleteSession).then(({ failed, reason }) => {
+        setDeleting(false)
+        if (failed.length === 0) {
+          onSettle()
+          return
+        }
+        setRemaining(failed)
+        setError(t('delete.batch.failed', {
+          done: batch.length - failed.length, total: batch.length,
+          names: failed.map(item => item.displayTitle).join(', '), reason: deleteFailure(reason, t),
+        }))
+      })
+      return
+    }
     deleteSession(request.sessionId).then(() => {
       setDeleting(false)
       onSettle()
@@ -82,13 +100,14 @@ function DeleteConfirmForm({ request, deleteSession, onSettle, t }: {
       setError(deleteFailure(reason, t))
     })
   }
+  const shown = remaining.slice(0, BATCH_NAMES_SHOWN)
   return (
     <Modal
       open
       onClose={close}
       closeLabel={t('close')}
-      title={t('delete.confirm.title')}
-      description={t('delete.confirm.desc', { title: request.displayTitle })}
+      title={batch.length > 1 ? t('delete.batch.title', { n: remaining.length }) : t('delete.confirm.title')}
+      description={batch.length > 1 ? t('delete.batch.desc') : t('delete.confirm.desc', { title: request.displayTitle })}
       footer={(
         <>
           <Button variant="outline" disabled={deleting} onClick={close}>{t('cancel')}</Button>
@@ -98,10 +117,42 @@ function DeleteConfirmForm({ request, deleteSession, onSettle, t }: {
         </>
       )}
     >
+      {batch.length > 1 && (
+        <ul className={browserCss.deleteList} data-delete-batch>
+          {shown.map(item => <li key={item.sessionId}>{item.displayTitle}</li>)}
+          {remaining.length > shown.length && <li>{t('delete.batch.more', { n: remaining.length - shown.length })}</li>}
+        </ul>
+      )}
       {deleting && <div className={browserCss.deleteStatus} role="status">{t('delete.confirm.pending')}</div>}
       {error !== null && <div className={browserCss.renameError} role="alert">{error}</div>}
     </Modal>
   )
+}
+
+/** Titles listed in a batch confirmation before "and N more". */
+const BATCH_NAMES_SHOWN = 5
+
+/**
+ * Delete Sessions one at a time, so the Host refusal for a running one leaves the rest deleted.
+ * @param items - the Sessions to delete.
+ * @param deleteSession - the deletion hop.
+ * @returns the Sessions that were not deleted and the last refusal.
+ */
+async function deleteAll(
+  items: readonly { readonly sessionId: SessionId; readonly displayTitle: string }[],
+  deleteSession: SessionDeleteConfirmInjected['deleteSession'],
+): Promise<{ failed: { readonly sessionId: SessionId; readonly displayTitle: string }[]; reason: unknown }> {
+  const failed: { readonly sessionId: SessionId; readonly displayTitle: string }[] = []
+  let reason: unknown
+  for (const item of items) {
+    try {
+      await deleteSession(item.sessionId)
+    } catch (error: unknown) {
+      failed.push(item)
+      reason = error
+    }
+  }
+  return { failed, reason }
 }
 
 /**

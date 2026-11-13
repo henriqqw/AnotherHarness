@@ -16,6 +16,11 @@
   background: var(--dsw-alias-interactive-bg-hover);
 }
 
+/* Rows chosen with Shift or Ctrl/Cmd for a batch action. */
+.sessionRow.chosen {
+  background: color-mix(in srgb, var(--dsw-alias-brand-marker) 18%, transparent);
+}
+
 /* Current session: a marker-coloured rule on the leading edge, no fill change beyond hover ink. */
 .sessionRow.selected {
   background: var(--dsw-alias-interactive-bg-hover);

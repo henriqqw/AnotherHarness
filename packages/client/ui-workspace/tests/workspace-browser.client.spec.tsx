@@ -114,6 +114,7 @@ function mount(overrides: Partial<WorkspaceBrowserProps> = {}) {
     closeAddWorkspace: controls.closeAdd,
     setDirectoryBusy: controls.directoryBusy,
     requestSessionRename: controls.rename,
+    requestSessionsDelete: vi.fn(),
     dismissForkError: controls.dismissForkError,
     wide: true,
     expandSidebar: vi.fn(),
@@ -2561,5 +2562,68 @@ describe('Workspace tree grouping', () => {
     fireEvent.dragEnd(alpha)
     expect(b.props.insertWorkspaceBefore).toHaveBeenCalledOnce()
     expect(b.props.insertWorkspaceBefore).toHaveBeenCalledWith(wid('alpha'), wid('gamma'))
+  })
+})
+
+
+describe('WorkspaceBrowser multi-selection', () => {
+  const rows = (): HTMLElement[] => [...document.querySelectorAll<HTMLElement>('[data-row-key^="session:"]')]
+  const rowOf = (id: string): HTMLElement => document.querySelector<HTMLElement>(`[data-row-key="session:${id}"]`)!
+  const chosenIds = (): string[] => rows().filter(row => row.hasAttribute('data-session-chosen'))
+    .map(row => row.dataset.rowKey!.slice('session:'.length))
+  function list() {
+    return mount({
+      useSessions: hook(sessionState([summary('a', 50), summary('b', 40), summary('c', 30), summary('d', 20)], { main: sid('a') })),
+    })
+  }
+
+  it('selects a range with Shift from the open session, toggles with Ctrl, and opens on a plain click', () => {
+    const b = list()
+    expect(rows().map(row => row.dataset.rowKey)).toEqual(['session:a', 'session:b', 'session:c', 'session:d'])
+    fireEvent.click(rowOf('c'), { shiftKey: true })
+    expect(chosenIds()).toEqual(['a', 'b', 'c'])
+    expect(b.props.open).not.toHaveBeenCalled()
+    fireEvent.click(rowOf('b'), { ctrlKey: true })
+    expect(chosenIds()).toEqual(['a', 'c'])
+    fireEvent.click(rowOf('d'), { shiftKey: true })
+    expect(chosenIds()).toEqual(['b', 'c', 'd'])
+    fireEvent.click(rowOf('a'), { metaKey: true })
+    expect(chosenIds()).toEqual(['a', 'b', 'c', 'd'])
+    expect(screen.getByRole('toolbar').textContent).toContain(zh['selection.count'].replace('{n}', '4'))
+    fireEvent.click(rowOf('d'))
+    expect(chosenIds()).toEqual([])
+    expect(b.props.open).toHaveBeenCalledWith(sid('d'))
+    fireEvent.click(rowOf('b'))
+    expect(b.props.open).toHaveBeenLastCalledWith(sid('b'))
+  })
+
+  it('deletes the chosen sessions in list order from the bar and with the Delete key, and clears with Escape', () => {
+    const b = list()
+    fireEvent.click(rowOf('d'), { ctrlKey: true })
+    fireEvent.click(rowOf('b'), { ctrlKey: true })
+    fireEvent.click(document.querySelector('[data-session-selection-delete]')!)
+    expect(b.props.requestSessionsDelete).toHaveBeenCalledWith([sid('b'), sid('d')])
+    fireEvent.keyDown(document.body, { key: 'Delete' })
+    expect(b.props.requestSessionsDelete).toHaveBeenCalledTimes(2)
+    fireEvent.keyDown(document.body, { key: 'a' })
+    const input = document.createElement('input')
+    document.body.append(input)
+    fireEvent.keyDown(input, { key: 'Escape' })
+    expect(chosenIds()).toEqual(['b', 'd'])
+    input.remove()
+    fireEvent.keyDown(document.body, { key: 'Escape' })
+    expect(chosenIds()).toEqual([])
+    expect(screen.queryByRole('toolbar')).toBeNull()
+    fireEvent.click(rowOf('c'), { ctrlKey: true })
+    fireEvent.click(document.querySelector('[data-session-selection-clear]')!)
+    expect(chosenIds()).toEqual([])
+  })
+
+  it('drops deleted sessions from the selection', () => {
+    const b = list()
+    fireEvent.click(rowOf('b'), { ctrlKey: true })
+    fireEvent.click(rowOf('c'), { ctrlKey: true })
+    rerender(b, { useSessions: hook(sessionState([summary('a', 50), summary('c', 30), summary('d', 20)], { main: sid('a') })) })
+    expect(chosenIds()).toEqual(['c'])
   })
 })

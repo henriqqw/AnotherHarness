@@ -255,6 +255,8 @@ export type WorkspaceBrowserInjected = {
   searchResultLimit: number
   /** Open the Session rename dialog (a row title double-click); the rename action entry raises the same request. */
   requestSessionRename: (sessionId: SessionId, currentTitle: string) => void
+  /** Ask for one permanent-deletion confirmation covering every chosen Session. */
+  requestSessionsDelete: (sessionIds: readonly SessionId[]) => void
   /** Tell the user an archived row cannot be opened (a click on it). */
   notifyArchivedNotOpenable: () => void
   /** Rename a Host Workspace (rejects on name conflict; resolves on durability). */
@@ -388,10 +390,12 @@ export interface DeleteSessionInjected {
 
 /** A permanent deletion the delete action asked for; the dialog entry opens on it. */
 export interface SessionDeleteConfirmRequest {
-  /** Session to delete. */
+  /** Session to delete; the first of `batch` when several were chosen. */
   sessionId: SessionId
   /** The row's display title, named in the dialog. */
   displayTitle: string
+  /** Every Session of a batch deletion, in list order; absent for one row. */
+  batch?: readonly { readonly sessionId: SessionId; readonly displayTitle: string }[]
 }
 
 /** Delete dialog share: the pending confirmation, its settlement, and the deletion hop. */

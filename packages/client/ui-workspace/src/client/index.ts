@@ -260,6 +260,12 @@ export function apply(ctx: Context): void {
     searchSessions,
     searchResultLimit: sessions.searchResultLimit,
     requestSessionRename,
+    requestSessionsDelete: (sessionIds) => {
+      const byId = sessions.list.getSnapshot().byId
+      const batch = sessionIds.map(sessionId => ({ sessionId, displayTitle: byId[sessionId]?.displayTitle ?? sessionId }))
+      const [first] = batch
+      if (first !== undefined) deleteRequest.set({ ...first, ...batch.length > 1 ? { batch } : {} })
+    },
     notifyArchivedNotOpenable: () => { notify({ kind: 'archivedNotOpenable' }) },
     renameWorkspace: async (workspaceId, title) => { await workspaces.rename(workspaceId, title) },
     deleteWorkspace: async (workspaceId) => { await workspaces.delete(workspaceId) },
