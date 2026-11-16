@@ -1,0 +1,34 @@
+# SearXNG — self-hosted meta search engine for AnotherHarness
+#
+# Start:  docker compose -f docker/searxng.yml up -d
+# Stop:   docker compose -f docker/searxng.yml down
+# Logs:   docker compose -f docker/searxng.yml logs -f
+#
+# After starting, AnotherHarness's web_search tool calls http://127.0.0.1:8888
+# automatically (no env var needed — that's the default).
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: ah-searxng
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8888:8080"
+    volumes:
+      - ./searxng-config:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=http://127.0.0.1:8888
+      # Disable the rate-limiter (it's localhost-only anyway)
+      - SEARXNG_LIMITER=false
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

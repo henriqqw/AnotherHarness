@@ -1,0 +1,112 @@
+# SearXNG settings for AnotherHarness
+# Docs: https://docs.searxng.org/admin/settings/index.html
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "AnotherHarness Search"
+  privacypolicy_url: false
+  donation_url: false
+  contact_url: false
+  enable_metrics: false
+
+server:
+  secret_key: "anotherharness-searxng-local-only"
+  limiter: false
+  image_proxy: false
+  method: "GET"
+
+ui:
+  static_use_hash: true
+  default_theme: simple
+  theme_args:
+    simple_style: dark
+
+# Enable JSON output format (required for the ah-web-search-searxng provider)
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "all"
+  formats:
+    - html
+    - json
+
+# Engines — tuned for technical/security research use
+engines:
+  # General web search
+  - name: google
+    engine: google
+    shortcut: g
+    categories: general
+    weight: 2
+
+  - name: bing
+    engine: bing
+    shortcut: b
+    categories: general
+    weight: 1.5
+
+  - name: duckduckgo
+    engine: duckduckgo
+    shortcut: ddg
+    categories: general
+    weight: 1
+
+  - name: brave
+    engine: brave
+    shortcut: br
+    categories: general
+    weight: 1.5
+
+  # Technical / developer
+  - name: github
+    engine: github
+    shortcut: gh
+    categories: it
+    weight: 2
+
+  - name: stackoverflow
+    engine: stackexchange
+    shortcut: so
+    url: https://stackoverflow.com/
+    api_site: stackoverflow
+    categories: it
+    weight: 2
+
+  - name: npm
+    engine: npm
+    shortcut: npm
+    categories: it
+    weight: 1
+
+  # Knowledge
+  - name: wikipedia
+    engine: wikipedia
+    shortcut: wp
+    categories: general
+    weight: 1.5
+
+  # Science / research
+  - name: arxiv
+    engine: arxiv
+    shortcut: arx
+    categories: science
+    weight: 2
+
+  # Security
+  - name: cve-search
+    engine: json_engine
+    shortcut: cve
+    url: https://cve.circl.lu/api/search/{query}
+    url_xpath: none
+    content_xpath: none
+    categories: it
+    disabled: true
+
+outgoing:
+  request_timeout: 15.0
+  max_request_timeout: 30.0
+  useragent_suffix: ""
+  pool_connections: 100
+  pool_maxsize: 20

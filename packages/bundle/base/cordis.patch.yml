@@ -440,6 +440,16 @@
     - id: web-fetch-http
       name: '@anotherharness/ah-web-fetch-http'
 
+    # SearXNG: self-hosted meta search engine — no API key, free.
+    # Start with: docker compose -f docker/searxng.yml up -d
+    # To use SearXNG instead of DeepSeek: set searchProvider to searxng on the
+    # 'web' row above, or set env var AH_WEB_SEARCH_PROVIDER=searxng.
+    - id: web-search-searxng
+      name: '@anotherharness/ah-web-search-searxng'
+      disabled: !!js '!process.env.SEARXNG_BASE_URL && process.env.AH_WEB_SEARCH_PROVIDER !== "searxng"'
+      config:
+        baseURL: !!js 'process.env.SEARXNG_BASE_URL ?? "http://127.0.0.1:8888"'
+
     - id: tool-web
       name: '@anotherharness/ah-tool-web'
       config:

@@ -2329,6 +2329,9 @@ importers:
       '@anotherharness/ah-web-search-deepseek':
         specifier: workspace:*
         version: link:../../web/web-search-deepseek
+      '@anotherharness/ah-web-search-searxng':
+        specifier: workspace:*
+        version: link:../../web/web-search-searxng
       '@anotherharness/ah-workflow-ptc':
         specifier: workspace:*
         version: link:../../workflow/workflow-ptc
@@ -15006,6 +15009,22 @@ importers:
       '@anotherharness/ah-http-proxy':
         specifier: workspace:*
         version: link:../../util/http-proxy
+      '@anotherharness/ah-launch-environment':
+        specifier: workspace:*
+        version: link:../../util/launch-environment
+      '@anotherharness/ah-web':
+        specifier: workspace:*
+        version: link:../web
+      '@anotherharness/cordis':
+        specifier: workspace:~
+        version: link:../../../vendor/cordis
+
+  packages/web/web-search-searxng:
+    dependencies:
+      '@anotherharness/schemastery':
+        specifier: link:../../../vendor/schemastery
+        version: link:../../../vendor/schemastery
+    devDependencies:
       '@anotherharness/ah-launch-environment':
         specifier: workspace:*
         version: link:../../util/launch-environment

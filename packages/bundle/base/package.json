@@ -121,6 +121,7 @@
     "@anotherharness/ah-web": "workspace:*",
     "@anotherharness/ah-web-fetch-http": "workspace:*",
     "@anotherharness/ah-web-search-deepseek": "workspace:*",
+    "@anotherharness/ah-web-search-searxng": "workspace:*",
     "@anotherharness/ah-workflow-ptc": "workspace:*",
     "@anotherharness/ah-working-directory": "workspace:*",
     "@anotherharness/cordis-plugin-timer": "workspace:~"

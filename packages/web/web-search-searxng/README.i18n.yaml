@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/web/web-search-searxng/README.md
+/:
+  en: 93962cea338e6cb1
+  zh: 64c78afc2a5aaf7a
+/anotherharness-ah-web-search-searxng:
+  en: 47f17e94a8dc6b14
+  zh: 23fcb8185ea8b2e4
+/anotherharness-ah-web-search-searxng/summary:
+  en: a6222eb066e625c1
+  zh: 68141b89685e9c2b
+/anotherharness-ah-web-search-searxng/quick-start:
+  en: 44fb80a8ff0f8f6b
+  zh: 76dd4fa469791d62
+/anotherharness-ah-web-search-searxng/configuration:
+  en: ecca85507a906cc5
+  zh: 35272d2d95237b91
+/anotherharness-ah-web-search-searxng/switching-providers:
+  en: a7597a3a180f6485
+  zh: 6ef3cc44c299dc92
+/anotherharness-ah-web-search-searxng/coverage:
+  en: e31749c14ffe8587
+  zh: 4520e63ae0876413
