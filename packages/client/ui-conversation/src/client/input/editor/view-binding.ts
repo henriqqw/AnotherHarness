@@ -1,11 +1,13 @@
 /** DOM and keymap bindings installed by the InputBar's existing effects. */
 import type { MouseEvent, MutableRefObject, RefObject } from 'react'
 import type { LexicalEditor } from 'lexical'
+import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical'
 import type { ComposerKeyboard } from '../../contract/draft-editor.ts'
 import type { ComposerBarProps } from '../../contract/slots.ts'
 import type { BusyEnterBehavior } from '../../contract/composer-submission.ts'
 import { resolveSubmitMode } from '../submission-policy.ts'
 import { registerComposerKeymap } from './keymap.ts'
+import { InputHistory } from '../use-input-history.ts'
 
 interface DraftViewGate {
   locked: boolean
@@ -108,6 +110,7 @@ export function installDraftKeymap(
   keyboard: ComposerKeyboard,
   gate: MutableRefObject<DraftViewGate>,
 ): () => void {
+  const history = new InputHistory()
   return registerComposerKeymap(editor, {
     arbitrate: (key, composing) => keyboard.arbitrate(key, composing),
     space: () => {
@@ -129,6 +132,7 @@ export function installDraftKeymap(
         g.showToast(g.t('file.stillUploading'))
         return
       }
+      history.push(keyboard.snapshot.draft)
       keyboard.submit(resolveSubmitMode(
         g.busyEnter,
         g.running,
@@ -140,6 +144,26 @@ export function installDraftKeymap(
     pasteText: (text) => {
       if (gate.current.machineBusy || gate.current.locked) return
       keyboard.paste(text)
+    },
+    navigateHistory: (dir) => {
+      const { draft } = keyboard.snapshot
+      // Exit navigation mode and pass through for multiline drafts so cursor
+      // can still move between lines normally.
+      if (draft.includes('\n')) {
+        history.resetCursor()
+        return false
+      }
+      const text = dir === 'up' ? history.up(draft) : history.down()
+      if (text === null) return false
+      editor.update(() => {
+        const root = $getRoot()
+        root.clear()
+        const para = $createParagraphNode()
+        if (text !== '') para.append($createTextNode(text))
+        root.append(para)
+        root.selectEnd()
+      }, { discrete: true })
+      return true
     },
   })
 }

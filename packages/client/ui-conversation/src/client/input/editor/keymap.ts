@@ -42,6 +42,11 @@ export interface ComposerKeymapHandlers {
   intakeFiles(files: readonly File[], directories?: ReadonlySet<File>): void
   /** Pasted plain text (sanitized insertion through the shell). */
   pasteText(text: string): void
+  /**
+   * Shell-style input history navigation (ArrowUp/Down when no trigger menu is open).
+   * @returns true if history consumed the arrow event; false to let Lexical handle cursor movement.
+   */
+  navigateHistory?(dir: 'up' | 'down'): boolean
 }
 
 /** Composition state a keydown can trust (see the module doc's Safari note). */
@@ -83,6 +88,10 @@ export function registerComposerKeymap(editor: LexicalEditor, handlers: Composer
   const arrow = (key: ArbitrateKey) => (event: KeyboardEvent | null): boolean => {
     const inComposition = event !== null && isComposingEvent(event, recentlyComposing)
     if (handlers.arbitrate(key, inComposition) !== 'pass') {
+      event?.preventDefault()
+      return true
+    }
+    if ((key === 'up' || key === 'down') && !inComposition && handlers.navigateHistory?.(key) === true) {
       event?.preventDefault()
       return true
     }
